@@ -1,14 +1,14 @@
 <?php
 $wIndex["wjDownloader"]  = array("name" => "jDownloader", "type" => "ajax", "block" => "jdownloaderwrapper", "headerfunction" => "widgetjDHeader();", "call" => "widgets/wjDownloader.php?style=w", "interval" => 10000);
+
 function widgetjDHeader() {
 	echo <<< JDHEADER
 		<script type="text/javascript" language="javascript">
 		<!--
+		function toggleSubItem(name)
+		{
+			var array = document.getElementsByName(name);
 
-			function toggle(subitem){
-
-				var array = document.getElementsByName(subitem);
-				
 				for( var c = 0; c < array.length; c++){
 					if (array[c].style.display == 'none'){
 						array[c].style.display = 'table-row';
@@ -16,170 +16,161 @@ function widgetjDHeader() {
 					else{
 						array[c].style.display = 'none';
 					}
-				}
-			}
-
+				}		}
 		-->
 		</script>
 JDHEADER;
 }
 
 function widgetjDownloader(){
-	global $jd_url;
-	$jd = $jd_url;
 
 	try{
-		$speed   = @file_get_contents($jd."get/speed");
-		$status  = @file_get_contents($jd."get/downloadstatus");
-
-		$speedLimit = @file_get_contents($jd."get/speedlimit");
-
-		$dlCount  = @file_get_contents($jd."get/downloads/currentcount");
-		$dlList  =  @file_get_contents($jd."get/downloads/alllist");
-
-		$dlList = str_replace("</jdownloader>", "", $dlList);
-		$dlList = str_replace("<jdownloader>", "", $dlList);
-		
-		//these 2 lines are to help with the Nightly versions of JD where they use plural instaed of singular
-		$dlList = str_replace("<packages", "<package" , $dlList);
-		$dlList = str_replace("</packages>", "</package>" , $dlList);
-		
-		$dlList = str_replace("<package ", "|" , $dlList);
-		$dlList = str_replace(">\n<file", "" , $dlList);
-		$dlList = str_replace("/>\n</package>", "" , $dlList);
-		$dlList = str_replace("/>", "" , $dlList);
-		$dlList = str_replace("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n\n", "" , $dlList);
-		$dlList = str_replace("\"", "" , $dlList);
-
-	
-		$dlList = explode("|",$dlList);
-
+		$speed   = getInfoDownloader("get/speed");
+		$status  = getInfoDownloader("get/downloadstatus");
+		$speedLimit = getInfoDownloader("get/speedlimit");
+		//echo $speed.'<br>'.$status.'<br>'.$speedLimit;
 		$action="";
 
 		switch($status){
 		case 'RUNNING':
 			$status="Downloading @".$speed." kB/s";
-			$action = $jd."action/stop";
+			$action = "stop";
 			break;
 		case 'STOPPING':
 			$status="Stopping";
 			break;
 		case 'NOT_RUNNING':
 			$status="Stopped";
-			$action = $jd."action/start";
+			$action = "start";
 			break;
 		}
 
-		echo "<a href='".$action."' target='nothing'>".$status."</a>";
+		echo "<a href='#' onclick=\"$.get('widgets/wjDownloader.php?action=".$action."', function(data) { alert(data);});\">".$status."</a>";
 
-		echo "<table border=\"0\" width='100%' style='table-layout:fixed;' cellspacing='0' cellpadding='0'><tr>";
-		echo "<th width='10%'></th>";
-		echo "<th width='40%'>Name</th>";
-		echo "<th width='50%'>Status</th>";
-		echo "</tr>";
-			
-		foreach($dlList as $item){
-	 		if($item!=""){
-		 		$item = str_replace("\n", "" , $item);
-		 		$item = str_replace(" package", "|package" , $item);
-		 		$item = str_replace("file_", "|file" , $item);					
-				
-				$original = $item;
-
-				$item = explode("|",$item);
-				//echo "<pre>";
-				//print_r($item);
-				//echo "</pre>";
-				
-				
-				
-				$eta    	 = substr($item[0],12);
-				$links_progress = substr($item[1],24);
-				$links_total = substr($item[2],19);
-				$downloaded  = substr($item[3],15);
-				$name		 = substr($item[4],13);
-				$percent 	 = substr($item[5],16);
-				$total_size  = substr($item[6],13);
-				$speed   	 = substr($item[7],14);
-				$to_do   	 = substr($item[8],13);
-
-				$popup  = "";
-				$popup .= "<p>Name: ".$name."</p>";
-				$popup .= "<p>Active Links: ".$links_progress." of ".$links_total."</p>";
-				$popup .= "<p>Progress: ".$percent."% (".$downloaded."/".$total_size.")</p>";
-				
-				$color = "red";
-	
-				if($links_progress!=0){
-					$hoster = substr($item[9],11);
-					//$to_do	= $item->attributes()->package_todo;
-					$popup .= "<p>Hoster: ".$hoster."</p>";
-					$color  = "green";
-				}
-				
-				$more = ($links_total>1)?"<img width='10px' src='media/btnAdd.png' style:'vertical-align:middle;' onClick=\"toggle('".$name."');\" />":"";
-
-				//echo "$eta $links_progress $links_total $downloaded $name $percent $total_size $speed $to_do";
-
-
+		$dlList = getInfoDownloader("get/downloads/alllist");		
+		if($dlList){
+			$doc = new DOMDocument();
+			$doc->loadXML($dlList);
+		}
+		else{
+			echo "ERROR! $dlList";
+			return false;
+		}
+		
+		if(is_object($doc->getElementsByTagName('jdownloader')))
+		{
+			if(is_object($doc->getElementsByTagName('package')))
+			{
+				echo "<table border=\"0\" width='100%' style='table-layout:fixed;' cellspacing='0' cellpadding='0'>";
 				echo "<tr>";
-				echo "<td>".$more."</td>";
-				echo "<td><font color=".$color."><div style='text-overflow:ellipsis;overflow:hidden; white-space:nowrap;' onMouseOver=\"ShowPopupBox('".$popup."');\" onMouseOut=\"HidePopupBox();\">".$name."</div></font></td>";
-				echo "<td><div class=\"queueitem\">";
-				echo "\t\t\t\t<div class=\"progressbar\">";
-				echo "\t\t\t\t\t<div class=\"progress\" style=\"width:".$percent."%\"></div>";
-				echo "\t\t\t\t\t<div class=\"progresslabel\" style='text-align: center;'>".$to_do." left @ ".$speed." - ".$eta."</div>";
-				echo "\t\t\t\t</div><!-- .progressbar -->";
-				echo "\t\t\t</div><!-- .queueitem -->";
-				echo "</td>";
+				echo "<th></th>";
+				echo "<th style='width:95%;'></th>";
 				echo "</tr>";
 
-				$subitem = explode("filename=",$original);
-				
-/*
-				echo "<pre>";
-				print_r($subitem);
-				echo "</pre>";
-*/
+				$package = $doc->getElementsByTagName('package');
+				foreach($package as $item){
+					$progress  = $item->getAttribute('package_linksinprogress');
+					$eta   = $item->getAttribute('package_ETA');
+					$total   = $item->getAttribute('package_linkstotal');
+					$loaded  = $item->getAttribute('package_loaded');
+					$name   = $item->getAttribute('package_name');
+					$percent  = $item->getAttribute('package_percent');
+					$size   = $item->getAttribute('package_size');
+					$speed   = $item->getAttribute('package_speed');
+					$todo   = $item->getAttribute('package_todo');
 
-				for($x=1; $x<sizeof($subitem);$x+=1){
-					
-					$s = explode("|",$subitem[$x]);
-					
-					$subname 	= substr($s[0],0);
-					$subperc 	= floor(substr($s[2],12));
-					$subspeed	= substr($s[3],10);
-					$substatus	= substr($s[4],11);
-					$subhoster 	= (!empty($substatus))?substr($s[5],11):"";
-					$subcolor 	= (!empty($substatus) && $substatus!="/ ")?"green":"red";
-					
-					$substatus = ($subperc>=100)?"Finished":$substatus;
-					
-					echo "<tr style='display:none;' name='".$name."'>";
-					echo "<td>$x</td>";
-					echo "<td><font color=".$subcolor."><div style='text-overflow:ellipsis;overflow:hidden; white-space:nowrap;' >".$subname."</div></font></td>";
+					//echo "$name | $eta | $progress | $total | $loaded | $percent | $size | $speed | $todo";
+
+					$colour = "green";
+					if(intval($progress) == 0){
+						$colour = "red";
+					}
+					$popup = "<p>Name: $name</p>";
+					$popup .= "<p>ETA: $eta</p>";
+					$popup .= "<p>Links: $progress of $total</p>";
+					$popup .= "<p>Size: $size</p>";
+					$popup .= "<p>Name: $name</p>";
+
+					$pack = $name;
+
+					echo "<tr>";
+					echo "<td><img width='17px' src='media/btnAdd.png' style:'vertical-align:middle;' onClick=\"toggleSubItem('".$pack."');\" /></td>";
 					echo "<td><div class=\"queueitem\">";
 					echo "\t\t\t\t<div class=\"progressbar\">";
-					echo "\t\t\t\t\t<div class=\"progress\" style=\"width:".$subperc."%\"></div>";
-					echo "\t\t\t\t\t<div class=\"progresslabel\" style='text-align: center;'>$substatus</div>";
+					echo "\t\t\t\t\t<div class=\"progress\" style=\"width:".$percent."\"></div>";
+					echo "\t\t\t\t\t<div class=\"progresslabel\" style='text-align: left;'><font color=".$colour." onMouseOver=\"ShowPopupBox('".$popup."');\" onMouseOut=\"HidePopupBox();\">$name $loaded of $size @ $speed</font></div>";
 					echo "\t\t\t\t</div><!-- .progressbar -->";
 					echo "\t\t\t</div><!-- .queueitem -->";
 					echo "</td>";
 					echo "</tr>";
 
+					$file = $item->getElementsByTagName('file');
+					foreach($file as $sub){
+						$hoster  = $sub->getAttribute('file_hoster');
+						$subname = $sub->getAttribute('file_name');
+						$package = $sub->getAttribute('file_package');
+						$peercent = $sub->getAttribute('file_percent');
+						$speed  = $sub->getAttribute('file_speed');
+						$status  = $sub->getAttribute('file_status');
+
+						$colour = "green";
+						if(intval($speed) == 0){
+							$colour = "red";
+						}
+
+
+						echo "<tr name='".$pack."' style='display:none;'>";
+						echo "<td></td>";
+						echo "<td><div class=\"queueitem\">";
+						echo "\t\t\t\t<div class=\"progressbar\">";
+						echo "\t\t\t\t\t<div class=\"progress\" style=\"width:".$percent."\"></div>";
+						echo "\t\t\t\t\t<div class=\"progresslabel\" style='text-align: center;'><font color=".$colour.">".$subname." $loaded of $size @ $speed</font></div>";
+						echo "\t\t\t\t</div><!-- .progressbar -->";
+						echo "\t\t\t</div><!-- .queueitem -->";
+						echo "</td>";
+						echo "</tr>";
+
+					}
+					echo "</div>";
 				}
+				echo "</table>";
 			}
 		}
-		echo "</table>";
-	
-		//$dlList = explode("package",$dlList);
-		//$dlList = explode("file",$dlList);
-
-		//print_r($dlList);
-		
 	}
 	catch(Exception $e){
-		echo "Error: $e";
+		echo $e;
+	}
+}
+function getInfoDownloader($param = ""){
+	global $jd_url;
+
+	if(!empty($param)){
+		$url = $jd_url.$param;
+	}
+	else{
+		echo false;
+		return false;
+	}
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_HTTPGET, 1);
+	curl_setopt($ch, CURLOPT_URL, $url);
+
+	$response = curl_exec($ch);
+	curl_close($ch);
+
+	return $response;
+}
+
+if(!empty($_GET['action'])){
+	if($_GET['action'] == "start"){
+		$x = getInfoDownloader("action/start");
+		echo "$x";
+	}
+	elseif($_GET['action'] == "stop"){
+		$x = getInfoDownloader("action/stop");
+		echo "$x";
 	}
 }
 
@@ -193,7 +184,6 @@ if(!empty($_GET['style']) && ($_GET['style'] == "w")) {
 		<link rel='stylesheet' type='text/css' href='css/front.css'>
 	</head>
 	<body>
-					<iframe name="nothing" height="0" width="0" style="visibility:hidden;display:none;"></iframe>
 <?php
 		widgetjDownloader();
 ?>
