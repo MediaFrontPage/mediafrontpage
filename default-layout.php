@@ -51,6 +51,10 @@ $arrLayout = array(
 				"title" => "Sabnzbd",
 				"display" => ""
 			),
+			"wMessage" => array(
+				"title" => "XBMC Message",
+				"display" => ""
+			),
 			"wTrakt" => array(
 				"title" => "trakt.tv",
 				"display" => ""
