@@ -80,11 +80,11 @@ function getResults() {
 	$cp_url = $settings['CouchPotato'];
 	$settings = $settings['Search'];
 	if($site == 1 || $site == 0){
-		if(!empty($settings['NZB.su']['api']) && !empty($settings['NZB.su']['download_code'])){
-			$nzbsuapi	= $settings['NZB.su']['api'];
-			$nzbsudl 	= $settings['NZB.su']['download_code'];
+		if(!empty($settings['NZB_su']['api']) && !empty($settings['NZB_su']['download_code'])){
+			$nzbsuapi	= $settings['NZB_su']['api'];
+			$nzbsudl 	= $settings['NZB_su']['download_code'];
 		} else {
-			return "Missing NZB.su info";
+			echo "Missing NZB.su info";
 		}
 
 		$results = nzbsu($q, $saburl,$sabapikey, $nzbsuapi, $nzbsudl);
@@ -95,7 +95,7 @@ function getResults() {
 			$nzbapi 	 = $settings['NZBMatrix']['api'];
 		}
 		else{
-			return "Missing NZBMatrix info";
+			echo "Missing NZBMatrix info";
 		}
 		
 		$results = nzbmatrix($q, $nzbusername, $nzbapi,$saburl,$sabapikey);		
@@ -127,15 +127,55 @@ function getResults() {
 						<thead>
 							<tr>
 								<th style='width:3%;'></th>
-								<th style='width:60%;' onclick=\"setTimeout('updateRows()',10);\"><a href=#>Name <img src=\"./media/arrow.png\"/></a></th>
-								<th style='width:15%;'onclick=\"setTimeout('updateRows()',10);\"$column2<img src=\"./media/arrow.png\"/></a></th>
-								<th style='width:20%;' onclick=\"setTimeout('updateRows()',10);\"><a href=#>$column3 <img src=\"./media/arrow.png\"/></a></th>
+								<th style='width:60%;' onclick=\"setTimeout('updateRows()',10);\"><a href=#>Name <img src=\"style/images/arrow.png\"/></a></th>
+								<th style='width:15%;'onclick=\"setTimeout('updateRows()',10);\"$column2<img src=\"style/images/arrow.png\"/></a></th>
+								<th style='width:20%;' onclick=\"setTimeout('updateRows()',10);\"><a href=#>$column3 <img src=\"style/images/arrow.png\"/></a></th>
 							</tr>
 						</thead>
 						<tbody>";
 
 	echo "$q | $site";
 	echo (!empty($results))? $tablebody.$results."</tbody></table></div>" : "<h1>Nothing found!</h1>";
+}
+function nzbsu($q, $saburl,$sabapikey, $nzbsuapi, $nzbsudl){
+
+	$type = (!empty($_GET['type']))?("&cat=".$_GET['type']):"";
+
+	$search = "http://nzb.su/api?t=search&q=".urlencode($q).$type."&apikey=".$nzbsuapi."&o=json";
+	$json = @file_get_contents($search);
+	$content = json_decode($json, true);
+	//print_r($content);
+
+	$table = "";
+	foreach($content as &$array){
+		//print_r($array);
+		$id = $array['guid'];
+		$name = $array['name'];
+		$cat = $array['category_name'];
+		$size = $array['size'];
+		$postdate = "<p>Date Posted: ".$array['postdate']."</p>";
+		$coments = "<p>Coments: ".$array['comments']."</p>";
+		$group_name = "<p> Group name: ".$array['group_name']."</p>";
+		$grabs = "<p> Grabs: ".$array['grabs']."</p>";
+		(!empty($array['seriesfull']))?($seriesfull=("<p>Episode info: ".$array['seriesfull']." ".$array['tvtitle']." ".$array['tvairdate']."</p>")):($seriesfull="");
+
+		$url="http://nzb.su/getnzb/".$id.".nzb".$nzbsudl;
+		$addToSab = $saburl.'api?mode=addurl&name='.urlencode($url).'&output=json&apikey='.$sabapikey;
+		$nzblink = "http://nzb.su/details/".$id;
+		$name = str_replace(".", "\n", $name);
+		$name = str_replace(" ", "\n", $name);
+		$item_desc = "<p>Name: $name</p>".$postdate.$coments.$group_name.$grabs.$seriesfull;
+		$item_desc = str_replace("\n", "<br>", $item_desc);
+		$item_desc = str_replace("\"", " - ", $item_desc);		
+		$item_desc = str_replace("'", "|", $item_desc);		
+
+		$addToSab = addCategory($cat,$addToSab);
+		if(strlen($name)!=0){
+			$table .= (strpos(strtolower($cat), "xxx")===false)?printTable($name,$cat,$size,$addToSab,$nzblink,$item_desc):("");
+		}
+	}
+	return $table;
+
 }
 
 function nzbmatrix($item, $nzbusername, $nzbapi,$saburl,$sabapikey) {
@@ -225,10 +265,10 @@ function imdb($item,$cp){
 				}
 				else
 				{
-					$image = "<img id='search-thumb' src='./media/no_poster.jpg' />";			
+					$image = "<img id='search-thumb' src='style/images/no_poster.jpg' />";			
 
 				}
-				$imdb  = "<a href='http://www.imdb.com/title/".$imdb_id."' target='_blank'><img id='imdb-badge' src='./media/imdb.png' /></a>";
+				$imdb  = "<a href='http://www.imdb.com/title/".$imdb_id."' target='_blank'><img id='imdb-badge' src='style/images/imdb.png' /></a>";
 				
 				
 				$item_desc = "";
@@ -245,7 +285,7 @@ function imdb($item,$cp){
 				$cp_add = $cp."movie/imdbAdd/?id=".$imdb_id;
 				
 				$table .= "<tr class=\"row\">";
-				$table .= "<td style='width:5%;'><a href='".$cp_add."?iframe=true&width=200&height=40' rel='prettyPhoto'><img class=\"couchpotato\" height='20px' src=\"./media/couchpotato.png\" alt=\"Add to CouchPotato Queue\"/></a></td>";
+				$table .= "<td style='width:5%;'><a href='".$cp_add."?iframe=true&width=200&height=40' rel='prettyPhoto'><img class=\"couchpotato\" height='20px' src=\"style/images/couchpotato.png\" alt=\"Add to CouchPotato Queue\"/></a></td>";
 				$table .= "<td>".$image.$imdb."<a href='#' onMouseOver=\"ShowPopupBox('$item_desc');\" onMouseOut=\"HidePopupBox();\" onClick=\"getExtra('".$id."');\">".$name."</a></td>";
 				$table .= "<td style='width:13%'>$rating</td>";
 				$table .= "<td style='width:10%'>".substr($released,0,4)."</td></tr>";
@@ -261,14 +301,14 @@ function printTable($name,$cat,$size,$addToSab,$nzblink,$item_desc, $image="", $
 	}
 	if($weblink!=""){
 		if(strpos($weblink,'imdb')!==false){
-			$weblink = "<a href=".$weblink." target='_blank'><img id='imdb-badge' src='./media/imdb.png' /></a>";
+			$weblink = "<a href=".$weblink." target='_blank'><img id='imdb-badge' src='style/images/imdb.png' /></a>";
 		}
 		else{
 			$weblink = "";
 		}
 	}
 	return "	<tr class=\"row\">
-					<td style='padding-top:5px;'><a href=\"#\";  onclick=\"sabAddUrl('".htmlentities($addToSab)."'); return false;\"><img class=\"sablink\" src=\"./media/sab2_16.png\" alt=\"Download with SABnzdd+\"/></a></td>
+					<td style='padding-top:5px;'><a href=\"#\";  onclick=\"sabAddUrl('".htmlentities($addToSab)."'); return false;\"><img class=\"sablink\" src=\"style/images/sab2_16.png\" alt=\"Download with SABnzdd+\"/></a></td>
 					<td style='text-overflow:ellipsis;overflow:hidden; white-space: nowrap;'>".$image.$weblink."<a href='".$nzblink."' target='_blank'; onMouseOver=\"ShowPopupBox('".$item_desc."');\" onMouseOut=\"HidePopupBox();\"><div style='padding-top:4px;'>$name</div></a></td>
 					<td style='padding-top:4px;' class='filesize'>".ByteSize($size)."</td>
 					<td style='padding-top:4px;text-overflow:ellipsis;overflow:hidden; white-space: nowrap;'>$cat</td>
@@ -352,7 +392,7 @@ function getInfo($id,$cp)
 		}
 	}
 	
-	$poster[0] = (empty($poster[0]))?"./media/no_poster.jpg":$poster[0];
+	$poster[0] = (empty($poster[0]))?"style/images/no_poster.jpg":$poster[0];
 
 	setlocale(LC_MONETARY, 'en_US');
 	
@@ -364,9 +404,9 @@ function getInfo($id,$cp)
 	$homepage_tag = (!empty($homepage))?("<a href='".$homepage."' target='_blank' >$homepage</a>"):"<a>";
 	$trailer_tag  = (!empty($trailer))?("<a href='".$trailer."' rel='prettyPhoto' >$trailer</a>"):"";	//onclick='toggleTrailer(this)'
 		
-	echo "<p><a href='$cp_add?iframe=true&height=40&width=190' rel='prettyPhoto'><img id='movie-extra-badge' src='./media/couchpotato.png' /></a>";
-	echo "<a href='http://www.imdb.com/title/".$imdb_id."?iframe=true&height=95%&width=100%' rel='prettyPhoto'><img id='movie-extra-badge' src='./media/imdb.png' /></a>";
-	echo "<a href='$url?iframe=true?iframe=true&height=95%&width=100%' rel='prettyPhoto'><img id='movie-extra-badge' src='./media/moviedb.png' /></a>";
+	echo "<p><a href='$cp_add?iframe=true&height=40&width=190' rel='prettyPhoto'><img id='movie-extra-badge' src='style/images/couchpotato.png' /></a>";
+	echo "<a href='http://www.imdb.com/title/".$imdb_id."?iframe=true&height=95%&width=100%' rel='prettyPhoto'><img id='movie-extra-badge' src='style/images/imdb.png' /></a>";
+	echo "<a href='$url?iframe=true?iframe=true&height=95%&width=100%' rel='prettyPhoto'><img id='movie-extra-badge' src='style/images/moviedb.png' /></a>";
 	echo "<h1>$name <i id='movie-extra-rating'>$rating ($votes votes)</i></h1></p>";
 	echo "<div style='float: left; width:28%;'><p><img src='".$poster[0]."' id='movie-extra-poster'></p><p>$orig_name</p><p>Date Released: $released</p><p>$tag</p></div>";
 	echo "<table width='70%'>";
@@ -417,7 +457,7 @@ function getInfo($id,$cp)
 
 		$bg = ($x%2)?"class='actor-odd'":"";
 		$x++;
-		$actor_thumb = (!empty($actor_thumb))?$actor_thumb:"./media/no_face.png";
+		$actor_thumb = (!empty($actor_thumb))?$actor_thumb:"style/images/no_face.png";
 		echo "<tr $bg><td width='25px'><img src='$actor_thumb' id='actor-thumb'></td><td> $actor_name </td><td> $actor_job </td><td> $actor_char</td></tr>";
 				
 	}
