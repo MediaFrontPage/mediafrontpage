@@ -45,8 +45,8 @@ $settings_init['Global'] =	array(  'navlinks' =>	array(	'label'	=>	'Navigation B
 								'value' =>	array(	'customstylesheet1' =>	array(	'label' 	=> 'Light Theme',
 															'path'	=> 'style/css/lighttheme.css',
 															'enabled'	=> 'false'),
-											'customstylesheet2' =>	array(	'label' 	=> 'Minimal Coming Episodes',
-															'path'	=> 'style/css/comingepisodes-minimal-poster.css',
+													'customstylesheet2' =>	array(	'label' 	=> 'Minimal Coming Episodes',
+															'path'	=> 'style/css/comingepisodes-minimal-banner.css',
 															'enabled'	=> 'false')
 										)
 								),
@@ -77,6 +77,11 @@ $settings = formatSettings($settingsDB);
 		<script type="text/javascript" language="javascript" src="style/js/popuptext.js"></script>
 		<script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.2.6.min.js"></script>
 		<script type="text/javascript" src="style/js/highslide/highslide.js"></script>
+    	<script type="text/javascript" src="style/js/jquery.tablesorter.js"></script>
+    	<script type="text/javascript" src="style/js/prettyPhoto/jquery.prettyPhoto.js"></script>
+		<link rel="stylesheet" type="text/css" href="style/js/prettyPhoto/prettyPhoto.css" />
+    	<script type="text/javascript" src="style/js/prettyLoader/js/jquery.prettyLoader.js"></script>
+		<link rel="stylesheet" type="text/css" href="style/js/prettyLoader/css/prettyLoader.css" />
 		<link rel="stylesheet" type="text/css" href="style/js/highslide/highslide.css" />
 		<script type="text/javascript">
 			//<![CDATA[
