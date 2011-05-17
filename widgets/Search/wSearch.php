@@ -138,14 +138,11 @@ function getResults() {
 	echo (!empty($results))? $tablebody.$results."</tbody></table></div>" : "<h1>Nothing found!</h1>";
 }
 function nzbsu($q, $saburl,$sabapikey, $nzbsuapi, $nzbsudl){
-
 	$type = (!empty($_GET['type']))?("&cat=".$_GET['type']):"";
-
 	$search = "http://nzb.su/api?t=search&q=".urlencode($q).$type."&apikey=".$nzbsuapi."&o=json";
 	$json = @file_get_contents($search);
 	$content = json_decode($json, true);
 	//print_r($content);
-
 	$table = "";
 	foreach($content as &$array){
 		//print_r($array);
@@ -179,30 +176,29 @@ function nzbsu($q, $saburl,$sabapikey, $nzbsuapi, $nzbsudl){
 }
 
 function nzbmatrix($item, $nzbusername, $nzbapi,$saburl,$sabapikey) {
-	
 	$type = (!empty($_GET['type']))?("&catid=".$_GET['type']):"";
-
 	$search = "https://api.nzbmatrix.com/v1.1/search.php?search=".urlencode($item).$type."&username=".$nzbusername."&apikey=".$nzbapi;
 	$content = file_get_contents($search);
-	if(!empty($content)){
+	//return $content;
+	if(!strstr($content, 'error')){
 		$itemArray = explode('|',$content);
 		$table = "";
-		foreach($itemArray as &$item){
+		foreach($itemArray as $item){
 			$item = explode(';',$item);
-	/*
-						foreach($item as &$value){
+/*
+					foreach($item as $value){
 						echo $value;
 						echo "</br>";
 						}
-	*/
-			$id = "ID: ".substr($item[0],6);
-			$name = substr($item[1],9);
-			$link = "http://www.".substr($item[2], 6);
+*/
+	
+			$id = "ID: ".strstr($item['0'],':');
+			$name = strstr($item['1'],':');
+			$link = "http://www.".substr($item['2'], 6);
 			$size = 0+substr($item[3], 6);
 			$size = $size;
 			$cat = substr($item[6],10);
 			$addToSab=$saburl."api?mode=addurl&name=http://www.".substr($link,6)."&nzbname=".urlencode($name)."&output=json&apikey=".$sabapikey;
-	
 			$indexdate 	= "Index Date: ".substr($item[4], 12);
 			$group 		= "Group: ".substr($item[7],7);
 			$comments 	= "Comments: ".substr($item[8],10);
@@ -211,6 +207,7 @@ function nzbmatrix($item, $nzbusername, $nzbapi,$saburl,$sabapikey) {
 			$weblink 	= substr($item[11], 9);
 			$image 		= substr($item[13],7);
 			$item_desc	= "<p>Name: ".$name."</p><p>".$id."</p><p>".$group."</p><p>".$comments."</p><p>".$hits."</p><p>".$nfo."</p><p>".$indexdate."</p>";
+			//echo "$name  |  $link  |  $size  |  $cat  |  $indexdate  |  $group  |  $comments  |  $hits  |  $nfo  |  $weblink  |  $image  |  $item_desc";
 			
 			$addToSab = addCategory($cat,$addToSab);
 	

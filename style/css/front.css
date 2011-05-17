@@ -14,6 +14,7 @@ h1 {
 	text-align: center;
 	font-size: 15px;
 	font-weight: bold;
+	border-bottom: 1px solid;
 	margin-top: 0px;
 }
 h2 {
@@ -125,6 +126,27 @@ a.controlbutton img {
 	margin: 0;
 }
 
+/* wHARDRIVES */
+
+#wHardDrives {
+	display: block;	
+	margin: 20px 0 0;
+}
+#wHardDrives table {
+	text-align: center;
+	width: 100%;
+}
+#col-disk{width:20%;}
+#col-capacity{width:20%;}
+#col-remaining{width:20%;}
+#col-progress {width:40%;}
+#wHardDrives div.progressbar { 
+	width: 100%;
+}
+#wHardDrives .progresslabel {
+	text-align: center;
+}
+
 /* wNOWPLAYING */
 #wNowPlaying img {
 	float: left;
@@ -234,4 +256,72 @@ table.popupwrapper, table.popup{
 table.popupwrapper tr {
 	background: #3D3D3D;
 }
+/* wSearch */
 
+.odd {
+	background-color: #383838;
+}
+#wSearch tr.row:hover {
+	background-color: #FFFFFF;
+}
+div#wSearch {
+	overflow: auto; 
+	max-height: 70%; 
+	max-width: 100%;
+}
+div#wSearch #search-Table{
+	width: 100%;
+}
+#wSearch #search-thumb{
+	float: left;
+	width: 20px;
+}
+
+#wSearch #imdb-badge{
+	float: right;
+	width: 15px;
+}
+#wSearch tr.row{
+	height:2em;
+	overflow: hidden;
+}
+#wSearch #movie-extra-badge{
+	max-width: 100%;
+	max-height: 100%; 
+	float: left; 
+	padding-right:4px;
+}
+#wSearch #movie-extra-rating{
+	float:right; 
+	size:10;
+}
+#wSearch #movie-extra-poster{
+	width:100%; 
+	padding-right:8px;
+}
+#wSearch #movie-extra-overview{
+	text-align: justify;
+}
+#wSearch #movie-extra-generalinfo{
+	text-align: left;
+}
+#wSearch #actor-thumb{
+	height:37px;
+	width:100%;
+}
+#wSearch .actor-odd{
+	background-color:#303030;
+}
+/* wTransmission */
+.btnDown {
+	background:#FFFFFF url(../images/btnDown_mini.png) no-repeat;
+	background-position: left;
+	padding-left: 10px;
+	border:0px;
+}
+.btnUp {
+	background:#FFFFFF url(../images/btnUp_mini.png) no-repeat;
+	background-position: left;
+	padding-left: 8px;
+	border:0px;
+}
