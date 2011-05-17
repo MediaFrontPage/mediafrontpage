@@ -1,14 +1,15 @@
 <?php
 
-$widget_init = array(	'Id' 			=> "wHardDrives", 
+$widget_init = array(	
+			'Id' 			=> "wHardDrives", 
 			'Child'			=> "false",	
 			'Type' 			=> "inline", 
 			'Title' 		=> "Hard Drives", 
 			'Function' 		=> "widgetHardDrives();",
-			'Stylesheet' 		=> "harddrives.css",
+			'Stylesheet' 	=> "harddrives.css",
 			'Section' 		=> 1, 
 			'Position' 		=> 1,
-			'HeaderFunction' 	=> "", 
+			'HeaderFunction'=> "", 
 			'Parts'			=> "",
 			'Block' 		=> "",  
 			'Call'			=> "",
@@ -17,12 +18,15 @@ $widget_init = array(	'Id' 			=> "wHardDrives",
 			'Script'		=> ""
 		    );
 
-$settings_init['wHardDrives'] =	array(  'drives' =>	array(	'label'	=>	'Drives',
-								'value' =>	array(	'drivepath1' =>	array(	'label' 	=> '/',
-														'location'	=> '/')
-											)
-								)
-					);
+$settings_init['wHardDrives'] =	array(  'drives' =>	array(	
+												'label'	=>	'Drives',
+												'value' =>	array(	
+														'drivepath1' =>	array(	
+																'label' 	=> '/',
+																'location'	=> '/')
+																)
+														)
+											);
 
 function widgetHardDrives() {
 	global $settings;

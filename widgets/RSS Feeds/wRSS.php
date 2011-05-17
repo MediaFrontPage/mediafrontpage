@@ -1,13 +1,14 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
-$widget_init = array(	'Id' 			=> "wRSS", 
+$widget_init = array(	
+			'Id' 			=> "wRSS", 
 			'Child'			=> "false",
 			'Type' 			=> "inline", 
 			'Title' 		=> "RSS Feeds", 
 			'Function' 		=> "widgetRSS();",
-			'HeaderFunction' 	=> "widgetRSSHeader();", 
-			'Stylesheet' 		=> "",
+			'HeaderFunction'=> "widgetRSSHeader();", 
+			'Stylesheet' 	=> "",
 			'Section' 		=> 3, 
 			'Position' 		=> 4,
 			'Parts'			=> "",
@@ -18,8 +19,11 @@ $widget_init = array(	'Id' 			=> "wRSS",
 			'Script'		=> ""
 		    );
 
-$settings_init['wRSS'] =	array(  'rssfeeds' =>	array(	'label'	=>	'RSS Feeds',
-								'value' =>	array(	'rssfeed1' =>	array(	'label' 	=> 'mediafrontpage on github',
+$settings_init['wRSS'] =	array(  'rssfeeds' =>	array(	
+							'label'	=>	'RSS Feeds',
+								'value' =>	array(	
+											'rssfeed1' =>	array(	
+														'label' 	=> 'mediafrontpage on github',
 														'type'	 	=> 'atom',
 														'url'		=> 'https://github.com/nick8888/mediafrontpage/commits/master.atom',
 														'category'	=> '',
@@ -27,12 +31,12 @@ $settings_init['wRSS'] =	array(  'rssfeeds' =>	array(	'label'	=>	'RSS Feeds',
 														'postprocess'	=> '',
 														'script'	=> ''),
 											'rssfeed2' =>	array(	'label' 	=> 'xbmc.org',
-														'type'	 	=> 'rss',
-														'url'		=> 'http://xbmc.org/feed/',
+														'type    '	 	=> 'rss',
+														'url     '		=> 'http://xbmc.org/feed/',
 														'category'	=> '',
 														'priority'	=> '',
 														'postprocess'	=> '',
-														'script'	=> ''),
+														'script  '	=> ''),
 											'rssfeed3' =>	array(	'label' 	=> 'NZBMatrix - Sports',
 														'type'	 	=> 'rss',
 														'url'		=> 'http://rss.nzbmatrix.com/rss.php?subcat=7',

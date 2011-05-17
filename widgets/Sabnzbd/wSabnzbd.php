@@ -1,12 +1,13 @@
 <?php
 
-$widget_init = array(	'Id' 			=> "wSabnzbd",
+$widget_init = array(
+			'Id' 			=> "wSabnzbd",
 			'Child'			=> "false",
 			'Type' 			=> "ajax", 
 			'Title' 		=> "Sabnzbd", 
 			'Function' 		=> "",
-			'HeaderFunction' 	=> "widgetSabnzbdHeader();", 
-			'Stylesheet' 		=> "",
+			'HeaderFunction'=> "widgetSabnzbdHeader();", 
+			'Stylesheet' 	=> "",
 			'Section' 		=> 3, 
 			'Position' 		=> 3,
 			'Parts'			=> "",
@@ -17,11 +18,13 @@ $widget_init = array(	'Id' 			=> "wSabnzbd",
 			'Script'		=> ""
 		    );
 
-$settings_init['wSabnzbd'] =	array(  'saburl'    => 	array(	'label'	=>	'Sabnzbd URL',
-								'value' =>	'http://localhost:8080/sabnzbd/'),
-					'sabapikey' =>	array(	'label'	=>	'Sabnzbd API Key',
-								'value' =>	'')
-					);
+$settings_init['wSabnzbd'] =	array(  'saburl'    => 	array(	
+												'label'	=>	'Sabnzbd URL',
+												'value' =>	'http://localhost:8080/sabnzbd/'),
+												'sabapikey' =>	array(	
+													'label'	=>	'Sabnzbd API Key',
+													'value' =>	'')
+										);
 
 function widgetSabnzbdHeader() {
 	echo <<< SABNZBDHEADER

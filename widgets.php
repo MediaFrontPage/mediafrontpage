@@ -3,21 +3,21 @@ require_once "functions.php";
 
 class widget {
 	function __construct($widget_init, $widgetfile) {
-			$this->Id = $widget_init['Id'];
-			$this->Child = $widget_init['Child'];
-			$this->File = $widgetfile;
-			$this->Type = $widget_init['Type'];
-			$this->Block = $widget_init['Block'];
-			$this->Title = $widget_init['Title'];
-			$this->Parts = $widget_init['Parts'];
+			$this->Id 		= $widget_init['Id'];
+			$this->Child 	= $widget_init['Child'];
+			$this->File 	= $widgetfile;
+			$this->Type 	= $widget_init['Type'];
+			$this->Block 	= $widget_init['Block'];
+			$this->Title 	= $widget_init['Title'];
+			$this->Parts 	= $widget_init['Parts'];
 			$this->HeaderFunction = $widget_init['HeaderFunction'];
 			$this->Function = $widget_init['Function'];
-			$this->Call = $widget_init['Call'];
-			$this->Loader = $widget_init['Loader'];
+			$this->Call 	= $widget_init['Call'];
+			$this->Loader 	= $widget_init['Loader'];
 			$this->Interval = $widget_init['Interval'];
 			$this->Stylesheet = $widget_init['Stylesheet'];
-			$this->Script = $widget_init['Script'];
-			$this->Section = $widget_init['Section'];
+			$this->Script 	= $widget_init['Script'];
+			$this->Section 	= $widget_init['Section'];
 			$this->Position = $widget_init['Position'];
 	}
 	public $Id;

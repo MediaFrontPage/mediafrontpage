@@ -61,7 +61,7 @@ function getResults(item)
 	var type = $("#type").val();
 	$.ajax({
 	  type: 'GET',
-	  url: "widgets/wSearch.php?site=" + site + "&q=" + item + "&type=" + type,
+	  url: "widgets/Search/wSearch.php?site=" + site + "&q=" + item + "&type=" + type,
 	  beforeSend:function(){
 	    // this is where we append a loading image
 	    //$('#ajax-panel').html('<div class="loading"><img src="/images/loading.gif" alt="Loading..." /></div>');
@@ -160,7 +160,7 @@ function getExtra(id)
 	
 	$.ajax({
 	  type: 'GET',
-	  url:  "widgets/wSearch.php?id=" + id,
+	  url:  "widgets/Search/wSearch.php?id=" + id,
 	  beforeSend:function(){
 	    // this is where we append a loading image
 	    //$('#ajax-panel').html('<div class="loading"><img src="/images/loading.gif" alt="Loading..." /></div>');

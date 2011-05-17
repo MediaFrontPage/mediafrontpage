@@ -23,21 +23,22 @@ $settings_init['wSearch'] =	array( 	'Search' 		=>	array(
 											'value' =>  array(	
 												'NZBMatrix' => array(	
 																'username' => '',
-																'password' => '',
+																'api' => '',
 															),
 												'NZB.su'	=> array(
-																'username' => '',
-																'password' => '',
+																'api' => '',
+																'download_code' => '',
 															)
 												)
-										)
-									);
+										),
+									'CouchPotato' => array(
+										'label'	=>	'CouchPotatoURL',
+										'value'	=>	'',
+									)
+								);
 
 
 function widgetSearch() {	
- 	global $settings;
-
-	print_r($settings);
 	echo <<<BODY
             <div><input type="text"
                   value=""
@@ -62,18 +63,41 @@ function widgetSearch() {
 BODY;
 }
 function getResults() {
+	include_once "../../functions.php";
+	$settingsDB = getAllSettings('sqlite:../../settings.db');
+	$settings = formatSettings($settingsDB);
+	//print_r($settings);
+	$saburl		= $settings['saburl'];
+	$sabapikey 	= $settings['sabapikey'];
 	
+
 	$q=$_GET["q"];
 	$site = $_GET["site"];
 	$column2 = "class=\"header filesize\"><a href=#>Size ";
 	$column3 = "Category";
 	
 	
-	
-	if($site == 1){
+	$cp_url = $settings['CouchPotato'];
+	$settings = $settings['Search'];
+	if($site == 1 || $site == 0){
+		if(!empty($settings['NZB.su']['api']) && !empty($settings['NZB.su']['download_code'])){
+			$nzbsuapi	= $settings['NZB.su']['api'];
+			$nzbsudl 	= $settings['NZB.su']['download_code'];
+		} else {
+			return "Missing NZB.su info";
+		}
+
 		$results = nzbsu($q, $saburl,$sabapikey, $nzbsuapi, $nzbsudl);
 	}
 	elseif($site == 2) {
+		if(!empty($settings['NZBMatrix']['username']) && !empty($settings['NZBMatrix']['api'])){
+			$nzbusername = $settings['NZBMatrix']['username'];
+			$nzbapi 	 = $settings['NZBMatrix']['api'];
+		}
+		else{
+			return "Missing NZBMatrix info";
+		}
+		
 		$results = nzbmatrix($q, $nzbusername, $nzbapi,$saburl,$sabapikey);		
 	}
 	elseif($site == 3) {
@@ -97,30 +121,6 @@ function getResults() {
 			return false;
 		}
 	}
-	else
-	{
-		$_GET['type'] = $preferredCategories;
-		switch ($preferredSearch)
-		{
-			case '0':
-				//$_GET['type'] = '';
-				//$results = nzbmatrix($q, $nzbusername, $nzbapi,$saburl,$sabapikey);
-				//$results .= nzbsu($q, $saburl,$sabapikey, $nzbsuapi, $nzbsudl);
-				$results = "<h1>Need to choose default Site and Category</h1>";
-				break;
-			case '1':
-				$results = nzbmatrix($q, $nzbusername, $nzbapi,$saburl,$sabapikey);
-				break;
-			case '2':
-				$results = nzbsu($q, $saburl,$sabapikey, $nzbsuapi, $nzbsudl);
-				break;
-			case '3':
-				$column2 = "><a href=#>Rating ";
-				$column3 = "Year";
-				$results = imdb($q,$cp_url);
-				break;
-		}
-	}
 	
 	$tablebody = "<div id='wSearch'>
 					<table id='search-Table' class='tablesorter' width='100%' style='table-layout:fixed;' cellspacing='0'>
@@ -134,11 +134,12 @@ function getResults() {
 						</thead>
 						<tbody>";
 
+	echo "$q | $site";
 	echo (!empty($results))? $tablebody.$results."</tbody></table></div>" : "<h1>Nothing found!</h1>";
 }
 
 function nzbmatrix($item, $nzbusername, $nzbapi,$saburl,$sabapikey) {
-
+	
 	$type = (!empty($_GET['type']))?("&catid=".$_GET['type']):"";
 
 	$search = "https://api.nzbmatrix.com/v1.1/search.php?search=".urlencode($item).$type."&username=".$nzbusername."&apikey=".$nzbapi;

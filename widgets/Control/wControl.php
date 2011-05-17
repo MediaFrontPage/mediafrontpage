@@ -1,12 +1,13 @@
 <?php
 
-$widget_init = array(	'Id' 			=> "wControl",
+$widget_init = array(	
+			'Id' 			=> "wControl",
 			'Child'			=> "false",
 			'Type' 			=> "inline",
 			'Title' 		=> "Control",
 			'Function' 		=> "widgetControl(\"widgets/Control/wControl.php\", true);",
-			'HeaderFunction' 	=> "widgetControlHeader();",
-			'Stylesheet' 		=> "",
+			'HeaderFunction'=> "widgetControlHeader();",
+			'Stylesheet' 	=> "",
 			'Section' 		=> 1,
 			'Position' 		=> 3,
 			'Parts'			=> "",
@@ -17,22 +18,29 @@ $widget_init = array(	'Id' 			=> "wControl",
 			'Script'		=> "",
 		    );
 
-$settings_init['wControl'] =	array(  'shortcuts' =>	array(	'label'	=>	'Shortcuts',
-								'value' =>	array(	'shortcut1' =>	array(	'label' 	=> 'Shutdown XBMC',
-														'type'	 	=> 'cmd',
-														'action'	=> 'shutdown'),
-											'shortcut2' =>	array(	'label' 	=> 'Update XBMC Video Library',
-														'type'	 	=> 'cmd',
-														'action'	=> 'vidscan'),
-											'shortcut3' =>	array(	'label' 	=> 'Clean XBMC Video Library',
-														'type'	 	=> 'xbmcsend',
-														'action'	=> 'CleanLibrary(video)'),
-											'shortcut4' =>	array(	'label' 	=> 'Update XBMC Audio Library',
-														'type'	 	=> 'json',
-														'action'	=> '{"jsonrpc": "2.0", "method": "AudioLibrary.ScanForContent", "id" : 1 }'),
-											'shortcut5' =>	array(	'label' 	=> 'Google',
-														'type'	 	=> 'link',
-														'action'	=> 'http://www.google.com')
+$settings_init['wControl'] = array('shortcuts' =>	array(	
+											'label'	=>	'Shortcuts',
+											'value' =>	array(	
+													'shortcut1' =>	array(	
+																'label' 	=> 'Shutdown XBMC',
+																'type'	 	=> 'cmd',
+																'action'	=> 'shutdown'),
+													'shortcut2' =>	array(	
+																'label' 	=> 'Update XBMC Video Library',
+																'type'	 	=> 'cmd',
+																'action'	=> 'vidscan'),
+													'shortcut3' =>	array(	
+																'label' 	=> 'Clean XBMC Video Library',
+																'type'	 	=> 'xbmcsend',
+																'action'	=> 'CleanLibrary(video)'),
+													'shortcut4' =>	array(	
+																'label' 	=> 'Update XBMC Audio Library',
+																'type'	 	=> 'json',
+																'action'	=> '{"jsonrpc": "2.0", "method": "AudioLibrary.ScanForContent", "id" : 1 }'),
+													'shortcut5' =>	array(	
+																'label' 	=> 'Google',
+																'type'	 	=> 'link',
+																'action'	=> 'http://www.google.com')
 											)
 								)
 					);

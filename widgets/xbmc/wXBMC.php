@@ -6,11 +6,11 @@ $widgetMediaLibrary = array(
 			'Type' 			=> "ajax", 
 			'Title' 		=> "Media Library", 
 			'Parts'			=> "",
-			'Stylesheet' 		=> "",
+			'Stylesheet' 	=> "",
 			'Section' 		=> 2, 
 			'Position' 		=> 1,
 			'Function' 		=> "",
-			'HeaderFunction' 	=> "",
+			'HeaderFunction'=> "",
 			'Block' 		=> "medialibrarywrapper",   
 			'Call'			=> "widgets/xbmc/wXBMC.php?w=l&style=w&a=l",
 			'Loader'		=> "",
@@ -24,11 +24,11 @@ $widgetRecentEpisodes = array(
 			'Type' 			=> "ajax", 
 			'Title' 		=> "Recent Episodes", 
 			'Parts'			=> "",
-			'Stylesheet' 		=> "",
+			'Stylesheet' 	=> "",
 			'Section' 		=> 1, 
 			'Position' 		=> 2,
 			'Function' 		=> "",
-			'HeaderFunction' 	=> "",
+			'HeaderFunction'=> "",
 			'Block' 		=> "recentepisodeswrapper",   
 			'Call'			=> "widgets/xbmc/wXBMC.php?w=l&style=w&a=re&c=15",
 			'Loader'		=> "cmdXbmcLibrary('recentepisodeswrapper', 'widgets/xbmc/wXBMC.php?w=re&', 're', '', '', true);",
@@ -42,11 +42,11 @@ $widgetRecentMovies = array(
 			'Type' 			=> "ajax", 
 			'Title' 		=> "Recent Movies", 
 			'Parts'			=> "",
-			'Stylesheet' 		=> "",
+			'Stylesheet' 	=> "",
 			'Section' 		=> 3, 
 			'Position' 		=> 2,
 			'Function' 		=> "",
-			'HeaderFunction' 	=> "",
+			'HeaderFunction'=> "",
 			'Block' 		=> "recentmovieswrapper",   
 			'Call'			=> "widgets/xbmc/wXBMC.php?w=rm&style=w&a=rm&c=15",
 			'Loader'		=> "cmdXbmcLibrary('recentmovieswrapper', 'widgets/xbmc/wXBMC.php?w=rm&', 'rm', '', '', true);",
@@ -54,16 +54,17 @@ $widgetRecentMovies = array(
 			'Script'		=> ""
 		     );
 
-$widget_init = array(	'Id' 			=> "wXBMC", 
+$widget_init = array(
+			'Id' 			=> "wXBMC", 
 			'Child'			=> "false",
 			'Type' 			=> "empty", 
 			'Title' 		=> "XBMC", 
 			'Parts'			=> array($widgetMediaLibrary,$widgetRecentEpisodes,$widgetRecentMovies),
-			'Stylesheet' 		=> "",
+			'Stylesheet' 	=> "",
 			'Section' 		=> 0, 
 			'Position' 		=> 0,
 			'Function' 		=> "",
-			'HeaderFunction' 	=> "widgetMediaLibraryHeader();",
+			'HeaderFunction'=> "widgetMediaLibraryHeader();",
 			'Block' 		=> "",   
 			'Call'			=> "",
 			'Loader'		=> "",
@@ -71,13 +72,18 @@ $widget_init = array(	'Id' 			=> "wXBMC",
 			'Script'		=> ""
 		     );
 
-$settings_init['wXBMC'] =	array(  'xbmcjsonservice'	=>	array(	'label' => 'XBMC JSON Server Address',
+$settings_init['wXBMC'] =	array(  'xbmcjsonservice'	=>	array(	
+										'label' => 'XBMC JSON Server Address',
 										'value' => 'http://USER:PASSWORD@localhost:8080/jsonrpc'),
 					
-					'xbmcimgpath'		=>	array(	'label' => 'XBMC Image Path',
+									'xbmcimgpath'		=>	array(	
+										'label' => 'XBMC Image Path',
 										'value' => 'http://localhost:8080/vfs/'),		
-					'xbmcdbconn' 		=>	array(	'label'	=> 'XBMC Database',
-										'value' =>  array(	'video' => array(	'dns' => 'sqlite:/home/xbmc/.xbmc/userdata/Database/MyVideos34.db',
+										'xbmcdbconn' 		=>	array(	
+											'label'	=> 'XBMC Database',
+											'value' =>  array(	
+												'video' => array(	
+																'dns' => 'sqlite:/home/xbmc/.xbmc/userdata/Database/MyVideos34.db',
 																'username' => '',
 																'password' => '',
 																'options' => array()
