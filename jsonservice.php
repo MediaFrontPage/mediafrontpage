@@ -47,8 +47,9 @@ if(!empty($DEBUG) && $DEBUG && !empty($arrRequest['jsonrpc']) && ($arrRequest['j
 }
 
 function save_layout($arrRequest) {
+	global $layout;
 	if(!empty($arrRequest["params"]) && is_array($arrRequest["params"])) {
-		$layoutfile = "layout.php";
+		$layoutfile = "layout".$layout.".php";
 		if(is_writable($layoutfile)) {
 			$layout_code_string .= "<?php\n".'$arrLayout = '.return_array_code($arrRequest["params"]).";\n?>\n";
 			
@@ -63,10 +64,10 @@ function save_layout($arrRequest) {
 				$arrResult = error_array(-32501, "Problem opening file ($layoutfile).");
 			}
 		} else {
-			$arrResult = error_array(-32500, "File not writeable.");
+			$arrResult = error_array(-32500, "File not writeable. ($layoutfile)");
 		}
 	} else {
-		$arrResult = error_array(-32602, "Invalid parameters.");
+		$arrResult = error_array(-32602, "Invalid parameters. ($layoutfile)");
 	}
 	return $arrResult;
 }

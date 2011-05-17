@@ -152,4 +152,6 @@ $customStyleSheet = "";
 //Show only banners for coming episodes
 //$customStyleSheet = "css/comingepisodes-minimal-banner.css";
 
+$layout = "3";		//Available options: 3, 4, top, bottom.
+
 ?>

@@ -6,7 +6,7 @@ require_once "widgets.php";
 //turn off warnings
 $errlevel = error_reporting();
 error_reporting(E_ALL & ~E_WARNING);
-if (!include ("layout.php")){
+if (!include ("layout".$layout.".php")){
 	// file was missing so include default theme 
 	require("default-layout.php");
 }
@@ -62,7 +62,7 @@ if (empty ($arrLayout)) {
 				border: 0;
 			}
 		</style>		
-		<link href="css/widget.css" rel="stylesheet" type="text/css" />	
+		<link href="css/widget<?php echo $layout; ?>.css" rel="stylesheet" type="text/css" />	
 		<link href="css/front.css" rel="stylesheet" type="text/css" />	
 		<!-- START: Dynamic Header Inserts From Widgets -->
 <?php
