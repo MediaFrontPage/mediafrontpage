@@ -10,7 +10,7 @@
 		font-size: 12px !important;
 }
 	#comingepisodeswrapper, #insideWrapper  {
-		/* max-height: 250px; */
+		max-height: 500px;
 
 	/* set max-width for using this widget on either side otherwise you can't see everything */
 		/* max-width: 400px; */
