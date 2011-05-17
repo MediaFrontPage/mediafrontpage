@@ -1,10 +1,10 @@
-1. Download ie: 'git clone git://github.com/nick8888/mediafrontpage.git'
+1. Download ie: 'https://github.com/MediaFrontPage/mediafrontpage'
 2. Copy all files to the web server directory eg /var/www/ 
-3. Open default-config.php with gedit and edit appropriately
-4. Rename default-config.php to config.php
-5. Rename default-layout.php to layout.php
-6. Ensure file permissions allow web server to write to layout.php eg use chmod
-7. 'sudo apt-get install php5-curl'  
+3. Cmod 777 all files including the root folder.
+4. Install 'php5-curl'
+
+NOTE
+All settings are maintained in Media Front Page under settings
 
 OPTIONAL
-8. Create a folder named 'sbpcache' and allow write access (for caching sickbeard posters)
+Create a folder named 'sbpcache' and allow write access (for caching sickbeard posters)
