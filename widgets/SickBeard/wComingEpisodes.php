@@ -1,12 +1,13 @@
 <?php
 
-$widget_init = array(	'Id' 			=> "wComingEpisodes",
+$widget_init = array(	
+			'Id' 			=> "wComingEpisodes",
 			'Child'			=> "false",
 			'Type' 			=> "inline", 
 			'Title' 		=> "Coming Episodes", 
 			'Function' 		=> "widgetComingEpisodes();",
-			'HeaderFunction' 	=> "widgetComingEpisodesHeader();", 
-			'Stylesheet' 		=> "comingepisodes.css",
+			'HeaderFunction'=> "widgetComingEpisodesHeader();", 
+			'Stylesheet' 	=> "comingepisodes.css",
 			'Section' 		=> 2, 
 			'Position' 		=> 2,
 			'Parts'			=> "",
@@ -16,11 +17,17 @@ $widget_init = array(	'Id' 			=> "wComingEpisodes",
 			'Interval'		=> "",
 			'Script'		=> ""
 		    );
-$settings_init['wComingEpisodes'] =	array(  'sickbeardcomingepisodes' => 	array(	'label'	=>	'Coming Episodes URL',
-											'value' =>	'http://user:password@COMPUTER:PORT/sickbeard/comingEpisodes/'),
-						'sickbeardurl'		  =>	array(	'label'	=>	'Sickbeard URL',
-											'value' =>	'http://user:password@COMPUTER:PORT/sickbeard/')
-					);
+$settings_init['wComingEpisodes'] =	array(  'sickbeardcomingepisodes'	=> 	
+													array(	
+														'label'	=>	'Coming Episodes URL',
+														'value' =>	'http://user:password@COMPUTER:PORT/sickbeard/comingEpisodes/'
+													),
+											'sickbeardurl'	=>	
+													array(	
+														'label'	=>	'Sickbeard URL',
+														'value' =>	'http://user:password@COMPUTER:PORT/sickbeard/'
+													)
+											);
 
 function widgetComingEpisodes() {
 	global $settings;
@@ -75,9 +82,9 @@ function widgetComingEpisodesHeader() {
 				alt = false;
 
 				for (i=0; i < allHTMLTags.length; i++) {
-					if (allHTMLTags[i].className == 'listing') {
+					if (allHTMLTags[i].className == 'ep_listing') {
 						if(alt) {
-							allHTMLTags[i].className = 'listing alt';
+							allHTMLTags[i].className = 'ep_listing alt';
 						}
 						alt = !alt;
 					}
@@ -88,7 +95,20 @@ function widgetComingEpisodesHeader() {
 				var allHTMLTags = document.getElementsByTagName("img");
 
 				for (i=0; i < allHTMLTags.length; i++) {
-					if (allHTMLTags[i].className == 'listingThumb') {
+					if (allHTMLTags[i].className == 'bannerThumb') {
+						//Set parent node <a> tag to have correct
+						allHTMLTags[i].parentNode.setAttribute('href',allHTMLTags[i].src);
+						allHTMLTags[i].parentNode.className = 'highslide';
+						allHTMLTags[i].parentNode.setAttribute('onclick','return hs.expand(this)');
+						allHTMLTags[i].parentNode.onclick = function() { return hs.expand(allHTMLTags[i]) }; 
+						
+						//Wrap with span and reset.
+						var newHTML = '<span class="sbposter-img">'+allHTMLTags[i].parentNode.outerHTML+'<a><div class="highslide-caption"><br></div></a></span>';
+						allHTMLTags[i].parentNode.outerHTML = newHTML;
+					}
+				}
+				for (i=0; i < allHTMLTags.length; i++) {
+					if (allHTMLTags[i].className == 'posterThumb') {
 						//Set parent node <a> tag to have correct
 						allHTMLTags[i].parentNode.setAttribute('href',allHTMLTags[i].src);
 						allHTMLTags[i].parentNode.className = 'highslide';
@@ -106,7 +126,7 @@ function widgetComingEpisodesHeader() {
 				var windowSizeAdjustment = 100;
 				var windowHeight = (window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight) - windowSizeAdjustment;
 				if (windowHeight > 0) { 
-					var objWrapper = document.getElementById("listingWrapper");
+					var objWrapper = document.getElementById("insideContent");
 					objWrapper.style.height = windowHeight + 'px';
 				}
 			}
@@ -133,8 +153,8 @@ if(!empty($_GET["display"])) {
 		$uri_full = $sickbeardcomingepisodes;
 	}
 	$uri_domain = str_replace($urldata["path"], "", $sickbeardcomingepisodes);
-
-	$regex  = '/(<[(img)|(a)]\s*(.*?)\s*[(src)|(href)]=(?P<link>[\'"]+?\s*\S+\s*[\'"])+?\s*(.*?)\s*>)/i';
+	
+	$regex  = '/(<(img|a)\s*(.*?)\s*(src|href)=(?P<link>([\'"])\s*\S+?\s*\6)+?\s*(.*?)\s*>)/i';
 
 	preg_match_all($regex, $body, $matches);
 	
@@ -168,7 +188,7 @@ function stripBody($body) {
 	return $body;
 }
 function stripInnerWrapper($body) {
-	$pos = strpos($body, "<div id=\"listingWrapper\">");
+	$pos = strpos($body, "<h1>Coming Episodes</h1>");
 	if ($pos > 0) {
 		$body = substr($body, $pos);
 		$pos = strpos($body, "<script");
@@ -204,6 +224,7 @@ function changeLinks($body) {
 				$newlink = substr($link , 0, 1).$uri_full.substr($link , 1);
 			}
 		}
+		//$body = str_replace($link, "\"".sickbeardposter(str_replace("\"", "", $newlink))."\"", $body);
 		$body = str_replace($link, $newlink, $body);
 	}
 	
@@ -216,7 +237,7 @@ function comingSoonUrl($url = "") {
 	
 	if(empty($url)) {
 		if(!(strpos($sickbeardcomingepisodes, "http") === 0)){
-			$url = "http://".(isset($_SERVER['PHP_AUTH_USER'])?($_SERVER['PHP_AUTH_USER'].":".$_SERVER['PHP_AUTH_PW']."@"):"").$_SERVER['SERVER_NAME'].((strpos($sickbeardcomingepisodes, "/") === 0)?"":"/").$sickbeardcomingepisodes;
+			$url = "http://".$_SERVER['PHP_AUTH_USER'].":".$_SERVER['PHP_AUTH_PW']."@".$_SERVER['SERVER_NAME'].((strpos($sickbeardcomingepisodes, "/") === 0)?"":"/").$sickbeardcomingepisodes;
 		} else {
 			$url = $sickbeardcomingepisodes;
 		}
@@ -244,11 +265,13 @@ function displayComingSoon ($sickbeardurl) {
 	$html = getComingSoon();
 	$body = stripBody($html);
 	$body = stripInnerWrapper($body);
-
+	//$body = changeLinks($body);
+	
 	if(!empty($_GET["style"]) && (($_GET["style"] == "s") || ($_GET["style"] == "m"))) {
-		$body = str_replace("src=\"".$sickbeardurl."showPoster/", "src=\"thumbcache.php", $body);
-		$body = str_replace("src=\"/sickbeard/showPoster/", "src=\"thumbcache.php", $body);
-		$body = str_replace("src=\"/showPoster/", "src=\"thumbcache.php", $body);
+		$reldir = (($_GET["style"] == "m") ? "../" : "");
+		$body = str_replace("src=\"".$sickbeardurl."showPoster/", "src=\"".$reldir."sickbeardposter.php", $body);
+		$body = str_replace("src=\"/sickbeard/showPoster/", "src=\"".$reldir."sickbeardposter.php", $body);
+		$body = str_replace("src=\"/showPoster/", "src=\"".$reldir."sickbeardposter.php", $body);
 	}
 	$body = str_replace("src=\"/sickbeard/", "src=\"".$sickbeardurl, $body);
 	$body = str_replace("href=\"/sickbeard/", "href=\"".$sickbeardurl, $body);
