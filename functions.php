@@ -3,20 +3,20 @@ require_once "xbmcjsonlib.php";
 
 function to_readable_size($size) {
 	switch (true) {
-		case ($size > 1000000000000):
-			$size /= 1000000000000;
+		case ($size > 1099511627776):
+			$size /= 1099511627776;
 			$suffix = 'Tb';
 		break;
-		case ($size > 1000000000):  
-			$size /= 1000000000;
+		case ($size > 1073741824):  
+			$size /= 1073741824;
 			$suffix = 'Gb';
 		break;
-		case ($size > 1000000):
-			$size /= 1000000;
+		case ($size > 1048576):
+			$size /= 1048576;
 			$suffix = 'Mb';   
 		break;
-		case ($size > 1000):
-			$size /= 1000;
+		case ($size > 1024):
+			$size /= 1024;
 			$suffix = 'Kb';
 		break;
 		default:

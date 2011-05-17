@@ -57,7 +57,10 @@ $settings_init['Global'] =	array(  'navlinks' =>	array(	'label'	=>	'Navigation B
 															'enabled'	=> 'false'),
 													'customstylesheet3' =>	array(	'label' 	=> '3 Columns',
 															'path'	=> 'style/layout/3col.css',
-															'enabled'	=> 'true')
+															'enabled'	=> 'true'),
+													'customstylesheet3' =>	array(	'label' 	=> '4 Columns',
+															'path'	=> 'style/layout/4col.css',
+															'enabled'	=> 'false')
 										)
 								),
 					'mfpsecured' =>	array(	'label'	=>	'MFP Secured',
