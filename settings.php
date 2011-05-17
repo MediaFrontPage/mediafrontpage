@@ -38,7 +38,7 @@ if (!empty($_POST)) {
 	updateSettings($_POST);
 }
 ?>
-				</ul>
+			</ul>
 			</div><!-- #header -->
 			<div id="main">
 <?php
@@ -118,7 +118,7 @@ function displaySetting($setting) {
 	echo" \t\t\t\t\t<div  class='section'>\n";
 	$setting['Value'] = $setting['Value'];
 	echo "\t\t\t\t\t\t<h3>".$setting['Label']."</h3>\n";
-	echo "\t\t\t\t\t\t<input type='text' value='".$setting['Value']."' name='".$setting['Id']."'  />\n";
+	echo "\t\t\t\t\t\t<input type='text' value='".$setting['Value']."' size='100'  name='".$setting['Id']."'  />\n";
 	echo" \t\t\t\t\t</div><!--  .section -->\n";
 }
 function displaySettingItems($setting) {
@@ -133,22 +133,22 @@ function displaySettingItems($setting) {
 			echo "\t\t\t\t\t\t<li class='setting collapsed'>\n";
 			echo "\t\t\t\t\t\t\t<div class='setting-head'>\n";
 			if (isset($item['label'])) {
-				echo "\t\t\t\t\t\t\t\t<h3>".$item['label']."</h3>\n";
+				echo "\t\t\t\t\t\t\t\t<h3>".ucwords($item['label'])."</h3>\n";
 			} else {
 				echo "\t\t\t\t\t\t\t\t<h3>".$type."</h3>\n";
 				$noadditem = 'true';
 			}
 			echo "\t\t\t\t\t\t\t</div><!-- .setting-head -->\n";
 			echo "\t\t\t\t\t\t\t<div class='setting-content'>\n";
-			echo "\t\t\t\t\t\t\t\t<p>";
+			echo "\t\t\t\t\t\t\t\t<table>";
 			foreach ($item as $label => $value) {
 				if (empty($noadditem)) {
-	 				echo " ".$label.": <input type='text' value='".$value."' name='".$setting['Id']."-".$i."-".$label."'  />";
+	 				echo "<tr><td>".ucwords($label).":</td><td><input type='text' value='".$value."' size='50' name='".$setting['Id']."-".$i."-".$label."'  /></td></tr>";
 				} else {
-					echo " ".$label.": <input type='text' value='".$value."' name='".$setting['Id']."-".$type."-".$label."'  />";
+					echo "<tr><td>".ucwords($label).":</td><td><input type='text' value='".$value."' size='50' name='".$setting['Id']."-".$type."-".$label."'  /></td></tr>";
 				}
 			}
-			echo "</p>\n";
+			echo "</table>\n";
 			echo "\t\t\t\t\t\t\t</div><!-- .setting-content -->\n";
 			echo "\t\t\t\t\t\t</li><!-- .setting -->\n";
 
@@ -160,12 +160,13 @@ function displaySettingItems($setting) {
 				echo "\t\t\t\t\t\t\t\t<h3>Add New Item</h3>\n";
 				echo "\t\t\t\t\t\t\t</div><!-- .setting-head -->\n";
 				echo "\t\t\t\t\t\t\t<div class='setting-content'>\n";
-				echo "\t\t\t\t\t\t\t\t<p>";
+				echo "\t\t\t\t\t\t\t\t<table>";
 
 				foreach ($item as $label => $value) {
- 					echo " ".$label.": <input type='text' value='' name='".$setting['Id']."-".$i."-".$label."-additem'  />";
+					$length = 20-strlen($label);
+ 					echo "<tr><td>".ucwords($label).":</td><td><input type='text' value='' size='50' name='".$setting['Id']."-".$i."-".$label."-additem'  /></td></tr>";
 				}			
-				echo "</p>\n";
+				echo "</table>\n";
 				echo "\t\t\t\t\t\t\t</div><!-- .setting-content -->\n";
 				echo "\t\t\t\t\t\t</div><!-- .add -->\n";
 			}
