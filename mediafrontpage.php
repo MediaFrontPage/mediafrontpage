@@ -27,17 +27,24 @@ foreach (glob("widgets/*/w*.php") as $widgetfile) {
 }
 // Global settings
 $settings_init['Global'] =	array(  'navlinks' =>	array(	'label'	=>	'Navigation Bar Links',
-								'value' =>	array(	'navlink1' =>	array(	'label' 	=> 'XBMC',
+								'value' =>	array(	'navlink1' =>	array(	
+								
+														'label' 	=> 'XBMC',
 														'url'		=> 'http://localhost:8080'),
-											'navlink2' =>	array(	'label' 	=> 'SickBeard',
+											'navlink2' =>	array(	
+														'label' 	=> 'SickBeard',
 														'url'		=> 'http://localhost:8080'),
-											'navlink3' =>	array(	'label' 	=> 'Couch Potato',
+											'navlink3' =>	array(	
+														'label' 	=> 'Couch Potato',
+														'url'		=> 'http://localhost:5000'),
+											'navlink4' =>	array(	
+														'label' 	=> 'Sabnzbd',
+														'url'		=> 'http://localhost:8081'),
+											'navlink5' =>	array(	
+														'label' 	=> 'TV Headend',
 														'url'		=> 'http://localhost:8080'),
-											'navlink4' =>	array(	'label' 	=> 'Sabnzbd',
-														'url'		=> 'http://localhost:8080'),
-											'navlink5' =>	array(	'label' 	=> 'TV Headend',
-														'url'		=> 'http://localhost:8080'),
-											'navlink6' =>	array(	'label' 	=> 'Settings',
+											'navlink6' =>	array(	
+														'label' 	=> 'Settings',
 														'url'		=> 'settings.php?w=Global')
 										)
 								),
@@ -47,7 +54,10 @@ $settings_init['Global'] =	array(  'navlinks' =>	array(	'label'	=>	'Navigation B
 															'enabled'	=> 'false'),
 													'customstylesheet2' =>	array(	'label' 	=> 'Minimal Coming Episodes',
 															'path'	=> 'style/css/comingepisodes-minimal-banner.css',
-															'enabled'	=> 'false')
+															'enabled'	=> 'false'),
+													'customstylesheet3' =>	array(	'label' 	=> '3 Columns',
+															'path'	=> 'style/layout/3col.css',
+															'enabled'	=> 'true')
 										)
 								),
 					'mfpsecured' =>	array(	'label'	=>	'MFP Secured',
