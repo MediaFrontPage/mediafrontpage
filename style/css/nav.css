@@ -88,7 +88,7 @@ a:visited {
   margin-left:0;
   padding-right:10px;
   overflow: hidden;
-  width: 2000px;
+  /*width: 2000px;*/
 }
 
 #nav-menu ul {
