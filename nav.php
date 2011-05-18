@@ -34,6 +34,15 @@ if(!empty($navselect)){
 }
 
 echo "</ul>";
+echo "<div id='multiples' style='float:right;'>";
+echo "<ul><select onchange=\"top.frames['main'].location.href = this.value;\">";
+echo "<option value='mediafrontpage.php'>MFP</option>";
+echo "<option value='mediafrontpage.php?layout=3'>3 Cols</option>";
+echo "<option value='mediafrontpage.php?layout=4'>4 Cols</option>";
+echo "<option value='mediafrontpage.php?layout=top'>Top</option>";
+echo "<option value='mediafrontpage.php?layout=bottom'>Bottom</option>";
+echo "</select></ul>";
+echo "</div>";
 echo "</div>";
 echo "</div>";
 
@@ -66,8 +75,8 @@ if(!empty($subnavlink)||!empty($subnavlink_blank)||!empty($subnavselect)){
 
 	echo "</ul>";
 	echo "</div>";
-	echo "</div>";
 }
+echo "</div>";
 echo "</body>";
 echo "</html>";
 ?>

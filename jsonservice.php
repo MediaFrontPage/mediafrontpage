@@ -1,6 +1,7 @@
 <?php
 require_once "config.php";
 require_once "functions.php";
+require_once "layouts/layout-config.php";
 
 function error_array($code, $message) {
 	return array ( "error" => array ( "code" => $code, "message" => $message));
@@ -49,7 +50,7 @@ if(!empty($DEBUG) && $DEBUG && !empty($arrRequest['jsonrpc']) && ($arrRequest['j
 function save_layout($arrRequest) {
 	global $layout;
 	if(!empty($arrRequest["params"]) && is_array($arrRequest["params"])) {
-		$layoutfile = "layout".$layout.".php";
+		$layoutfile = "layouts/layout-".$layout.".php";
 		if(is_writable($layoutfile)) {
 			$layout_code_string .= "<?php\n".'$arrLayout = '.return_array_code($arrRequest["params"]).";\n?>\n";
 			

@@ -2,10 +2,14 @@
 require_once "config.php";
 require_once "functions.php";
 require_once "widgets.php";
+require_once "layouts/layout-config.php";
 
 //turn off warnings
 $errlevel = error_reporting();
 error_reporting(E_ALL & ~E_WARNING);
+if(!empty($_GET['layout'])){
+	$layout = $_GET['layout'];
+}
 if (!include ("layouts/layout-".$layout.".php")){
 	// file was missing so include default theme 
 	require("default-layout.php");

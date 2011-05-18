@@ -7,52 +7,48 @@ $arrLayout = array(
 			)
 		),
 		"section2" => array(
-			"wHardDrives" => array(
-				"title" => "Hard Drives",
-				"display" => ""
-			),
-			"wTransmission" => array(
-				"title" => "Transmission",
-				"display" => ""
-			),
 			"wXBMCLibrary" => array(
 				"title" => "XBMC Library",
+				"display" => "collapsed"
+			),
+			"wRecentTV" => array(
+				"title" => "Recent TV",
 				"display" => ""
 			),
-			"wSabnzbd" => array(
-				"title" => "Sabnzbd",
+			"wRecentMovies" => array(
+				"title" => "Recent Movies",
 				"display" => ""
 			),
-			"wTrakt" => array(
-				"title" => "Trending Movies",
-				"display" => ""
+			"wComingEpisodes" => array(
+				"title" => "Coming Episodes",
+				"display" => "collapsed"
 			)
 		),
 		"section3" => array(
-			"wNowPlaying" => array(
-				"title" => "Now Playing",
+			"wHardDrives" => array(
+				"title" => "Hard Drives",
 				"display" => ""
 			),
 			"wRSS" => array(
 				"title" => "RSS Feed",
 				"display" => ""
 			),
-			"wRecentMovies" => array(
-				"title" => "Recent Movies",
+			"wControl" => array(
+				"title" => "Control",
 				"display" => ""
 			)
 		),
 		"section4" => array(
-			"wControl" => array(
-				"title" => "Control",
+			"wRSS" => array(
+				"title" => "RSS Feed",
 				"display" => ""
 			),
-			"wRecentTV" => array(
-				"title" => "Recent TV",
+			"wSearch" => array(
+				"title" => "Search",
 				"display" => ""
 			),
-			"wComingEpisodes" => array(
-				"title" => "Coming Episodes",
+			"wHardDrives" => array(
+				"title" => "Hard Drives",
 				"display" => ""
 			)
 		)
