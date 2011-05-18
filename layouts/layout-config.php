@@ -1,3 +1,4 @@
 <?php
-	$layout = 'top';
+	session_start();
+	$layout = $_SESSION['layout'];
 ?>

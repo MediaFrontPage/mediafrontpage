@@ -5,3 +5,4 @@ config.php
 m/mobileconfig.php
 sbpcache/*
 layouts/*
+/settings.db.zip
