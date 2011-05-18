@@ -4,3 +4,4 @@ layout.php
 config.php
 m/mobileconfig.php
 sbpcache/*
+layouts/*
