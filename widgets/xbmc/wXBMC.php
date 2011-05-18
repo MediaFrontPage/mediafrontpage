@@ -72,7 +72,19 @@ $widget_init = array(
 			'Script'		=> ""
 		     );
 
-$settings_init['wXBMC'] =	array(  'xbmcjsonservice'	=>	array(	
+$settings_init['wXBMC'] =	array(  
+/*
+'XBMC' 				=> 	array(
+																'label' => 	'',
+																'value'	=>	array(
+																	'USER/PASS' => array(
+																		'username'	=>	'',
+																		'password'	=>	''
+																	)
+																)
+															),
+*/
+									'xbmcjsonservice'	=>	array(	
 										'label' => 'XBMC JSON Server Address',
 										'value' => 'http://USER:PASSWORD@localhost:8080/jsonrpc'),
 					
