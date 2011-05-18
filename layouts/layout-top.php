@@ -15,6 +15,10 @@ $arrLayout = array(
 				"title" => "Transmission",
 				"display" => ""
 			),
+			"wXBMCLibrary" => array(
+				"title" => "XBMC Library",
+				"display" => ""
+			),
 			"wSabnzbd" => array(
 				"title" => "Sabnzbd",
 				"display" => ""
@@ -25,10 +29,6 @@ $arrLayout = array(
 			)
 		),
 		"section3" => array(
-			"wXBMCLibrary" => array(
-				"title" => "XBMC Library",
-				"display" => ""
-			),
 			"wNowPlaying" => array(
 				"title" => "Now Playing",
 				"display" => ""

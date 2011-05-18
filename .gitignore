@@ -1,4 +1,5 @@
 .DS_Store
+settings.db
 layout.php
 config.php
 m/mobileconfig.php
