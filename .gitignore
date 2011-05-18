@@ -4,3 +4,4 @@ config.php
 m/mobileconfig.php
 cache/*
 settings.db
+/*.db.zip

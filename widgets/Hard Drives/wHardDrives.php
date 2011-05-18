@@ -22,11 +22,15 @@ $settings_init['wHardDrives'] =	array(  'drives' =>	array(
 												'label'	=>	'Drives',
 												'value' =>	array(	
 														'drivepath1' =>	array(	
-																'label' 	=> '/',
-																'location'	=> '/')
+																	'label' 	=> '/',
+																	'location'	=> '/',
+																	'example1'	=>	'Windows: C:',
+																	'example2'	=>	'Mac: Volumes/Example',
+																	'example3'	=>	'Linux: media/Movies'
+																		)
 																)
 														)
-											);
+										);
 
 function widgetHardDrives() {
 	global $settings;

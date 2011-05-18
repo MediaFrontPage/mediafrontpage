@@ -158,7 +158,9 @@ function displaySettingItems($setting) {
 	 				}
 	 				else{
 */
+					if(!strstr($label,'example')){
 	 					echo "<tr><td>".ucwords($label).":</td><td><input type='text' value='".$value."' size='50' name='".$setting['Id']."-".$i."-".$label."'  /></td></tr>";
+	 				}
 				} else {
 					echo "<tr><td>".ucwords($label).":</td><td><input type='text' value='".$value."' size='50' name='".$setting['Id']."-".$type."-".$label."'  /></td></tr>";
 				}
@@ -178,8 +180,12 @@ function displaySettingItems($setting) {
 				echo "\t\t\t\t\t\t\t\t<table>";
 
 				foreach ($item as $label => $value) {
-					$length = 20-strlen($label);
- 					echo "<tr><td>".ucwords($label).":</td><td><input type='text' value='' size='50' name='".$setting['Id']."-".$i."-".$label."-additem'  /></td></tr>";
+ 					if(strstr($label,'example')){
+						echo "<tr><td>Example:</td><td><font color='yellow'>$value</font></td></tr>";
+ 					}
+ 					else{
+ 						echo "<tr><td>".ucwords($label).":</td><td><input type='text' value='' size='50' name='".$setting['Id']."-".$i."-".$label."-additem'  /></td></tr>";			
+ 					}
 				}			
 				echo "</table>\n";
 				echo "\t\t\t\t\t\t\t</div><!-- .setting-content -->\n";

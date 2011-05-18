@@ -58,7 +58,7 @@ $settings_init['Global'] =	array(  'navlinks' =>	array(	'label'	=>	'Navigation B
 													'customstylesheet3' =>	array(	'label' 	=> '3 Columns',
 															'path'	=> 'style/layout/3col.css',
 															'enabled'	=> 'true'),
-													'customstylesheet3' =>	array(	'label' 	=> '4 Columns',
+													'customstylesheet4' =>	array(	'label' 	=> '4 Columns',
 															'path'	=> 'style/layout/4col.css',
 															'enabled'	=> 'false')
 										)
