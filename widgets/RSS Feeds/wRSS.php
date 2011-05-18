@@ -25,7 +25,7 @@ $settings_init['wRSS'] =	array(  'rssfeeds' =>	array(
 											'rssfeed1' =>	array(	
 														'label' 	=> 'mediafrontpage on github',
 														'type'	 	=> 'atom',
-														'url'		=> 'https://github.com/nick8888/mediafrontpage/commits/master.atom',
+														'url'		=> 'https://github.com/MediaFrontPage/mediafrontpage/commits/master.atom',
 														'category'	=> '',
 														'priority'	=> '',
 														'postprocess'	=> '',

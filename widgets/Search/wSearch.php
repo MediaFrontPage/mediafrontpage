@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL);
-ini_set('display_errors', '1');
+ini_set('display_errors', '0');
 $widget_init = array(	
 			'Id' 			=> "wSearch",
 			'Child'			=> "false",
@@ -84,7 +84,7 @@ function getResults() {
 			$nzbsuapi	= $settings['NZB_su']['api'];
 			$nzbsudl 	= $settings['NZB_su']['download_code'];
 		} else {
-			echo "Missing NZB.su info";
+			echo "Missing NZB.su info. Check in the <a href='/settings.php?w=wSearch'>SETTINGS</a>";
 		}
 
 		$results = nzbsu($q, $saburl,$sabapikey, $nzbsuapi, $nzbsudl);
@@ -95,7 +95,7 @@ function getResults() {
 			$nzbapi 	 = $settings['NZBMatrix']['api'];
 		}
 		else{
-			echo "Missing NZBMatrix info";
+			echo "Missing NZBMatrix info. Check in the <a href='/settings.php?w=wSearch'>SETTINGS</a>";
 		}
 		
 		$results = nzbmatrix($q, $nzbusername, $nzbapi,$saburl,$sabapikey);		
@@ -120,8 +120,7 @@ function getResults() {
 			getCP($id, $cp_url);
 			return false;
 		}
-	}
-	
+	}	
 	$tablebody = "<div id='wSearch'>
 					<table id='search-Table' class='tablesorter' width='100%' style='table-layout:fixed;' cellspacing='0'>
 						<thead>
@@ -133,8 +132,6 @@ function getResults() {
 							</tr>
 						</thead>
 						<tbody>";
-
-	echo "$q | $site";
 	echo (!empty($results))? $tablebody.$results."</tbody></table></div>" : "<h1>Nothing found!</h1>";
 }
 function nzbsu($q, $saburl,$sabapikey, $nzbsuapi, $nzbsudl){
@@ -177,49 +174,57 @@ function nzbsu($q, $saburl,$sabapikey, $nzbsuapi, $nzbsudl){
 
 function nzbmatrix($item, $nzbusername, $nzbapi,$saburl,$sabapikey) {
 	$type = (!empty($_GET['type']))?("&catid=".$_GET['type']):"";
-	$search = "https://api.nzbmatrix.com/v1.1/search.php?search=".urlencode($item).$type."&username=".$nzbusername."&apikey=".$nzbapi;
+	$search = "https://api.nzbmatrix.com/v1.1/search.php?search=".urlencode($item).$type."&num=50&username=".$nzbusername."&apikey=".$nzbapi;
 	$content = file_get_contents($search);
-	//return $content;
+/*
+	echo '<pre>';print_r($content);echo "</pre>";
+	echo "---------";
+*/
 	if(!strstr($content, 'error')){
 		$itemArray = explode('|',$content);
 		$table = "";
 		foreach($itemArray as $item){
-			$item = explode(';',$item);
+		$item = explode(';',$item);
+			if(strstr($item['0'],'N')){
 /*
-					foreach($item as $value){
+					foreach($item as $key => $value){
+						echo $key;
+						echo "-->";
 						echo $value;
 						echo "</br>";
 						}
 */
-	
-			$id = "ID: ".strstr($item['0'],':');
-			$name = strstr($item['1'],':');
-			$link = "http://www.".substr($item['2'], 6);
-			$size = 0+substr($item[3], 6);
-			$size = $size;
-			$cat = substr($item[6],10);
-			$addToSab=$saburl."api?mode=addurl&name=http://www.".substr($link,6)."&nzbname=".urlencode($name)."&output=json&apikey=".$sabapikey;
-			$indexdate 	= "Index Date: ".substr($item[4], 12);
-			$group 		= "Group: ".substr($item[7],7);
-			$comments 	= "Comments: ".substr($item[8],10);
-			$hits 		= "Hits: ".substr($item[9],6);
-			$nfo 		= "NFO: ".substr($item[10], 5);
-			$weblink 	= substr($item[11], 9);
-			$image 		= substr($item[13],7);
-			$item_desc	= "<p>Name: ".$name."</p><p>".$id."</p><p>".$group."</p><p>".$comments."</p><p>".$hits."</p><p>".$nfo."</p><p>".$indexdate."</p>";
-			//echo "$name  |  $link  |  $size  |  $cat  |  $indexdate  |  $group  |  $comments  |  $hits  |  $nfo  |  $weblink  |  $image  |  $item_desc";
-			
-			$addToSab = addCategory($cat,$addToSab);
-	
-			if(strlen($name)!=0){
-				$table .= printTable($name,$cat,$size,$addToSab,$link,$item_desc,$image, $weblink);
+				$id = str_replace(':', '', strstr($item['0'],':'));
+				$name = str_replace(':', '', strstr($item['1'],':'));
+				$link = str_replace(':', '', strstr($item['2'],':'));
+				$size = 0+str_replace(':', '', strstr($item['3'],':'));;
+				$size = $size;
+				$cat = str_replace(':', '', strstr($item['6'],':'));
+				$addToSab=$saburl."api?mode=addurl&name=http://www.".$link."&nzbname=".urlencode($name)."&output=json&apikey=".$sabapikey;
+				$indexdate 	= $item['4'];
+				$group 		= $item['7'];
+				$comments 	= $item['8'];
+				$hits 		= $item['9'];
+				$nfo 		= $item['10'];
+				$weblink 	= "http://www.".substr($item['11'], 9);
+				$image 		= substr($item['13'],7);
+				$item_desc	= "<p>Name: ".$name."</p><p>".$id."</p><p>".$group."</p><p>".$comments."</p><p>".$hits."</p><p>".$nfo."</p><p>".$indexdate."</p>";
+				//echo "$name  |  $link  |  $size  |  $cat  |  $indexdate  |  $group  |  $comments  |  $hits  |  $nfo  |  $weblink  |  $image  |  $item_desc";
+				
+				$addToSab = addCategory($cat,$addToSab);
+		
+				if(strlen($name)!=0){
+					$table .= printTable($name,$cat,$size,$addToSab,$link,$item_desc,$image, $weblink);
+				}
+
 			}
 		}
 	}
 	else {
-		return "";
+		return "Problems: $content";
 	}
 	return $table;
+
 }
 
 function imdb($item,$cp){
