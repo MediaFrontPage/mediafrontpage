@@ -127,8 +127,20 @@ $xbmcJsonMethods = array(
 			),
 			'args' => 50
 		),
+		'VideoLibraryV3.GetRecentlyAddedMovies' => array(
+			'call' => '{"jsonrpc": "2.0", "method": "VideoLibrary.GetRecentlyAddedMovies", "params" : {"fields" : [ "title", "genre", "year", "rating", "director", "trailer", "tagline", "plot", "plotoutline", "originaltitle", "lastplayed", "playcount", "writer", "studio", "mpaa", "country", "imdbnumber", "premiered", "productioncode", "runtime", "set", "showlink", "streamDetails", "top250", "votes", "writingcredits", "fanart", "thumbnail", "file" ], "limits":{"start":0,"end":50}}, "id":1}',
+			'sql' => array(
+				'db' => 'video',
+				'query' => 'select * from movieview order by idMovie desc limit %d',
+				'resultwrapper' => 'movies'
+			),
+			'args' => 50
+		),
 		'VideoLibrary.GetMovies' => array(
 			'call' => '{"jsonrpc": "2.0", "method": "VideoLibrary.GetMovies", "params": { "sortorder" : "ascending", "fields" : [ "genre", "director", "trailer", "tagline", "plot", "plotoutline", "title", "originaltitle", "lastplayed", "showtitle", "firstaired", "duration", "season", "episode", "runtime", "year", "playcount", "rating", "writer", "studio", "mpaa", "premiered", "album" ] }, "id": 1}'
+		),
+		'VideoLibraryV3.GetMovies' => array(
+			'call' => '{"jsonrpc": "2.0", "method": "VideoLibrary.GetMovies", "params": { "fields" : [ "title", "genre", "year", "rating", "director", "trailer", "tagline", "plot", "plotoutline", "originaltitle", "lastplayed", "playcount", "writer", "studio", "mpaa", "country", "imdbnumber", "premiered", "productioncode", "runtime", "set", "showlink", "streamDetails", "top250", "votes", "writingcredits", "fanart", "thumbnail", "file" ] }, "id": 1}'
 		),
 		'VideoLibrary.GetRecentlyAddedEpisodes' => array(
 			'call' => '{"jsonrpc": "2.0", "method": "VideoLibrary.GetRecentlyAddedEpisodes", "params" : { "start" : 0 , "end" : %d , "fields": [ "genre", "director", "trailer", "tagline", "plot", "plotoutline", "title", "originaltitle", "lastplayed", "showtitle", "firstaired", "duration", "season", "episode", "runtime", "year", "playcount", "rating", "writer", "studio", "mpaa", "premiered", "album" ] }, "id" : 1 }',
@@ -139,6 +151,16 @@ $xbmcJsonMethods = array(
 			),
 			'args' => 50
 		),
+		'VideoLibraryV3.GetRecentlyAddedEpisodes' => array(
+			'call' => '{"jsonrpc": "2.0", "method": "VideoLibrary.GetRecentlyAddedEpisodes", "params" : { "fields": [ "title", "plot", "votes", "rating", "writingcredits", "firstaired", "playcount", "runtime", "director", "productioncode", "season", "episode", "originaltitle", "showtitle", "cast", "streamDetails", "lastplayed", "fanart", "thumbnail", "file" ], "limits":{"start":0,"end":50}}, "id":1}',
+			'sql' => array(
+				'db' => 'video',
+				'query' => 'select c13 as episode, idEpisode as episodeid, c05 as firstaired, c00 as label, mpaa, c01 as plot, premiered, strTitle as showtitle, strStudio as studio, c00 as title, * from episodeview order by idEpisode desc limit %d',
+				'resultwrapper' => 'episodes'
+			),
+			'args' => 50
+		),
+		
 		'VideoLibrary.GetTVShows' => array(
 			'call' => '{"jsonrpc": "2.0", "method": "VideoLibrary.GetTVShows", "id" : 1 }'
 		),
@@ -149,8 +171,26 @@ $xbmcJsonMethods = array(
 				'season' => 1
 			)
 		),
+		'VideoLibraryV3.GetEpisodes' => array(
+			'call' => '{"jsonrpc": "2.0", "method": "VideoLibrary.GetEpisodes", "params" : { "tvshowid" : %d, "season" : %d, "fields": [ "title", "plot", "votes", "rating", "writingcredits", "firstaired", "playcount", "runtime", "director", "productioncode", "season", "episode", "originaltitle", "showtitle", "cast", "streamDetails", "lastplayed", "fanart", "thumbnail", "file" ] }, "id" : 1 }',
+			'args' => array(
+				'tvshowid' => 1,
+				'season' => 1
+			)
+		),
 		'VideoLibrary.GetSeasons' => array(
 			'call' => '{"jsonrpc": "2.0", "method": "VideoLibrary.GetSeasons", "params" : { "tvshowid" : %d, "fields": [ "genre", "title", "showtitle", "duration", "season", "episode", "year", "playcount", "rating", "studio", "mpaa" ] }, "id" : 1 }',
+			'sql' => array(
+				'db' => 'video',
+				'query' => 'select episode.c12,path.strPath,tvshow.c00,tvshow.c08,tvshow.c14,tvshow.c13,count(1),count(files.playCount) from episode join tvshowlinkepisode on tvshowlinkepisode.idEpisode=episode.idEpisode join tvshow on tvshow.idShow=tvshowlinkepisode.idShow join files on files.idFile=episode.idFile join tvshowlinkpath on tvshowlinkpath.idShow = tvshow.idShow join path on path.idPath = tvshowlinkpath.idPath where tvshow.idShow = %d group by episode.c12 LIMIT 0, 30',
+				'resultwrapper' => 'seasons'
+			),
+			'args' => array(
+				'tvshowid' => 1
+			)
+		),
+		'VideoLibraryV3.GetSeasons' => array(
+			'call' => '{"jsonrpc": "2.0", "method": "VideoLibrary.GetSeasons", "params" : { "tvshowid" : %d, "fields": [ "season", "showtitle", "playcount", "episode", "fanart", "thumbnail" ] }, "id" : 1 }',
 			'sql' => array(
 				'db' => 'video',
 				'query' => 'select episode.c12,path.strPath,tvshow.c00,tvshow.c08,tvshow.c14,tvshow.c13,count(1),count(files.playCount) from episode join tvshowlinkepisode on tvshowlinkepisode.idEpisode=episode.idEpisode join tvshow on tvshow.idShow=tvshowlinkepisode.idShow join files on files.idFile=episode.idFile join tvshowlinkpath on tvshowlinkpath.idShow = tvshow.idShow join path on path.idPath = tvshowlinkpath.idPath where tvshow.idShow = %d group by episode.c12 LIMIT 0, 30',

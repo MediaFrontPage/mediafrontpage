@@ -1,12 +1,12 @@
 <?php
-
+error_reporting(E_ALL ^ E_NOTICE);
+	$jsonVersion = jsonmethodcall("JSONRPC.Version"); //pull the JSON version # from XBMC
 function executeVideo($style = "w", $action, $breadcrumb, $params = array()) {
 	global $COMM_ERROR;
 	global $videodetailfields;
-
+	$jsonVersion = jsonmethodcall("JSONRPC.Version"); //pull the JSON version # from XBMC
 	$breadcrumbs = explode("|", $breadcrumb);
 	$previousaction = end($breadcrumbs);
-
 	switch ($action) {
 		case "l":  // Library
 			displayLibraryMenu($style, $params);
@@ -21,24 +21,33 @@ function executeVideo($style = "w", $action, $breadcrumb, $params = array()) {
 			displayLibraryMusicMenu($style, $params);
 			break;
 		case "p":  // Play
-			switch ($previousaction) {
-				case "re":
-				case "e": 
-				case "rm":
-				case "m":
-					if (($previousaction == "re") || ($previousaction == "e")) {
-						if ($previousaction == "re") {
-							$request = jsonstring("VideoLibrary.GetRecentlyAddedEpisodes");
-						} else {
+			switch ($previousaction)
+			{
+				case "re": //RecentEpisodes
+				case "e": //Episodes
+				case "rm": //Recent Movies
+				case "m": //Movies 
+					if (($previousaction == "re") || ($previousaction == "e"))
+					{
+						if ($previousaction == "re")
+						{
+							if($jsonVersion['result']['version'] == '2') { $request = jsonstring("VideoLibrary.GetRecentlyAddedEpisodes"); }
+							if($jsonVersion['result']['version'] == '3') { $request = jsonstring("VideoLibraryV3.GetRecentlyAddedEpisodes"); }
+						} else
+						{
 							$showid = $params['showid'];
 							$season = $params['season'];
-							$request = jsonstring("VideoLibrary.GetEpisodes", array('tvshowid' => $params['showid'], 'season' => $params['season']));
+							if($jsonVersion['result']['version'] == '2') { $request = jsonstring("VideoLibrary.GetEpisodes", array('tvshowid' => $params['showid'], 'season' => $params['season'])); }
+							if($jsonVersion['result']['version'] == '3') { $request = jsonstring("VideoLibraryV3.GetEpisodes", array('tvshowid' => $params['showid'], 'season' => $params['season'])); }
 						}
 						$results = jsoncall($request);
 						$videos = $results['result']['episodes'];
 						$typeId = "episodeid";
-					} elseif (($previousaction == "rm") || ($previousaction == "m")) {
-						$request = jsonstring("VideoLibrary.GetMovies");
+					}
+					elseif (($previousaction == "rm") || ($previousaction == "m"))
+					{
+						if($jsonVersion['result']['version'] == '2') { $request = jsonstring("VideoLibrary.GetMovies"); }
+						if($jsonVersion['result']['version'] == '3') { $request = jsonstring("VideoLibraryV3.GetMovies"); }
 						$results = jsoncall($request);
 						$videos = $results['result']['movies'];
 						$typeId = "movieid";
@@ -49,6 +58,7 @@ function executeVideo($style = "w", $action, $breadcrumb, $params = array()) {
 					} 
 					break;
 				case "so": // Songs
+					$jsonVersion = jsonmethodcall("JSONRPC.Version"); //pull the JSON version # from XBMC
 					if (!empty($params['songid'])) {
 						PlaySongFromList($params['songid']);
 					} else {
@@ -63,7 +73,8 @@ function executeVideo($style = "w", $action, $breadcrumb, $params = array()) {
 				case "e": //Episodes
 					$showid = $params['showid'];
 					$season = (!empty($params['season']) ? $params['season'] : 0);
-					$results = jsonmethodcall("VideoLibrary.GetEpisodes", array('tvshowid' => $params['showid'], 'season' => $season));
+					if($jsonVersion['result']['version'] == '2') { $results = jsonmethodcall("VideoLibrary.GetEpisodes", array('tvshowid' => $params['showid'], 'season' => $season)); }
+					if($jsonVersion['result']['version'] == '3') { $results = jsonmethodcall("VideoLibraryV3.GetEpisodes", array('tvshowid' => $params['showid'], 'season' => $season)); }		
 					$videos = $results['result']['episodes'];
 					$params['typeid'] = "episodeid";
 					if (!empty($videos)) {
@@ -74,7 +85,8 @@ function executeVideo($style = "w", $action, $breadcrumb, $params = array()) {
 					}
 					break;
 				case "re": // Recent Episodes
-					$results = jsonmethodcall("VideoLibrary.GetRecentlyAddedEpisodes");
+					if($jsonVersion['result']['version'] == '2') { $results = jsonmethodcall("VideoLibrary.GetRecentlyAddedEpisodes"); }
+					if($jsonVersion['result']['version'] == '3') { $results = jsonmethodcall("VideoLibraryV3.GetRecentlyAddedEpisodes"); }
 					$videos = $results['result']['episodes'];
 					$params['typeid'] = "episodeid";
 					if (!empty($videos)) {
@@ -85,10 +97,21 @@ function executeVideo($style = "w", $action, $breadcrumb, $params = array()) {
 					}
 					break;
 				case "m":  // Movies
-				case "rm": // Recent Movies
-					$results = jsonmethodcall("VideoLibrary.GetMovies");
+					if($jsonVersion['result']['version'] == '2') { $results = jsonmethodcall("VideoLibrary.GetMovies"); }
+					if($jsonVersion['result']['version'] == '3') { $results = jsonmethodcall("VideoLibraryV3.GetMovies"); }
 					$videos = $results['result']['movies'];
-
+					$params['typeid'] = "movieid";
+					if (!empty($videos)) {
+						displayVideoFromList($videos, $style, $action, $breadcrumb, $params);
+					} else {
+						echo $COMM_ERROR;
+						echo "<pre>$request</pre>";
+					}
+					break;
+				case "rm": // Recent Movies
+					if($jsonVersion['result']['version'] == '2') { $results = jsonmethodcall("VideoLibrary.GetRecentlyAddedMovies"); }
+					if($jsonVersion['result']['version'] == '3') { $results = jsonmethodcall("VideoLibraryV3.GetRecentlyAddedMovies"); }
+					$videos = $results['result']['movies'];
 					$params['typeid'] = "movieid";
 					if (!empty($videos)) {
 						displayVideoFromList($videos, $style, $action, $breadcrumb, $params);
@@ -123,7 +146,8 @@ function executeVideo($style = "w", $action, $breadcrumb, $params = array()) {
 			break;
 		case "s":  // Seasons
 			$showid = $params['showid'];
-			$results = jsonmethodcall("VideoLibrary.GetSeasons", array('tvshowid' => $showid));
+			if( $jsonVersion['result']['version'] == "2") { $results = jsonmethodcall("VideoLibrary.GetSeasons", array('tvshowid' => $showid)); }
+			if( $jsonVersion['result']['version'] == "3") { $results = jsonmethodcall("VideoLibraryV3.GetSeasons", array('tvshowid' => $showid)); }
 			if (!empty($results['result'])) {
 				$videos = (!empty($results['result']['seasons'])) ? $results['result']['seasons'] : array();
 				displayVideoListSeasons($videos, $style, $action, $breadcrumb, $params);
@@ -135,7 +159,8 @@ function executeVideo($style = "w", $action, $breadcrumb, $params = array()) {
 		case "e":  // Episodes
 			$showid = $params['showid'];
 			$season = (!empty($params['season'])) ? $params['season'] : 0;
-			$results = jsonmethodcall("VideoLibrary.GetEpisodes", array('tvshowid' => $showid, 'season' => $season));
+			if($jsonVersion['result']['version'] == '2') { $results = jsonmethodcall("VideoLibrary.GetEpisodes", array('tvshowid' => $showid, 'season' => $season)); }
+			if($jsonVersion['result']['version'] == '3') { $results = jsonmethodcall("VideoLibraryV3.GetEpisodes", array('tvshowid' => $showid, 'season' => $season)); }
 			if (!empty($results['result'])) {
 				$videos = $results['result']['episodes'];
 				displayVideoListEpisodes($videos, $style, $action, $breadcrumb, $params);
@@ -150,7 +175,8 @@ function executeVideo($style = "w", $action, $breadcrumb, $params = array()) {
 			} else {
 				$count = 15;
 			}
-			$results = jsonmethodcall("VideoLibrary.GetRecentlyAddedEpisodes", $count);
+			if($jsonVersion['result']['version'] == '2') { $results = jsonmethodcall("VideoLibrary.GetRecentlyAddedEpisodes", $count); }
+			if($jsonVersion['result']['version'] == '3') { $results = jsonmethodcall("VideoLibraryV3.GetRecentlyAddedEpisodes", $count); }
 			if (!empty($results['result'])) {
 				$videos = $results['result']['episodes'];
 				displayVideoListEpisodes($videos, $style, $action, $breadcrumb, $params);
@@ -160,7 +186,8 @@ function executeVideo($style = "w", $action, $breadcrumb, $params = array()) {
 			}
 			break;
 		case "m":  // Movies
-			$results = jsonmethodcall("VideoLibrary.GetMovies");
+			if($jsonVersion['result']['version'] == '2') { $results = jsonmethodcall("VideoLibrary.GetMovies"); }
+			if($jsonVersion['result']['version'] == '3') { $results = jsonmethodcall("VideoLibraryV3.GetMovies"); }			
 			if (!empty($results['result'])) {
 				$videos = $results['result']['movies'];
 				displayVideoListMovie($videos, $style, $action, $breadcrumb, $params);
@@ -175,7 +202,8 @@ function executeVideo($style = "w", $action, $breadcrumb, $params = array()) {
 			} else {
 				$count = 15;
 			}
-			$results = jsonmethodcall("VideoLibrary.GetRecentlyAddedMovies", $count);
+			if($jsonVersion['result']['version'] == '2') { $results = jsonmethodcall("VideoLibrary.GetRecentlyAddedMovies", $count); }
+			if($jsonVersion['result']['version'] == '3') { $results = jsonmethodcall("VideoLibraryV3.GetRecentlyAddedMovies", $count); }
 			if (!empty($results['result'])) {
 				$videos = $results['result']['movies'];
 				displayVideoListMovie($videos, $style, $action, $breadcrumb, $params);
