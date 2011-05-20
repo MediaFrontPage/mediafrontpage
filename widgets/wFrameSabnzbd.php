@@ -3,7 +3,7 @@ $wIndex["wFrameSabzndb"] = array("name" => "jDown", "type" => "inline", "functio
 
 function widgetFrameSabnzbd() {
 	require "config.php";
-	echo "<iframe src='$saburl' frameborder='0' scrolling='auto' width='99%' height='40%'></iframe>";
+	echo "<iframe src='$saburl' frameborder='0' scrolling='auto' width='99%' height='90%'></iframe>";
 }
 
 ?>

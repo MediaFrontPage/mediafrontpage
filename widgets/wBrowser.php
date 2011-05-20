@@ -18,7 +18,7 @@ echo "<link rel='stylesheet' type='text/css' href='css/mybrowser.css'>";
 		</ul>";
 
 	echo "</div><P>";
-	echo "<iframe src='http://forum.xbmc.org/showthread.php?t=83304' frameborder='0' name='mfpbrowser'scrolling='auto' width='100%' height='100%' ></iframe>";
+	echo "<iframe src='http://forum.xbmc.org/showthread.php?t=83304' frameborder='0' name='mfpbrowser'scrolling='auto' width='100%' height='90%' ></iframe>";
 
 
 }

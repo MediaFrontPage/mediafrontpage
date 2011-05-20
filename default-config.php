@@ -227,13 +227,15 @@ $mfpapikey = '';
 //*****************************//
 if($GLOBAL_MACHINE)
 {
+	//XBMC Global Settings//
 	if(empty($XBMC_IP) && !empty($XBMC_PORT)){
 		$XBMC_IP = $GLOBAL_IP;
 	}
 	if($GLOBAL_USER_PASS && empty($XBMC_USERNAME) && empty($XBMC_PASS)){
 		$XBMC_USERNAME = $GLOBAL_USER;
-		$XBMC_PASS	=	$GLOBAL_PASS;
+		$XBMC_PASS	   = $GLOBAL_PASS;
 	}
+	//SickBeard Global Settings//
 	if(empty($SICKBEARD_IP) && !empty($SICKBEARD_PORT)){
 		$SICKBEARD_IP = $GLOBAL_IP;		
 	}
@@ -241,6 +243,7 @@ if($GLOBAL_MACHINE)
 		$SICKBEARD_USERNAME = $GLOBAL_USER;
 		$SICKBEARD_PASS = $GLOBAL_PASS;
 	}
+	//SabNZBd+ Global Settings//
 	if(empty($SABNZBD_IP) && !empty($SABNZBD_PORT)){
 		$SABNZBD_IP = $GLOBAL_IP;
 	}
@@ -248,6 +251,7 @@ if($GLOBAL_MACHINE)
 		$SABNZBD_USERNAME = $GLOBAL_USER;
 		$SABNZBD_PASS	=	$GLOBAL_PASS;
 	}
+	//CouchPotato Global Settings//
 	if(empty($COUCHPOTATO_IP) && !empty($COUCHPOTATO_PORT)){
 		$COUCHPOTATO_IP = $GLOBAL_IP;
 	}
@@ -255,6 +259,7 @@ if($GLOBAL_MACHINE)
 		$COUCHPOTATO_USERNAME = $GLOBAL_USER;
 		$COUCHPOTATO_PASS	=	$GLOBAL_PASS;
 	}
+	//uTorrent Global Settings//
 	if(empty($uTorrent_IP) && !empty($uTorrent_PORT)){
 		$uTorrent_IP = $GLOBAL_IP;
 	}
@@ -262,13 +267,15 @@ if($GLOBAL_MACHINE)
 		$uTorrent_USERNAME = $GLOBAL_USER;
 		$uTorrent_PASS	=	$GLOBAL_PASS;
 	}
-	if(empty($JDOWNLOADER_IP) && !empty($JDOWNLOADER_PORT)){
+	//jDownloader Global Settings//
+	if(empty($JDOWNLOADER_IP) && !empty($JDOWNLOADER_WEBPORT)){
 		$JDOWNLOADER_IP = $GLOBAL_IP;
 	}
 	if($GLOBAL_USER_PASS && empty($JDOWNLOADER_USERNAME)||empty($JDOWNLOADER_PASS)){
 		$JDOWNLOADER_USERNAME = $GLOBAL_USER;
 		$JDOWNLOADER_PASS	=	$GLOBAL_PASS;
 	}
+	//Transmission Global Settings//
 	if(empty($TRANSMISSION_IP) && !empty($TRANSMISSION_PORT)){
 		$TRANSMISSION_IP = $GLOBAL_IP;
 	}
@@ -278,8 +285,8 @@ if($GLOBAL_MACHINE)
 	}
 }
 $xbmclogin				= (!empty($XBMC_USERNAME)&&!empty($XBMC_PASS))?"$XBMC_USERNAME:$XBMC_PASS@":"";
-$xbmcjsonservice 		= "http://$xbmclogin"."$XBMC_PORT/jsonrpc";
-$xbmcimgpath 			= "http://$xbmclogin"."$XBMC_USERNAME:$XBMC_PASS@$XBMC_IP:$XBMC_PORT/vfs/";
+$xbmcjsonservice 		= "http://$xbmclogin"."$XBMC_IP:$XBMC_PORT/jsonrpc";
+$xbmcimgpath 			= "http://$xbmclogin"."$XBMC_IP:$XBMC_PORT/vfs/";
 $sickbeardlogin			= (!empty($SICKBEARD_USERNAME)&&!empty($SICKBEARD_PASS))?"$SICKBEARD_USERNAME:$SICKBEARD_PASS@":"";
 $sickbeardcomingepisodes= "http://$sickbeardlogin"."$SICKBEARD_IP:$SICKBEARD_PORT/comingEpisodes/";
 $sickbeardurl 			= "http://$sickbeardlogin"."$SICKBEARD_USERNAME:$SICKBEARD_PASS@$SICKBEARD_IP:$SICKBEARD_PORT/home/";
@@ -291,15 +298,15 @@ $uTorrentlogin			= (!empty($uTorrent_USERNAME)&&!empty($uTorrent_PASS))?"$uTorre
 $utorrent_url 			= "http://$uTorrentlogin"."$uTorrent_IP:$uTorrent_PORT/";
 $JDOWNLOADERlogin		= (!empty($JDOWNLOADER_USERNAME)&&!empty($JDOWNLOADER_PASS))?"$JDOWNLOADER_USERNAME:$JDOWNLOADER_PASS@":"";
 $jd_url 				= "http://$JDOWNLOADERlogin"."$JDOWNLOADER_IP:$JDOWNLOADER_REMOTEPORT/";
-$jd_weburl				= "http://$JDOWNLOADERlogin"."$JDOWNLOADER_IP:$JDOWNLOADER_WEBPORT/";
+$jd_weburl				= "http://$JDOWNLOADER_IP:$JDOWNLOADER_WEBPORT/";
 $TRANSMISSIONlogin		= (!empty($TRANSMISSION_USERNAME)&&!empty($TRANSMISSION_PASS))?"$TRANSMISSION_USERNAME:$TRANSMISSION_PASS@":"";
 $transmission_url 		= "http://$TRANSMISSION_IP:$TRANSMISSION_PORT/transmission/rpc";	
-$transmission_web 		= "http://$TRANSMISSIONlogin"."$TRANSMISSION_IP:$TRANSMISSION_PORT/transmission/web";	
+$transmission_web 		= "http://$TRANSMISSIONlogin"."$TRANSMISSION_IP:$TRANSMISSION_PORT/transmission/web/";	
 $transmission_admin		= $TRANSMISSION_USERNAME;
 $transmission_pass 		= $TRANSMISSION_PASS;	
 $nzbusername 			= $NZBMATRIX_USERNAME;
 $nzbapi 				= $NZBMATRIX_API;
 $nzbsuapi 				= $NZBSU_API;
 $nzbsudl				= $NZB_DL;
-
 ?>
+

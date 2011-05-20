@@ -27,14 +27,14 @@ SABNZBDHEADER;
 }
 
 function sabQuery($command, $values = array()) {
-	global $saburl, $sabapikey;
+	global $saburl, $SABNZBD_API;
 
 	$getParameter = "";
 	foreach ($values as $key => $value) {
 		$getParameter .= "&" . $key . "=" . $value;
 	}
 	
-	$queryurl = $saburl."api?mode=".$command."&output=json"."&apikey=".$sabapikey;
+	$queryurl = $saburl."api?mode=".$command."&output=json"."&apikey=".$SABNZBD_API;
 	$queryurl .= $getParameter;
 
 	$ch = curl_init();
