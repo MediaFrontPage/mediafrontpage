@@ -1,15 +1,19 @@
 <?php
 $arrLayout = array(
 		"section1" => array(
-			"wSearch" => array(
-				"title" => "Search",
+			"wComingEpisodes" => array(
+				"title" => "Coming Episodes",
 				"display" => ""
 			)
 		),
 		"section2" => array(
 			"wXBMCLibrary" => array(
 				"title" => "XBMC Library",
-				"display" => "collapsed"
+				"display" => ""
+			),
+			"wControl" => array(
+				"title" => "Control",
+				"display" => ""
 			),
 			"wRecentTV" => array(
 				"title" => "Recent TV",
@@ -18,37 +22,33 @@ $arrLayout = array(
 			"wRecentMovies" => array(
 				"title" => "Recent Movies",
 				"display" => ""
-			),
-			"wComingEpisodes" => array(
-				"title" => "Coming Episodes",
-				"display" => "collapsed"
 			)
 		),
 		"section3" => array(
-			"wHardDrives" => array(
-				"title" => "Hard Drives",
-				"display" => ""
-			),
-			"wRSS" => array(
-				"title" => "RSS Feed",
-				"display" => ""
-			),
-			"wControl" => array(
-				"title" => "Control",
-				"display" => ""
-			)
-		),
-		"section4" => array(
-			"wRSS" => array(
-				"title" => "RSS Feed",
-				"display" => ""
-			),
 			"wSearch" => array(
 				"title" => "Search",
 				"display" => ""
 			),
+			"wRSS" => array(
+				"title" => "RSS Feed",
+				"display" => ""
+			),
 			"wHardDrives" => array(
 				"title" => "Hard Drives",
+				"display" => ""
+			)
+		),
+		"section4" => array(
+			"wNowPlaying" => array(
+				"title" => "Now Playing",
+				"display" => ""
+			),
+			"wTransmission" => array(
+				"title" => "Transmission",
+				"display" => ""
+			),
+			"wSabnzbd" => array(
+				"title" => "Sabnzbd",
 				"display" => ""
 			)
 		)

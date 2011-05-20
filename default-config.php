@@ -79,7 +79,7 @@ $TRANSMISSION_PASS 		= '';
 //													to allow NZB downloads	//
 //													without logging in:"	//
 //																			//
-//NZBMatrix		->	http://nzbmatrix.com/account.php						//
+//$NZBMATRIX_API	->	http://nzbmatrix.com/account.php					//
 //$preferredSearch	->	Set to 1 for NZBMatrix and 2 for nzb.su				//
 //$preferredCategories 	->	Check README for a list of options. 			//
 //							Make sure the option is for the appropriate site//

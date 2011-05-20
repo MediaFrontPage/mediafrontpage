@@ -36,11 +36,10 @@ if(!empty($navselect)){
 echo "</ul>";
 echo "<div id='multiples' style='float:right;'>";
 echo "<ul><select onchange=\"top.frames['main'].location.href = this.value;\">";
-echo "<option value='mediafrontpage.php'>MFP</option>";
-echo "<option value='mediafrontpage.php?layout=3'>3 Cols</option>";
-echo "<option value='mediafrontpage.php?layout=4'>4 Cols</option>";
-echo "<option value='mediafrontpage.php?layout=top'>Top</option>";
-echo "<option value='mediafrontpage.php?layout=bottom'>Bottom</option>";
+echo "<option value='mediafrontpage.php?layout=main'>MFP</option>";
+echo "<option value='mediafrontpage.php?layout=download-f'>Downloads</option>";
+echo "<option value='mediafrontpage.php?layout=manager-f'>Managers</option>";
+echo "<option value='mediafrontpage.php?layout=research'>Browse</option>";
 echo "</select></ul>";
 echo "</div>";
 echo "</div>";

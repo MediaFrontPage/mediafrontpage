@@ -1,9 +1,6 @@
 <?php
-require_once "layouts/layout-config.php";
 session_start();
-if(!empty($_GET['layout'])){
-	$_SESSION['layout'] = $_GET['layout'];
-}
+$_SESSION['layout'] = (!empty($_GET['layout']))?$_GET['layout']:'main';
 $layout = $_SESSION['layout'];
 require_once "config.php";
 require_once "functions.php";
@@ -13,13 +10,13 @@ $errlevel = error_reporting();
 error_reporting(E_ALL & ~E_WARNING);
 if (!include ("layouts/layout-".$layout.".php")){
 	// file was missing so include default theme 
-	require("default-layout.php");
+	require("layouts/layout-default.php");
 }
 // Turn on warnings
 error_reporting($errlevel); 
 
 if (empty ($arrLayout)) {
-	require_once("default-layout.php");
+	require_once("layouts/layout-default.php");
 }
 ?>
 <html>
