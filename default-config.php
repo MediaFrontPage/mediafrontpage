@@ -7,7 +7,25 @@
 //																			//
 //$JDOWNLOADER_REMOTEPORT	-> port from RemoteControl Plugin				//
 //$JDOWNLOADER_WEBPORT		-> port from Web plugin							//
+//																			//
+//																			//
+//If most or all programs live in the same machine set	$GLOBAL_MACHINE		//
+//to true and put all the info in the global variables. If one or two 		//
+//programs live in a different computer, then insert the info in the 		//
+//respective section and leave the ones that have the same info as GLOBAL 	//
+//empty. If USERNAME/PASSWORD are the same for all programs set 			//
+//$GLOBAL_USER_PASS	to true and put you global username and password.		//
+//																			//
+//																			//
+//Variables that are always required										//
+//All PORTS																	//
+//All API's																	//
 //**************************************************************************//
+$GLOBAL_MACHINE			= false;
+$GLOBAL_USER_PASS		= false;
+$GLOBAL_IP				= '';
+$GLOBAL_USER			= '';
+$GLOBAL_PASS			= '';
 
 /* XBMC Section*/
 $XBMC_IP 				= '';
@@ -207,6 +225,58 @@ $mfpapikey = '';
 //*****************************//
 //IGNORE FROM THIS PART ONWARDS//
 //*****************************//
+if($GLOBAL_MACHINE)
+{
+	if(empty($XBMC_IP) && !empty($XBMC_PORT)){
+		$XBMC_IP = $GLOBAL_IP;
+	}
+	if($GLOBAL_USER_PASS && empty($XBMC_USERNAME) && empty($XBMC_PASS)){
+		$XBMC_USERNAME = $GLOBAL_USER;
+		$XBMC_PASS	=	$GLOBAL_PASS;
+	}
+	if(empty($SICKBEARD_IP) && !empty($SICKBEARD_PORT)){
+		$SICKBEARD_IP = $GLOBAL_IP;		
+	}
+	if($GLOBAL_USER_PASS && empty($SICKBEARD_USERNAME) && empty($SICKBEARD_PASS)){
+		$SICKBEARD_USERNAME = $GLOBAL_USER;
+		$SICKBEARD_PASS = $GLOBAL_PASS;
+	}
+	if(empty($SABNZBD_IP) && !empty($SABNZBD_PORT)){
+		$SABNZBD_IP = $GLOBAL_IP;
+	}
+	if($GLOBAL_USER_PASS && empty($SABNZBD_USERNAME)||empty($SABNZBD_PASS)){
+		$SABNZBD_USERNAME = $GLOBAL_USER;
+		$SABNZBD_PASS	=	$GLOBAL_PASS;
+	}
+	if(empty($COUCHPOTATO_IP) && !empty($COUCHPOTATO_PORT)){
+		$COUCHPOTATO_IP = $GLOBAL_IP;
+	}
+	if($GLOBAL_USER_PASS && empty($COUCHPOTATO_USERNAME)||empty($COUCHPOTATO_PASS)){
+		$COUCHPOTATO_USERNAME = $GLOBAL_USER;
+		$COUCHPOTATO_PASS	=	$GLOBAL_PASS;
+	}
+	if(empty($uTorrent_IP) && !empty($uTorrent_PORT)){
+		$uTorrent_IP = $GLOBAL_IP;
+	}
+	if($GLOBAL_USER_PASS && empty($uTorrent_USERNAME)||empty($uTorrent_PASS)){
+		$uTorrent_USERNAME = $GLOBAL_USER;
+		$uTorrent_PASS	=	$GLOBAL_PASS;
+	}
+	if(empty($JDOWNLOADER_IP) && !empty($JDOWNLOADER_PORT)){
+		$JDOWNLOADER_IP = $GLOBAL_IP;
+	}
+	if($GLOBAL_USER_PASS && empty($JDOWNLOADER_USERNAME)||empty($JDOWNLOADER_PASS)){
+		$JDOWNLOADER_USERNAME = $GLOBAL_USER;
+		$JDOWNLOADER_PASS	=	$GLOBAL_PASS;
+	}
+	if(empty($TRANSMISSION_IP) && !empty($TRANSMISSION_PORT)){
+		$TRANSMISSION_IP = $GLOBAL_IP;
+	}
+	if($GLOBAL_USER_PASS && empty($TRANSMISSION_USERNAME)||empty($TRANSMISSION_PASS)){
+		$TRANSMISSION_USERNAME = $GLOBAL_USER;
+		$TRANSMISSION_PASS	=	$GLOBAL_PASS;
+	}
+}
 $xbmclogin				= (!empty($XBMC_USERNAME)&&!empty($XBMC_PASS))?"$XBMC_USERNAME:$XBMC_PASS@":"";
 $xbmcjsonservice 		= "http://$xbmclogin"."$XBMC_PORT/jsonrpc";
 $xbmcimgpath 			= "http://$xbmclogin"."$XBMC_USERNAME:$XBMC_PASS@$XBMC_IP:$XBMC_PORT/vfs/";
@@ -229,5 +299,7 @@ $transmission_admin		= $TRANSMISSION_USERNAME;
 $transmission_pass 		= $TRANSMISSION_PASS;	
 $nzbusername 			= $NZBMATRIX_USERNAME;
 $nzbapi 				= $NZBMATRIX_API;
+$nzbsuapi 				= $NZBSU_API;
+$nzbsudl				= $NZB_DL;
 
 ?>
