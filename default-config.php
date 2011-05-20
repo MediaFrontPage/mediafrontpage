@@ -110,7 +110,7 @@ $navlink["Sickbeard"] 	= "/sickbeard";
 $navlink["Couch Potato"]= "/couchpotato";
 $navlink["Sabnzbd"] 	= "/sabnzbd";
 
-							// Control Section//
+							// Control Section	//
 //**************************************************************************//
 //Options:																	//
 //cmd 																		//
@@ -128,7 +128,7 @@ $shortcut["Clean XBMC Video Library"] 	= array("xbmcsend" => 'CleanLibrary(video
 $shortcut["Update XBMC Audio Library"] 	= array("json" => '{"jsonrpc": "2.0", "method": "AudioLibrary.ScanForContent", "id" : 1 }');
 $shortcut["MediaFrontPage Forum"] 		= "http://forum.xbmc.org/showthread.php?t=83304&goto=newpost";
 
-					// Hard Drive Section//
+						//	Hard Drive Section	//
 //**************************************************************************//
 //$drive["USB"] 	= "/Volumes/USB_NAME"; 	applies for Mac OS				//
 //$drive["Sata 1"] 	= "/media/sata1/";		applies for Linux OS			//
@@ -154,7 +154,7 @@ $rssfeeds["NZBMatrix - Music (Lossless)"]   = array("url" => "http://rss.nzbmatr
 $rssfeeds["NZBMatrix - Sports"]             = array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=7"	, "cat" => "sports");
 $rssfeeds["MediaFrontPage on Github"]       = array("url" => "https://github.com/MediaFrontPage/mediafrontpage/commits/master.atom", "type" => "atom");
 
-							// Custom Stylesheet Section //
+						// Custom Stylesheet Section //
 //**************************************************************************//
 //To have MFP use a different CSS use this:									//
 //																			//
@@ -162,7 +162,7 @@ $rssfeeds["MediaFrontPage on Github"]       = array("url" => "https://github.com
 //$customStyleSheet = "css/comingepisodes-minimal-banner.css";				//
 //**************************************************************************//
 
-							/*Message Section*/
+						/*	Message Section	*/
 //**************************************************************************//
 //If there is only one XBMC instace, this can be ignored as the widget will //
 //use the same info as the one set on the XBMC Section						//
@@ -172,6 +172,8 @@ $rssfeeds["MediaFrontPage on Github"]       = array("url" => "https://github.com
 //**************************************************************************//
 $xbmcMessages;
 
+
+							// Security	//
 //**************************************************************************//
 // Only set the $mfpsecured variable to true if you have secured			//
 // MediaFrontPage with a password via .htaccess or some other method		//
