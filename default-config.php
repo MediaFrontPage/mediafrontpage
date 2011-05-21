@@ -2,21 +2,21 @@
 						/*Programs Section*/
 //**************************************************************************//
 //Titles are self explanatory. Do not include http://						//
-//																			//
-//Need to add the option for reverse proxies								//
-//																			//
+//                                                                          //
+//Need to add the option for reverse proxies(eg.: /xbmc)                    //
+//                                                                          //
 //$JDOWNLOADER_REMOTEPORT	-> port from RemoteControl Plugin				//
 //$JDOWNLOADER_WEBPORT		-> port from Web plugin							//
-//																			//
-//																			//
+//                                                                          //
+//                                                                          //
 //If most or all programs live in the same machine set	$GLOBAL_MACHINE		//
 //to true and put all the info in the global variables. If one or two 		//
 //programs live in a different computer, then insert the info in the 		//
 //respective section and leave the ones that have the same info as GLOBAL 	//
 //empty. If USERNAME/PASSWORD are the same for all programs set 			//
 //$GLOBAL_USER_PASS	to true and put you global username and password.		//
-//																			//
-//																			//
+//                                                                          //
+//                                                                          //
 //Variables that are always required										//
 //All PORTS																	//
 //All API's																	//
@@ -78,44 +78,41 @@ $TRANSMISSION_PASS 		= '';
 //													string to your feed URL //
 //													to allow NZB downloads	//
 //													without logging in:"	//
-//																			//
+//                                                                          //
 //$NZBMATRIX_API	->	http://nzbmatrix.com/account.php					//
 //$preferredSearch	->	Set to 1 for NZBMatrix and 2 for nzb.su				//
 //$preferredCategories 	->	Check README for a list of options. 			//
 //							Make sure the option is for the appropriate site//
-//																			//
+//                                                                          //
 //$trakt_api	->	http://trakt.tv/settings/api							//
 //**************************************************************************//
 $preferredSearch 	= '2';
 $preferredCategories= '0';
-//---------------------//
 $NZBMATRIX_USERNAME	= '';
 $NZBMATRIX_API		= '';
-//---------------------//
 $NZBSU_API 			= '';
 $NZB_DL 			= '';
-//---------------------//
 $trakt_api 			= '';
 
 							// NavBar Section //
 //**************************************************************************//
 //To open inline on MFP														//
 //$navlink["Example"] = "http://example.com/";								//
-//																			//
+//                                                                          //
 //To open in a blank page													//
 //$navlink_blank["New Page"] = "http://google.com";							//
-//																			//
+//                                                                          //
 //To populate the DropDown list												//
 //$navselect["Title"] = "http://google.com";								//
-//																			//
-//																			//
+//                                                                          //
+//                                                                          //
 //							SubMenu											//
 //To open inline on MFP														//
 //$subnavlink["Google"] = "http://google.com";								//
-//																			//
+//                                                                          //
 //To open in a blank page													//
 //$subnavlink_blank["Google"] = "http://google.com";						//
-//																			//
+//                                                                          //
 //						EXAMPLES											//
 //$navlink["TV Headend"] = "/tvheadend";									//
 //$navlink["Transmission"] = "http://localhost:9091/transmission/web/";		//
@@ -175,7 +172,7 @@ $rssfeeds["MediaFrontPage on Github"]       = array("url" => "https://github.com
 						// Custom Stylesheet Section //
 //**************************************************************************//
 //To have MFP use a different CSS use this:									//
-//																			//
+//                                                                          //
 //$customStyleSheet = "css/lighttheme.css";									//
 //$customStyleSheet = "css/comingepisodes-minimal-banner.css";				//
 //**************************************************************************//
@@ -211,14 +208,14 @@ $mfpapikey = '';
 //			'username' => '',														//
 //			'password' => '',														//
 //			'options' => array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")	//
-//		),																			//
+//		),                                                                          //
 //		'music' => array(															//
 //			'dns' => 'mysql:host=hostname;dbname=music',							//
 //			'username' => 'username',												//
 //			'password' => 'password',												//
 //			'options' => array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")	//
-//		),																			//
-//	);																				//
+//		),                                                                          //
+//	);	                                                                            //
 //**********************************************************************************//
 
 
