@@ -3,7 +3,7 @@ $wIndex["wBrowser"] = array("name" => "Browser", "type" => "inline", "function" 
 
 function widgetLinks() {
 
-echo "<link rel='stylesheet' type='text/css' href='css/mybrowser.css'>";
+//echo "<link rel='stylesheet' type='text/css' href='css/front.css'>";
 	echo "<div id='nav-menu3'>";
 
 		echo "<ul>

@@ -328,3 +328,57 @@ div#wSearch #search-Table{
 	padding-left: 8px;
 	border:0px;
 }
+/*Browser Widget*/
+#nav-menu3 {
+
+  display: block;
+  font-size:.8em;
+  margin-top:0px;
+  margin-left:0;
+  padding-top: 5px;
+  padding-right:10px;
+  overflow: hidden;
+}
+
+#nav-menu3 ul {
+  margin-right:20px;
+  float: right;
+}
+
+
+#nav-menu3 li {
+  display: inline;
+  float: left;
+  margin:0;
+}
+
+#nav-menu3 li a {
+  color: #FF9522;
+  text-decoration: none;
+  display: block;
+  float: left;
+  font-size: 10px;
+  line-height: 10px;
+  min-height: 5px;
+  padding:0 12px 0px 10px;
+  position: relative;
+  background:url(../media/bgNavSep.png) no-repeat right center;
+}
+
+#nav-menu3 li a:hover {
+  color: red;
+  background-color: rgba(0,0,0,.05);
+  -webkit-box-shadow:0 2px 8px rgba(0,0,0,.25) inset;
+  text-shadow: rgba(255,255,255,.5) 0px 1px 10px;
+}
+
+#nav-menu3 li a:active  {
+  color: #FF9522
+}
+
+
+
+/* Hide from IE5-Mac \*/
+#nav-menu3 li a{
+  float: none
+}

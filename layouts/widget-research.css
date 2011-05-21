@@ -1,18 +1,16 @@
-/* Widget Placeholders and Style */
-
 #main .section {
     float: left;
     min-height: 400px;
     height: auto !important; 
 }
 #main #section1 { 
-    width: 18%;
+    width: 20%;
 }
 #main #section2 { 
-    width: 64%;
+    width: 60%;
 }
 #main #section3 { 
-    width: 18%;
+    width: 20%;
 }
 #main .widget-placeholder { 
     border: 2px dashed #999;
@@ -27,13 +25,11 @@
     margin: 10px 10px 0 10px; 
 }
 #main .section .widget {
-    border:1px solid grey;
+    border:1px solid black;
     -moz-border-radius:6px 6px 6px 6px;
     border-radius:6px 6px 6px 6px;
     margin:10px 5px;
--moz-box-shadow: 2px 2px 3px #888;
--webkit-box-shadow: 2px 3px 5px#888;
-box-shadow: 2px 2px 3px #888;
+    box-shadow: 3px 3px 3px #000;
 }
 #main .widget .widget-head {
     -moz-border-radius:6px 6px 0px 0px;
@@ -89,12 +85,12 @@ box-shadow: 2px 2px 3px #888;
     display:none !important;
 }
 #main .widget .widget-config {
-    background:#fff;
+    background:#2C2D32;
     padding: 1px 5px 10px;
     overflow: hidden;
 }
 #main .widget .widget-content {
-    background:#fff;
+    background:#2C2D32;
     -moz-border-radius:0px 0px 6px 6px;
     border-radius:0px 0px 6px 6px;
     padding: 3px 5px 3px;
@@ -106,9 +102,10 @@ box-shadow: 2px 2px 3px #888;
     overflow-y:auto;    
 }
 #main .widget .widget-content .alt {
-    background:#def;
+    background:#303134;
 }
 #main .widget .widget-content .widget-control {
     margin-top:3px;
     text-align:right;
 }
+
