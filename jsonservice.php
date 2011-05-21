@@ -1,8 +1,8 @@
 <?php
+session_start();
+$layout = $_SESSION['layout'];
 require_once "config.php";
 require_once "functions.php";
-require_once "layouts/layout-config.php";
-
 function error_array($code, $message) {
 	return array ( "error" => array ( "code" => $code, "message" => $message));
 }

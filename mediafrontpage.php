@@ -121,7 +121,6 @@ if (empty ($arrLayout)) {
 ?>
 		</div><!-- #main -->
     	<script type="text/javascript" src="js/jquery.js"></script>
-    	<script type="text/javascript" src="js/jquery.tablesorter.js"></script>
     	<script type="text/javascript" src="js/widget.js"></script>
 
   		<!-- START: JQuery Scrollbar for Coming Episodes Widget, Javascript Entries -->
