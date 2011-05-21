@@ -93,6 +93,8 @@ $NZBMATRIX_API		= '';
 $NZBSU_API 			= '';
 $NZB_DL 			= '';
 $trakt_api 			= '';
+$trakt_USERNAME		= '';
+$trakt_PASSWORD		= '';
 
 							// NavBar Section //
 //**************************************************************************//
