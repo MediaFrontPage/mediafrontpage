@@ -8,7 +8,7 @@ echo "</head>";
 echo "<body>";
 echo "<div id='header'>";
 echo "<div id='home'>";
-echo "<a href='./mediafrontpage.php' target='main'></a>";
+echo "<a href='./mediafrontpage.php' target='main' onclick=\"document.getElementById('workspace').selectedIndex = 0;\"></a>";
 echo "</div>";
 echo "<div id='nav-menu'>";
 echo "<ul>";
@@ -35,7 +35,7 @@ if(!empty($navselect)){
 
 echo "</ul>";
 echo "<div id='multiples' style='float:right;'>";
-echo "<ul><select onchange=\"top.frames['main'].location.href = this.value;\">";
+echo "<ul><select id='workspace' onchange=\"top.frames['main'].location.href = this.value;\">";
 echo "<option value='mediafrontpage.php?layout=main'>MFP</option>";
 echo "<option value='mediafrontpage.php?layout=download-f'>Downloads</option>";
 echo "<option value='mediafrontpage.php?layout=manager-f'>Managers</option>";
