@@ -96,7 +96,7 @@ function wTraktTrendingMovies()
 				if(!empty($tagline)){
 					$overview = $tagline;
 				}
-				printItem($url, $title, $year, $poster, $overview, $runtime);
+				printItem('movie', $url, $title, $year, $poster, $overview, $runtime, $imdb, $tmdb);
 				return false;
 			}
 			$i++;
@@ -120,8 +120,8 @@ function wTraktMovieRecommendations()
 				$tagline = $movie->tagline;
 				$overview= $movie->overview;
 				$cert 	 = $movie->certification;
-				$imdb_id = $movie->imdb_id;
-				$tmdb_id = $movie->tmdb_id;
+				$imdb 	 = $movie->imdb_id;
+				$tmdb 	 = $movie->tmdb_id;
 				$poster  = $movie->images->poster;
 				$fanart  = $movie->images->fanart;
 				$ratings = $movie->ratings->percentage;
@@ -132,7 +132,7 @@ function wTraktMovieRecommendations()
 					if(!empty($tagline)){
 						$overview = $tagline;
 					}
-					printItem($url, $title, $year, $poster, $overview, $runtime);
+					printItem('movie', $url, $title, $year, $poster, $overview, $runtime, $imdb, $tmdb);
 					return false;
 				}
 				$i++;
@@ -162,8 +162,8 @@ function wTraktTVRecommendations()
 				$aired 	 = $show->first_aired;
 				$overview= $show->overview;
 				$cert 	 = $show->certification;
-				$imdb_id = $show->imdb_id;
-				$tmdb_id = $show->tmdb_id;
+				$imdb 	 = $show->imdb_id;
+				$tvdb 	 = $show->tvdb_id;
 				$poster  = $show->images->poster;
 				$fanart  = $show->images->fanart;
 				$ratings = $show->ratings->percentage;
@@ -171,7 +171,7 @@ function wTraktTVRecommendations()
 				$loved	 = $show->ratings->loved;
 				$hated	 = $show->ratings->hated;
 				if($i==$num){
-					printItem($url, $title, $year, $poster, $overview, $runtime);
+					printItem('tv', $url, $title, $year, $poster, $overview, $runtime, $imdb, $tvdb);
 					return false;
 				}
 				$i++;
@@ -223,7 +223,7 @@ function wTraktComingShows()
 					$epTitle = '<a href="'.$epurl.'">S'.$season.'E'.$episode.' - '.$name.'</a>';
 				}
 				if($i==$num){
-					printItem($epurl, $title, $year, $poster, $overview, $runtime, $epOverview, $epTitle);
+					printItem('tv', $epurl, $title, $year, $poster, $overview, $runtime, $imdb, $tvdb, $epOverview, $epTitle);
 					return false;
 				}
 				$i++;
@@ -258,14 +258,25 @@ function wTraktTrendingShows()
 			$fanart  	= $episodes->images->fanart;
 			$watchers	= $episodes->watchers;
 			if($i==$num){
-				printItem($url, $title, $year, $poster, $overview, $runtime);
+				printItem('tv', $url, $title, $year, $poster, $overview, $runtime, $imdb, $tvdb);
 				return false;
 			}
 			$i++;
 		}
 	}
 }
-function printItem($url, $title, $year, $poster, $overview, $runtime, $epOverview ='', $epTitle = ''){
+function printItem($type, $url, $title, $year, $poster, $overview, $runtime, $imdb, $tvmvdb, $epOverview ='', $epTitle = ''){
+	if(!empty($imdb)){
+		$imdb = '<a href="http://www.imdb.com/title/'.$imdb.'"><img src="media/imdb.png" /></a>';
+	}
+	if(!empty($tvmvdb)){
+		if($type == 'tv'){
+			$tvmvdb = '<a href="http://thetvdb.com/index.php?tab=series&id='.$tvmvdb.'"><img src="media/moviedb.png" /></a>';
+		}
+		if($type == 'movie'){
+			$tvmvdb = '<a href="http://www.themoviedb.org/movie/'.$tvmvdb.'"><img src="media/moviedb.png" /></a>';		
+		}
+	}
 	if(!empty($epOverview) && $epOverview !== ''){
 		$overview = $epOverview;
 	}
@@ -273,10 +284,10 @@ function printItem($url, $title, $year, $poster, $overview, $runtime, $epOvervie
 		$overview = $epTitle.' - '.$overview;
 	}
 	echo '<h3><a href="'.$url.'">'.$title.' ('.$year.')</a></h3>';
-	echo '<div style="max-height:70px;overflow:hidden;">';
-	echo '<a href="'.$poster.'" class="highslide" onclick="return hs.expand(this)"><img style="float:left" src="'.$poster.'" height="50px" style="padding-right:10px;" /></a>';
-	echo '<p style="text-align:justify;">'.$overview.' - '.$runtime.' mins</p>';
-	echo '</div><div style="clear:both"></div>';
+	echo '<table width=\'100%\'><tr>';
+	echo '<td style=\'width:20%;\'><a href="'.$poster.'" class="highslide" onclick="return hs.expand(this)"><img src="'.$poster.'" width="50px" style="max-width:100%;padding-right:10px;" /></a>'.$imdb.$tvmvdb.'</td>';
+	echo '<td><p style="text-align:justify;max-height:70px;overflow:auto;">'.$overview.' ('.$runtime.'mins)</p></td>';
+	echo '</tr></table>';
 
 } 
 if(!empty($_GET['type']))
