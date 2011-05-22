@@ -43,7 +43,7 @@ function traktMethods($traktApiMethods = "", $post = false, $format = "json", $d
 	echo (empty($trakt_api))?"<h1>API not set in config.php</h1>":"";
 	$format = (!empty($format))?".".$format:"";
 	$trakturl = 'http://api.trakt.tv/'.$traktApiMethods.$format.'/'.$trakt_api;
-	$trakt_PASSWORD = sha1($trakt_PASSWORD);
+	$ttpass = sha1($trakt_PASSWORD);
 
 	if(!empty($traktApiMethods)) 
 	{
@@ -55,7 +55,7 @@ function traktMethods($traktApiMethods = "", $post = false, $format = "json", $d
 			if(!empty($trakt_PASSWORD) && !empty($trakt_USERNAME))
 			{
 				curl_setopt($ch, CURLOPT_POST, true);
-				curl_setopt($ch, CURLOPT_USERPWD, $trakt_USERNAME.':'.$trakt_PASSWORD); 
+				curl_setopt($ch, CURLOPT_USERPWD, $trakt_USERNAME.':'.$ttpass); 
 			}
 			else 
 			{
@@ -105,10 +105,11 @@ function wTraktTrendingMovies()
 /* 			echo "<img class=\"item\" title=\"$title\" src=\"$poster\"/ href=\"$url\" target=\"_blank\" >"; */
 			if($i==$num){
 				echo '<h3><a href="'.$url.'">'.$title.' ('.$year.')</a></h3>';
-				echo '<a href="'.$poster.'" class="highslide" onclick="return hs.expand(this)"><img style="float:left" src="'.$poster.'" height="50px" /></a>';
+				echo '<a href="'.$poster.'" class="highslide" onclick="return hs.expand(this)"><img style="float:left" src="'.$poster.'" height="50px" style="padding-right:5px;" /></a>';
 				echo '<p>'.(!empty($tag))?$tag:$overview.'</p>';
 				echo '<p>Runtime: '.$runtime.' minutes</p>';
 				echo '<div style="clear:both"></div>';
+				return false;
 			}
 			$i++;
 		}
@@ -143,10 +144,11 @@ function wTraktMovieRecommendations()
 /* 				echo "<img class=\"item\" title=\"$title\" src=\"$poster\"/ href=\"$url\" target=\"_blank\" >"; */
 				if($i==$num){
 					echo '<h3><a href="'.$url.'">'.$title.' ('.$year.')</a></h3>';
-					echo '<a href="'.$poster.'" class="highslide" onclick="return hs.expand(this)"><img style="float:left" src="'.$poster.'" height="50px" /></a>';
+					echo '<a href="'.$poster.'" class="highslide" onclick="return hs.expand(this)"><img style="float:left" src="'.$poster.'" height="50px" style="padding-right:5px;" /></a>';
 					echo '<p>'.(!empty($tag))?$tag:$overview.'</p>';
 					echo '<p>Runtime: '.$runtime.' minutes</p>';
 					echo '<div style="clear:both"></div>';
+					return false;
 				}
 				$i++;
 			}
@@ -196,10 +198,11 @@ function wTraktComingShows()
 /* 				echo "<img class=\"item\" title=\"$title\" src=\"$poster\"/ href=\"$url\" target=\"_blank\" >"; */
 				if($i==$num){
 					echo '<h3><a href="'.$showUrl.'">'.$showTitle.' ('.$year.')</a></h3>';
-					echo '<a href="'.$poster.'" class="highslide" onclick="return hs.expand(this)"><img style="float:left" src="'.$poster.'" height="50px" /></a>';
+					echo '<a href="'.$poster.'" class="highslide" onclick="return hs.expand(this)"><img style="float:left" src="'.$poster.'" height="50px" style="padding-right:5px;" /></a>';
 					echo '<p>'.(!empty($overview))?$overview:$showOverview.'</p>';
 					echo '<p>Runtime: '.$runtime.' minutes</p>';
 					echo '<div style="clear:both"></div>';
+					return false;
 				}
 				$i++;
 			}
