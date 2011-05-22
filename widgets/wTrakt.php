@@ -21,13 +21,15 @@ TRAKTHEADER;
 function wTrakt()
 {
 	global $num;
-	$num = rand(1,10);
+	$num = rand(0,10);
+/*
 	echo '<h1>Featured Movie</h1>';
 	wTraktTrendingMovies();
 	echo '<h1>Featured TV Show</h1>';
 	wTraktTrendingShows();
 	echo '<h1>Featured New Episode</h1>';
 	wTraktComingShows();
+*/
 	echo '<h1>Movie Recommendation</h1>';
 	wTraktMovieRecommendations();
 	echo '<h1>TV Recommendation</h1>';
@@ -115,7 +117,7 @@ function wTraktTrendingMovies()
 				if(!empty($tagline)){
 					$overview = $tagline;
 				}
-				printItem('movie', $url, $title, $year, $poster, $overview, $runtime, $imdb, $tmdb);
+				printItem('movie', $url, $title, $year, $poster, $overview, $runtime, $imdb, $tmdb, $trailer);
 				return false;
 			}
 			$i++;
@@ -242,7 +244,7 @@ function wTraktComingShows()
 					$epTitle = '<a href="'.$epurl.'">S'.$season.'E'.$episode.' - '.$name.'</a>';
 				}
 				if($i==$num){
-					printItem('tv', $epurl, $title, $year, $poster, $overview, $runtime, $imdb, $tvdb, $epOverview, $epTitle);
+					printItem('tv', $epurl, $title, $year, $poster, $overview, $runtime, $imdb, $tvdb, '', $epOverview, $epTitle);
 					return false;
 				}
 				$i++;
@@ -284,7 +286,7 @@ function wTraktTrendingShows()
 		}
 	}
 }
-function printItem($type, $url, $title, $year, $poster, $overview, $runtime, $imdb, $tvmvdb, $epOverview ='', $epTitle = ''){
+function printItem($type, $url, $title, $year, $poster, $overview, $runtime, $imdb, $tvmvdb, $trailer='', $epOverview ='', $epTitle = ''){
 	if(!empty($imdb)){
 		$imdb = '<a href="http://www.imdb.com/title/'.$imdb.'?iframe=true&height=95%&width=100%" rel="prettyPhoto"><img src="media/imdb.png" /></a>';
 	}
@@ -296,13 +298,16 @@ function printItem($type, $url, $title, $year, $poster, $overview, $runtime, $im
 			$tvmvdb = '<a href="http://www.themoviedb.org/movie/'.$tvmvdb.'?iframe=true&height=95%&width=100%" rel="prettyPhoto"><img src="media/moviedb.png" /></a>';		
 		}
 	}
+	if(!empty($trailer)){
+		$trailer = '<a href="'.$trailer.'" rel="prettyPhoto"><img height="7px" style="float:right" src="youtube.png" /></a>';
+	}
 	if(!empty($epOverview) && $epOverview !== ''){
 		$overview = $epOverview;
 	}
 	if(!empty($epTitle) && $epTitle !== ''){
 		$overview = $epTitle.' - '.$overview;
 	}
-	echo '<h3><a href="'.$url.'">'.$title.' ('.$year.')</a></h3>';
+	echo '<h3><a href="'.$url.'">'.$title.' ('.$year.')</a>'.$trailer.'</h3>';
 	echo '<table width=\'100%\'><tr>';
 	echo '<td style=\'width:20%;\'><a href="'.$poster.'" class="highslide" onclick="return hs.expand(this)"><img src="'.$poster.'" width="50px" style="max-width:100%;padding-right:10px;" /></a>'.$imdb.$tvmvdb.'</td>';
 	echo '<td><p style="text-align:justify;max-height:70px;overflow:auto;">'.$overview.' ('.$runtime.'mins)</p></td>';
