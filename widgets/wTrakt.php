@@ -13,27 +13,18 @@ TRAKTHEADER;
 }
 function wTrakt()
 {
-/*
-	echo "<div id='ajax_cf' class=\"ContentFlow\" style='height:200; width:100%;'>
-        <div class=\"loadIndicator\">
-        	<div class=\"indicator\">
-        	</div>
-        </div>
-        <div class=\"flow\">";
-		wTraktTrendingMovies();
-    echo "</div>
-       <div class=\"globalCaption\">
-       </div>
-    </div>";
-*/
 	global $num;
 	$num = rand(1,10);
 	echo '<h1>Featured Movie</h1>';
 	wTraktTrendingMovies();
+	echo '<h1>Featured TV Show</h1>';
+	wTraktTrendingShows();
 	echo '<h1>Featured New Episode</h1>';
 	wTraktComingShows();
-	echo '<h1>Featured Recommendation</h1>';
+	echo '<h1>Movie Recommendation</h1>';
 	wTraktMovieRecommendations();
+	echo '<h1>TV Recommendation</h1>';
+	wTraktTVRecommendations();
 }
 function traktMethods($traktApiMethods = "", $post = false, $format = "json", $debug = false) 
 {
@@ -93,22 +84,19 @@ function wTraktTrendingMovies()
 			$url  	= $movie->url;
 			$trailer= $movie->trailer;
 			$runtime= $movie->runtime;
-			$tag  	= $movie->tagline;
+			$tagline= $movie->tagline;
 			$overview= $movie->overview;
 			$cert  	= $movie->certification;
 			$imdb  	= $movie->imdb_id;
 			$tmdb  	= $movie->tmdb_id;
-/* 			$poster = $movie->poster; */
 			$poster = $movie->images->poster;
 			$fanart = $movie->images->fanart;
 			$watch  = $movie->watchers;
-/* 			echo "<img class=\"item\" title=\"$title\" src=\"$poster\"/ href=\"$url\" target=\"_blank\" >"; */
 			if($i==$num){
-				echo '<h3><a href="'.$url.'">'.$title.' ('.$year.')</a></h3>';
-				echo '<a href="'.$poster.'" class="highslide" onclick="return hs.expand(this)"><img style="float:left" src="'.$poster.'" height="50px" style="padding-right:5px;" /></a>';
-				echo '<p>'.(!empty($tag))?$tag:$overview.'</p>';
-				echo '<p>Runtime: '.$runtime.' minutes</p>';
-				echo '<div style="clear:both"></div>';
+				if(!empty($tagline)){
+					$overview = $tagline;
+				}
+				printItem($url, $title, $year, $poster, $overview, $runtime);
 				return false;
 			}
 			$i++;
@@ -117,6 +105,7 @@ function wTraktTrendingMovies()
 }
 function wTraktMovieRecommendations()
 {
+	global $num;
 	$result = traktMethods("recommendations/movies", true, "");
 	if(!empty($result))
 	{
@@ -126,7 +115,6 @@ function wTraktMovieRecommendations()
 			{
 				$title 	 = $movie->title;
 				$year 	 = $movie->year;
-				$date 	 = $movie->date;
 				$url 	 = $movie->url;
 				$runtime = $movie->runtime;
 				$tagline = $movie->tagline;
@@ -140,14 +128,50 @@ function wTraktMovieRecommendations()
 				$votes	 = $movie->ratings->votes;
 				$loved	 = $movie->ratings->loved;
 				$hated	 = $movie->ratings->hated;
-
-/* 				echo "<img class=\"item\" title=\"$title\" src=\"$poster\"/ href=\"$url\" target=\"_blank\" >"; */
 				if($i==$num){
-					echo '<h3><a href="'.$url.'">'.$title.' ('.$year.')</a></h3>';
-					echo '<a href="'.$poster.'" class="highslide" onclick="return hs.expand(this)"><img style="float:left" src="'.$poster.'" height="50px" style="padding-right:5px;" /></a>';
-					echo '<p>'.(!empty($tag))?$tag:$overview.'</p>';
-					echo '<p>Runtime: '.$runtime.' minutes</p>';
-					echo '<div style="clear:both"></div>';
+					if(!empty($tagline)){
+						$overview = $tagline;
+					}
+					printItem($url, $title, $year, $poster, $overview, $runtime);
+					return false;
+				}
+				$i++;
+			}
+		}
+		else
+		{
+			echo "Authentication failed";
+		}
+	}
+}
+function wTraktTVRecommendations()
+{
+	global $num;
+	$result = traktMethods("recommendations/shows", true, "");
+	if(!empty($result))
+	{
+		if($result->status !== "failure"){
+			$i=0;
+			foreach($result as $show)
+			{
+				$title 	 = $show->title;
+				$year 	 = $show->year;
+				$url 	 = $show->url;
+				$country = $show->country;
+				$runtime = $show->runtime;
+				$aired 	 = $show->first_aired;
+				$overview= $show->overview;
+				$cert 	 = $show->certification;
+				$imdb_id = $show->imdb_id;
+				$tmdb_id = $show->tmdb_id;
+				$poster  = $show->images->poster;
+				$fanart  = $show->images->fanart;
+				$ratings = $show->ratings->percentage;
+				$votes	 = $show->ratings->votes;
+				$loved	 = $show->ratings->loved;
+				$hated	 = $show->ratings->hated;
+				if($i==$num){
+					printItem($url, $title, $year, $poster, $overview, $runtime);
 					return false;
 				}
 				$i++;
@@ -161,22 +185,22 @@ function wTraktMovieRecommendations()
 }
 function wTraktComingShows()
 {
+	global $num;
 	$result = traktMethods("calendar/shows");
 
 	if(!empty($result)){
 		$i=0;
 		foreach($result as $item)
 		{
-			$date = $item->date;
 			foreach($item->episodes as $episodes)
 			{
 				//print_r($episodes->show)
-				$showTitle  = $episodes->show->title;
+				$title  	= $episodes->show->title;
 				$year   	= $episodes->show->year;
 				$showUrl  	= $episodes->show->url;
 				$aired   	= $episodes->show->first_aired;
 				$country  	= $episodes->show->country;
-				$showOverview = $episodes->show->overview;
+				$overview 	= $episodes->show->overview;
 				$runtime  	= $episodes->show->runtime;
 				$network  	= $episodes->show->network;
 				$airday  	= $episodes->show->air_day;
@@ -189,19 +213,17 @@ function wTraktComingShows()
 				$fanart  	= $episodes->show->images->fanart;
 				$season  	= sprintf('%02d',$episodes->episode->season);
 				$episode  	= sprintf('%02d',$episodes->episode->number);
-				$Title   	= $episodes->episode->title;
-				$overview  	= $episodes->episode->overview;
-				$url  		= $episodes->episode->url;
+				$name	  	= $episodes->episode->title;
+				$epOverview	= $episodes->episode->overview;
+				$epurl 		= $episodes->episode->url;
 				$firstaired = $episodes->episode->first_aired;
 				$screen  	= $episodes->episode->images->screen;
-
-/* 				echo "<img class=\"item\" title=\"$title\" src=\"$poster\"/ href=\"$url\" target=\"_blank\" >"; */
+				
+				if(!empty($season) && !empty($episode)){
+					$epTitle = '<a href="'.$epurl.'">S'.$season.'E'.$episode.' - '.$name.'</a>';
+				}
 				if($i==$num){
-					echo '<h3><a href="'.$showUrl.'">'.$showTitle.' ('.$year.')</a></h3>';
-					echo '<a href="'.$poster.'" class="highslide" onclick="return hs.expand(this)"><img style="float:left" src="'.$poster.'" height="50px" style="padding-right:5px;" /></a>';
-					echo '<p>'.(!empty($overview))?$overview:$showOverview.'</p>';
-					echo '<p>Runtime: '.$runtime.' minutes</p>';
-					echo '<div style="clear:both"></div>';
+					printItem($epurl, $title, $year, $poster, $overview, $runtime, $epOverview, $epTitle);
 					return false;
 				}
 				$i++;
@@ -209,7 +231,54 @@ function wTraktComingShows()
 		}
 	}
 }
+function wTraktTrendingShows()
+{
+	global $num;
+	$result = traktMethods("shows/trending");
+	if(!empty($result)){
+		$i=0;
+		foreach($result as $episodes)
+		{
+			//print_r($episodes)
+			$title  	= $episodes->title;
+			$year   	= $episodes->year;
+			$url  		= $episodes->url;
+			$aired   	= $episodes->first_aired;
+			$country  	= $episodes->country;
+			$overview 	= $episodes->overview;
+			$runtime  	= $episodes->runtime;
+			$network  	= $episodes->network;
+			$airday  	= $episodes->air_day;
+			$airtime 	= $episodes->air_time;
+			$cert  		= $episodes->certification;
+			$imdb   	= $episodes->imdb_id;
+			$tvdb   	= $episodes->tvdb_id;
+			$tvrage 	= $episodes->tvrage_id;
+			$poster  	= $episodes->images->poster;
+			$fanart  	= $episodes->images->fanart;
+			$watchers	= $episodes->watchers;
+			if($i==$num){
+				printItem($url, $title, $year, $poster, $overview, $runtime);
+				return false;
+			}
+			$i++;
+		}
+	}
+}
+function printItem($url, $title, $year, $poster, $overview, $runtime, $epOverview ='', $epTitle = ''){
+	if(!empty($epOverview) && $epOverview !== ''){
+		$overview = $epOverview;
+	}
+	if(!empty($epTitle) && $epTitle !== ''){
+		$overview = $epTitle.' - '.$overview;
+	}
+	echo '<h3><a href="'.$url.'">'.$title.' ('.$year.')</a></h3>';
+	echo '<div style="max-height:70px;overflow:hidden;">';
+	echo '<a href="'.$poster.'" class="highslide" onclick="return hs.expand(this)"><img style="float:left" src="'.$poster.'" height="50px" style="padding-right:10px;" /></a>';
+	echo '<p style="text-align:justify;">'.$overview.' - '.$runtime.' mins</p>';
+	echo '</div><div style="clear:both"></div>';
 
+} 
 if(!empty($_GET['type']))
 {
 	require_once "../config.php";
