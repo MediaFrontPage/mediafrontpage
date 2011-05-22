@@ -5,7 +5,14 @@ function wTraktHeader()
 {
 echo <<< TRAKTHEADER
 		<script type="text/javascript" language="javascript">
-		<!-- 				
+		<!--
+		$(function() {
+			$("a[rel^='prettyPhoto']").prettyPhoto(
+	        {
+	            social_tools: false
+	        });		
+		 });
+		 				 				
 		-->
 		</script>
 TRAKTHEADER;
@@ -25,6 +32,18 @@ function wTrakt()
 	wTraktMovieRecommendations();
 	echo '<h1>TV Recommendation</h1>';
 	wTraktTVRecommendations();
+	
+/*
+	echo '<script type="text/javascript" language="javascript">
+		<!--
+		$("a[rel^=\'prettyPhoto\']").prettyPhoto(
+        {
+            social_tools: false
+        });		
+		-->
+		</script>';
+*/
+
 }
 function traktMethods($traktApiMethods = "", $post = false, $format = "json", $debug = false) 
 {
@@ -267,14 +286,14 @@ function wTraktTrendingShows()
 }
 function printItem($type, $url, $title, $year, $poster, $overview, $runtime, $imdb, $tvmvdb, $epOverview ='', $epTitle = ''){
 	if(!empty($imdb)){
-		$imdb = '<a href="http://www.imdb.com/title/'.$imdb.'"><img src="media/imdb.png" /></a>';
+		$imdb = '<a href="http://www.imdb.com/title/'.$imdb.'?iframe=true&height=95%&width=100%" rel="prettyPhoto"><img src="media/imdb.png" /></a>';
 	}
 	if(!empty($tvmvdb)){
 		if($type == 'tv'){
-			$tvmvdb = '<a href="http://thetvdb.com/index.php?tab=series&id='.$tvmvdb.'"><img src="media/moviedb.png" /></a>';
+			$tvmvdb = '<a href="http://thetvdb.com/index.php?tab=series&id='.$tvmvdb.'?iframe=true&height=95%&width=100%" rel="prettyPhoto"><img src="media/moviedb.png" /></a>';
 		}
 		if($type == 'movie'){
-			$tvmvdb = '<a href="http://www.themoviedb.org/movie/'.$tvmvdb.'"><img src="media/moviedb.png" /></a>';		
+			$tvmvdb = '<a href="http://www.themoviedb.org/movie/'.$tvmvdb.'?iframe=true&height=95%&width=100%" rel="prettyPhoto"><img src="media/moviedb.png" /></a>';		
 		}
 	}
 	if(!empty($epOverview) && $epOverview !== ''){
