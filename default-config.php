@@ -8,6 +8,19 @@ $mfpsecured = false;
 // Alternativly you can set a unique key here.
 $mfpapikey = '';  //
 
+//**************************************************************************//
+// If you want to use  MediaFrontPage's built in							//
+// security set $authsecurity to true. 										//
+//**************************************************************************//
+
+$authsecured = false;
+$authusername = "";
+$authpassword = "";
+
+
+//Ignore this
+if (session_id()=='') session_start();
+
 // enter hostname and port of the xbmc json service here. By default 8080
 $xbmcjsonservice = "http://USER:PASSWORD@localhost:8080/jsonrpc"; //remove 'USER:PASSWORD@' if your xbmc install does not require a password.
 $xbmcimgpath = 'http://localhost:8080/vfs/'; //leave as default if unsure

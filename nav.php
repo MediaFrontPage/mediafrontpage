@@ -1,4 +1,12 @@
 <?php
+//Authentication check
+require_once('config.php');
+if ($authsecured && (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'])) {
+    header('Location: login.php');
+    exit;
+}
+?>
+<?php
 include "config.php";
 echo "<html>";
 echo "<head>";
@@ -33,6 +41,13 @@ if(!empty($navselect)){
 	echo "</select>";
 }
 
+//Logout button 
+require_once('config.php');
+if ($authsecured) {
+echo "<div id='auth' style='float:right;'>";
+echo "&nbsp; &nbsp;";
+echo "<a href='logout.php'/>Logout</a>";
+}
 echo "</ul>";
 echo "</div>";
 echo "</div>";
