@@ -7,13 +7,6 @@
 		visibility: hidden;
 
 }
-
-	/* right align the icons for the show */
-	div.tvshowDiv > table tr th span.tvshowTitleIcons{
-		display: none;
-		visibility: hidden;
-}
-
 	div.tvshowDiv > table tr th span.tvshowTitleIcons img{
 		display: none !important;
 		padding: none !important;
@@ -37,11 +30,12 @@
 		padding-bottom: 0px;
 }
 	/* not sure what this is for, pulled it from comingepisodes.css */
-	#wComingEpisodes h1, #wComingEpisodes iframe {
+	#wComingEpisodes h1 {
 		display: inline !important;
 		visibility: visible !important;
-		height      : 10px !important;
+		height: 10px !important;
 }
-#mcs3_container {
-	height:50% !important;
+	div#comingepisodes_widget{
+		height: 50%;
+		overflow: hidden;
 }

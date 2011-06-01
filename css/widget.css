@@ -106,6 +106,12 @@
     overflow-x:hidden;
     overflow-y:auto;    
 }
+#main .widget .widget-content #xbmclibrarywrapper .widget-list {
+    max-height:50%;
+    white-space:nowrap;
+    overflow-x:hidden;
+    overflow-y:auto;    
+}
 #main .widget .widget-content .alt {
     background:#303134;
 }

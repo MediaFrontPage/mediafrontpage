@@ -89,7 +89,7 @@
 
 	.bannerThumb {
 		height: 70px !important;
-		width: 354px !important;
+		width: 100% !important;
 		padding-bottom: 2px;
         box-shadow: 3px 3px 3px #000;
 }
@@ -147,8 +147,11 @@
 	#wComingEpisodes h1, #wComingEpisodes iframe {
 		display     : none !important;
 		visibility  : hidden;
-		height      : 1px;
+		height      : 0px;
 }
 	a.highslide img.bannerThumb, a.highslide img.posterThumb {
 		border: 1px solid #fff;
+}
+div#comingepisodes_widget{
+	height: 100%;
 }

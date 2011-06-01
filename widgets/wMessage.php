@@ -54,8 +54,8 @@ function widgetMessage() {
 	require_once "config.php";
 	global $xbmcimgpath,$xbmcMessages;
 
-	echo "Send Notice: </b><input type='text' style='border:0px; background:#3D3D3D; color:white' id='keyword' />to XBMC.
-	<input type='button' value='Send' onclick='paramsMsg();'> More... <img src='media/arrow.png' onclick=\"$('#extras').toggle();\">
+	echo "Send Notice: </b><input type='text' style='border:0px; background:#3D3D3D; color:white' id='keyword' onkeydown=\"if (event.keyCode == 13) paramsMsg();\" />to XBMC 
+	<img src='media/arrow.png' onclick=\"$('#extras').toggle();\" />
 	<div id='extras' style='display:none;'>
 	<p>Subject: <input type='text' style='border:0px; width:128px; background:#3D3D3D; color:white' id='title' /></p>
 	<p>Duration: <input type='text' style='border:0px; width:32px; background:#3D3D3D; color:white' id='duration' /> in seconds.</p>
@@ -68,15 +68,11 @@ function widgetMessage() {
 	else{
 		echo "<option value='".substr($xbmcimgpath, 0, strlen($xbmcimgpath)-4)."'>Default</option>";
 	}
-	echo "</select> add more in Config.php.</p>
+	echo "</select> (add more in config.php)</p>
 	</div>";
 }
 if(!empty($_GET['msg']) && !empty($_GET['url']))
 {
-/*
-	echo "<p>".$_GET['msg']."</p>";
-	echo "<p>".$_GET['url']."</p>";
-*/
 	$url = $_GET['url']."xbmcCmds/xbmcHttp?command=ExecBuiltIn(Notification(".urlencode($_GET['title']).",".urlencode($_GET['msg']).",".urlencode($_GET['duration'])."000))";
 		
 	$ch = curl_init();

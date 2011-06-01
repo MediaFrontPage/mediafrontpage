@@ -15,7 +15,6 @@
 #mcs3_container .customScrollBox {
 	position:relative;
 	height:100%;
-	overflow:hidden;
 }
 #mcs3_container .customScrollBox .container {
 	position:relative;
@@ -26,27 +25,19 @@
 #mcs3_container .customScrollBox .content {
 	clear:both;
 }
-#mcs3_container .customScrollBox .content p {
-	padding:0px 5px 5px 0px;
-	margin:0;
-	color:#31231E;
-	font-family:Verdana, Geneva, sans-serif;
-	font-size:13px;
-	line-height:20px;
-}
 #mcs3_container .customScrollBox img {
 	border:1px solid #FF9522;
-	margin:0 0 0 15px;
+	margin:0 0 0 0;
 }
 #mcs3_container .dragger_container {
 	position:relative;
 	width:0px;
-	height:50%;
+	height:90%;
 	float:left;
-	margin:5px 0 0 10px;
+	margin:2px 0 0 8px;
 	border-left:1px solid #000000;
 	border-right:1px solid #666;
-	cursor:pointer
+	cursor:pointer;
 }
 #mcs3_container .dragger {
 	position:absolute;
@@ -61,7 +52,7 @@
 	-webkit-border-radius:6px;
 	border-radius:6px;
 	border: 1px solid black;
-     box-shadow: 3px 3px 3px #000;
+    box-shadow: 1px 1px 1px #000;
 }
 #mcs3_container .dragger_pressed {
 	position:absolute;
@@ -76,5 +67,5 @@
 	-webkit-border-radius:6px;
 	border-radius:6px;
 	border: 1px solid black;
-     box-shadow: 3px 3px 3px #000;
+    box-shadow: 3px 3px 3px #000;
 }

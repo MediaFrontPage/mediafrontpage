@@ -1,22 +1,43 @@
-.listing .title {
-	display: none;
+	#main #wComingEpisodes.widget .widget-content {
+		max-height:46%;
 }
-.listing .info {
-	display: none;
+	/* centre align the tv show title */
+	div.tvshowDiv > table tr th > span.tvshowTitle a{
+		display: none;
 }
-.listing h1 {
-	display: none!important;
+
+	/* right align the icons for the show */
+	div.tvshowDiv > table tr th span.tvshowTitleIcons{
+		display: none;
+		visibility: hidden;
 }
-.listing {
-	width: 100px;
-	height: 139px;
-	float: left;
-	padding: 10px 0 10px 0!important;
-	background: transparent!important;
+	.posterThumb {
+		width: 60px !important;
+		height: 100px !important;
+		padding: 0px;
+		float:left;
 }
-br {
-	clear: both;
+	/* adjust the ep #x## - title */
+	div.tvshowDiv > table > tbody > tr > td.next_episode {
+		display: inline;
+		padding-top: none;
+		padding-bottom: none;
+		font-size: smaller;
 }
-#outerWrapper {
-	padding-left: 12px!important;
+	/* crude hack to get rid of the [] for the quality and add spacing after tvshow */
+	div.tvshowDiv > table > tbody > tr > td {
+		display: none;
+		visibility: hidden;
+		padding-bottom: 0px;
+}
+		/* not sure what this is for, pulled it from comingepisodes.css */
+	#wComingEpisodes h1 {
+		display     : inline !important;
+		visibility	: visible !important;
+		height      : 0px;
+}
+
+	div#comingepisodes_widget {
+	height: 50% !important;
+	overflow: hidden;
 }

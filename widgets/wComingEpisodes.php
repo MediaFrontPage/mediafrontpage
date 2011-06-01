@@ -5,6 +5,7 @@ $wIndex["wComingEpisodes"] = $wdgtComingEpisodes;
 
 function widgetComingEpisodes() {
 	global $sickbeardcomingepisodes;
+	echo "<div id='comingepisodes_widget'>";
 	
 // START Container for Scroller bar (Wraps comingepisodeswrapper before it created).	
 	echo "<div id=\"mcs3_container\">";
@@ -18,6 +19,8 @@ function widgetComingEpisodes() {
 //START Container for Scroller bar (Close Divs and add Dragger).
 	echo "</div></div><div class=\"dragger_container\"><div class=\"dragger\"></div></div></div></div>";
 //END Container for Scroller bar (Close Divs and add Dragger).
+	
+	echo "</div>";
 
 
 	if(strpos($sickbeardcomingepisodes, "http://")===false) {
@@ -34,6 +37,10 @@ function widgetComingEpisodes() {
 	echo "      </iframe>";
 }
 function widgetComingEpisodesHeader() {
+  	echo '<link href="css/scrollbar.css" rel="stylesheet" type="text/css" />
+		 <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+		 <script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>';
+		 
 	echo <<< ComingEpisodesSCRIPT
 		<script type="text/javascript" language="javascript">
 		<!--
