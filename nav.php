@@ -14,7 +14,7 @@ echo "<title>Navigation</title>";
 echo "<link rel='stylesheet' type='text/css' href='css/nav.css'>";
 echo "<script type=\"text/javascript\" language=\"javascript\">";
 echo 'function logout(){
-     alert("Loging out");
+     alert("Logging out");
     var xmlhttp;
     if (window.XMLHttpRequest)
       {// code for IE7+, Firefox, Chrome, Opera, Safari

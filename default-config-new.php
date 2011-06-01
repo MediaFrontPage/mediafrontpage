@@ -98,7 +98,12 @@
      $TRANSMISSION_PORT      = '';
      $TRANSMISSION_USERNAME  = '';
      $TRANSMISSION_PASS      = '';
-
+	 
+/*Builtin Authentication*/
+	 
+	 $AUTH_ON				 = false;
+	 $AUTH_USERNAME			 = '';
+	 $AUTH_PASS				 = '';
 
                               /*SEARCH WIDGET*/
 
@@ -354,6 +359,11 @@ if($GLOBAL_MACHINE)
           $TRANSMISSION_USERNAME = $GLOBAL_USER;
           $TRANSMISSION_PASS     = $GLOBAL_PASS;
      }
+	 //Authentication Global Settings//
+	 if($GLOBAL_USER_PASS && empty($AUTH_USERNAME)||empty($AUTH_PASS)){
+		  $AUTH_USERNAME = $GLOBAL_USER;
+          $AUTH_PASS     = $GLOBAL_PASS;
+	 }
 }
 $xbmclogin              = (!empty($XBMC_USERNAME)&&!empty($XBMC_PASS))?"$XBMC_USERNAME:$XBMC_PASS@":"";
 $xbmcjsonservice        = "http://$xbmclogin"."$XBMC_IP:$XBMC_PORT/jsonrpc";
@@ -383,6 +393,12 @@ $sabapikey              = $SABNZBD_API;
 $trakt_api              = $TRAKT_API;
 $trakt_username         = $TRAKT_USERNAME;
 $trakt_password         = $TRAKT_PASSWORD;
+$authsecured			= $AUTH_ON;
+$authusername			= $AUTH_USERNAME;
+$authpassword 			= $AUTH_PASS;
+
+// Session Start for Authentication //
+if (session_id()=='') session_start();
 
 //   Reverse Proxy section    //
 if($REVERSE_PROXY){
