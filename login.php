@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <html>
 <head>
 <title>Media Center</title>
