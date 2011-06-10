@@ -1,168 +1,444 @@
 <?php
-// Only set the $mfpsecured variable to true if you have secured
-// MediaFrontPage with a password via .htaccess or some other method
-// use at your own risk as this can create a security vulnerability in
-// the wControl widget.
-$mfpsecured = false;
 
-// Alternativly you can set a unique key here.
-$mfpapikey = '';  //
+//**************************************************************************************************************//
+//  __  __          _           ___                  _    ___                     ___              __           //
+// |  /  | ___  __| |(*) __ _ | __| _ _  ___  _ __ | |_ | _  __ _  __ _  ___   / __| ___  _ __  / _|(*) __ _  //
+// | |/| |/ -_)/ _` || |/ _` || _| | '_|/ _ | '  |  _||  _// _` |/ _` |/ -_)  |(__ / _ | '  |  _|| |/ _` | //
+// |_|  |_|___|__,_||_|__,_||_|  |_|  ___/|_||_||_|  |_|  __,_|__, |___|  ___|___/|_||_||_|  |_|__, | //
+//                                                                  ___/ |                               ___/ | //
+//**************************************************************************************************************//
 
-// enter hostname and port of the xbmc json service here. By default 8080
-$xbmcjsonservice = "http://USER:PASSWORD@localhost:8080/jsonrpc"; //remove 'USER:PASSWORD@' if your xbmc install does not require a password.
-$xbmcimgpath = 'http://localhost:8080/vfs/'; //leave as default if unsure
+                              /*Programs Section*/
 
-$xbmcdbconn = array(
-		'video' => array('dns' => 'sqlite:/home/xbmc/.xbmc/userdata/Database/MyVideos34.db', 'username' => '', 'password' => '', 'options' => array()),
-		'music' => array('dns' => 'sqlite:/home/xbmc/.xbmc/userdata/Database/MyMusic7.db', 'username' => '', 'password' => '', 'options' => array()),
-	);
-//Example of mysql connections
-/*
-$xbmcdbconn = array(
-		'video' => array(
-			'dns' => 'mysql:host=hostname;dbname=videos',
-			'username' => '',
-			'password' => '',
-			'options' => array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
-		),
-		'music' => array(
-			'dns' => 'mysql:host=hostname;dbname=music',
-			'username' => 'username',
-			'password' => 'password',
-			'options' => array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
-		),
-		
-	);
-*/
+//***********************************************************************************//
+//     Titles are self explanatory. Do not include http://                           //
+//                                                                                   //
+//     Need to add the option for reverse proxies(eg.: /xbmc)                        //
+//                                                                                   //
+//     $JDOWNLOADER_REMOTEPORT -> port from RemoteControl Plugin                     //
+//     $JDOWNLOADER_WEBPORT    -> port from Web plugin                               //
+//                                                                                   //
+//                                                                                   //
+//     If most or all programs live in the same machine set $GLOBAL_MACHINE          //
+//     to true and put all the info in the global variables. If one or two           //
+//     programs live in a different computer, then insert the info in the            //
+//     respective section and leave the ones that have the same info as GLOBAL       //
+//     empty. If USERNAME/PASSWORD are the same for all programs set                 //
+//     $GLOBAL_USER_PASS     to true and put you global username and password.       //
+//                                                                                   //
+//                                                                                   //
+//     Variables that are always required                                            //
+//     All PORTS                                                                     //
+//     All API's                                                                     //
+//***********************************************************************************//
 
-//These are for the Message Widget, if you only have 1 xbmc installation then the url from $xbmcimgpath will be used, otherwise set them here.
-$xbmcMessages;
-//$xbmcMessages['EXAMPLE'] = "http://USER:PASSWORD@localhost:8080/";
-//$xbmcMessages['Bedroom'] = "http://192.168.0.1:8080/";
-//$xbmcMessages['Bathroom']= "http://localhost:8080/";
-//$xbmcMessages['Kitchen'] = "http://xbmclive:8080/";
-
-// enter path to sickbeards's coming episodes page
-$sickbeardcomingepisodes = 'http://user:password@COMPUTER:PORT/sickbeard/comingEpisodes/';
-$sickbeardurl = "http://user:password@COMPUTER:PORT/sickbeard/";
-
-// enter SABnzbd+ URL and API key
-$saburl = 'http://localhost:8080/sabnzbd/';  // The full URL you use to access SABnzbd.
-$sabapikey = '';                             // SABnzbd's API Key found in Config>General.
-
-//CouchPotato home page url
-$cp_url =  "http://user:password@COMPUTER:PORT/";		//eg.: http://admin:password@192.168.0.5:5000/
-
-//enter NZBmatrix login
-$nzbusername = 'your nzb matrix username';		//username
-$nzbapi = 'your nzb matrix api';				//api
-
-//enter nzb.su login
-$nzbsuapi = 'your nzb.su api';                // find this in http://nzb.su/profile 
-$nzbsudl = '&i=XXXX&r=XXXXXXXXXXXXXXXX';      // find this in http://nzb.su/rss where it says "Add this string to your feed URL to allow NZB downloads without logging in:"
-
-//Choose your default category and website to serch
-$preferredSearch = '2';			// Set to 1 for NZBMatrix and 2 for nzb.su
-$preferredCategories = '0'; 	// Check README for a list of options. Make sure the option is for the appropriate site.
-
-//uTorrent info
-$utorrent_url = "http://localhost:8081/"; //url including port eg:http://localhost:8081/
-
-//Transmission info
-$transmission_url 	= "http://localhost:9091/transmission/rpc";	// The url for transmission webserver
-$transmission_admin	= "";	// The username for trasmission webui
-$transmission_pass 	= "";	// The password for the webui
-
-//Trakt USER info
-$trakt_api = "";		//this can be found on: http://trakt.tv/settings/api
-$trakt_username = "";
-$trakt_password = "";
-
-// enter navigation bar links
-$navlink;
-$navlink["XBMC"] = "http://localhost:8080";
-$navlink["Sickbeard"] = "/sickbeard";
-$navlink["Couch Potato"] = "/couchpotato";
-$navlink["TV Headend"] = "/tvheadend";
-$navlink["Sabnzbd"] = "/sabnzbd";
-$navlink["Transmission"] = "http://localhost:9091/transmission/web/";
-$navlink["uTorrent"] = "http://localhost:8081/gui/";
+     $GLOBAL_MACHINE      = false;
+     $GLOBAL_USER_PASS    = false;
+     $GLOBAL_IP           = '';
+     $GLOBAL_USER         = '';
+     $GLOBAL_PASS         = '';
+     
+     $REVERSE_PROXY       = false;
+     $XBMC_WEBROOT        = '';
+     $SICKBEARD_WEBROOT   = '';
+     $COUCHPOTATO_WEBROOT = '';
+     $SABNZBD_WEBROOT     = '';
+     $UTORRENT_WEBROOT    = '';
+     $JDOWNLOADER_WEBROOT = '';
+     $TRANSMISSION_WEBROOT= '';
 
 
-//these links will be in the NavBar but will open on a new window.
-//$navlink_blank["Google"] = "http://google.com";
+/* XBMC Section*/
 
-//these links will populate on the dropdown menu in the nav bar
-//$navselect["Google"] = "http://google.com";
+     $XBMC_IP             = 'xbmclive';
+     $XBMC_PORT           = '8082';
+     $XBMC_USERNAME       = '';
+     $XBMC_PASS           = '';
+
+/* SickBeard Section*/
+
+     $SICKBEARD_IP        = '';
+     $SICKBEARD_PORT      = '';
+     $SICKBEARD_USERNAME  = '';
+     $SICKBEARD_PASS      = '';
+
+/* SABNZBD Section*/
+
+     $SABNZBD_IP          = '';
+     $SABNZBD_PORT        = '';
+     $SABNZBD_USERNAME    = '';
+     $SABNZBD_PASS        = '';
+     $SABNZBD_API         = '';
+
+/* CouchPotato Section*/
+
+     $COUCHPOTATO_IP      = '';
+     $COUCHPOTATO_PORT    = '';
+     $COUCHPOTATO_USERNAME= '';
+     $COUCHPOTATO_PASS    = '';
+
+/* uTorrent Section*/
+
+     $uTORRENT_IP         = '';
+     $uTORRENT_PORT       = '';
+     $uTORRENT_USERNAME   = '';
+     $uTORRENT_PASS       = '';
+
+/* jDownloader Section*/
+
+     $JDOWNLOADER_IP         = '';
+     $JDOWNLOADER_REMOTEPORT = '';
+     $JDOWNLOADER_WEBPORT    = '';
+     $JDOWNLOADER_USERNAME   = '';
+     $JDOWNLOADER_PASS       = '';
+
+/* Transmission Section*/
+
+     $TRANSMISSION_IP        = '';
+     $TRANSMISSION_PORT      = '';
+     $TRANSMISSION_USERNAME  = '';
+     $TRANSMISSION_PASS      = '';
+
+/*Builtin Authentication*/
+	 
+     $AUTH_ON                = false;
+     $AUTH_USERNAME          = '';
+     $AUTH_PASS              = '';
+	 
+                              /*SEARCH WIDGET*/
+
+//***********************************************************************************//
+//     $NZBSU_API   ->     http://nzb.su/profile                                     //
+//     $NZB_DL      ->     http://nzb.su/rss where it says "Add this string to your  // 
+//                                                  feed URL to allow NZB downloads  //
+//                                                  without logging in:"             //
+//                                                                                   //
+//     $NZBMATRIX_API       -> http://nzbmatrix.com/account.php                      //
+//     $preferredSearch     ->     Set to 1 for NZBMatrix and 2 for nzb.su           //
+//     $preferredCategories -> Check README for a list of options.                   //
+//                          Make sure the option is for the appropriate site         //
+//                                                                                   //
+//     $trakt_api     ->     http://trakt.tv/settings/api                            //
+//***********************************************************************************//
+
+     $preferredSearch       = '2';
+     $preferredCategories   = '0';
+     $NZBMATRIX_USERNAME    = '';
+     $NZBMATRIX_API         = '';
+     $NZBSU_API             = '';
+     $NZB_DL                = '';
+     $TRAKT_API             = '';
+     $TRAKT_USERNAME        = '';
+     $TRAKT_PASSWORD        = '';
+
+                              // NavBar Section //
+
+//***********************************************************************************//
+//     To open inline on MFP                                                         //
+//          $navlink["Example"] = "http://example.com/";                             //
+//                                                                                   //
+//     To open in a blank page                                                       //
+//          $navlink_blank["New Page"] = "http://google.com";                        //
+//                                                                                   //
+//     To populate the DropDown list                                                 //
+//          $navselect["Title"] = "http://google.com";                               //
+//                                                                                   //
+//     SubMenu                                                                       //
+//     =======                                                                       //
+//     To open inline on MFP                                                         //
+//          $subnavlink["Google"] = "http://google.com";                             //
+//                                                                                   //
+//     To open in a blank page                                                       //
+//          $subnavlink_blank["Google"] = "http://google.com";                       //
+//                                                                                   //
+//     Examples                                                                      //
+//     ========                                                                      //
+//     $navlink["TV Headend"]   = "/tvheadend";                                      //
+//     $navlink["Transmission"] = "http://localhost:9091/transmission/web/";         //
+//     $navlink["uTorrent"]     = "http://localhost:8081/gui/";                      //
+//     $navlink["jDownloader"]  = "http://localhost:8765/";                          //
+//***********************************************************************************//
 
 
-//these links will be on the Nav SubMenu if there are none the submenu will automatically hide.
-//--these will open inline in MFP
-//$subnavlink["Google"] = "http://google.com";
-//--these will open in a new Page
-//$subnavlink_blank["New Page Google"] = "http://google.com";
-//--these will populate in the drop downMenu sub-bar
-//$subnavselect["Google"] = "http://google.com";
+          $navlink;
+          $navlink["XBMC"]           = '';
+          $navlink["Sickbeard"]      = '';
+          $navlink["Couch Potato"]   = '';
+          $navlink["Sabnzbd"]        = '';
+
+                              // Control Section //
+
+//***********************************************************************************//
+//     Options:                                                                      //
+//     =======                                                                       //
+//          cmd                                                                      //
+//          xbmcsend                                                                 //
+//          json                                                                     //
+//                                                                                   //
+//      Optionally Add                                                               //
+//      ==============                                                               //
+//          'host' => 'localhost',                                                   //
+//          'port' => 9777 to connect to a different machine.                        //
+//          URL's can be used to link to various websites                            //
+//                                                                                   //
+//               INCOMPLETE INFO --->>     NEED TO COMPLETE THIS!                    //
+//***********************************************************************************//
+
+          $shortcut;
+          $shortcut["Shutdown XBMC"]         = array("cmd" => 'shutdown');
+          $shortcut["Update Video Library"]  = array("cmd" => 'vidscan');
+          $shortcut["Clean Video Library"]   = array("xbmcsend" => 'CleanLibrary(video)'); 
+          $shortcut["Update Audio Library"]  = array("json" => '{"jsonrpc": "2.0", "method": "AudioLibrary.ScanForContent", "id" : 1 }');
+          $shortcut["MediaFrontPage Forum"]  = "http://forum.xbmc.org/showthread.php?t=83304&goto=newpost";
 
 
+                              // Hard Drive Section //
 
-// enter shortcut links for control section
-$shortcut;
-$shortcut["Shutdown XBMC"] = array("cmd" => 'shutdown');
-$shortcut["Update XBMC Video Library"] = array("cmd" => 'vidscan');
-$shortcut["Clean XBMC Video Library"] = array("xbmcsend" => 'CleanLibrary(video)'); // Optionally add 'host' => 'localhost', 'port' => 9777 to connect to a different machine.
-$shortcut["Update XBMC Audio Library"] = array("json" => '{"jsonrpc": "2.0", "method": "AudioLibrary.ScanForContent", "id" : 1 }');
-$shortcut["Google"] = "http://www.google.com/";
-/*
-$shortcut["Input - XBMC"] = "/input/xbmc";
-$shortcut["Input - Pay TV"] = "/input/cable";
-$shortcut["Input - Games"] = "/input/games";
-$shortcut["Now Playing"] = "/nowplaying";
-$shortcut["Turn TV On"] = "/tv/on";
-$shortcut["Turn TV Off"] = "/tv/off";
-$shortcut["Turn Xbox On"] = "/xbox/on";
-$shortcut["Turn Xbox Off"] = "/xbox/off";
-*/
+//***********************************************************************************//
+//      Adding your drives to MFP is different, depending on the OS your using       //
+//                                                                                   //
+//          Examples                                                                 //
+//          ========                                                                 //
+//          $drive["USB"]     = "/Volumes/USB_NAME";      applies for Mac OS         //
+//          $drive["Sata 1"]  = "/media/sata1/";          applies for Linux OS       //
+//          $drive["Sata 2"]  = "/media/sata2/";          applies for Linux OS       //
+//          $drive["C Drive"] = "C:";                     applies for Windows OS     //
+//          $drive["D Drive"] = "D:";                     applies for Windows OS     //
+//***********************************************************************************//
 
-//enter ups url and type (NUT or APC supported)
-//$ups;
-//$ups["UPS1"] = array("type" => "APC", "url" => "127.0.0.1:3551");
-//$ups["UPS2"] = array("type" => "NUT", "url" => "upsname@127.0.0.1");
+          $drive;
+          $drive["System Drive"] = "/";
 
 
-// enter directories for hard drive section
-$drive;
-$drive["/"] = "/";
-/*
-$drive["USB"] = "/Volumes/USB_NAME"; 	//applies for Mac OS
-$drive["Sata 1"] = "/media/sata1/";		//applies for Linux OS
-$drive["Sata 2"] = "/media/sata2/";		//applies for Linux OS
-$drive["C Drive"] = "C:";				//applies for Windows OS
-$drive["D Drive"] = "D:";				//applies for Windows OS
-*/
+                              // RSS Section //
 
+//***********************************************************************************//
+//     Ensure only RSS Feed URL's are used.                                          //
+//     Ensure SabNZBd > Config > Index sites is set.                                 //
+//     Supports cat, pp, script, priority as per the sabnzbd api.                    //
+//***********************************************************************************//
 
-// enter rss feeds. Ensure sabnzbd > config > index sites is set. Supports cat, pp, script, priority as per the sabnzbd api.
-$rssfeeds["MediaFrontPage on Github"]       	= array("url" => "https://github.com/MediaFrontPage/mediafrontpage/commits/master.atom", "type" => "atom");
-$rssfeeds["NZBMatrix - TV Shows (DivX)"]    	= array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=6", "cat" => "tv");
-$rssfeeds["NZBMatrix - TV Shows (HD x264)"] 	= array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=41", "cat" => "tv");
-$rssfeeds["NZBMatrix - Movies (DivX)"]      	= array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=2", "cat" => "movies");
-$rssfeeds["NZBMatrix - Movies (HD x264)"]   	= array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=42", "cat" => "movies");
-$rssfeeds["NZBMatrix - Music (MP3)"]        	= array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=22", "cat" => "music");
-$rssfeeds["NZBMatrix - Music (Lossless)"]   	= array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=23", "cat" => "music");
-$rssfeeds["NZBMatrix - Sports"]             	= array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=7", "cat" => "sports");
-$rssfeeds["Nick8888's MediaFrontPage"]       	= array("url" => "https://github.com/nick8888/mediafrontpage/commits/master.atom", "type" => "atom");
-$rssfeeds["Gugahoi's MediaFrontPage"]= array("url" => "https://github.com/gugahoi/mediafrontpage/commits/master.atom", "type" => "atom");
-$rssfeeds["DejaVu's MediaFrontPage"] = array("url" => "https://github.com/DejaVu77/mediafrontpage/commits/master.atom", "type" => "atom");
+          $rssfeeds["MediaFrontPage on Github"]       = array("url" => "https://github.com/MediaFrontPage/mediafrontpage/commits/master.atom", "type" => "atom");
+          $rssfeeds["NZBMatrix - TV Shows (DivX)"]    = array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=6"     , "cat" => "tv");
+          $rssfeeds["NZBMatrix - TV Shows (HD x264)"] = array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=41"     , "cat" => "tv");
+          $rssfeeds["NZBMatrix - Movies (DivX)"]      = array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=2"     , "cat" => "movies");
+          $rssfeeds["NZBMatrix - Movies (HD x264)"]   = array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=42"     , "cat" => "movies");
+          $rssfeeds["NZBMatrix - Music (MP3)"]        = array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=22"     , "cat" => "music");
+          $rssfeeds["NZBMatrix - Music (Lossless)"]   = array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=23"     , "cat" => "music");
+          $rssfeeds["NZBMatrix - Sports"]             = array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=7"     , "cat" => "sports");
+          
 
-$customStyleSheet = "";
-//Example of how to use this
+                              // Custom Stylesheet Section //
+
+//***********************************************************************************//
+//     To have MFP use a different CSS use this.                                     //
+//     Simply remove the // from the beginning of any line.                          //
+//     Feel free to create your own and submit them for adding.                      //
+//***********************************************************************************//
+
 //$customStyleSheet = "css/lighttheme.css";
-
-//Show only posters for coming episodes
-//$customStyleSheet = "css/comingepisodes-minimal-poster.css";
-
-//Show only banners for coming episodes
 //$customStyleSheet = "css/comingepisodes-minimal-banner.css";
+//$customStyleSheet = "css/comingepisodes-minimal-poster.css";
+//$customStyleSheet = "css/black_velvet.css";
+//$customStyleSheet = "css/hernandito.css";
 
-?>
+
+                              // Message Section //
+
+//***********************************************************************************//
+//     If there is only one XBMC instance, this can be ignored as the widget will    //
+//     use the same info as the one set on the XBMC Section                          //
+//     Otherwise add them like this:                                                 //
+//          $xbmcMessages['Title']   = "http://localhost:8080/";                     //
+//          $xbmcMessages['EXAMPLE'] = "http://USERNAME:PASSWORD@IP:PORT/";          //
+//***********************************************************************************//
+          
+$xbmcMessages;
+//$xbmcMessages['EXAMPLE'] = "http://USERNAME:PASSWORD@IP:PORT/";
+
+
+                               // UPS Section //
+							  
+//***********************************************************************************//
+//       Uninterrupted Power Supplies support through APCUPSD and NUT hosts          //
+//                                                                                   //
+//       APCUPSD Example                                                             //
+//       ===============                                                             //
+//       $ups['UPS1'] = array("type" => "APC", "url" => "localhost:3551");           //
+//                                                                                   //
+//       NUT Example                                                                 //
+//       ===========                                                                 //
+//       $ups['UPS2'] = array("type" => "NUT", "url" => "upsname@localhost");        //
+//***********************************************************************************//
+
+          $ups;
+
+
+                              // Security //
+
+//***********************************************************************************//
+//      Only set the $mfpsecured variable to true if you have secured                //
+//      MediaFrontPage with a password via .htaccess or some other method            //
+//      use at your own risk as this can create a security vulnerability in          //
+//      the wControl widget.                                                         //
+//***********************************************************************************//
+
+     $mfpsecured = false;
+
+// Alternatively you can set a unique key here. //
+     $mfpapikey = '';
+
+                 //XBMC MySQL Connections EXPERIMENTAL!//
+                            //DO NOT USE YET//
+//***********************************************************************************//
+//     Set this if you use a centralised MySQL Database.                             //
+//     Further information about this is available on the XBMC Forum and MFP Thread  //
+//***********************************************************************************//
+//                                                                                   //
+//$xbmcdbconn = array(                                                               //
+//          'video' => array(                                                        //
+//               'dns' => 'mysql:host=hostname;dbname=videos',                       //
+//               'username' => '',                                                   //
+//               'password' => '',                                                   //
+//               'options' => array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")//
+//          ),                                                                       //
+//          'music' => array(                                                        //
+//               'dns' => 'mysql:host=hostname;dbname=music',                        //
+//               'username' => 'username',                                           //
+//               'password' => 'password',                                           //
+//               'options' => array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")//
+//          ),                                                                       //
+//     );                                                                            //
+//***********************************************************************************//
+
+//*****************************//
+//          THE END!!!!        //
+//*****************************//
+
+//*****************************//
+//IGNORE FROM THIS PART ONWARDS//
+//*****************************//
+if($GLOBAL_MACHINE)
+{
+     //XBMC Global Settings//
+     if(empty($XBMC_IP) && !empty($XBMC_PORT)){
+          $XBMC_IP = $GLOBAL_IP;
+     }
+     if($GLOBAL_USER_PASS && empty($XBMC_USERNAME) && empty($XBMC_PASS)){
+          $XBMC_USERNAME = $GLOBAL_USER;
+          $XBMC_PASS     = $GLOBAL_PASS;
+     }
+     //SickBeard Global Settings//
+     if(empty($SICKBEARD_IP) && !empty($SICKBEARD_PORT)){
+          $SICKBEARD_IP = $GLOBAL_IP;          
+     }
+     if($GLOBAL_USER_PASS && empty($SICKBEARD_USERNAME) && empty($SICKBEARD_PASS)){
+          $SICKBEARD_USERNAME = $GLOBAL_USER;
+          $SICKBEARD_PASS     = $GLOBAL_PASS;
+     }
+     //SabNZBd+ Global Settings//
+     if(empty($SABNZBD_IP) && !empty($SABNZBD_PORT)){
+          $SABNZBD_IP = $GLOBAL_IP;
+     }
+     if($GLOBAL_USER_PASS && empty($SABNZBD_USERNAME)||empty($SABNZBD_PASS)){
+          $SABNZBD_USERNAME = $GLOBAL_USER;
+          $SABNZBD_PASS     = $GLOBAL_PASS;
+     }
+     //CouchPotato Global Settings//
+     if(empty($COUCHPOTATO_IP) && !empty($COUCHPOTATO_PORT)){
+          $COUCHPOTATO_IP = $GLOBAL_IP;
+     }
+     if($GLOBAL_USER_PASS && empty($COUCHPOTATO_USERNAME)||empty($COUCHPOTATO_PASS)){
+          $COUCHPOTATO_USERNAME = $GLOBAL_USER;
+          $COUCHPOTATO_PASS     = $GLOBAL_PASS;
+     }
+     //uTorrent Global Settings//
+     if(empty($uTORRENT_IP) && !empty($uTORRENT_PORT)){
+          $uTORRENT_IP = $GLOBAL_IP;
+     }
+     if($GLOBAL_USER_PASS && empty($uTORRENT_USERNAME)||empty($uTORRENT_PASS)){
+          $uTORRENT_USERNAME = $GLOBAL_USER;
+          $uTORRENT_PASS     = $GLOBAL_PASS;
+     }
+     //jDownloader Global Settings//
+     if(empty($JDOWNLOADER_IP) && !empty($JDOWNLOADER_WEBPORT)){
+          $JDOWNLOADER_IP = $GLOBAL_IP;
+     }
+     if($GLOBAL_USER_PASS && empty($JDOWNLOADER_USERNAME)||empty($JDOWNLOADER_PASS)){
+          $JDOWNLOADER_USERNAME = $GLOBAL_USER;
+          $JDOWNLOADER_PASS     = $GLOBAL_PASS;
+     }
+     //Transmission Global Settings//
+     if(empty($TRANSMISSION_IP) && !empty($TRANSMISSION_PORT)){
+          $TRANSMISSION_IP = $GLOBAL_IP;
+     }
+     if($GLOBAL_USER_PASS && empty($TRANSMISSION_USERNAME)||empty($TRANSMISSION_PASS)){
+          $TRANSMISSION_USERNAME = $GLOBAL_USER;
+          $TRANSMISSION_PASS     = $GLOBAL_PASS;
+     }
+	 //Authentication Global Settings//
+     if($GLOBAL_USER_PASS && empty($AUTH_USERNAME)||empty($AUTH_PASS)){
+          $AUTH_USERNAME = $GLOBAL_USER;
+          $AUTH_PASS     = $GLOBAL_PASS;
+     }
+}
+$xbmclogin              = (!empty($XBMC_USERNAME)&&!empty($XBMC_PASS))?"$XBMC_USERNAME:$XBMC_PASS@":"";
+$xbmcjsonservice        = "http://$xbmclogin"."$XBMC_IP:$XBMC_PORT/jsonrpc";
+$xbmcimgpath            = "http://$xbmclogin"."$XBMC_IP:$XBMC_PORT/vfs/";
+$sickbeardlogin         = (!empty($SICKBEARD_USERNAME)&&!empty($SICKBEARD_PASS))?"$SICKBEARD_USERNAME:$SICKBEARD_PASS@":"";
+$sickbeardcomingepisodes= "http://$sickbeardlogin"."$SICKBEARD_IP:$SICKBEARD_PORT/comingEpisodes/";
+$sickbeardurl           = "http://$sickbeardlogin"."$SICKBEARD_IP:$SICKBEARD_PORT/home/";
+$SABNZBDlogin           = (!empty($SABNZBD_USERNAME)&&!empty($SABNZBD_PASS))?"$SABNZBD_USERNAME:$SABNZBD_PASS@":"";
+$saburl                 = "http://$SABNZBDlogin"."$SABNZBD_IP:$SABNZBD_PORT/";
+$COUCHPOTATOlogin       = (!empty($COUCHPOTATO_USERNAME)&&!empty($COUCHPOTATO_PASS))?"$COUCHPOTATO_USERNAME:$COUCHPOTATO_PASS@":"";
+$cp_url                 = "http://$COUCHPOTATOlogin"."$COUCHPOTATO_IP:$COUCHPOTATO_PORT/";
+$uTorrentlogin          = (!empty($uTORRENT_USERNAME)&&!empty($uTORRENT_PASS))?"$uTORRENT_USERNAME:$uTORRENT_PASS@":"";
+$utorrent_url           = "http://$uTorrentlogin"."$uTORRENT_IP:$uTORRENT_PORT/";
+$JDOWNLOADERlogin       = (!empty($JDOWNLOADER_USERNAME)&&!empty($JDOWNLOADER_PASS))?"$JDOWNLOADER_USERNAME:$JDOWNLOADER_PASS@":"";
+$jd_url                 = "http://$JDOWNLOADERlogin"."$JDOWNLOADER_IP:$JDOWNLOADER_REMOTEPORT/";
+$jd_weburl              = "http://$JDOWNLOADER_IP:$JDOWNLOADER_WEBPORT/";
+$TRANSMISSIONlogin      = (!empty($TRANSMISSION_USERNAME)&&!empty($TRANSMISSION_PASS))?"$TRANSMISSION_USERNAME:$TRANSMISSION_PASS@":"";
+$transmission_url       = "http://$TRANSMISSION_IP:$TRANSMISSION_PORT/transmission/rpc";     
+$transmission_web       = "http://$TRANSMISSIONlogin"."$TRANSMISSION_IP:$TRANSMISSION_PORT/transmission/web/";     
+$transmission_admin     = $TRANSMISSION_USERNAME;
+$transmission_pass      = $TRANSMISSION_PASS;     
+$nzbusername            = $NZBMATRIX_USERNAME;
+$nzbapi                 = $NZBMATRIX_API;
+$nzbsuapi               = $NZBSU_API;
+$nzbsudl                = $NZB_DL;
+$sabapikey              = $SABNZBD_API;
+$trakt_api              = $TRAKT_API;
+$trakt_username         = $TRAKT_USERNAME;
+$trakt_password         = $TRAKT_PASSWORD;
+$authsecured            = $AUTH_ON;
+$authusername           = $AUTH_USERNAME;
+$authpassword           = $AUTH_PASS;
+
+//   Reverse Proxy section    //
+if($REVERSE_PROXY){
+	if(!empty($XBMC_WEBROOT)){
+		$xbmcjsonservice = 'http://'.$XBMC_IP.'/'.$XBMC_WEBROOT.'/jsonrpc';
+		$xbmcimgpath     = 'http://'.$XBMC_IP.'/'.$XBMC_WEBROOT.'/vfs/';
+	}
+	if(!empty($SICKBEARD_WEBROOT)){
+		$sickbeardcomingepisodes = 'http://'.$SICKBEARD_IP.'/'.$SICKBEARD_WEBROOT.'/comingEpisodes/';
+		$sickbeardurl = 'http://'.$SICKBEARD_IP.'/'.$SICKBEARD_WEBROOT.'/home/';
+	}
+	if(!empty($COUCHPOTATO_WEBROOT)){
+		$cp_url = 'http://'.$COUCHPOTATO_IP.'/'.$COUCHPOTATO_WEBROOT.'/';
+	}
+	if(!empty($UTORRENT_WEBROOT)){
+		$utorrent_url = 'http://'.$UTORRENT_IP.'/'.$UTORRENT_WEBROOT.'/';
+	}
+	if(!empty($SABNZBD_WEBROOT)){
+		$saburl = 'http://'.$SABNZBD_IP.'/'.$SABNZBD_WEBROOT.'/';
+	}
+	if(!empty($TRANSMISSION_WEBROOT)){
+		$transmission_url = 'http://'.$TRANSMISSION_IP.'/'.$TRANSMISSION_WEBROOT.'/';
+	}
+	if(!empty($JDOWNLOADER_WEBROOT)){
+		$jd_url = 'http://'.$JDOWNLOADER_IP.'/'.$JDOWNLOADER_WEBROOT.'/';
+	}
+}
+if (session_id()=='') session_start();
+?>				

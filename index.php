@@ -1,17 +1,22 @@
 <?php
 //Check for config file and curl
-if (file_exists('firstrun.php')){header('Location: servercheck.php');}
+if (file_exists('firstrun.php')){header('Location: servercheck.php');exit;}
+//Authentication check
+require_once('config.php');
+if ($authsecured && (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'])) {
+        echo "<script>window.location = 'login.php';</script>";
+	exit;
+}
 // Redirect if on a mobile browser
 require_once "m/mobile_device_detect.php";
-if( mobile_device_detect(true,true,true,true,true,true,true,false,false) ) {
-  header('Location: m/');
+if(mobile_device_detect(true,true,true,true,true,true,true,false,false) ) {
+  echo "<script>window.location = 'm/';</script>";
   exit();
 }
 $submenu = false;
 require_once "config.php";
   if(!empty($subnavlink)||!empty($subnavlink_blank)||!empty($subnavselect)){$submenu = true;}
 ?>
-
 <html>
   <head>
     <title>Media Center</title>

@@ -17,6 +17,14 @@ if (empty ($arrLayout)) {
 	require_once("default-layout.php");
 }
 ?>
+<?php
+//Authentication check
+require_once('config.php');
+if ($authsecured && (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'])) {
+    header('Location: login.php');
+    exit;
+}
+?>
 <html>
 	<head>
 		<title>Media Front Page</title>
