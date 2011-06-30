@@ -1,0 +1,60 @@
+#footer {
+  background:url(../media/bgNav.png);
+  font-family: 'Helvetica Neue','HelveticaNeue',Helvetica, Arial, sans-serif;
+  font-size:100%;
+  color: #eee;
+  height: 20px;
+  margin: 0px 0px;
+  display: block;
+  font-size:.8em;
+  margin-top:0px;
+  margin-left:0;
+  padding-top: 10px;
+  padding-right:0px;
+  overflow: none;
+  /*width: 2000px;*/
+}
+
+#footer ul {
+  margin-right:0px;
+  float: right;
+}
+
+
+#footer li {
+  display: inline;
+  float: left;
+  margin:0;
+}
+
+#footer li a {
+  color: #ccc;
+  text-decoration: none;
+  display: block;
+  float: left;
+  font-size: 10px;
+  line-height: 11px;
+  min-height: 5px;
+  padding:0 16px 0 14px;
+  position: relative;
+  text-shadow: rgba(0,0,0,.5) 0px 1px 0px;
+  background:url(../media/bgNavSep.png) no-repeat right center;
+}
+
+#footer li a:hover {
+  color: #FF9522;
+  background-color: rgba(0,0,0,.05);
+  -webkit-box-shadow:0 2px 8px rgba(0,0,0,.25) inset;
+  text-shadow: rgba(255,255,255,.5) 0px 1px 10px;
+}
+
+#footer li a:active  {
+  color: #FF9522
+}
+
+/* Hide from IE5-Mac \*/
+#footer li a
+
+{
+  float: none
+}

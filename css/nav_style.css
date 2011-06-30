@@ -1,0 +1,78 @@
+ul#navigation {
+    position: fixed;
+    margin: 0px;
+    padding: 0px;
+    top: 0px;
+    right: 0px;
+    list-style: none;
+    z-index:999999;
+    width:100%;
+}
+ul#navigation li {
+    width: 103px;
+    display:inline;
+    float:left;    
+}
+ul#navigation li a {
+	color:#666;
+    display: block;
+    float:left;
+    margin-top: -2px;
+    width: 100px;
+    height: 25px;
+    background-color:#3d3d3d;
+    background-repeat:no-repeat;
+    background-position:50% 10px;
+    border:2px solid #000000;
+    -moz-border-radius:0px 0px 10px 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -khtml-border-bottom-right-radius: 10px;
+    -khtml-border-bottom-left-radius: 10px;
+    box-shadow: 3px 3px 3px #000;
+    text-decoration:none;
+    text-align:center;
+    padding-top:80px;
+}
+ul#navigation li a:hover{
+     background-color:#2C2D32;
+}
+ul#navigation li a span{
+    text-shadow: 0 -2px 2px #000;      
+}
+ul#navigation .mfp a{
+    background-image: url(../media/nav/mfp.png);
+}
+ul#navigation .xbmc a{
+    background-image: url(../media/nav/xbmc.png);
+}
+ul#navigation .sickbeard a      {
+    background-image: url(/media/nav/sickbeard.png);
+}
+ul#navigation .couchpotato a      {
+    background-image: url(/media/nav/couchpotato.png);
+}
+ul#navigation .transmission a      {
+    background-image: url(/media/nav/transmission.png);
+}
+ul#navigation .utorrent a      {
+	background-image: url(/media/nav/utorrent.png);
+}
+ul#navigation .jdownloader a      {
+    background-image: url(/media/nav/jdownloader.png);
+}
+ul#navigation .headphones a      {
+    background-image: url(/media/nav/headphones.png);
+}
+ul#navigation .sabnzbd a   {
+    background-image: url(/media/nav/sabnzbd.png);
+}
+ul#navigation .config a   {
+    background-image: url(/media/nav/config.png);
+}
+ul#navigation .logout a   {
+    background-image: url(/media/nav/logout.png);
+}
+ul#navigation .tvheadend a   {
+    background-image: url(/media/nav/tvheadend.png);
+}
