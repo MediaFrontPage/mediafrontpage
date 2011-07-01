@@ -158,11 +158,22 @@
 //***********************************************************************************//
 
 
+//***********************************************************************************//
+// REVAMPED TO BE CHANGED FOR CONFIGURING WITH NEW LAYOUT.                           //
+// NOT SURE HOW TO IMPLEMENT THE /WEBROOTS INTO THIS THOUGH.                         //
+// SIMPLY COMMENT OUT // THE LINES YOU DO NOT NEED FOR NOW.                          //
+//***********************************************************************************//
+
           $navlink;
-          $navlink["XBMC"]           = '';
-          $navlink["Sickbeard"]      = '';
-          $navlink["Couch Potato"]   = '';
-          $navlink["Sabnzbd"]        = '';
+          $navlink["XBMC"]           = 'program.php?p=XBMC';
+          $navlink["Sickbeard"]      = 'program.php?p=SickBeard';
+          $navlink["CouchPotato"]    = 'program.php?p=CouchPotato';
+          $navlink["HeadPhones"]     = 'program.php?p=HeadPhones';
+          $navlink["Transmission"]   = 'program.php?p=Transmission';
+          $navlink["uTorrent"]       = 'program.php?p=uTorrent';
+          $navlink["TVHeadend"]      = 'program.php?p=TVHeadend';		  		  
+          $navlink["JDownloader"]    = 'program.php?p=JDownloader';
+          $navlink["SabNZBDd"]       = 'program.php?p=SabNZBd';
 
                               // Control Section //
 
