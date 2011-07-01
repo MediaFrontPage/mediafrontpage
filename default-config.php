@@ -97,6 +97,11 @@
      $TRANSMISSION_USERNAME  = '';
      $TRANSMISSION_PASS      = '';
 
+/* HeadPhones Section*/
+
+     $HEADPHONES_IP          = '';
+     $HEADPHONES_PORT        = '';
+
 /*Builtin Authentication*/
 	 
      $AUTH_ON                = false;
@@ -354,6 +359,10 @@ if($GLOBAL_MACHINE)
      if(empty($JDOWNLOADER_IP) && !empty($JDOWNLOADER_WEBPORT)){
           $JDOWNLOADER_IP = $GLOBAL_IP;
      }
+     //HeadPhones Global Settings//
+     if(empty($HEADPHONES_IP) && !empty($HEADPHONES_PORT)){
+          $HEADPHONES_IP = $GLOBAL_IP;
+     }
      //Transmission Global Settings//
      if(empty($TRANSMISSION_IP) && !empty($TRANSMISSION_PORT)){
           $TRANSMISSION_IP = $GLOBAL_IP;
@@ -454,6 +463,7 @@ if($REVERSE_PROXY){
    $sickbeardurl           = "http://$sickbeardlogin"."$SICKBEARD_IP:$SICKBEARD_PORT/home/";
    $saburl                 = "http://$SABNZBDlogin"."$SABNZBD_IP:$SABNZBD_PORT/";
    $cp_url                 = "http://$COUCHPOTATOlogin"."$COUCHPOTATO_IP:$COUCHPOTATO_PORT/";
+   $HEADPHONES_URL         = "http://$HEADPHONES_IP:$HEADPHONES_PORT/";
    $utorrent_url           = "http://$uTorrentlogin"."$uTORRENT_IP:$uTORRENT_PORT/";
    $jd_url                 = "http://$JDOWNLOADERlogin"."$JDOWNLOADER_IP:$JDOWNLOADER_REMOTEPORT/";
    $jd_weburl              = "http://$JDOWNLOADER_IP:$JDOWNLOADER_WEBPORT/";
