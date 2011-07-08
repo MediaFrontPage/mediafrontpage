@@ -162,6 +162,35 @@ if(!empty($_GET)){
 	    });
 
 	}
+	
+	function addSection(section){
+	}
+	
+	function addRowToTable(section)
+	{
+	  var tbl = document.getElementById('table_'+section);
+	  var lastRow = tbl.rows.length;
+	  // if there's no header row in the table, then iteration = lastRow + 1
+	  var iteration = lastRow;
+	  var row = tbl.insertRow(lastRow);
+	  	  
+	  // left cell
+	  var cellLeft = row.insertCell(0);
+	  var el = document.createElement('input');
+	  el.type = 'text';
+	  el.name = 'TITLE';
+	  el.size = 10;
+	  
+	  cellLeft.appendChild(el);
+	  
+	  // select cell
+	  var cellRightSel = row.insertCell(1);
+	  var sel = document.createElement('input');
+	  sel.name = 'VALUE';
+	  sel.type = 'text';
+	  sel.size = 30;
+	  cellRightSel.appendChild(sel);
+	}
     </script>
 </head>
 
@@ -593,17 +622,16 @@ if(!empty($_GET)){
         <div id="NavBar_Section" class="tabContent">
             <center>
              <h3>Nav Links</h3>
-               <table>
-               <tr><td>Title</td><td>URL</td></tr>
-               <?php
-               $x = $config->get('NavBar_Section');
-               foreach ($x as $title=>$url){
-                   echo "<tr><td><input size='10' name='TITLE' value='$title'/></td><td><input name='VALUE' size='30' value='$url'/></td></tr>";
-               }
-               ?>
-               <div id='nav'></div>
+               <table id='table_nav'>
+	               <tr><td>Title</td><td>URL</td></tr>
+	               <?php
+	               $x = $config->get('NavBar_Section');
+	               foreach ($x as $title=>$url){
+	                   echo "<tr><td><input size='10' name='TITLE' value='$title'/></td><td><input name='VALUE' size='30' value='$url'/></td></tr>";
+	               }
+	               ?>
                </table>
-               <input type="button" value="ADD" onclick="document.getElementById('nav').innerHTML += '<tr><td><input size=\'10\' name=\'TITLE\' /></td><td><input name=\'VALUE\' size=\'30\' /></td></tr>';" />
+               <input type="button" value="ADD" onclick="addRowToTable('nav');" />
             </center>
         </div>
         <div id="HardDrive_Widget" class="tabContent">
