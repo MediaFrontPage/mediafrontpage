@@ -163,10 +163,7 @@ if(!empty($_GET)){
 
 	}
 	
-	function addSection(section){
-	}
-	
-	function addRowToTable(section)
+	function addRowToTable(section, size1, size2)
 	{
 	  var tbl = document.getElementById('table_'+section);
 	  var lastRow = tbl.rows.length;
@@ -179,7 +176,7 @@ if(!empty($_GET)){
 	  var el = document.createElement('input');
 	  el.type = 'text';
 	  el.name = 'TITLE';
-	  el.size = 10;
+	  el.size = size1;
 	  
 	  cellLeft.appendChild(el);
 	  
@@ -188,8 +185,14 @@ if(!empty($_GET)){
 	  var sel = document.createElement('input');
 	  sel.name = 'VALUE';
 	  sel.type = 'text';
-	  sel.size = 30;
+	  sel.size = size2;
 	  cellRightSel.appendChild(sel);
+	}
+
+	function removeRowToTable(section){
+		var tbl = document.getElementById('table_'+section);
+	  var lastRow = tbl.rows.length;
+  	if (lastRow > 2) tbl.deleteRow(lastRow - 1);
 	}
     </script>
 </head>
@@ -631,35 +634,37 @@ if(!empty($_GET)){
 	               }
 	               ?>
                </table>
-               <input type="button" value="ADD" onclick="addRowToTable('nav');" />
+               <input type="button" value="ADD" onclick="addRowToTable('nav', 10, 30);" /><input type="button" value="REMOVE" onclick="removeRowToTable('nav');" />
             </center>
         </div>
         <div id="HardDrive_Widget" class="tabContent">
             <center>
              <h3>Hard Drives</h3>
-               <table>
+               <table id='table_hdd'>
                <tr><td>Title</td><td>Path</td></tr>
                <?php
                $x = $config->get('HardDrive_Widget');
                foreach ($x as $title=>$url){
-                   echo "<tr><td><input size='20' value='$title'/></td><td><input size='20' value='$url'/></td></tr>";
+                   echo "<tr><td><input size='20' name='TITLE' value='$title'/></td><td><input name ='VALUE' size='20' value='$url'/></td></tr>";
                }
                ?>
                </table>
+               <input type="button" value="ADD" onclick="addRowToTable('hdd', 20, 20);" /><input type="button" value="REMOVE" onclick="removeRowToTable('hdd');" />
             </center>
         </div>
         <div id="Message_Widget" class="tabContent">
             <center>
              <h3>XBMC Instances for Message Widget</h3>
-               <table>
+               <table id="table_msg">
                <tr><td>Title</td><td>URL</td></tr>
                <?php
                $x = $config->get('Message_Widget');
                foreach ($x as $title=>$url){
-                   echo "<tr><td><input size='10' value='$title'/></td><td><input size='40' value='$url'/></td></tr>";
+                   echo "<tr><td><input size='10' name='TITLE' value='$title'/></td><td><input size='40' name='VALUE' value='$url'/></td></tr>";
                }
                ?>
                </table>
+               <input type="button" value="ADD" onclick="addRowToTable('msg', 10, 40);" /><input type="button" value="REMOVE" onclick="removeRowToTable('msg');" />
             </center>
         </div>
         <div id="Security" class="tabContent">
