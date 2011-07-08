@@ -261,7 +261,7 @@ while(!$found){
 //$customStyleSheet = "css/comingepisodes-minimal-poster.css";
 //$customStyleSheet = "css/black_velvet.css";
 //$customStyleSheet = "css/hernandito.css";
-
+         $customStyleSheet = 'css/'.$Config->get('ENABLED','Mods').'.css';
 
                               // Message Section //
 

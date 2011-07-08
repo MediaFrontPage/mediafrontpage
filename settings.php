@@ -7,56 +7,56 @@ require_once('class.ConfigMagik.php');
 $config = new ConfigMagik('config.ini', true, true);
 
 if(!empty($_GET)){
-	if(!isset($_GET['section'])){ 
-		echo 'ERROR'; 
-		exit;
-	} else {
-		$section_name = $_GET['section'];
-		unset($_GET['section']);
-		try{
-			$section = $config->get($section_name);
-		} catch(Exception $e){
-			echo 'Section '.$section_name.' does not exist!';
-			exit;
-		}
-		echo 'UPDATING '.$section_name.' INFO';
-		echo '<br>';
-		foreach ($_GET as $var=>$value){
-			if($config->get($var, $section_name) != null){
-				$content = $config->get($var, $section_name);
-				//echo '<script>alert("'.$content.'");</script>';	
-				if($content || $content == ''){
-					if($content==$value){
-						echo '<b>'.$var.'</b>: No update required<br />';
-					}
-					else{
-						try{
-							$config->set($var, $value, $section_name);
-							echo '<b>'.$var.'</b>: updated<br>';
-						} catch(Exception $e) {
-							echo 'Error!';
-						}
-					}
-				} else {
-					echo '<b>'.$var.'</b> does not exist<br>';
-				}
-			} else {
-				$content = $config->set($var, $value, $section_name);
-				echo '<b>'.$var.'</b>: '.$value.' (NEW)<br>';
-			}
-		}
-		foreach ($section as $title=>$value){
-			if(!isset($_GET[$title])){
-				try{
-					$config->removeKey($title, $section_name);
-					echo '<b>'.$title.'</b>: removed <br />';
-				} catch(Exception $e){
-					echo 'Problem: '.$e;
-				}
-			}
-		}
-		$config->save();
-	}
+  if(!isset($_GET['section'])){ 
+    echo 'ERROR'; 
+    exit;
+  } else {
+    $section_name = $_GET['section'];
+    unset($_GET['section']);
+    try{
+      $section = $config->get($section_name);
+    } catch(Exception $e){
+      echo 'Section '.$section_name.' does not exist!';
+      exit;
+    }
+    echo 'UPDATING '.$section_name.' INFO';
+    echo '<br>';
+    foreach ($_GET as $var=>$value){
+      if($config->get($var, $section_name) != null){
+        $content = $config->get($var, $section_name);
+        //echo '<script>alert("'.$content.'");</script>';  
+        if($content || $content == ''){
+          if($content==$value){
+            echo '<b>'.$var.'</b>: No update required<br />';
+          }
+          else{
+            try{
+              $config->set($var, $value, $section_name);
+              echo '<b>'.$var.'</b>: updated<br>';
+            } catch(Exception $e) {
+              echo 'Error!';
+            }
+          }
+        } else {
+          echo '<b>'.$var.'</b> does not exist<br>';
+        }
+      } else {
+        $content = $config->set($var, $value, $section_name);
+        echo '<b>'.$var.'</b>: '.$value.' (NEW)<br>';
+      }
+    }
+    foreach ($section as $title=>$value){
+      if(!isset($_GET[$title])){
+        try{
+          $config->removeKey($title, $section_name);
+          echo '<b>'.$title.'</b>: removed <br />';
+        } catch(Exception $e){
+          echo 'Problem: '.$e;
+        }
+      }
+    }
+    $config->save();
+  }
 } else {
 ?>
 
@@ -102,8 +102,8 @@ if(!empty($_GET)){
 
       // this is a bit of a hack here
       // just list the tab content divs here
-      var tabs = ["global","XBMC", "SICKBEARD", "COUCHPOTATO", "SABNZBD", "TRANSMISSION", "UTORRENT", "JDOWNLOADER", "Search_Widget", "Trakt_Widget", "NavBar_Section", "HardDrive_Widget", "Message_Widget", "Security"];
-
+      var tabs = ["global","XBMC", "SICKBEARD", "COUCHPOTATO", "SABNZBD", "TRANSMISSION", "UTORRENT", "JDOWNLOADER", "Search_Widget", "Trakt_Widget", "Security", "Mods", "NavBar_Section", "HardDrive_Widget", "Message_Widget"];
+      
       function showTab( tab ){
 
         // first make sure all the tabs are hidden
@@ -119,125 +119,134 @@ if(!empty($_GET)){
 
       
       }
-	
-			function updateSettings(section){
-				var contents = document.getElementById(section).getElementsByTagName('input');
-				//$("#result").html(contents);
-				var params = 'section='+section; 
-				for(i=0;i<contents.length;i++){
-					//alert(contents[i].name+'='+contents[i].value);
-					var value = contents[i].value;
-					if(contents[i].type == 'checkbox'){
-						if(contents[i].value == 'on'){
-							value = 'true';
-						} else {
-							value = 'false';
-						}
-					}
-					if(contents[i].type == 'radio'){
-						var name = contents[i].name;
-						while(contents[i].type == 'radio'){
-							if(contents[i].checked && contents[i].name == name){
-								//alert(contents[i].name+' '+contents[i].value);
-								value = contents[i].value;
-								params = params+'&'+contents[i].name+'='+encodeURIComponent(value);
-							}
-							i++;
-						}
-						i--;
-					}
-					else if(contents[i].name != ''){
-						params = params+'&'+contents[i].name+'='+value;
-					}
-				}
-				//alert(params);
-			    $.ajax(
-			    {
-			        type: 'GET',
-			        url: "settings.php?"+params,
-			        beforeSend: function ()
-			        {
-			            // this is where we append a loading image
-		           	    $("#result").html('Saving');
-			        },
-			        success: function (data)
-			        {
-			            // successful request; do something with the data
-			            $("#result").html(data);
-		           	    //$("#result").html('Saved');
-			        },
-			        error: function ()
-			        {
-			            // failed request; give feedback to user
-			            alert("Sorry, but I couldn't create an XMLHttpRequest");
-			        }
-			    });
-			}
-	
-			function updateAlternative(section){
-				var contents = document.getElementById(section).getElementsByTagName('input');
-				var params = 'section='+section; 
-				for(i=0;i<contents.length;i++){
-					if(contents[i].name=='TITLE'){
-						params = params + '&' + contents[i++].value + '=' + contents[i].value;
-					}
-					//var value = contents[i].value;
-				}
-				alert(params);
-		    $.ajax(
-		    {
-		        type: 'GET',
-		        url: "settings.php?"+params,
-		        beforeSend: function ()
-		        {
-		            // this is where we append a loading image
-		         	    $("#result").html('Saving');
-		        },
-		        success: function (data)
-		        {
-		            // successful request; do something with the data
-		            $("#result").html(data);
-		         	    //$("#result").html('Saved');
-		        },
-		        error: function ()
-		        {
-		            // failed request; give feedback to user
-		            alert("Sorry, but I couldn't create an XMLHttpRequest");
-		        }
-		    });
-			}
-	
-			function addRowToTable(section, size1, size2)
-			{
-			  var tbl = document.getElementById('table_'+section);
-			  var lastRow = tbl.rows.length;
-			  // if there's no header row in the table, then iteration = lastRow + 1
-			  var iteration = lastRow;
-			  var row = tbl.insertRow(lastRow);
-			  	  
-			  // left cell
-			  var cellLeft = row.insertCell(0);
-			  var el = document.createElement('input');
-			  el.type = 'text';
-			  el.name = 'TITLE';
-			  el.size = size1;
-			  
-			  cellLeft.appendChild(el);
-			  
-			  // select cell
-			  var cellRightSel = row.insertCell(1);
-			  var sel = document.createElement('input');
-			  sel.name = 'VALUE';
-			  sel.type = 'text';
-			  sel.size = size2;
-			  cellRightSel.appendChild(sel);
-			}
+  
+      function updateSettings(section){
+        var contents = document.getElementById(section).getElementsByTagName('input');
+        //$("#result").html(contents);
+        var params = 'section='+section; 
+        for(i=0;i<contents.length;i++){
+          //alert(contents[i].name+'='+contents[i].value);
+          var value = contents[i].value;
+          if(contents[i].type == 'checkbox'){
+            if(contents[i].value == 'on'){
+              value = 'true';
+            } else {
+              value = 'false';
+            }
+          }
+          if(contents[i].type == 'radio'){
+            var name = contents[i].name;
+            while(contents[i].type == 'radio'){
+              if(contents[i].checked && contents[i].name == name){
+                //alert(contents[i].name+' '+contents[i].value);
+                value = contents[i].value;
+                params = params+'&'+contents[i].name+'='+encodeURIComponent(value);
+              }
+              i++;
+            }
+            i--;
+          }
+          else if(contents[i].name != ''){
+            params = params+'&'+contents[i].name+'='+encodeURIComponent(value);
+          }
+        }
+        //alert(params);
+          $.ajax(
+          {
+              type: 'GET',
+              url: "settings.php?"+params,
+              beforeSend: function ()
+              {
+                  // this is where we append a loading image
+                     $("#result").html('Saving');
+              },
+              success: function (data)
+              {
+                  // successful request; do something with the data
+                  $("#result").html(data);
+                     //$("#result").html('Saved');
+              },
+              error: function ()
+              {
+                  // failed request; give feedback to user
+                  alert("Sorry, but I couldn't create an XMLHttpRequest");
+              }
+          });
+      }
+  
+      function updateAlternative(section){
+        var contents = document.getElementById(section).getElementsByTagName('input');
+        var params = 'section='+section; 
+        for(i=0;i<contents.length;i++){
+          if(contents[i].name=='TITLE'){
+            params = params + '&' + contents[i++].value + '=' + encodeURIComponent(contents[i].value);
+          }
+          //var value = contents[i].value;
+        }
+        alert(params);
+        $.ajax(
+        {
+            type: 'GET',
+            url: "settings.php?"+params,
+            beforeSend: function ()
+            {
+                // this is where we append a loading image
+                   $("#result").html('Saving');
+            },
+            success: function (data)
+            {
+                // successful request; do something with the data
+                $("#result").html(data);
+                   //$("#result").html('Saved');
+            },
+            error: function ()
+            {
+                // failed request; give feedback to user
+                alert("Sorry, but I couldn't create an XMLHttpRequest");
+            }
+        });
+      }
+  
+      function addRowToTable(section, size1, size2)
+      {
+        var tbl = document.getElementById('table_'+section);
+        var lastRow = tbl.rows.length;
+        // if there's no header row in the table, then iteration = lastRow + 1
+        var iteration = lastRow;
+        var row = tbl.insertRow(lastRow);
+            
+        // left cell
+        var cellLeft = row.insertCell(0);
+        var el = document.createElement('input');
+        el.type = 'text';
+        el.name = 'TITLE';
+        el.size = size1;
+        
+        cellLeft.appendChild(el);
+        
+        // select cell
+        var cellRightSel = row.insertCell(1);
+        var sel = document.createElement('input');
+        sel.name = 'VALUE';
+        sel.type = 'text';
+        sel.size = size2;
+        cellRightSel.appendChild(sel);
+      }
 
-			function removeRowToTable(section){
-				var tbl = document.getElementById('table_'+section);
-			  var lastRow = tbl.rows.length;
-		  	if (lastRow > 2) tbl.deleteRow(lastRow - 1);
-			}
+      function removeRowToTable(section){
+        var tbl = document.getElementById('table_'+section);
+        var lastRow = tbl.rows.length;
+        if (lastRow > 2) tbl.deleteRow(lastRow - 1);
+      }
+      
+      function saveAll(){
+        var i=0;
+        while(i < tabs.length){
+          updateSettings(tabs[i]);
+          alert(tabs[i]+' saved');
+          i++;
+        }
+      }
     </script>
 </head>
 
@@ -245,7 +254,7 @@ if(!empty($_GET)){
     <h1>MediaFrontPage Settings</h1>
     <center>
     <div class="tabs">
-        <a class="tab" onclick="showTab('global')">Global</a> <a class="tab" onclick="showTab('XBMC')">XBMC</a> <a class="tab" onclick="showTab('SICKBEARD')">Sickbeard</a> <a class="tab" onclick="showTab('COUCHPOTATO')">CouchPotato</a> <a class="tab" onclick="showTab('SABNZBD')">SabNZBd+</a> <a class="tab" onclick="showTab('TRANSMISSION')">Transmission</a> <a class="tab" onclick="showTab('UTORRENT')">uTorrent</a> <a class="tab" onclick="showTab('JDOWNLOADER')">jDownloader</a> <a class="tab" onclick="showTab('Search_Widget')">Search Widget</a> <a class="tab" onclick="showTab('Trakt_Widget')">Trakt.tv</a> <a class="tab" onclick="showTab('NavBar_Section')">NavBar</a> <a class="tab" onclick="showTab('HardDrive_Widget')">Hard Drives</a> <a class="tab" onclick="showTab('Message_Widget')">Message Widget</a>	<a class="tab" onclick="showTab('Security')">Security</a>
+        <a class="tab" onclick="showTab('global')">Global</a> <a class="tab" onclick="showTab('XBMC')">XBMC</a> <a class="tab" onclick="showTab('SICKBEARD')">Sickbeard</a> <a class="tab" onclick="showTab('COUCHPOTATO')">CouchPotato</a> <a class="tab" onclick="showTab('SABNZBD')">SabNZBd+</a> <a class="tab" onclick="showTab('TRANSMISSION')">Transmission</a> <a class="tab" onclick="showTab('UTORRENT')">uTorrent</a> <a class="tab" onclick="showTab('JDOWNLOADER')">jDownloader</a> <a class="tab" onclick="showTab('Search_Widget')">Search Widget</a> <a class="tab" onclick="showTab('Trakt_Widget')">Trakt.tv</a> <a class="tab" onclick="showTab('NavBar_Section')">NavBar</a> <a class="tab" onclick="showTab('HardDrive_Widget')">Hard Drives</a> <a class="tab" onclick="showTab('Message_Widget')">Message Widget</a>  <a class="tab" onclick="showTab('Security')">Security</a><a class="tab" onclick="showTab('Mods')">CSS Modifications</a>
     </div>
 </center>
         <div id="global" class="tabContent" style="display:block">
@@ -607,6 +616,13 @@ if(!empty($_GET)){
                     </tr>
                     <tr>
                         <td align="right">
+                            <p>Preffered Category:</p>
+                        </td>
+
+                        <td align="left"><input name="preferred_categories" size="20" value="<?php echo $config->get('preferred_categories','Search_Widget')?>"></td>
+                    </tr>
+                    <tr>
+                        <td align="right">
                             <p>NZB Matrix USERNAME:</p>
                         </td>
 
@@ -617,21 +633,21 @@ if(!empty($_GET)){
                             <p>NZB Matrix API:</p>
                         </td>
 
-                        <td align="left"><input name="NZBMATRIX_API" size="40" value="<?php echo $config->get('NZBMATRIX_API','Search_Widget')?>"></td>
+                        <td align="left"><input name="NZBMATRIX_API" size="40" value="<?php echo $config->get('NZBMATRIX_API','Search_Widget')?>"><a href="http://nzbmatrix.com/account.php"><img src="media/question.png" height="20px" /></a></td>
                     </tr>
                     <tr>
                         <td align="right">
                             <p>NZB.su API:</p>
                         </td>
 
-                        <td align="left"><input name="NZBSU_API" size="40" value="<?php echo $config->get('NZBSU_API','Search_Widget')?>"></td>
+                        <td align="left"><input name="NZBSU_API" size="40" value="<?php echo $config->get('NZBSU_API','Search_Widget')?>"><a href="http://nzb.su/profile"><img src="media/question.png" height="20px" /></a></td>
                     </tr>
                     <tr>
                         <td align="right">
                             <p>NZB.su DL Code:</p>
                         </td>
 
-                        <td align="left"><input name="NZB_DL" size="20" value="<?php echo $config->get('NZB_DL','Search_Widget')?>"></td>
+                        <td align="left"><input name="NZB_DL" size="40" value="<?php echo $config->get('NZB_DL','Search_Widget')?>"><a href="http://nzb.su/rss"><img src="media/question.png" height="20px" /></a></td>
                     </tr>
                 </table>
                 <input type="button" value="Save" onclick="updateSettings('Search_Widget');">
@@ -660,7 +676,7 @@ if(!empty($_GET)){
                             <p>API:</p>
                         </td>
 
-                        <td align="left"><input name="TRAKT_API" size="40" value="<?php echo $config->get('TRAKT_API','Trakt_Widget')?>"></td>
+                        <td align="left"><input name="TRAKT_API" size="40" value="<?php echo $config->get('TRAKT_API','Trakt_Widget')?>"><a href="http://trakt.tv/settings/api"><img src="media/question.png" height="20px" /></a></td>
                     </tr>
                 </table>
                 <input type="button" value="Save" onclick="updateSettings('Trakt_Widget');">
@@ -670,13 +686,13 @@ if(!empty($_GET)){
             <center>
              <h3>Nav Links</h3>
                <table id='table_nav'>
-	               <tr><td>Title</td><td>URL</td></tr>
-	               <?php
-	               $x = $config->get('NavBar_Section');
-	               foreach ($x as $title=>$url){
-	                   echo "<tr><td><input size='10' name='TITLE' value='$title'/></td><td><input name='VALUE' size='30' value='$url'/></td></tr>";
-	               }
-	               ?>
+                 <tr><td>Title</td><td>URL</td></tr>
+                 <?php
+                 $x = $config->get('NavBar_Section');
+                 foreach ($x as $title=>$url){
+                     echo "<tr><td><input size='10' name='TITLE' value='$title'/></td><td><input name='VALUE' size='30' value='$url'/></td></tr>";
+                 }
+                 ?>
                </table>
                <input type="button" value="ADD" onclick="addRowToTable('nav', 10, 30);" /><input type="button" value="REMOVE" onclick="removeRowToTable('nav');" /><br /><br />
                <input type="button" value="Save & Reload" onclick="updateAlternative('NavBar_Section');top.frames['nav'].location.reload();">
@@ -746,7 +762,34 @@ if(!empty($_GET)){
                 <input type="button" value="Save" onclick="updateSettings('Security');">
             </center>
         </div>
-        <center><div id="result"></div></center>
+        <div id="Mods" class="tabContent">
+            <center>
+             <h3>Security</h3>
+               <table>
+                    <tr>
+                        <td align="right">
+                            <p>CSS Modifications:</p>
+                        </td>
+
+                        <td align="left">
+                          <p>
+                            <input type="radio" name="ENABLED" value="lighttheme" <?php echo ($config->get('ENABLED','Mods') == "lighttheme")?'CHECKED':'';   ?> >Light Theme</input> 
+                            <input type="radio" name="ENABLED" value="hernandito" <?php echo ($config->get('ENABLED','Mods') == "hernandito")?'CHECKED':'';   ?> >Hernandito's Theme</input> 
+                            <input type="radio" name="ENABLED" value="black_velvet" <?php echo ($config->get('ENABLED','Mods') == "black_velvet")?'CHECKED':'';   ?> >Black Velvet Theme</input> 
+                            <input type="radio" name="ENABLED" value="comingepisodes-minimal-poster" <?php echo ($config->get('ENABLED','Mods') == "comingepisodes-minimal-poster")?'CHECKED':'';   ?> >Minimal Posters</input> 
+                            <input type="radio" name="ENABLED" value="comingepisodes-minimal-banner" <?php echo ($config->get('ENABLED','Mods') == "comingepisodes-minimal-banner")?'CHECKED':'';   ?> >Minimal Banners</input> 
+                            <input type="radio" name="ENABLED" value="" <?php echo ($config->get('ENABLED','Mods') == "")?'CHECKED':'';   ?> >OFF</input> 
+                          </p>
+                        </td>
+                    </tr>
+               </table>
+                <input type="button" value="Save" onclick="updateSettings('Mods');">
+            </center>
+        </div>
+        <center>
+          <!-- <input type="button" value="Save ALL" onclick="saveAll();">  -->
+          <div id="result"></div>
+        </center>
 </body>
 </html>
 <?php 
