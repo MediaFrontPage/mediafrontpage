@@ -120,124 +120,124 @@ if(!empty($_GET)){
       
       }
 	
-	function updateSettings(section){
-		var contents = document.getElementById(section).getElementsByTagName('input');
-		//$("#result").html(contents);
-		var params = 'section='+section; 
-		for(i=0;i<contents.length;i++){
-			//alert(contents[i].name+'='+contents[i].value);
-			var value = contents[i].value;
-			if(contents[i].type == 'checkbox'){
-				if(contents[i].value == 'on'){
-					value = 'true';
-				} else {
-					value = 'false';
-				}
-			}
-			if(contents[i].type == 'radio'){
-				var name = contents[i].name;
-				while(contents[i].type == 'radio'){
-					if(contents[i].checked && contents[i].name == name){
-						//alert(contents[i].name+' '+contents[i].value);
-						value = contents[i].value;
-						params = params+'&'+contents[i].name+'='+encodeURIComponent(value);
+			function updateSettings(section){
+				var contents = document.getElementById(section).getElementsByTagName('input');
+				//$("#result").html(contents);
+				var params = 'section='+section; 
+				for(i=0;i<contents.length;i++){
+					//alert(contents[i].name+'='+contents[i].value);
+					var value = contents[i].value;
+					if(contents[i].type == 'checkbox'){
+						if(contents[i].value == 'on'){
+							value = 'true';
+						} else {
+							value = 'false';
+						}
 					}
-					i++;
+					if(contents[i].type == 'radio'){
+						var name = contents[i].name;
+						while(contents[i].type == 'radio'){
+							if(contents[i].checked && contents[i].name == name){
+								//alert(contents[i].name+' '+contents[i].value);
+								value = contents[i].value;
+								params = params+'&'+contents[i].name+'='+encodeURIComponent(value);
+							}
+							i++;
+						}
+						i--;
+					}
+					else if(contents[i].name != ''){
+						params = params+'&'+contents[i].name+'='+value;
+					}
 				}
-				i--;
+				//alert(params);
+			    $.ajax(
+			    {
+			        type: 'GET',
+			        url: "settings.php?"+params,
+			        beforeSend: function ()
+			        {
+			            // this is where we append a loading image
+		           	    $("#result").html('Saving');
+			        },
+			        success: function (data)
+			        {
+			            // successful request; do something with the data
+			            $("#result").html(data);
+		           	    //$("#result").html('Saved');
+			        },
+			        error: function ()
+			        {
+			            // failed request; give feedback to user
+			            alert("Sorry, but I couldn't create an XMLHttpRequest");
+			        }
+			    });
 			}
-			else if(contents[i].name != ''){
-				params = params+'&'+contents[i].name+'='+value;
-			}
-		}
-		//alert(params);
-	    $.ajax(
-	    {
-	        type: 'GET',
-	        url: "settings.php?"+params,
-	        beforeSend: function ()
-	        {
-	            // this is where we append a loading image
-           	    $("#result").html('Saving');
-	        },
-	        success: function (data)
-	        {
-	            // successful request; do something with the data
-	            $("#result").html(data);
-           	    //$("#result").html('Saved');
-	        },
-	        error: function ()
-	        {
-	            // failed request; give feedback to user
-	            alert("Sorry, but I couldn't create an XMLHttpRequest");
-	        }
-	    });
-	}
 	
-	function updateAlternative(section){
-		var contents = document.getElementById(section).getElementsByTagName('input');
-		var params = 'section='+section; 
-		for(i=0;i<contents.length;i++){
-			if(contents[i].name=='TITLE'){
-				params = params + '&' + contents[i++].value + '=' + contents[i].value;
+			function updateAlternative(section){
+				var contents = document.getElementById(section).getElementsByTagName('input');
+				var params = 'section='+section; 
+				for(i=0;i<contents.length;i++){
+					if(contents[i].name=='TITLE'){
+						params = params + '&' + contents[i++].value + '=' + contents[i].value;
+					}
+					//var value = contents[i].value;
+				}
+				alert(params);
+		    $.ajax(
+		    {
+		        type: 'GET',
+		        url: "settings.php?"+params,
+		        beforeSend: function ()
+		        {
+		            // this is where we append a loading image
+		         	    $("#result").html('Saving');
+		        },
+		        success: function (data)
+		        {
+		            // successful request; do something with the data
+		            $("#result").html(data);
+		         	    //$("#result").html('Saved');
+		        },
+		        error: function ()
+		        {
+		            // failed request; give feedback to user
+		            alert("Sorry, but I couldn't create an XMLHttpRequest");
+		        }
+		    });
 			}
-			//var value = contents[i].value;
-		}
-		alert(params);
-    $.ajax(
-    {
-        type: 'GET',
-        url: "settings.php?"+params,
-        beforeSend: function ()
-        {
-            // this is where we append a loading image
-         	    $("#result").html('Saving');
-        },
-        success: function (data)
-        {
-            // successful request; do something with the data
-            $("#result").html(data);
-         	    //$("#result").html('Saved');
-        },
-        error: function ()
-        {
-            // failed request; give feedback to user
-            alert("Sorry, but I couldn't create an XMLHttpRequest");
-        }
-    });
-	}
 	
-	function addRowToTable(section, size1, size2)
-	{
-	  var tbl = document.getElementById('table_'+section);
-	  var lastRow = tbl.rows.length;
-	  // if there's no header row in the table, then iteration = lastRow + 1
-	  var iteration = lastRow;
-	  var row = tbl.insertRow(lastRow);
-	  	  
-	  // left cell
-	  var cellLeft = row.insertCell(0);
-	  var el = document.createElement('input');
-	  el.type = 'text';
-	  el.name = 'TITLE';
-	  el.size = size1;
-	  
-	  cellLeft.appendChild(el);
-	  
-	  // select cell
-	  var cellRightSel = row.insertCell(1);
-	  var sel = document.createElement('input');
-	  sel.name = 'VALUE';
-	  sel.type = 'text';
-	  sel.size = size2;
-	  cellRightSel.appendChild(sel);
-	}
+			function addRowToTable(section, size1, size2)
+			{
+			  var tbl = document.getElementById('table_'+section);
+			  var lastRow = tbl.rows.length;
+			  // if there's no header row in the table, then iteration = lastRow + 1
+			  var iteration = lastRow;
+			  var row = tbl.insertRow(lastRow);
+			  	  
+			  // left cell
+			  var cellLeft = row.insertCell(0);
+			  var el = document.createElement('input');
+			  el.type = 'text';
+			  el.name = 'TITLE';
+			  el.size = size1;
+			  
+			  cellLeft.appendChild(el);
+			  
+			  // select cell
+			  var cellRightSel = row.insertCell(1);
+			  var sel = document.createElement('input');
+			  sel.name = 'VALUE';
+			  sel.type = 'text';
+			  sel.size = size2;
+			  cellRightSel.appendChild(sel);
+			}
 
-	function removeRowToTable(section){
-		var tbl = document.getElementById('table_'+section);
-	  var lastRow = tbl.rows.length;
-  	if (lastRow > 2) tbl.deleteRow(lastRow - 1);
-	}
+			function removeRowToTable(section){
+				var tbl = document.getElementById('table_'+section);
+			  var lastRow = tbl.rows.length;
+		  	if (lastRow > 2) tbl.deleteRow(lastRow - 1);
+			}
     </script>
 </head>
 
