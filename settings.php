@@ -11,41 +11,53 @@ if(!empty($_GET)){
 		echo 'ERROR'; 
 		exit;
 	} else {
-		$section_name = (string) $_GET['section'];
+		$section_name = $_GET['section'];
 		unset($_GET['section']);
-		$section = $config->get($section_name);
-		if(empty($section)){
+		try{
+			$section = $config->get($section_name);
+		} catch(Exception $e){
 			echo 'Section '.$section_name.' does not exist!';
 			exit;
 		}
 		echo 'UPDATING '.$section_name.' INFO';
 		echo '<br>';
 		foreach ($_GET as $var=>$value){
-			$var = (string) $var;
-			$value = (string) $value;
-			$content = $config->get($var, $section_name);
-			//echo '<script>alert("'.$content.'");</script>';	
+			if($config->get($var, $section_name) != null){
+				$content = $config->get($var, $section_name);
+				//echo '<script>alert("'.$content.'");</script>';	
 				if($content || $content == ''){
 					if($content==$value){
-						echo $var.' => No update required<br />';
+						echo '<b>'.$var.'</b>: No update required<br />';
 					}
 					else{
 						try{
 							$config->set($var, $value, $section_name);
-							echo '<b>'.$var.'</b> :';
-							echo ' updated';
-							echo '<br>';
+							echo '<b>'.$var.'</b>: updated<br>';
 						} catch(Exception $e) {
 							echo 'Error!';
 						}
 					}
-				}
-				else{
+				} else {
 					echo '<b>'.$var.'</b> does not exist<br>';
 				}
+			} else {
+				$content = $config->set($var, $value, $section_name);
+				echo '<b>'.$var.'</b>: '.$value.' (NEW)<br>';
+			}
 		}
+		foreach ($section as $title=>$value){
+			if(!isset($_GET[$title])){
+				try{
+					$config->removeKey($title, $section_name);
+					echo '<b>'.$title.'</b>: removed <br />';
+				} catch(Exception $e){
+					echo 'Problem: '.$e;
+				}
+			}
+		}
+		$config->save();
 	}
-}else{
+} else {
 ?>
 
 <html>
@@ -160,7 +172,39 @@ if(!empty($_GET)){
 	            alert("Sorry, but I couldn't create an XMLHttpRequest");
 	        }
 	    });
-
+	}
+	
+	function updateAlternative(section){
+		var contents = document.getElementById(section).getElementsByTagName('input');
+		var params = 'section='+section; 
+		for(i=0;i<contents.length;i++){
+			if(contents[i].name=='TITLE'){
+				params = params + '&' + contents[i++].value + '=' + contents[i].value;
+			}
+			//var value = contents[i].value;
+		}
+		alert(params);
+    $.ajax(
+    {
+        type: 'GET',
+        url: "settings.php?"+params,
+        beforeSend: function ()
+        {
+            // this is where we append a loading image
+         	    $("#result").html('Saving');
+        },
+        success: function (data)
+        {
+            // successful request; do something with the data
+            $("#result").html(data);
+         	    //$("#result").html('Saved');
+        },
+        error: function ()
+        {
+            // failed request; give feedback to user
+            alert("Sorry, but I couldn't create an XMLHttpRequest");
+        }
+    });
 	}
 	
 	function addRowToTable(section, size1, size2)
@@ -634,7 +678,8 @@ if(!empty($_GET)){
 	               }
 	               ?>
                </table>
-               <input type="button" value="ADD" onclick="addRowToTable('nav', 10, 30);" /><input type="button" value="REMOVE" onclick="removeRowToTable('nav');" />
+               <input type="button" value="ADD" onclick="addRowToTable('nav', 10, 30);" /><input type="button" value="REMOVE" onclick="removeRowToTable('nav');" /><br /><br />
+               <input type="button" value="Save" onclick="updateAlternative('NavBar_Section');">
             </center>
         </div>
         <div id="HardDrive_Widget" class="tabContent">
@@ -649,7 +694,8 @@ if(!empty($_GET)){
                }
                ?>
                </table>
-               <input type="button" value="ADD" onclick="addRowToTable('hdd', 20, 20);" /><input type="button" value="REMOVE" onclick="removeRowToTable('hdd');" />
+               <input type="button" value="ADD" onclick="addRowToTable('hdd', 20, 20);" /><input type="button" value="REMOVE" onclick="removeRowToTable('hdd');" /><br /><br />
+               <input type="button" value="Save" onclick="updateAlternative('HardDrive_Widget');">
             </center>
         </div>
         <div id="Message_Widget" class="tabContent">
@@ -664,7 +710,8 @@ if(!empty($_GET)){
                }
                ?>
                </table>
-               <input type="button" value="ADD" onclick="addRowToTable('msg', 10, 40);" /><input type="button" value="REMOVE" onclick="removeRowToTable('msg');" />
+               <input type="button" value="ADD" onclick="addRowToTable('msg', 10, 40);" /><input type="button" value="REMOVE" onclick="removeRowToTable('msg');" /><br /><br />
+               <input type="button" value="Save" onclick="updateAlternative('Message_Widget');">
             </center>
         </div>
         <div id="Security" class="tabContent">
