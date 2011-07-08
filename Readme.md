@@ -17,6 +17,22 @@ MediaFrontPage can make use of, but is not limited to, the following projects:
 * JSON
 * JQUERY
 
+## CSS Skins Available
+###Original
+![preview thumb](http://img638.imageshack.us/img638/3479/originalls.jpg)
+
+###Light Theme
+![preview thumb](http://img8.imageshack.us/img8/3285/lighttheme.jpg)
+
+###Hernandito (XBMC Member Hernandito)
+![preview thumb](http://img21.imageshack.us/img21/9685/herandito.jpg)
+
+###DPickles (XBMC Member DPickles)
+![preview thumb](http://img198.imageshack.us/img198/2333/dpickles.jpg)
+
+###Black Glass Modern (XBMC Member DejaVu)
+![preview thumb](http://img135.imageshack.us/img135/7222/blackmodernglass.jpg)
+
 ## Dependencies
 
 MediaFrontPage requires aa Apache/PHP Webserver to be running on the machine or network and must have PHP Curl configured correctly.

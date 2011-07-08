@@ -1,0 +1,183 @@
+/*Front.CSS */
+body {background:none !IMPORTANT;
+	background-color:#0d0d0d !IMPORTANT;
+	color: #666666 !IMPORTANT;
+	height: 100%;
+	-webkit-font-smoothing: antialiased !IMPORTANT};
+/*Start 3 Columns*/
+
+	#main .section {
+	float: left;
+	min-height: 400px;
+	height: auto !important;
+}
+#main #section1 {
+	width: 25% !important;
+}
+#main #section2 {
+	width: 25% !important;
+}
+#main #section3 {
+	width: 25% !important;
+}
+#main #section4 {
+	width: 25% !important;
+}
+/*End 3 Columns */
+
+/* Start Comming Episodes */
+
+	/* TV Show Title */
+	div.tvshowDiv > table tr th > span.tvshowTitle a {
+	display: block !important;
+	text-align: left !important;
+	float: left !important;
+	padding: 3px 0px 4px !important;
+	font-size: 16px !important;
+	text-decoration: none !important;
+}
+/* Border */
+	div.tvshowDiv > table tr th {
+	background-color: transparent !important;
+	border-bottom: none !important;
+	background-color: transparent !important;
+}
+/* Episode Summary */
+	div.ep_summary {
+	display: block !important;
+	vertical-align: top !important;
+	visibility: visible !important;
+	color: #666 !important;
+	font-size: 12px !important;
+}
+/* Poster - doesn't float? */
+	.posterThumb {
+	float:right !important;
+	clear: right !important;
+}
+/* End Comming Episodes */
+
+/* Start Page Text*/
+	h3 {
+	color: #ffffff !IMPORTANT;
+}
+table {
+	font-size: 1.0em !IMPORTANT;
+}
+a:link {
+	color:#666666 !IMPORTANT;
+}
+a:hover {
+	color:#3d3d3d !IMPORTANT;
+}
+a:visited {
+	color:#666666 !IMPORTANT;
+}
+/* End Page Text*/
+
+/* Start Progress Bars */
+
+
+	.progressbar {
+		border: 0px solid rgba(0,0,0,0.5) !IMPORTANT;
+		background: rgba(0,0,0,0.25) !IMPORTANT;
+		box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+		-o-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+		-webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+		-moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+		border-color: transparent !IMPORTANT;
+		border-radius: 6px 6px 6px 6px;
+		display: block;
+}
+	.progress {
+		background: #3d3d3d !IMPORTANT;
+		box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+		-o-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+		-webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+		-moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPOR
+		border-color: transparent !IMPORTANT;
+		border-radius: 6px 0px 0px 6px;
+		display: block;
+}
+	.progressbar .warning { 
+		background: #FF2222; 
+}
+/* End Progress Bars */
+
+	#wHardDrives .progresslabel {
+	color: #c6c6c6 !IMPORTANT
+}
+#wNowPlaying #thumbblock img {
+	border: 0px !IMPORTANT;
+}
+.odd {
+	background-color: transparent !IMPORTANT;
+}
+#wSearch tr.row:hover {
+	background-color: transparent !IMPORTANT;
+}
+#wSearch .actor-odd {
+	background-color:#transparent !IMPORTANT;
+}
+/*END Front.CSS */
+
+#main .section .widget {
+   border: 0px solid rgba(0,0,0,0.5) !IMPORTANT;
+   border-radius: 10px 10px 10px 10px !IMPORTANT;
+   background: rgba(0,0,0,0.25) !IMPORTANT;
+   box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+   -o-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+   -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+   -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+    border-color: transparent !IMPORTANT;
+}
+.widget .widget-head {
+    background-color: transparent !IMPORTANT;
+	border-bottom:0px solid transparent !IMPORTANT;
+}
+.widget .widget-content {
+    background-color: transparent !IMPORTANT;
+}
+.widget .widget-content .alt {
+    background-color: transparent !IMPORTANT;
+}
+
+div.tvshowDiv > table tr th img, td > a > img {
+	border: 0 none !important;
+	margin: 0 !important;
+	clear: right !important;
+}
+/* NEW ADDITIONS FOR NAV MENU */
+ul#navigation li a {
+  border: 0px solid rgba(0,0,0,0.5) !IMPORTANT;
+  border-radius: 10px 10px 10px 10px !IMPORTANT;
+  background-color: rgba(0,0,0,0.25) !IMPORTANT; 
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+  -o-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+  -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+  -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+   border-color: transparent !IMPORTANT;
+}
+ul#navigation li a:hover {
+	background-color:rgba(0,0,0,0.50);
+}
+/* NEW ADDITIONS FOR STATIC WIDGET */
+body {
+}
+.widget {
+   border: 0px solid rgba(0,0,0,0.5) !IMPORTANT;
+   border-radius: 10px 10px 10px 10px !IMPORTANT;
+   background: rgba(0,0,0,0.25) !IMPORTANT;
+   box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+   -o-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+   -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+   -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+    border-color: transparent !IMPORTANT;
+}
+.widget-head {
+    background-color: transparent !IMPORTANT;
+	border-bottom:0px solid transparent !IMPORTANT;
+}	
+.h3 {
+	margin: 0 0 .5em 0;
+}

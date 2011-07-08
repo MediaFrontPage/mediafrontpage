@@ -101,6 +101,11 @@
 
      $HEADPHONES_IP          = '';
      $HEADPHONES_PORT        = '';
+	 
+/* SubSonic Section*/
+
+     $SUBSONIC_IP            = '';
+     $SUBSONIC_PORT          = '4040';
 
 /*Builtin Authentication*/
 	 
@@ -196,7 +201,8 @@
           $navlink["HeadPhones"]     = 'programs.php?p=HeadPhones';
           $navlink["Transmission"]   = 'programs.php?p=Transmission';
           $navlink["uTorrent"]       = 'programs.php?p=uTorrent';
-          $navlink["TVHeadend"]      = 'programs.php?p=TVHeadend';		  		  
+          $navlink["TVHeadend"]      = 'programs.php?p=TVHeadend';
+          $navlink["SubSonic"]       = 'programs.php?p=SubSonic';		  
           $navlink["JDownloader"]    = 'programs.php?p=JDownloader';
           $navlink["SabNZBd"]        = 'programs.php?p=SabNZBd';
 
@@ -270,12 +276,12 @@
 //     Feel free to create your own and submit them for adding.                      //
 //***********************************************************************************//
 
-//$customStyleSheet = "css/lighttheme.css";
-//$customStyleSheet = "css/comingepisodes-minimal-banner.css";
-//$customStyleSheet = "css/comingepisodes-minimal-poster.css";
-//$customStyleSheet = "css/black_velvet.css";
-//$customStyleSheet = "css/hernandito.css";
-//$customStyleSheet = "css/dpickles.css";
+//$customStyleSheet = "css/customcss/lighttheme.css";
+//$customStyleSheet = "css/customcss/comingepisodes-minimal-banner.css";
+//$customStyleSheet = "css/customcss/comingepisodes-minimal-poster.css";
+$customStyleSheet = "css/customcss/black_modern_glass.css";
+//$customStyleSheet = "css/customcss/hernandito.css";
+//$customStyleSheet = "css/customcss/dpickles.css";
 
 
                               // Message Section //
@@ -383,6 +389,14 @@ if($GLOBAL_MACHINE)
      if(empty($JDOWNLOADER_IP) && !empty($JDOWNLOADER_WEBPORT)){
           $JDOWNLOADER_IP = $GLOBAL_IP;
      }
+    //SubSonic Global Settings//
+     if(empty($SUBSONIC_IP) && !empty($SUBSONIC_PORT)){
+          $SUBSONIC_IP = $GLOBAL_IP;
+     }
+     //HeadPhones Global Settings//
+     if(empty($HEADPHONES_IP) && !empty($HEADPHONES_PORT)){
+          $HEADPHONES_IP = $GLOBAL_IP;
+     }
      //Transmission Global Settings//
      if(empty($TRANSMISSION_IP) && !empty($TRANSMISSION_PORT)){
           $TRANSMISSION_IP = $GLOBAL_IP;
@@ -484,7 +498,8 @@ if($REVERSE_PROXY){
    $sickbeardurl           = "http://$sickbeardlogin"."$SICKBEARD_IP:$SICKBEARD_PORT/home/";
    $saburl                 = "http://$SABNZBDlogin"."$SABNZBD_IP:$SABNZBD_PORT/";
    $cp_url                 = "http://$COUCHPOTATOlogin"."$COUCHPOTATO_IP:$COUCHPOTATO_PORT/";
-   $headphones_url         = "http://$HEADPHONES_IP:$HEADPHONES_PORT/";
+   $HEADPHONES_URL         = "http://$HEADPHONES_IP:$HEADPHONES_PORT/";
+   $subsonicurl            = "http://$SUBSONIC_IP:$SUBSONIC_PORT/";   
    $utorrent_url           = "http://$uTorrentlogin"."$uTORRENT_IP:$uTORRENT_PORT/gui/";
    $jd_url                 = "http://$JDOWNLOADERlogin"."$JDOWNLOADER_IP:$JDOWNLOADER_REMOTEPORT/";
    $jd_weburl              = "http://$JDOWNLOADER_IP:$JDOWNLOADER_WEBPORT/";

@@ -1,0 +1,151 @@
+/* START OVERPOWER Front.CSS */
+html,body { 
+	height: 100%; -webkit-font-smoothing: antialiased !IMPORTANT;
+	background: url(http://s2.postimage.org/1w9tiqr8k/background.png) !IMPORTANT;
+
+}
+h3 {
+	color: #d3d3d3 !IMPORTANT;
+}
+p {
+	font-size: 10px !IMPORTANT;
+}
+
+table {
+	font-size: 1.0em !IMPORTANT;
+}
+
+a:link {
+	color:#06C !IMPORTANT;
+}
+a:hover {
+	color:#06C !IMPORTANT;
+}
+a:visited {
+	color:#06C !IMPORTANT;
+}
+.progressbar { 
+	background: #ffffff !IMPORTANT;
+	border: 1px solid #d6d6d6 !IMPORTANT; 
+}
+.progress { 
+	background: #1b5ea4 !IMPORTANT; 
+}
+#wHardDrives .progresslabel {
+	color: #c6c6c6 !IMPORTANT
+}
+#wNowPlaying #thumbblock img {
+	border: 0px solid #ffffff !IMPORTANT;
+}
+
+/* wSABNZBD */
+#wSabnzbd #sab-total.progressbar {
+	width:90% !IMPORTANT;
+	border: 1px solid #d6d6d6 !IMPORTANT;
+}
+#wSabnzbd #sab-total .progresslabel {
+	color: #c6c6c6 !IMPORTANT;
+}
+#wSabnzbd #sab-queue {
+	table-layout: fixed !IMPORTANT;
+}
+#wSabnzbd #sab-queue div.progressbar {
+	border: 1px solid #d6d6d6 !IMPORTANT;
+}
+#wSabnzbd #sab-queue div.progresslabel {
+	color: #c6c6c6 !IMPORTANT;
+}
+.odd {
+	background-color: #f5f5f5 !IMPORTANT;
+}
+#wSearch tr.row:hover {
+	background-color: #ddeeff !IMPORTANT;
+}
+#wSearch .actor-odd{
+	background-color:#f5f5f5 !IMPORTANT;
+}
+/* END OVERPOWER Front.CSS */
+
+/* START OVERPOWER Scrollbar.CSS */
+#mcs3_container .customScrollBox .container {
+	width:96% !IMPORTANT;
+}
+#mcs3_container .customScrollBox img {
+	border:1px solid #1b5ea4 !IMPORTANT;
+}
+#mcs3_container .dragger_container {
+	margin:5px 0 0 10px !IMPORTANT;
+	border-left:0px solid #c4c4c4 !IMPORTANT;
+	border-right:1px solid #c4c4c4 !IMPORTANT;
+}
+#mcs3_container .dragger {
+	background:#c4c4c4 !IMPORTANT;
+}
+#mcs3_container .dragger_pressed {
+	background:#1b5ea4 !IMPORTANT;
+}
+/* END OVERPOWER Scrollbar.CSS */
+
+/* START OVERPOWER Widget.CSS */
+#main .section .widget {
+    border:1px solid grey !IMPORTANT;
+-moz-box-shadow: 2px 2px 3px #888 !IMPORTANT;
+-webkit-box-shadow: 2px 3px 5px#888 !IMPORTANT;
+box-shadow: 2px 2px 3px #888 !IMPORTANT;
+}
+#main .widget .widget-config {
+   background:#FFF !IMPORTANT;
+}
+#main .widget .widget-content {
+    background:#FFF !IMPORTANT;
+    padding: 3px 9px 3px !IMPORTANT;
+    text-indent: .5em !IMPORTANT;
+}
+#main .widget .widget-content .alt {
+    background:#DEF !IMPORTANT;
+}
+/* END OVERPOWER Widget.CSS */
+
+/* NEW ADDITIONS FOR NAV MENU */
+ul#navigation li a {
+	background-color:#636363;
+	-moz-border-radius:0px 0px 10px 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-khtml-border-bottom-right-radius: 10px;
+	-khtml-border-bottom-left-radius: 10px;
+	border:1px solid grey !IMPORTANT;
+	-moz-box-shadow: 2px 2px 3px #000 !IMPORTANT;
+	-webkit-box-shadow: 2px 3px 5px#000 !IMPORTANT;
+	box-shadow: 2px 2px 3px #000 !IMPORTANT;
+}
+ul#navigation li a:hover {
+	background-color:#3d3d3d;
+}
+/* NEW ADDITIONS FOR STATIC WIDGET */
+body {
+}
+.widget {
+	-moz-border-radius:6px 6px 6px 6px;
+	border-radius:6px 6px 6px 6px;
+	box-shadow: 3px 3px 3px #000;
+	background:#2C2D32;
+	border:1px solid grey !IMPORTANT;
+}
+.widget-head {
+	-moz-border-radius:6px 6px 0px 0px;
+	border-radius:6px 6px 0px 0px;
+	border-bottom:1px solid black;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	font-weight:bold;
+	cursor: move;
+	background: -moz-linear-gradient(bottom, #3d3d3d, #636363 ) !important;
+	background: -webkit-gradient(linear, center bottom, center top, from(#3d3d3d), to(#636363)) !important;
+}
+.widget .widget-content {
+	background: -moz-linear-gradient(bottom right, #CDC9C9, #fff) !IMPORTANT;
+	background: -webkit-gradient(linear, right bottom, left top, from(#CDC9C9), to(#fff)) !important;
+	padding: 3px 9px 3px !IMPORTANT;
+}

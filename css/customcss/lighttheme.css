@@ -1,0 +1,73 @@
+body {
+	background: none #edecec !important;
+}
+#main .section .widget {
+    border-color: #666666;
+}
+#main .widget .widget-head {
+    background-color: #F5F5F5;
+}
+#main .widget .widget-content {
+    background-color: #FFFFFF;
+}
+#main .widget .widget-content .alt {
+    background-color: #F5F5F5;
+}
+.progressbar { 
+	background-color: #666666 !important; 
+}
+.progresslabel { 
+	color: #000 !important; 
+}
+
+.widget-head a.remove  {
+    background-image: url(../../media/buttonslight.gif) !important;
+}
+
+.widget-head a.edit  {
+    background-image: url(../../media/buttonslight.gif) !important;
+}
+
+.widget-head a.collapse  {
+    background-image: url(../../media/buttonslight.gif) !important;
+}
+/* NEW ADDITIONS FOR NAV MENU */
+ul#navigation li a {
+	background-color: #F5F5F5 !IMPORTANT;
+	-moz-border-radius:0px 0px 10px 10px !IMPORTANT;
+	-webkit-border-bottom-right-radius: 10px !IMPORTANT;
+	-webkit-border-bottom-left-radius: 10px !IMPORTANT;
+	-khtml-border-bottom-right-radius: 10px !IMPORTANT;
+	-khtml-border-bottom-left-radius: 10px !IMPORTANT;
+	border:1px solid grey !IMPORTANT;
+	-moz-box-shadow: 2px 2px 3px #000 !IMPORTANT;
+	-webkit-box-shadow: 2px 3px 5px#000 !IMPORTANT;
+	box-shadow: 2px 2px 3px #000 !IMPORTANT;
+}
+ul#navigation li a:hover {
+	background-color:#ffffff !IMPORTANT;
+}
+/* NEW ADDITIONS FOR STATIC WIDGET */
+body {
+}
+.widget {
+	-moz-border-radius:6px 6px 6px 6px !IMPORTANT;
+	border-radius:6px 6px 6px 6px !IMPORTANT;
+	box-shadow: 3px 3px 3px #000 !IMPORTANT;
+	border:1px solid grey !IMPORTANT;
+}
+.widget-head {
+	-moz-border-radius:6px 6px 0px 0px !IMPORTANT;
+	border-radius:6px 6px 0px 0px !IMPORTANT;
+	border-bottom:1px solid black !IMPORTANT;
+	width: 100% !IMPORTANT;
+	height: 30px !IMPORTANT;
+	line-height: 30px !IMPORTANT;
+	font-weight:bold !IMPORTANT;
+	cursor: move !IMPORTANT;
+    background-color: #F5F5F5 !IMPORTANT;
+}
+.widget .widget-content {
+	padding: 3px 9px 3px !IMPORTANT;
+	background-color:#ffffff !IMPORTANT;	
+}
