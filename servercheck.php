@@ -111,11 +111,11 @@ if (file_exists('layout.php')){
 	$valid = true;
 	if(file_exists("default-layout.php")){
 		if(copy("default-layout.php", "layout.php")){
-			echo " renamed successfully<br><br>";
+			echo " renamed successfully. ";
 		}
 	}
 	else{
-		echo " could not be found<br>";
+		echo " could not be found. ";
 		$redirect = false;
 		$valid = false;
 	}
