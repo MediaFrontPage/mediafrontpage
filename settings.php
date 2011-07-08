@@ -679,7 +679,7 @@ if(!empty($_GET)){
 	               ?>
                </table>
                <input type="button" value="ADD" onclick="addRowToTable('nav', 10, 30);" /><input type="button" value="REMOVE" onclick="removeRowToTable('nav');" /><br /><br />
-               <input type="button" value="Save" onclick="updateAlternative('NavBar_Section');">
+               <input type="button" value="Save & Reload" onclick="updateAlternative('NavBar_Section');top.frames['nav'].location.reload();">
             </center>
         </div>
         <div id="HardDrive_Widget" class="tabContent">
