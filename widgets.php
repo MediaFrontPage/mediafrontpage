@@ -33,7 +33,6 @@ function renderWidget($widget, $params = "") {
 				echo "\n\n<strong>INVALID WIDGET SPECIFIED (".$widget["block"].") in section ".$sectionId."</strong>\n<pre>".print_r($widget)."</pre>\n";
 			}
 	}
-	echo "<div class='clear-float'></div>";
 }
 //Support the Widget "sytlesheet", "headerfunction", "headerinclude", "script" properties
 function renderWidgetHeaders($widget, $params = "") {

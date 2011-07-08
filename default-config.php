@@ -1,11 +1,28 @@
 <?php
+// inlclude the class-file
+require_once('class.ConfigMagik.php');
 
-/* ,-.-.         |o     ,---.               |    ,---.                   ,---.          ,---.o      
-   | | |,---.,---|.,---.|__. ,---.,---.,---.|--- |---',---.,---.,---.    |    ,---.,---.|__. .,---. 
-   | | ||---'|   ||,---||    |    |   ||   ||    |    ,---||   ||---'    |    |   ||   ||    ||   | 
-   ` ' '`---'`---'``---^`    `    `---'`   '`---'`    `---^`---|`---'    `---'`---'`   '`    ``---| 
-                                                           `---'                              `---' 
-*/
+// create new ConfigMagik-Object
+// Needed alternate paths for ajax based widgets to load appropriately
+$found = false;
+$path = 'config.ini';
+while(!$found){	
+	if(file_exists($path)){ 
+		$found = true;
+		$Config = new ConfigMagik( $path, true, true);
+		//echo '<script>alert("'.$path.'");</script>';
+	}
+	else{ $path= '../'.$path; }
+}
+//echo '<pre>';print_r($Config); echo '</pre>';
+//**************************************************************************************************************//
+//  __  __          _           ___                  _    ___                     ___              __           //
+// |  \/  | ___  __| |(*) __ _ | __| _ _  ___  _ __ | |_ | _ \ __ _  __ _  ___   / __| ___  _ __  / _|(*) __ _  //
+// | |\/| |/ -_)/ _` || |/ _` || _| | '_|/ _ \| '  \|  _||  _// _` |/ _` |/ -_)  |(__ / _ \| '  \|  _|| |/ _` | //
+// |_|  |_|\___|\__,_||_|\__,_||_|  |_|  \___/|_||_||_|  |_|  \__,_|\__, |\___|  \___|\___/|_||_||_|  |_|\__, | //
+//                                                                  ___/ |                               ___/ | //
+//**************************************************************************************************************//
+
                               /*Programs Section*/
 
 //***********************************************************************************//
@@ -30,84 +47,77 @@
 //     All API's                                                                     //
 //***********************************************************************************//
 
-     $GLOBAL_MACHINE      = false;
-     $GLOBAL_USER_PASS    = false;
-     $GLOBAL_IP           = '';
-     $GLOBAL_USER         = '';
-     $GLOBAL_PASS         = '';
-     
-     $REVERSE_PROXY       = false;
-     $XBMC_WEBROOT        = '';
-     $SICKBEARD_WEBROOT   = '';
-     $COUCHPOTATO_WEBROOT = '';
-     $SABNZBD_WEBROOT     = '';
-     $UTORRENT_WEBROOT    = '';
-     $JDOWNLOADER_WEBROOT = '';
-     $TRANSMISSION_WEBROOT= '';
+     $GLOBAL_MACHINE      = filter_var($Config->get('ENABLED','global'), FILTER_VALIDATE_BOOLEAN);
+     $GLOBAL_USER_PASS    = filter_var($Config->get('AUTHENTICATION','global'), FILTER_VALIDATE_BOOLEAN);
+     $GLOBAL_IP           = $Config->get('URL','global');
+     $GLOBAL_USER         = $Config->get('USERNAME','global');;
+     $GLOBAL_PASS         = $Config->get('PASSWORD','global');;
 
+     $REVERSE_PROXY       = filter_var($Config->get('ENABLED','webroot'), FILTER_VALIDATE_BOOLEAN);
+     $XBMC_WEBROOT        = $Config->get('XBMC','webroot');
+     $SICKBEARD_WEBROOT   = $Config->get('SICKBEARD','webroot');
+     $COUCHPOTATO_WEBROOT = $Config->get('COUCHPOTATO','webroot');
+     $SABNZBD_WEBROOT     = $Config->get('SABNZBD','webroot');
+     $UTORRENT_WEBROOT    = $Config->get('UTORRENT','webroot');
+     $JDOWNLOADER_WEBROOT = $Config->get('JDOWNLOADER','webroot');
+     $TRANSMISSION_WEBROOT= $Config->get('TRANSMISSION','webroot');
 
 /* XBMC Section*/
 
-     $XBMC_IP             = '';
-     $XBMC_PORT           = '';
-     $XBMC_USERNAME       = '';
-     $XBMC_PASS           = '';
-
+     $XBMC_IP             = $Config->get('IP','XBMC');
+     $XBMC_PORT           = $Config->get('PORT','XBMC');
+     $XBMC_USERNAME       = $Config->get('USERNAME','XBMC');
+     $XBMC_PASS           = $Config->get('PASSWORD','XBMC');
+          
 /* SickBeard Section*/
 
-     $SICKBEARD_IP        = '';
-     $SICKBEARD_PORT      = '';
-     $SICKBEARD_USERNAME  = '';
-     $SICKBEARD_PASS      = '';
+     $SICKBEARD_IP        = $Config->get('IP','SICKBEARD');
+     $SICKBEARD_PORT      = $Config->get('PORT','SICKBEARD');
+     $SICKBEARD_USERNAME  = $Config->get('USERNAME','SICKBEARD');
+     $SICKBEARD_PASS      = $Config->get('PASSWORD','SICKBEARD');
 
 /* SABNZBD Section*/
 
-     $SABNZBD_IP          = '';
-     $SABNZBD_PORT        = '';
-     $SABNZBD_USERNAME    = '';
-     $SABNZBD_PASS        = '';
-     $SABNZBD_API         = '';
+     $SABNZBD_IP          = $Config->get('IP','SABNZBD');
+     $SABNZBD_PORT        = $Config->get('PORT','SABNZBD');
+     $SABNZBD_USERNAME    = $Config->get('USERNAME','SABNZBD');
+     $SABNZBD_PASS        = $Config->get('PASSWORD','SABNZBD');
+     $SABNZBD_API         = $Config->get('API','SABNZBD');
 
 /* CouchPotato Section*/
 
-     $COUCHPOTATO_IP      = '';
-     $COUCHPOTATO_PORT    = '';
-     $COUCHPOTATO_USERNAME= '';
-     $COUCHPOTATO_PASS    = '';
+     $COUCHPOTATO_IP      = $Config->get('IP','COUCHPOTATO');
+     $COUCHPOTATO_PORT    = $Config->get('PORT','COUCHPOTATO');
+     $COUCHPOTATO_USERNAME= $Config->get('USERNAME','COUCHPOTATO');
+     $COUCHPOTATO_PASS    = $Config->get('PASSWORD','COUCHPOTATO');
 
 /* uTorrent Section*/
 
-     $uTORRENT_IP         = '';
-     $uTORRENT_PORT       = '';
-     $uTORRENT_USERNAME   = '';
-     $uTORRENT_PASS       = '';
+     $uTORRENT_IP         = $Config->get('IP','UTORRENT');
+     $uTORRENT_PORT       = $Config->get('PORT','UTORRENT');
+     $uTORRENT_USERNAME   = $Config->get('USERNAME','UTORRENT');
+     $uTORRENT_PASS       = $Config->get('PASSWORD','UTORRENT');
 
 /* jDownloader Section*/
 
-     $JDOWNLOADER_IP         = '';
-     $JDOWNLOADER_REMOTEPORT = '';
-     $JDOWNLOADER_WEBPORT    = '';
-     $JDOWNLOADER_USERNAME   = '';
-     $JDOWNLOADER_PASS       = '';
+     $JDOWNLOADER_IP         = $Config->get('IP','JDOWNLOADER');
+     $JDOWNLOADER_REMOTEPORT = $Config->get('REMOTE_PORT','JDOWNLOADER');
+     $JDOWNLOADER_WEBPORT    = $Config->get('WEB_PORT','JDOWNLOADER');
+     $JDOWNLOADER_USERNAME   = $Config->get('USERNAME','JDOWNLOADER');
+     $JDOWNLOADER_PASS       = $Config->get('PASSWORD','JDOWNLOADER');
 
 /* Transmission Section*/
 
-     $TRANSMISSION_IP        = '';
-     $TRANSMISSION_PORT      = '';
-     $TRANSMISSION_USERNAME  = '';
-     $TRANSMISSION_PASS      = '';
-
-/* HeadPhones Section*/
-
-     $HEADPHONES_IP          = '';
-     $HEADPHONES_PORT        = '';
-
+     $TRANSMISSION_IP        = $Config->get('IP','TRANSMISSION');
+     $TRANSMISSION_PORT      = $Config->get('PORT','TRANSMISSION');
+     $TRANSMISSION_USERNAME  = $Config->get('USERNAME','TRANSMISSION');
+     $TRANSMISSION_PASS      = $Config->get('PASSWORD','TRANSMISSION');
 /*Builtin Authentication*/
-	 
-     $AUTH_ON                = false;
-     $AUTH_USERNAME          = '';
-     $AUTH_PASS              = '';
-	 
+
+     $AUTH_ON                = filter_var($Config->get('PASSWORD_PROTECTED','Security'), FILTER_VALIDATE_BOOLEAN);;
+     $AUTH_USERNAME          = $Config->get('USERNAME','Security');
+     $AUTH_PASS              = $Config->get('PASSWORD','Security');
+
                               /*SEARCH WIDGET*/
 
 //***********************************************************************************//
@@ -124,15 +134,15 @@
 //     $trakt_api     ->     http://trakt.tv/settings/api                            //
 //***********************************************************************************//
 
-     $preferredSearch       = '2';
-     $preferredCategories   = '0';
-     $NZBMATRIX_USERNAME    = '';
-     $NZBMATRIX_API         = '';
-     $NZBSU_API             = '';
-     $NZB_DL                = '';
-     $TRAKT_API             = '';
-     $TRAKT_USERNAME        = '';
-     $TRAKT_PASSWORD        = '';
+     $preferredSearch       = $Config->get('preferred_site','Search_Widget');
+     $preferredCategories   = $Config->get('preferred_categories','Search_Widget');
+     $NZBMATRIX_USERNAME    = $Config->get('NZBMATRIX_USERNAME','Search_Widget');
+     $NZBMATRIX_API         = $Config->get('NZBMATRIX_API','Search_Widget');
+     $NZBSU_API             = $Config->get('NZBSU_API','Search_Widget');
+     $NZB_DL                = $Config->get('NZB_DL','Search_Widget');
+     $TRAKT_API             = $Config->get('TRAKT_API','Trakt_Widget');
+     $TRAKT_USERNAME        = $Config->get('TRAKT_USERNAME','Trakt_Widget');
+     $TRAKT_PASSWORD        = $Config->get('TRAKT_PASSWORD','Trakt_Widget');
 
                               // NavBar Section //
 
@@ -154,51 +164,23 @@
 //     To open in a blank page                                                       //
 //          $subnavlink_blank["Google"] = "http://google.com";                       //
 //                                                                                   //
-//     Extra Options                                                                 //
-//     =============                                                                 //
-//     It is possible to further customise the links in the NavMenu by handling      //
-//     some parameters in arrays. Supported parameters are: image, title,            //
-//                                path, target.                                      //
-//                                                                                   //
-//         image -> represents a custom image in the media/nav/ folder               //
-//                                                     (must include extension)      //
-//                                                                                   //
-//         path -> the URL                                                           //
-//                                                                                   //
-//         title -> a custom title. This is the only way of having two of the        //
-//                                  same title.                                      //
-//         target -> How to open the page as per the <a> anchor HTML tag.            //
-//                   _blank will make it open in a new page.                         //
-//                                                                                   //
 //     Examples                                                                      //
 //     ========                                                                      //
 //     $navlink["TV Headend"]   = "/tvheadend";                                      //
 //     $navlink["Transmission"] = "http://localhost:9091/transmission/web/";         //
 //     $navlink["uTorrent"]     = "http://localhost:8081/gui/";                      //
 //     $navlink["jDownloader"]  = "http://localhost:8765/";                          //
-//     $navlink["Test"]  = array( "path"=>"http://www.example.com/",                 //
-//                                "title" => "Custom",                               //
-//                                "image" => "example.png",                          //
-//                                "target => "_blank" );                             //
 //***********************************************************************************//
 
-
-//***********************************************************************************//
-// REVAMPED TO BE CHANGED FOR CONFIGURING WITH NEW LAYOUT.                           //
-// NOT SURE HOW TO IMPLEMENT THE /WEBROOTS INTO THIS THOUGH.                         //
-// SIMPLY COMMENT OUT // THE LINES YOU DO NOT NEED FOR NOW.                          //
-//***********************************************************************************//
 
           $navlink;
-          $navlink["XBMC"]           = 'programs.php?p=XBMC';
-          $navlink["Sickbeard"]      = 'programs.php?p=SickBeard';
-          $navlink["CouchPotato"]    = 'programs.php?p=CouchPotato';
-          $navlink["HeadPhones"]     = 'programs.php?p=HeadPhones';
-          $navlink["Transmission"]   = 'programs.php?p=Transmission';
-          $navlink["uTorrent"]       = 'programs.php?p=uTorrent';
-          $navlink["TVHeadend"]      = 'programs.php?p=TVHeadend';		  		  
-          $navlink["JDownloader"]    = 'programs.php?p=JDownloader';
-          $navlink["SabNZBd"]        = 'programs.php?p=SabNZBd';
+          $x = $Config->get('NavBar_Section');
+          if(!empty($x)){
+              foreach ($x as $k=>$e){
+                  $k = str_ireplace('_', ' ', $k);
+                  $navlink["$k"]         = "$e";
+		      }
+		  }
 
                               // Control Section //
 
@@ -241,9 +223,13 @@
 //***********************************************************************************//
 
           $drive;
-          $drive["System Drive"] = "/";
-
-
+          $x = $Config->get('HardDrive_Widget');
+          if(!empty($x)){
+              foreach ($x as $k=>$e){
+                  $k = str_ireplace('_', ' ', $k);
+                  $drive["$k"] = "$e";
+		      }
+          }
                               // RSS Section //
 
 //***********************************************************************************//
@@ -275,7 +261,6 @@
 //$customStyleSheet = "css/comingepisodes-minimal-poster.css";
 //$customStyleSheet = "css/black_velvet.css";
 //$customStyleSheet = "css/hernandito.css";
-//$customStyleSheet = "css/dpickles.css";
 
 
                               // Message Section //
@@ -288,26 +273,14 @@
 //          $xbmcMessages['EXAMPLE'] = "http://USERNAME:PASSWORD@IP:PORT/";          //
 //***********************************************************************************//
           
-$xbmcMessages;
-//$xbmcMessages['EXAMPLE'] = "http://USERNAME:PASSWORD@IP:PORT/";
-
-
-                               // UPS Section //
-							  
-//***********************************************************************************//
-//       Uninterrupted Power Supplies support through APCUPSD and NUT hosts          //
-//                                                                                   //
-//       APCUPSD Example                                                             //
-//       ===============                                                             //
-//       $ups['UPS1'] = array("type" => "APC", "url" => "localhost:3551");           //
-//                                                                                   //
-//       NUT Example                                                                 //
-//       ===========                                                                 //
-//       $ups['UPS2'] = array("type" => "NUT", "url" => "upsname@localhost");        //
-//***********************************************************************************//
-
-          $ups;
-
+          $xbmcMessages;
+          $x = $Config->get('Message_Widget');
+          if(!empty($x)){
+              foreach ($Config->get('Message_Widget') as $k=>$e){
+                  $k = str_ireplace('_', ' ', $k);
+                  $xbmcMessages["$k"] = "$e";
+		      		}
+          }
 
                               // Security //
 
@@ -318,10 +291,10 @@ $xbmcMessages;
 //      the wControl widget.                                                         //
 //***********************************************************************************//
 
-     $mfpsecured = false;
+     $mfpsecured = filter_var($Config->get('mfpsecured','Security'), FILTER_VALIDATE_BOOLEAN);
 
 // Alternatively you can set a unique key here. //
-     $mfpapikey = '';
+     $mfpapikey = $Config->get('mfpapikey','Security');
 
                  //XBMC MySQL Connections EXPERIMENTAL!//
                             //DO NOT USE YET//
@@ -370,10 +343,6 @@ if($GLOBAL_MACHINE)
      //CouchPotato Global Settings//
      if(empty($COUCHPOTATO_IP) && !empty($COUCHPOTATO_PORT)){
           $COUCHPOTATO_IP = $GLOBAL_IP;
-     }
-     //HeadPhones Global Settings//
-     if(empty($HEADPHONES_IP) && !empty($HEADPHONES_PORT)){
-          $HEADPHONES_IP = $GLOBAL_IP;
      }
      //uTorrent Global Settings//
      if(empty($uTORRENT_IP) && !empty($uTORRENT_PORT)){
@@ -484,7 +453,6 @@ if($REVERSE_PROXY){
    $sickbeardurl           = "http://$sickbeardlogin"."$SICKBEARD_IP:$SICKBEARD_PORT/home/";
    $saburl                 = "http://$SABNZBDlogin"."$SABNZBD_IP:$SABNZBD_PORT/";
    $cp_url                 = "http://$COUCHPOTATOlogin"."$COUCHPOTATO_IP:$COUCHPOTATO_PORT/";
-   $headphones_url         = "http://$HEADPHONES_IP:$HEADPHONES_PORT/";
    $utorrent_url           = "http://$uTorrentlogin"."$uTORRENT_IP:$uTORRENT_PORT/gui/";
    $jd_url                 = "http://$JDOWNLOADERlogin"."$JDOWNLOADER_IP:$JDOWNLOADER_REMOTEPORT/";
    $jd_weburl              = "http://$JDOWNLOADER_IP:$JDOWNLOADER_WEBPORT/";

@@ -65,15 +65,13 @@ if(!empty($navselect)){
 	echo "</select>";
 }
 echo "<div id='nav-menu2' style='text-decoration: none; font-size:small; position:absolute; top:0; right:0;'>";
-//<-- CONFIG -->
-echo "<li><a href=\"mfpedit.php\" target=\"main\">Config</a></li>";
-//<-- END CONFIG -->
-//Logout button 
+echo "<ul><li><a href='settings.php' target='main'><img src='./media/settings.png' height='15px;'/></a></li></ul>";
+//<--START LOGOUT --> 
 require_once('config.php');
 if ($authsecured) {
   echo "<ul><li><a href='#' onclick=\"logout();\"/>Logout</a></li></ul>";
 }
-//<--LOGOUT-->
+//<--END LOGOUT-->
 
 echo '</div>';
 echo "</ul>";
