@@ -134,7 +134,7 @@ if(!empty($_GET)){
               value = 'false';
             }
           }
-          else if(contents[i].type == 'radio'){
+          if(contents[i].type == 'radio'){
             var name = contents[i].name;
             while(contents[i].type == 'radio'){
               if(contents[i].checked && contents[i].name == name){
@@ -183,7 +183,7 @@ if(!empty($_GET)){
           }
           //var value = contents[i].value;
         }
-        alert(params);
+        //alert(params);
         $.ajax(
         {
             type: 'GET',
@@ -254,7 +254,21 @@ if(!empty($_GET)){
     <h1>MediaFrontPage Settings</h1>
     <center>
     <div class="tabs">
-        <a class="tab" onclick="showTab('global')">Global</a> <a class="tab" onclick="showTab('XBMC')">XBMC</a> <a class="tab" onclick="showTab('SICKBEARD')">Sickbeard</a> <a class="tab" onclick="showTab('COUCHPOTATO')">CouchPotato</a> <a class="tab" onclick="showTab('SABNZBD')">SabNZBd+</a> <a class="tab" onclick="showTab('TRANSMISSION')">Transmission</a> <a class="tab" onclick="showTab('UTORRENT')">uTorrent</a> <a class="tab" onclick="showTab('JDOWNLOADER')">jDownloader</a> <a class="tab" onclick="showTab('Search_Widget')">Search Widget</a> <a class="tab" onclick="showTab('Trakt_Widget')">Trakt.tv</a> <a class="tab" onclick="showTab('NavBar_Section')">NavBar</a> <a class="tab" onclick="showTab('HardDrive_Widget')">Hard Drives</a> <a class="tab" onclick="showTab('Message_Widget')">Message Widget</a>  <a class="tab" onclick="showTab('Security')">Security</a><a class="tab" onclick="showTab('Mods')">CSS Modifications</a>
+        <a class="tab" onclick="showTab('global')">Global</a> 
+        <a class="tab" onclick="showTab('XBMC')">XBMC</a> 
+        <a class="tab" onclick="showTab('SICKBEARD')">Sickbeard</a> 
+        <a class="tab" onclick="showTab('COUCHPOTATO')">CouchPotato</a> 
+        <a class="tab" onclick="showTab('SABNZBD')">SabNZBd+</a> 
+        <a class="tab" onclick="showTab('TRANSMISSION')">Transmission</a> 
+        <a class="tab" onclick="showTab('UTORRENT')">uTorrent</a> 
+        <a class="tab" onclick="showTab('JDOWNLOADER')">jDownloader</a> 
+        <a class="tab" onclick="showTab('Search_Widget')">Search Widget</a> 
+        <a class="tab" onclick="showTab('Trakt_Widget')">Trakt.tv</a> 
+        <a class="tab" onclick="showTab('NavBar_Section')">NavBar</a> 
+        <a class="tab" onclick="showTab('HardDrive_Widget')">Hard Drives</a> 
+        <a class="tab" onclick="showTab('Message_Widget')">Message Widget</a>  
+        <a class="tab" onclick="showTab('Security')">Security</a>
+        <a class="tab" onclick="showTab('Mods')">CSS Modifications</a>
     </div>
 </center>
         <div id="global" class="tabContent" style="display:block">
@@ -266,7 +280,7 @@ if(!empty($_GET)){
                         </td>
 
                         <td align="left">
-                            <p><input type="checkbox" name="ENABLED" class="global" <?php echo ($config->get('ENABLED','global') == "true")?'CHECKED':'';   ?> ></p>
+                            <p><input type="checkbox" name="ENABLED" class="global" <?php echo ($config->get('ENABLED','global')=="true")?'CHECKED':'';?>></p>
                         </td>
                     </tr>
 
@@ -690,11 +704,11 @@ if(!empty($_GET)){
                  <?php
                  $x = $config->get('NavBar_Section');
                  foreach ($x as $title=>$url){
-                     echo "<tr><td><input size='10' name='TITLE' value='".str_ireplace('_', ' ', $title)."'/></td><td><input name='VALUE' size='30' value='$url'/></td></tr>";
+                     echo "<tr><td><input size='13' name='TITLE' value='".str_ireplace('_', ' ', $title)."'/></td><td><input name='VALUE' size='30' value='$url'/></td></tr>";
                  }
                  ?>
                </table>
-               <input type="button" value="ADD" onclick="addRowToTable('nav', 10, 30);" /><input type="button" value="REMOVE" onclick="removeRowToTable('nav');" /><br /><br />
+               <input type="button" value="ADD" onclick="addRowToTable('nav', 13, 30);" /><input type="button" value="REMOVE" onclick="removeRowToTable('nav');" /><br /><br />
                <input type="button" value="Save & Reload" onclick="updateAlternative('NavBar_Section');top.frames['nav'].location.reload();">
             </center>
         </div>
