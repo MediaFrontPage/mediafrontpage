@@ -102,7 +102,7 @@ if(!empty($_GET)){
 
       // this is a bit of a hack here
       // just list the tab content divs here
-      var tabs = ["global","XBMC", "SICKBEARD", "COUCHPOTATO", "SABNZBD", "TRANSMISSION", "UTORRENT", "JDOWNLOADER", "Search_Widget", "Trakt_Widget", "Security", "Mods", "NavBar_Section", "HardDrive_Widget", "Message_Widget"];
+      var tabs = ["global","XBMC", "SICKBEARD", "COUCHPOTATO", "SABNZBD", "TRANSMISSION", "UTORRENT", "JDOWNLOADER", "Search_Widget", "Trakt_Widget", "Security", "Mods", "NavBar_Section", "HardDrive_Widget", "Message_Widget", "RSS"];
       
       function showTab( tab ){
 
@@ -269,6 +269,7 @@ if(!empty($_GET)){
         <a class="tab" onclick="showTab('Message_Widget')">Message Widget</a>  
         <a class="tab" onclick="showTab('Security')">Security</a>
         <a class="tab" onclick="showTab('Mods')">CSS Modifications</a>
+        <a class="tab" onclick="showTab('RSS')">RSS Widget</a>
     </div>
 </center>
         <div id="global" class="tabContent" style="display:block">
@@ -798,6 +799,21 @@ if(!empty($_GET)){
                     </tr>
                </table>
                 <input type="button" value="Save" onclick="updateSettings('Mods');">
+            </center>
+        </div>
+        <div id="RSS" class="tabContent">
+            <center>
+             <h3>XBMC Instances for Message Widget</h3>
+               <table id="table_rss">
+               <tr><td>Title</td><td>URL</td></tr>
+               <?php
+               $x = $config->get('RSS_Widget');
+               foreach ($x as $title=>$url){
+                   echo "<tr><td><input size='40' name='TITLE' value='".urldecode(str_ireplace('_', ' ', $title))."'/></td><td><input size='80' name='VALUE' value='$url'/></td></tr>";
+               }
+               ?>
+               </table>
+               <input type="button" value="ADD" onclick="addRowToTable('rss', 40, 80);" /><input type="button" value="REMOVE" onclick="removeRowToTable('msg');" /><br /><br />
             </center>
         </div>
         <center>

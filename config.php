@@ -228,7 +228,7 @@ while(!$found){
               foreach ($x as $k=>$e){
                   $k = str_ireplace('_', ' ', $k);
                   $drive["$k"] = "$e";
-		      }
+		      		}
           }
                               // RSS Section //
 
@@ -238,6 +238,7 @@ while(!$found){
 //     Supports cat, pp, script, priority as per the sabnzbd api.                    //
 //***********************************************************************************//
 
+/*
           $rssfeeds["MediaFrontPage on Github"]       = array("url" => "https://github.com/MediaFrontPage/mediafrontpage/commits/master.atom", "type" => "atom");
           $rssfeeds["NZBMatrix - TV Shows (DivX)"]    = array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=6"     , "cat" => "tv");
           $rssfeeds["NZBMatrix - TV Shows (HD x264)"] = array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=41"     , "cat" => "tv");
@@ -246,7 +247,24 @@ while(!$found){
           $rssfeeds["NZBMatrix - Music (MP3)"]        = array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=22"     , "cat" => "music");
           $rssfeeds["NZBMatrix - Music (Lossless)"]   = array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=23"     , "cat" => "music");
           $rssfeeds["NZBMatrix - Sports"]             = array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=7"     , "cat" => "sports");
-          
+*/
+          $rssfeeds;
+          $x = $Config->get('RSS_Widget');
+          if(!empty($x)){
+              foreach ($x as $k => $e){
+              		parse_str($e, $array);
+              		/*
+									$cat = (!empty($array['cat']))?$array['cat']:'';
+              		$pp = (!empty($array['pp']))?$array['pp']:'';
+              		$script = (!empty($array['script']))?$array['script']:'';
+              		$priority = (!empty($array['priority']))?$array['priority']:'';
+              		$type = (!empty($array['type']))?$array['type']:'';
+              		*/
+                  $k = str_ireplace('_', ' ', $k);
+                  $rssfeeds[urldecode($k)] = $array;
+		      		}
+          }
+
 
                               // Custom Stylesheet Section //
 
