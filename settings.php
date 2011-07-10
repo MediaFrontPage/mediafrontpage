@@ -34,7 +34,7 @@ if(!empty($_GET)){
               $config->set($var, $value, $section_name);
               echo '<b>'.$var.'</b>: updated<br>';
             } catch(Exception $e) {
-              echo 'Error!';
+              echo 'Error! Updating variable: '.$var;
             }
           }
         } else {
@@ -134,7 +134,7 @@ if(!empty($_GET)){
               value = 'false';
             }
           }
-          if(contents[i].type == 'radio'){
+          else if(contents[i].type == 'radio'){
             var name = contents[i].name;
             while(contents[i].type == 'radio'){
               if(contents[i].checked && contents[i].name == name){
@@ -179,7 +179,7 @@ if(!empty($_GET)){
         var params = 'section='+section; 
         for(i=0;i<contents.length;i++){
           if(contents[i].name=='TITLE'){
-            params = params + '&' + contents[i++].value + '=' + encodeURIComponent(contents[i].value);
+            params = params + '&' + encodeURIComponent(contents[i++].value) + '=' + encodeURIComponent(contents[i].value);
           }
           //var value = contents[i].value;
         }
@@ -690,7 +690,7 @@ if(!empty($_GET)){
                  <?php
                  $x = $config->get('NavBar_Section');
                  foreach ($x as $title=>$url){
-                     echo "<tr><td><input size='10' name='TITLE' value='$title'/></td><td><input name='VALUE' size='30' value='$url'/></td></tr>";
+                     echo "<tr><td><input size='10' name='TITLE' value='".str_ireplace('_', ' ', $title)."'/></td><td><input name='VALUE' size='30' value='$url'/></td></tr>";
                  }
                  ?>
                </table>
@@ -706,7 +706,7 @@ if(!empty($_GET)){
                <?php
                $x = $config->get('HardDrive_Widget');
                foreach ($x as $title=>$url){
-                   echo "<tr><td><input size='20' name='TITLE' value='$title'/></td><td><input name ='VALUE' size='20' value='$url'/></td></tr>";
+                   echo "<tr><td><input size='20' name='TITLE' value='".str_ireplace('_', ' ', $title)."'/></td><td><input name ='VALUE' size='20' value='$url'/></td></tr>";
                }
                ?>
                </table>
@@ -722,7 +722,7 @@ if(!empty($_GET)){
                <?php
                $x = $config->get('Message_Widget');
                foreach ($x as $title=>$url){
-                   echo "<tr><td><input size='10' name='TITLE' value='$title'/></td><td><input size='40' name='VALUE' value='$url'/></td></tr>";
+                   echo "<tr><td><input size='10' name='TITLE' value='".str_ireplace('_', ' ', $title)."'/></td><td><input size='40' name='VALUE' value='$url'/></td></tr>";
                }
                ?>
                </table>
