@@ -133,8 +133,9 @@ if(!empty($_GET)){
             } else {
               value = 'false';
             }
+            params = params+'&'+contents[i].name+'='+value;
           }
-          if(contents[i].type == 'radio'){
+          else if(contents[i].type == 'radio'){
             var name = contents[i].name;
             while(contents[i].type == 'radio'){
               if(contents[i].checked && contents[i].name == name){
@@ -150,7 +151,7 @@ if(!empty($_GET)){
             params = params+'&'+contents[i].name+'='+encodeURIComponent(value);
           }
         }
-        //alert(params);
+        alert(params);
           $.ajax(
           {
               type: 'GET',
@@ -755,7 +756,7 @@ if(!empty($_GET)){
                         </td>
 
                         <td align="left">
-                            <p><input type="checkbox" name="PASSWORD_PROTECTED" class="global" <?php echo ($config->get('PASSWORD_PROTECTED','Security') == "true")?'CHECKED':'';   ?> ></p>
+                            <p><input type="checkbox" name="PASSWORD_PROTECTED" <?php echo ($config->get('PASSWORD_PROTECTED','Security') == "true")?'CHECKED':'';   ?> ></p>
                         </td>
                     </tr>
 
@@ -764,14 +765,30 @@ if(!empty($_GET)){
                             <p>USERNAME:</p>
                         </td>
 
-                        <td align="left"><input name="USERNAME" size="20" class="global" value="<?php echo $config->get('USERNAME','Security')?>"></td>
+                        <td align="left"><input name="USERNAME" size="20" value="<?php echo $config->get('USERNAME','Security')?>"></td>
                     </tr>
                     <tr>
                         <td align="right">
                             <p>PASSWORD:</p>
                         </td>
 
-                        <td align="left"><input name="PASSWORD" size="20" class="global" type="password" value="<?php echo $config->get('PASSWORD','Security')?>"></td>
+                        <td align="left"><input name="PASSWORD" size="20" type="password" value="<?php echo $config->get('PASSWORD','Security')?>"></td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            <p>MFPSECURED:</p>
+                        </td>
+
+                        <td align="left">
+                            <p><input type="checkbox" name="mfpsecured" <?php echo ($config->get('mfpsecured','Security') == "true")?'CHECKED':'';   ?> ></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            <p>MFP API Key:</p>
+                        </td>
+
+                        <td align="left"><input name="mfpapikey" size="20" value="<?php echo $config->get('mfpapikey','Security')?>"></td>
                     </tr>
                </table>
                 <input type="button" value="Save" onclick="updateSettings('Security');">
@@ -779,11 +796,10 @@ if(!empty($_GET)){
         </div>
         <div id="Mods" class="tabContent">
             <center>
-             <h3>Security</h3>
+             <h3>CSS Modifications:</h3>
                <table>
                     <tr>
                         <td align="right">
-                            <p>CSS Modifications:</p>
                         </td>
 
                         <td align="left">
