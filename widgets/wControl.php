@@ -58,6 +58,11 @@ function widgetMenu($baseurl) {
 			if(!empty($shortcutmixed["shell"])) {
 				$href = $baseurl."?w=wControl&style=".$style."&shell=".urlencode($shortcutmixed["shell"]).(!empty($mfpapikey) ? "&apikey=".$mfpapikey : "");
 			}
+			if(!empty($shortcutmixed["url"])) {
+				echo "\t<li".(($alt) ? " class=\"alt\"" : "")."><a class=\"shortcut\" href=\"".$shortcutmixed["url"]."\">".$shortcutlabel."</a><br/></li>\n";
+				unset($style);
+			}
+			
 			if($style == "m") {
 				echo "\t<li".(($alt) ? " class=\"alt\"" : "")."><a class=\"shortcut\" href=\"".$href."\">".$shortcutlabel."</a><br/></li>\n";
 			} elseif($style == "w") {

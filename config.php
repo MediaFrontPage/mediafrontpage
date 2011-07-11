@@ -200,13 +200,26 @@ while(!$found){
 //               INCOMPLETE INFO --->>     NEED TO COMPLETE THIS!                    //
 //***********************************************************************************//
 
+/*
           $shortcut;
           $shortcut["Shutdown XBMC"]         = array("cmd" => 'shutdown');
           $shortcut["Update Video Library"]  = array("cmd" => 'vidscan');
           $shortcut["Clean Video Library"]   = array("xbmcsend" => 'CleanLibrary(video)'); 
           $shortcut["Update Audio Library"]  = array("json" => '{"jsonrpc": "2.0", "method": "AudioLibrary.ScanForContent", "id" : 1 }');
           $shortcut["MediaFrontPage Forum"]  = "http://forum.xbmc.org/showthread.php?t=83304&goto=newpost";
-
+*/
+					
+          $shortcut;
+          $x = $Config->get('Control_Widget');
+          $array;
+          if(!empty($x)){
+              foreach ($x as $k => $e){
+                  parse_str($e, $array);
+                  $k = str_ireplace('_', ' ', $k);
+                  $shortcut[urldecode($k)] = $array;
+		          }
+          }
+					
 
                               // Hard Drive Section //
 
