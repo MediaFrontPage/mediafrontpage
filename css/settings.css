@@ -1,0 +1,70 @@
+.dock-container {
+	position:relative;
+	height:50px;
+	padding-left:0;
+	bottom:0
+}
+
+a.dock-item {
+	display:block;
+	width:50px;
+	position:absolute;
+	text-align:center;
+	text-decoration:none;
+	bottom:0
+}
+
+.dock-item span {
+	display:none;
+	padding-left:20px;
+	bottom:0
+}
+
+.dock-item img {
+	border:none;
+	margin:0 auto 5px;
+	width:100%;
+	bottom:0
+}
+
+.bottom {
+	width:100%;
+  position: relative;
+	z-index:1000;
+}
+
+div.tabs {
+	font-size:80%;
+	font-weight:700
+}
+
+a.tab {
+	border-bottom-width:0;
+	padding:2px 1em;
+	text-decoration:none;
+	cursor:pointer
+}
+
+a.tab,a.tab:visited {
+	color:gray
+}
+
+a.tab:hover {
+	background-color:#d0d0d0;
+	color:#606060
+}
+
+/*
+* note that by default all tab content areas
+* have display set to 'none'
+*/
+div.tabContent {
+	padding:4px;
+	display:none
+}
+input {  
+	background:url(../media/bgNav.png);
+	border: 1px solid #000;
+	padding: 2px 1em 2px 1em;
+	color:#FFFFFF;
+}  
