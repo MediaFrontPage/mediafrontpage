@@ -102,7 +102,7 @@ if(!empty($_GET)){
 
       // this is a bit of a hack here
       // just list the tab content divs here
-      var tabs = ["global","XBMC", "SICKBEARD", "COUCHPOTATO", "SABNZBD", "TRANSMISSION", "UTORRENT", "JDOWNLOADER", "Search_Widget", "Trakt_Widget", "Security", "Mods", "NavBar_Section", "HardDrive_Widget", "Message_Widget", "RSS"];
+      var tabs = ["global","XBMC", "SICKBEARD", "COUCHPOTATO", "SABNZBD", "TRANSMISSION", "UTORRENT", "JDOWNLOADER", "Search_Widget", "Trakt_Widget", "Security", "Mods", "NavBar_Section", "HardDrive_Widget", "Message_Widget", "RSS_Widget", "Control_Widget"];
       
       function showTab( tab ){
 
@@ -180,7 +180,7 @@ if(!empty($_GET)){
         var params = 'section='+section; 
         for(i=0;i<contents.length;i++){
           if(contents[i].name=='TITLE'){
-            params = params + '&' + encodeURIComponent(contents[i++].value) + '=' + encodeURIComponent(contents[i].value);
+            params = params + '&' + escape(contents[i++].value) + '=' + encodeURIComponent(contents[i].value);
           }
           //var value = contents[i].value;
         }
@@ -270,7 +270,8 @@ if(!empty($_GET)){
         <a class="tab" onclick="showTab('Message_Widget')">Message Widget</a>  
         <a class="tab" onclick="showTab('Security')">Security</a>
         <a class="tab" onclick="showTab('Mods')">CSS Modifications</a>
-        <a class="tab" onclick="showTab('RSS')">RSS Widget</a>
+        <a class="tab" onclick="showTab('RSS_Widget')">RSS Widget</a>
+        <a class="tab" onclick="showTab('Control_Widget')">Control Widget</a>
     </div>
 </center>
         <div id="global" class="tabContent" style="display:block">
@@ -817,9 +818,9 @@ if(!empty($_GET)){
                 <input type="button" value="Save" onclick="updateSettings('Mods');">
             </center>
         </div>
-        <div id="RSS" class="tabContent">
+        <div id="RSS_Widget" class="tabContent">
             <center>
-             <h3>XBMC Instances for Message Widget</h3>
+             <h3>RSS Feeds</h3>
                <table id="table_rss">
                <tr><td>Title</td><td>URL</td></tr>
                <?php
@@ -829,7 +830,24 @@ if(!empty($_GET)){
                }
                ?>
                </table>
-               <input type="button" value="ADD" onclick="addRowToTable('rss', 40, 80);" /><input type="button" value="REMOVE" onclick="removeRowToTable('msg');" /><br /><br />
+               <input type="button" value="ADD" onclick="addRowToTable('rss', 40, 80);" /><input type="button" value="REMOVE" onclick="removeRowToTable('rss');" /><br /><br />
+               <input type="button" value="Save" onclick="updateAlternative('RSS_Widget');">
+            </center>
+        </div>
+        <div id="Control_Widget" class="tabContent">
+            <center>
+             <h3>Control Widget</h3>
+               <table id="table_control">
+               <tr><td>Title</td><td>URL</td></tr>
+               <?php
+               $x = $config->get('Control_Widget');
+               foreach ($x as $title=>$url){
+                   echo "<tr><td><input size='40' name='TITLE' value='".urldecode(str_ireplace('_', ' ', $title))."'/></td><td><input size='80' name='VALUE' value='$url'/></td></tr>";
+               }
+               ?>
+               </table>
+               <input type="button" value="ADD" onclick="addRowToTable('control', 40, 80);" /><input type="button" value="REMOVE" onclick="removeRowToTable('control');" /><br /><br />
+               <input type="button" value="Save" onclick="updateAlternative('Control_Widget');">
             </center>
         </div>
         <center>
