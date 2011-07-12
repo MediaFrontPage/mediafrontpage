@@ -73,7 +73,7 @@ if(!empty($_GET)){
     <link rel="stylesheet" type="text/css" href="css/footer.css">
 </head>
 
-<body>
+<body style="overflow: hidden;">
   <center>
     <div style="width:90%; height:95%;" class="widget">
       <div class="widget-head">
@@ -631,21 +631,46 @@ if(!empty($_GET)){
       </div>
       <div id="Mods" class="tabContent">
         <h3>CSS Modifications:</h3>
-        <table>
+        <table style="max-height:300px;">
+          <tr align="center">
+            <td><img class="widget" src="media/examples/lightheme.jpg" height="120px" /></td>
+            <td><img class="widget" src="media/examples/hernadito.jpg" height="120px" /></td>
+            <td><img class="widget" src="media/examples/black_modern_glass.jpg" height="120px" /></td>
+          </tr>
           <tr>
-            <td align="right"></td>
-              <td align="left">
-                  <p>
-                    <input type="radio" name="ENABLED" value="lighttheme" <?php echo ($config->get('ENABLED','Mods')=="lighttheme")?'CHECKED':'';?> />Light Theme 
-                    <input type="radio" name="ENABLED" value="hernandito" <?php echo ($config->get('ENABLED','Mods')=="hernandito")?'CHECKED':'';?> />Hernandito's Theme 
-                    <input type="radio" name="ENABLED" value="black_velvet" <?php echo ($config->get('ENABLED','Mods')=="black_velvet")?'CHECKED':'';?> />Black Velvet Theme 
-                    <input type="radio" name="ENABLED" value="comingepisodes-minimal-poster" <?php echo ($config->get('ENABLED','Mods')=="comingepisodes-minimal-poster")?'CHECKED':'';?> />Minimal Posters 
-                    <input type="radio" name="ENABLED" value="comingepisodes-minimal-banner" <?php echo ($config->get('ENABLED','Mods')=="comingepisodes-minimal-banner")?'CHECKED':'';?> />Minimal Banners 
-                    <input type="radio" name="ENABLED" value="" <?php echo ($config->get('ENABLED','Mods') == "")?'CHECKED':'';?> />OFF
-                  </p>
-                </td>
-            </tr>
-        </table><input type="button" value="Save" onclick="updateSettings('Mods');">
+            <td align="center">
+              <input type="radio" name="ENABLED" value="lighttheme" <?php echo ($config->get('ENABLED','Mods') == "lighttheme")?'CHECKED':'';?> />
+              <p>Light Theme</p>
+            </td>
+            <td align="center">
+              <input type="radio" name="ENABLED" value="hernandito" <?php echo ($config->get('ENABLED','Mods') == "hernandito")?'CHECKED':'';   ?>>
+              <p>Hernandito's Theme</p>
+            </td>
+            <td align="center">
+              <input type="radio" name="ENABLED" value="black_modern_glass" <?php echo ($config->get('ENABLED','Mods') == "black_modern_glass")?'CHECKED':'';?> />
+              <p>Black Modern Glass Theme</p>
+            </td>
+          </tr>
+          <tr>
+            <td><img class="widget" src="media/examples/minimal-posters.jpg" height="120px" /></td>
+            <td><img class="widget" src="media/examples/minimal-banners.jpg" height="120px" /></td>
+          </tr>
+          <tr>
+            <td align="center">
+              <input type="radio" name="ENABLED" value="comingepisodes-minimal-poster" <?php echo ($config->get('ENABLED','Mods') == "comingepisodes-minimal-poster")?'CHECKED':'';?> />
+              <p>Minimal Posters</p>
+            </td>
+            <td align="center">
+              <input type="radio" name="ENABLED" value="comingepisodes-minimal-banner" <?php echo ($config->get('ENABLED','Mods') == "comingepisodes-minimal-banner")?'CHECKED':'';?> />
+              <p>Minimal Banners</p>
+            </td>
+          </tr>
+        </table>
+        <br />
+        <br />
+        <input type="radio" name="ENABLED" value="" <?php echo ($config->get('ENABLED','Mods') == "")?'CHECKED':'';   ?> />
+        <p>OFF</p>
+        <input type="button" value="Save" onclick="updateSettings('Mods');" />
       </div>
       <div id="RSS_Widget" class="tabContent">
         <h3>RSS Feeds</h3>
@@ -706,6 +731,7 @@ if(!empty($_GET)){
       </div>
     </div>  
   </center>
+<!--
 	<div class="bottom">
 	  <div id="dock">
 		  <div class="dock-container">
@@ -736,6 +762,7 @@ if(!empty($_GET)){
 		    </div><!-- end div .dock-container -->
 		  </div><!-- end div .dock #dock -->
 		</div>
+-->
 </div>  
   <?php 
   }
