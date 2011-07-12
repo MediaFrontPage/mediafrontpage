@@ -86,6 +86,7 @@ if(!empty($_GET)){
       <div id="slider">
         <ul class="navigation">
 	        <li><a href="#global">Global</a></li>
+	        <li><a href="#Programs">Programs</a></li>
 	        <li><a href="#Search_Widget">Search Widget</a></li>
 	        <li><a href="#Trakt_Widget">Trakt.tv</a></li>
 	        <li><a href="#NavBar_Section">NavBar</a></li>
@@ -100,7 +101,7 @@ if(!empty($_GET)){
 		  	<div class="scroll">
 	    		<!-- the element that will be scrolled during the effect -->
 	    		<div class="scrollContainer">
-			      <div id="global" class="panel" style="display:block">
+			      <div id="global" class="panel">
 			        <table>
 			          <tr>
 			            <td align="right">
@@ -145,6 +146,25 @@ if(!empty($_GET)){
 			          </tr>
 			        </table>
 			        <input type="button" value="Save" onclick="updateSettings('global');" />
+			      </div>
+			      <div id="Programs" class="panel">
+			        <table cellspacing="30px">
+			          <tr><br /><br /><br /></tr>
+			          <tr>
+			            <td><a href="#XBMC"><img src="media/XBMC.png" /></a></td>
+			            <td><a href="#SABNZBD"><img src="media/SabNZBd.png" /></a></td>
+			          </tr>
+			          <tr>
+			            <td><a href="#SICKBEARD"><img src="media/SickBeard.png" /></a></td>
+			            <td><a href="#COUCHPOTATO"><img src="media/CouchPotato.png" /></a></td>
+                  <td><a href="#HEADPHONES"><img src="media/HeadPhones.png" /></a></td>
+			          </tr>
+			          <tr>
+			            <td><a href="#TRANSMISSION"><img src="media/Transmission.png" /></a></td>
+			            <td><a href="#UTORRENT"><img src="media/uTorrent.png" /></a></td>
+			            <td><a href="#JDOWNLOADER"><img src="media/JDownloader.png" /></a></td>
+			          </tr>
+			        </table>
 			      </div>
 			      <div id="XBMC" class="panel">
 			        <h3>XBMC</h3>
