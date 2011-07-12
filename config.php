@@ -47,20 +47,20 @@ while(!$found){
 //     All API's                                                                     //
 //***********************************************************************************//
 
-     $GLOBAL_MACHINE      = filter_var($Config->get('ENABLED','global'), FILTER_VALIDATE_BOOLEAN);
-     $GLOBAL_USER_PASS    = filter_var($Config->get('AUTHENTICATION','global'), FILTER_VALIDATE_BOOLEAN);
-     $GLOBAL_IP           = $Config->get('URL','global');
-     $GLOBAL_USER         = $Config->get('USERNAME','global');;
-     $GLOBAL_PASS         = $Config->get('PASSWORD','global');;
+     $GLOBAL_MACHINE      = filter_var($Config->get('ENABLED','GLOBAL'), FILTER_VALIDATE_BOOLEAN);
+     $GLOBAL_USER_PASS    = filter_var($Config->get('AUTHENTICATION','GLOBAL'), FILTER_VALIDATE_BOOLEAN);
+     $GLOBAL_IP           = $Config->get('URL','GLOBAL');
+     $GLOBAL_USER         = $Config->get('USERNAME','GLOBAL');;
+     $GLOBAL_PASS         = $Config->get('PASSWORD','GLOBAL');;
 
-     $REVERSE_PROXY       = filter_var($Config->get('ENABLED','webroot'), FILTER_VALIDATE_BOOLEAN);
-     $XBMC_WEBROOT        = $Config->get('XBMC','webroot');
-     $SICKBEARD_WEBROOT   = $Config->get('SICKBEARD','webroot');
-     $COUCHPOTATO_WEBROOT = $Config->get('COUCHPOTATO','webroot');
-     $SABNZBD_WEBROOT     = $Config->get('SABNZBD','webroot');
-     $UTORRENT_WEBROOT    = $Config->get('UTORRENT','webroot');
-     $JDOWNLOADER_WEBROOT = $Config->get('JDOWNLOADER','webroot');
-     $TRANSMISSION_WEBROOT= $Config->get('TRANSMISSION','webroot');
+     $REVERSE_PROXY       = filter_var($Config->get('ENABLED','WEBROOT'), FILTER_VALIDATE_BOOLEAN);
+     $XBMC_WEBROOT        = $Config->get('XBMC','WEBROOT');
+     $SICKBEARD_WEBROOT   = $Config->get('SICKBEARD','WEBROOT');
+     $COUCHPOTATO_WEBROOT = $Config->get('COUCHPOTATO','WEBROOT');
+     $SABNZBD_WEBROOT     = $Config->get('SABNZBD','WEBROOT');
+     $UTORRENT_WEBROOT    = $Config->get('UTORRENT','WEBROOT');
+     $JDOWNLOADER_WEBROOT = $Config->get('JDOWNLOADER','WEBROOT');
+     $TRANSMISSION_WEBROOT= $Config->get('TRANSMISSION','WEBROOT');
 
 /* XBMC Section*/
 
@@ -114,9 +114,9 @@ while(!$found){
      $TRANSMISSION_PASS      = $Config->get('PASSWORD','TRANSMISSION');
 /*Builtin Authentication*/
 
-     $AUTH_ON                = filter_var($Config->get('PASSWORD_PROTECTED','Security'), FILTER_VALIDATE_BOOLEAN);;
-     $AUTH_USERNAME          = $Config->get('USERNAME','Security');
-     $AUTH_PASS              = $Config->get('PASSWORD','Security');
+     $AUTH_ON                = filter_var($Config->get('PASSWORD_PROTECTED','SECURITY'), FILTER_VALIDATE_BOOLEAN);;
+     $AUTH_USERNAME          = $Config->get('USERNAME','SECURITY');
+     $AUTH_PASS              = $Config->get('PASSWORD','SECURITY');
 
                               /*SEARCH WIDGET*/
 
@@ -134,15 +134,15 @@ while(!$found){
 //     $trakt_api     ->     http://trakt.tv/settings/api                            //
 //***********************************************************************************//
 
-     $preferredSearch       = $Config->get('preferred_site','Search_Widget');
-     $preferredCategories   = $Config->get('preferred_categories','Search_Widget');
-     $NZBMATRIX_USERNAME    = $Config->get('NZBMATRIX_USERNAME','Search_Widget');
-     $NZBMATRIX_API         = $Config->get('NZBMATRIX_API','Search_Widget');
-     $NZBSU_API             = $Config->get('NZBSU_API','Search_Widget');
-     $NZB_DL                = $Config->get('NZB_DL','Search_Widget');
-     $TRAKT_API             = $Config->get('TRAKT_API','Trakt_Widget');
-     $TRAKT_USERNAME        = $Config->get('TRAKT_USERNAME','Trakt_Widget');
-     $TRAKT_PASSWORD        = $Config->get('TRAKT_PASSWORD','Trakt_Widget');
+     $preferredSearch       = $Config->get('preferred_site','SEARCH');
+     $preferredCategories   = $Config->get('preferred_categories','SEARCH');
+     $NZBMATRIX_USERNAME    = $Config->get('NZBMATRIX_USERNAME','SEARCH');
+     $NZBMATRIX_API         = $Config->get('NZBMATRIX_API','SEARCH');
+     $NZBSU_API             = $Config->get('NZBSU_API','SEARCH');
+     $NZB_DL                = $Config->get('NZB_DL','SEARCH');
+     $TRAKT_API             = $Config->get('TRAKT_API','TRAKT');
+     $TRAKT_USERNAME        = $Config->get('TRAKT_USERNAME','TRAKT');
+     $TRAKT_PASSWORD        = $Config->get('TRAKT_PASSWORD','TRAKT');
 
                               // NavBar Section //
 
@@ -174,13 +174,24 @@ while(!$found){
 
 
           $navlink;
-          $x = $Config->get('NavBar_Section');
+          $x = $Config->get('NAVBAR');
           if(!empty($x)){
               foreach ($x as $k=>$e){
                   $k = str_ireplace('_', ' ', $k);
                   $navlink["$k"]         = "$e";
+		          }
 		      }
-		  }
+
+          $subnavlink;
+          $x = $Config->get('SUBNAV');
+          if(!empty($x)){
+            foreach ($x as $k=>$e){
+              if(isset($k) && $k != ''){
+                $k = str_ireplace('_', ' ', $k);
+                $subnavlink["$k"]         = "$e";
+              }
+		        }
+		      }
 
                               // Control Section //
 
@@ -210,7 +221,7 @@ while(!$found){
 */
 					
           $shortcut;
-          $x = $Config->get('Control_Widget');
+          $x = $Config->get('CONTROL');
           $array;
           if(!empty($x)){
               foreach ($x as $k => $e){
@@ -236,7 +247,7 @@ while(!$found){
 //***********************************************************************************//
 
           $drive;
-          $x = $Config->get('HardDrive_Widget');
+          $x = $Config->get('HDD');
           if(!empty($x)){
               foreach ($x as $k=>$e){
                   $k = str_ireplace('_', ' ', $k);
@@ -262,7 +273,7 @@ while(!$found){
           $rssfeeds["NZBMatrix - Sports"]             = array("url" => "http://rss.nzbmatrix.com/rss.php?subcat=7"     , "cat" => "sports");
 */
           $rssfeeds;
-          $x = $Config->get('RSS_Widget');
+          $x = $Config->get('RSS');
           if(!empty($x)){
               foreach ($x as $k => $e){
               		parse_str($e, $array);
@@ -292,7 +303,7 @@ while(!$found){
 //$customStyleSheet = "css/comingepisodes-minimal-poster.css";
 //$customStyleSheet = "css/black_velvet.css";
 //$customStyleSheet = "css/hernandito.css";
-         $customStyleSheet = 'css/'.$Config->get('ENABLED','Mods').'.css';
+         $customStyleSheet = 'css/'.$Config->get('ENABLED','CSS').'.css';
 
                               // Message Section //
 
@@ -305,9 +316,9 @@ while(!$found){
 //***********************************************************************************//
           
           $xbmcMessages;
-          $x = $Config->get('Message_Widget');
+          $x = $Config->get('MESSAGE');
           if(!empty($x)){
-              foreach ($Config->get('Message_Widget') as $k=>$e){
+              foreach ($x as $k=>$e){
                   $k = str_ireplace('_', ' ', $k);
                   $xbmcMessages["$k"] = "$e";
 		      		}
@@ -322,10 +333,10 @@ while(!$found){
 //      the wControl widget.                                                         //
 //***********************************************************************************//
 
-     $mfpsecured = filter_var($Config->get('mfpsecured','Security'), FILTER_VALIDATE_BOOLEAN);
+     $mfpsecured = filter_var($Config->get('mfpsecured','SECURITY'), FILTER_VALIDATE_BOOLEAN);
 
 // Alternatively you can set a unique key here. //
-     $mfpapikey = $Config->get('mfpapikey','Security');
+     $mfpapikey = $Config->get('mfpapikey','SECURITY');
 
                  //XBMC MySQL Connections EXPERIMENTAL!//
                             //DO NOT USE YET//

@@ -36,11 +36,11 @@ ul.navigation {
 
 ul.navigation li {
     display: inline;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 ul.navigation a {
-    padding: 10px;
+    padding: 5px;
 	  color: #666666;
     text-decoration: none;
 }

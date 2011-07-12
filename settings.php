@@ -85,30 +85,31 @@ if(!empty($_GET)){
 					<br />
       <div id="slider">
         <ul class="navigation">
-	        <li><a href="#global">Global</a></li>
-	        <li><a href="#Programs">Programs</a></li>
-	        <li><a href="#Search_Widget">Search Widget</a></li>
-	        <li><a href="#Trakt_Widget">Trakt.tv</a></li>
-	        <li><a href="#NavBar_Section">NavBar</a></li>
-	        <li><a href="#HardDrive_Widget">Hard Drives</a></li>
-	        <li><a href="#Message_Widget">Message Widget</a></li>
-	        <li><a href="#Security">Security</a></li>
-	        <li><a href="#Mods">CSS Modifications</a></li>
-	        <li><a href="#RSS_Widget">RSS Widget</a></li>
-	        <li><a href="#Control_Widget">Control Widget</a></li>
+	        <li><a href="#GLOBAL">General</a></li>
+	        <li><a href="#PROGRAMS">Programs</a></li>
+	        <li><a href="#SEARCH">Search Widget</a></li>
+	        <li><a href="#TRAKT">Trakt.tv</a></li>
+	        <li><a href="#NAVBAR">Nav Bar</a></li>
+	        <li><a href="#SUBNAV">Sub Nav</a></li>
+	        <li><a href="#HDD">Hard Drives</a></li>
+	        <li><a href="#MESSAGE">Message Widget</a></li>
+	        <li><a href="#SECURITY">Security</a></li>
+	        <li><a href="#CSS">CSS Mods</a></li>
+	        <li><a href="#RSS">RSS Feeds</a></li>
+	        <li><a href="#CONTROL">Control Widget</a></li>
         </ul>
       <!-- element with overflow applied -->
 		  	<div class="scroll">
 	    		<!-- the element that will be scrolled during the effect -->
 	    		<div class="scrollContainer">
-			      <div id="global" class="panel">
+			      <div id="GLOBAL" class="panel">
 			        <table>
 			          <tr>
 			            <td align="right">
 			              <p>Global URL:</p>
 			            </td>
 			            <td align="left">
-			              <p><input type="checkbox" name="ENABLED" class="global" <?php echo ($config->get('ENABLED','global')=="true")?'CHECKED':'';?>></p>
+			              <p><input type="checkbox" name="ENABLED" <?php echo ($config->get('ENABLED','GLOBAL')=="true")?'CHECKED':'';?>></p>
 			            </td>
 			          </tr>
 			          <tr>
@@ -116,7 +117,7 @@ if(!empty($_GET)){
 			              <p>IP:</p>
 			            </td>
 			            <td align="left">
-			              <input name="URL" size="20" class="global" value="<?php echo $config->get('URL','global')?>">
+			              <input name="URL" size="20" value="<?php echo $config->get('URL','GLOBAL')?>">
 			            </td>
 			          </tr>
 			          <tr>
@@ -125,7 +126,7 @@ if(!empty($_GET)){
 			            </td>
 			            <td align="left">
 			              <p>
-			                <input type="checkbox" name="AUTHENTICATION" class="global" <?php echo ($config->get('AUTHENTICATION','global') == "true")?'CHECKED':'';?>>
+			                <input type="checkbox" name="AUTHENTICATION" <?php echo ($config->get('AUTHENTICATION','GLOBAL') == "true")?'CHECKED':'';?>>
 			              </p>
 			            </td>
 			          </tr>
@@ -134,35 +135,36 @@ if(!empty($_GET)){
 			              <p>Username:</p>
 			            </td>
 			            <td align="left">
-			              <input name="USERNAME" size="20" class="global" value="<?php echo $config->get('USERNAME','global')?>">
+			              <input name="USERNAME" size="20" value="<?php echo $config->get('USERNAME','GLOBAL')?>">
 			            </td>
 			          </tr>
 			          <tr>
 			            <td align="right">
 			              <p>Password:</p>
 			            </td>
-			            <td align="left"><input type="password" name="PASSWORD" size="20" class="global" value="<?php echo $config->get('PASSWORD','global')?>">
+			            <td align="left"><input type="password" name="PASSWORD" size="20" value="<?php echo $config->get('PASSWORD','GLOBAL')?>">
 			            </td>
 			          </tr>
 			        </table>
-			        <input type="button" value="Save" onclick="updateSettings('global');" />
+			        <input type="button" value="Save" onclick="updateSettings('GLOBAL');" />
 			      </div>
-			      <div id="Programs" class="panel">
+			      <div id="PROGRAMS" class="panel">
 			        <table cellspacing="30px">
-			          <tr><br /><br /><br /></tr>
+			          <tr><br /></tr>
 			          <tr>
-			            <td><a href="#XBMC"><img src="media/XBMC.png" /></a></td>
-			            <td><a href="#SABNZBD"><img src="media/SabNZBd.png" /></a></td>
+			            <td><a href="#XBMC" title="XBMC"><img src="media/XBMC.png" /></a></td>
+			            <td><a href="#SABNZBD" title="SabNZBd+"><img src="media/SabNZBd.png" /></a></td>
+			            <td><a href="#SUBSONIC" title="Subsonic"><img src="media/SubSonic.png" /></a></td>
 			          </tr>
 			          <tr>
-			            <td><a href="#SICKBEARD"><img src="media/SickBeard.png" /></a></td>
-			            <td><a href="#COUCHPOTATO"><img src="media/CouchPotato.png" /></a></td>
-                  <td><a href="#HEADPHONES"><img src="media/HeadPhones.png" /></a></td>
+			            <td><a href="#SICKBEARD" title="Sick Beard"><img src="media/SickBeard.png" /></a></td>
+			            <td><a href="#COUCHPOTATO" title="Couch Potato"><img src="media/CouchPotato.png" /></a></td>
+                  <td><a href="#HEADPHONES" title="Headphones"><img src="media/HeadPhones.png" /></a></td>
 			          </tr>
 			          <tr>
-			            <td><a href="#TRANSMISSION"><img src="media/Transmission.png" /></a></td>
-			            <td><a href="#UTORRENT"><img src="media/uTorrent.png" /></a></td>
-			            <td><a href="#JDOWNLOADER"><img src="media/JDownloader.png" /></a></td>
+			            <td><a href="#TRANSMISSION" title="Transmission"><img src="media/Transmission.png" /></a></td>
+			            <td><a href="#UTORRENT" title="uTorrent"><img src="media/uTorrent.png" /></a></td>
+			            <td><a href="#JDOWNLOADER" title="jDownloader"><img src="media/JDownloader.png" /></a></td>
 			          </tr>
 			        </table>
 			      </div>
@@ -438,7 +440,7 @@ if(!empty($_GET)){
 			        </table>
 			        <input type="button" value="Save" onclick="updateSettings('JDOWNLOADER');" />
 			      </div>
-			      <div id="Search_Widget" class="panel">
+			      <div id="SEARCH" class="panel">
 			        <h3>Search Widget</h3>
 			        <table>
 			          <tr>
@@ -447,9 +449,9 @@ if(!empty($_GET)){
 			            </td>
 			            <td align="left">
 			              <p>
-			                <input type="radio" name="preferred_site" value="1" <?php echo ($config->get('preferred_site','Search_Widget')=="1")?'CHECKED':'';?> />
+			                <input type="radio" name="preferred_site" value="1" <?php echo ($config->get('preferred_site','SEARCH')=="1")?'CHECKED':'';?> />
 			                	NZB Matrix 
-			                <input type="radio" name="preferred_site" value="2" <?php echo ($config->get('preferred_site','Search_Widget')=="2")?'CHECKED':'';?> />
+			                <input type="radio" name="preferred_site" value="2" <?php echo ($config->get('preferred_site','SEARCH')=="2")?'CHECKED':'';?> />
 			                	nzb.su
 			              </p>
 			            </td>
@@ -459,7 +461,7 @@ if(!empty($_GET)){
 			              <p>Preffered Category:</p>
 			            </td>
 			            <td align="left">
-			              <input name="preferred_categories" size="20" value="<?php echo $config->get('preferred_categories','Search_Widget')?>" />
+			              <input name="preferred_categories" size="20" value="<?php echo $config->get('preferred_categories','SEARCH')?>" />
 			            </td>
 			          </tr>
 			          <tr>
@@ -467,7 +469,7 @@ if(!empty($_GET)){
 			              <p>NZB Matrix USERNAME:</p>
 			            </td>
 			            <td align="left">
-			              <input name="NZBMATRIX_USERNAME" size="20" value="<?php echo $config->get('NZBMATRIX_USERNAME','Search_Widget')?>" />
+			              <input name="NZBMATRIX_USERNAME" size="20" value="<?php echo $config->get('NZBMATRIX_USERNAME','SEARCH')?>" />
 			            </td>
 			          </tr>
 			          <tr>
@@ -475,7 +477,7 @@ if(!empty($_GET)){
 			              <p>NZB Matrix API:</p>
 			            </td>
 			            <td align="left">
-			              <input name="NZBMATRIX_API" size="40" value="<?php echo $config->get('NZBMATRIX_API','Search_Widget')?>" />
+			              <input name="NZBMATRIX_API" size="40" value="<?php echo $config->get('NZBMATRIX_API','SEARCH')?>" />
 			              <a href="http://nzbmatrix.com/account.php"><img src="media/question.png" height="20px"></a>
 			            </td>
 			          </tr>
@@ -484,7 +486,7 @@ if(!empty($_GET)){
 			              <p>NZB.su API:</p>
 			            </td>
 			            <td align="left">
-			              <input name="NZBSU_API" size="40" value="<?php echo $config->get('NZBSU_API','Search_Widget')?>" />
+			              <input name="NZBSU_API" size="40" value="<?php echo $config->get('NZBSU_API','SEARCH')?>" />
 			              <a href="http://nzb.su/profile"><img src="media/question.png" height="20px"></a>
 			            </td>
 			          </tr>
@@ -493,28 +495,28 @@ if(!empty($_GET)){
 			              <p>NZB.su DL Code:</p>
 			            </td>
 			            <td align="left">
-			              <input name="NZB_DL" size="40" value="<?php echo $config->get('NZB_DL','Search_Widget')?>" />
+			              <input name="NZB_DL" size="40" value="<?php echo $config->get('NZB_DL','SEARCH')?>" />
 			              <a href="http://nzb.su/rss"><img src="media/question.png" height="20px"></a>
 			            </td>
 			          </tr>
 			        </table>
-			        <input type="button" value="Save" onclick="updateSettings('Search_Widget');" />
+			        <input type="button" value="Save" onclick="updateSettings('SEARCH');" />
 			      </div>
-			      <div id="Trakt_Widget" class="panel">
+			      <div id="TRAKT" class="panel">
 			        <h3>Trakt.tv</h3>
 			        <table>
 			          <tr>
 			            <td align="right">
 			              <p>Username:</p>
 			            </td>
-			            <td align="left"><input name="TRAKT_USERNAME" size="20" value="<?php echo $config->get('TRAKT_USERNAME','Trakt_Widget')?>" /></td>
+			            <td align="left"><input name="TRAKT_USERNAME" size="20" value="<?php echo $config->get('TRAKT_USERNAME','TRAKT')?>" /></td>
 			          </tr>
 			          <tr>
 			            <td align="right">
 			              <p>Password:</p>
 			            </td>
 			            <td align="left">
-			              <input name="TRAKT_PASSWORD" type="password" size="20" value="<?php echo $config->get('TRAKT_PASSWORD','Trakt_Widget')?>" />
+			              <input name="TRAKT_PASSWORD" type="password" size="20" value="<?php echo $config->get('TRAKT_PASSWORD','TRAKT')?>" />
 			            </td>
 			          </tr>
 			          <tr>
@@ -522,14 +524,14 @@ if(!empty($_GET)){
 			              <p>API:</p>
 			            </td>
 			            <td align="left">
-			              <input name="TRAKT_API" size="40" value="<?php echo $config->get('TRAKT_API','Trakt_Widget')?>" />
+			              <input name="TRAKT_API" size="40" value="<?php echo $config->get('TRAKT_API','TRAKT')?>" />
 			              <a href="http://trakt.tv/settings/api"><img src="media/question.png" height="20px"></a>
 			            </td>
 			          </tr>
 			        </table>
-			        <input type="button" value="Save" onclick="updateSettings('Trakt_Widget');" />
+			        <input type="button" value="Save" onclick="updateSettings('TRAKT');" />
 			      </div>
-			      <div id="NavBar_Section" class="panel">
+			      <div id="NAVBAR" class="panel">
 			        <h3>Nav Links</h3>
 			        <table id='table_nav'>
 			          <tr>
@@ -537,7 +539,7 @@ if(!empty($_GET)){
 			            <td>URL</td>
 			          </tr>
 			          <?php
-			           $x = $config->get('NavBar_Section');
+			           $x = $config->get('NAVBAR');
 			           foreach ($x as $title=>$url){
 			             echo "<tr>
 			                     <td>
@@ -554,9 +556,36 @@ if(!empty($_GET)){
 			        <input type="button" value="REMOVE" onclick="removeRowToTable('nav');" />
 			        <br />
 			        <br />
-			        <input type="button" value="Save & Reload" onclick="updateAlternative('NavBar_Section');top.frames['nav'].location.reload();" />
+			        <input type="button" value="Save & Reload" onclick="updateAlternative('NAVBAR');top.frames['nav'].location.reload();" />
 			      </div>
-			      <div id="HardDrive_Widget" class="panel">
+			      <div id="SUBNAV" class="panel">
+			        <h3>SubNav Links</h3>
+			        <table id='table_subnav'>
+			          <tr>
+			            <td>Title</td>
+			            <td>URL</td>
+			          </tr>
+			          <?php
+			           $x = $config->get('SUBNAV');
+			           foreach ($x as $title=>$url){
+			             echo "<tr>
+			                     <td>
+			                       <input size='13' name='TITLE' value='".str_ireplace('_', ' ', $title)."'/>
+			                     </td>
+			                     <td>
+			                       <input name='VALUE' size='30' value='$url'/>
+			                     </td>
+			                   </tr>";
+			           }
+			           ?>
+			        </table>
+			        <input type="button" value="ADD" onclick="addRowToTable('subnav', 13, 30);" />
+			        <input type="button" value="REMOVE" onclick="removeRowToTable('subnav');" />
+			        <br />
+			        <br />
+			        <input type="button" value="Save & Reload" onclick="updateAlternative('SUBNAV');top.frames['nav'].location.reload();" />
+			      </div>
+			      <div id="HDD" class="panel">
 			        <h3>Hard Drives</h3>
 			        <table id='table_hdd'>
 			          <tr>
@@ -564,7 +593,7 @@ if(!empty($_GET)){
 			            <td>Path</td>
 			          </tr>
 			          <?php
-			           $x = $config->get('HardDrive_Widget');
+			           $x = $config->get('HDD');
 			           foreach ($x as $title=>$url){
 			             echo "<tr>
 			                     <td>
@@ -581,9 +610,9 @@ if(!empty($_GET)){
 			        <input type="button" value="REMOVE" onclick="removeRowToTable('hdd');" />
 			        <br />
 			        <br />
-			        <input type="button" value="Save" onclick="updateAlternative('HardDrive_Widget');" />
+			        <input type="button" value="Save" onclick="updateAlternative('HDD');" />
 			      </div>
-			      <div id="Message_Widget" class="panel">
+			      <div id="MESSAGE" class="panel">
 			        <h3>XBMC Instances for Message Widget</h3>
 			        <table id="table_msg">
 			          <tr>
@@ -591,7 +620,7 @@ if(!empty($_GET)){
 			            <td>URL</td>
 			          </tr>
 			          <?php
-			           $x = $config->get('Message_Widget');
+			           $x = $config->get('MESSAGE');
 			           foreach ($x as $title=>$url){
 			             echo "<tr>
 			                     <td>
@@ -608,9 +637,9 @@ if(!empty($_GET)){
 			        <input type="button" value="REMOVE" onclick="removeRowToTable('msg');" />
 			        <br />
 			        <br />
-			        <input type="button" value="Save" onclick="updateAlternative('Message_Widget');" />
+			        <input type="button" value="Save" onclick="updateAlternative('MESSAGE');" />
 			      </div>
-			      <div id="Security" class="panel">
+			      <div id="SECURITY" class="panel">
 			        <h3>Security</h3>
 			        <table>
 			          <tr>
@@ -619,7 +648,7 @@ if(!empty($_GET)){
 			            </td>
 			            <td align="left">
 			              <p>
-			                <input type="checkbox" name="PASSWORD_PROTECTED" <?php echo ($config->get('PASSWORD_PROTECTED','Security') == "true")?'CHECKED':'';?> />
+			                <input type="checkbox" name="PASSWORD_PROTECTED" <?php echo ($config->get('PASSWORD_PROTECTED','SECURITY') == "true")?'CHECKED':'';?> />
 			              </p>
 			            </td>
 			          </tr>
@@ -628,7 +657,7 @@ if(!empty($_GET)){
 			              <p>USERNAME:</p>
 			            </td>
 			            <td align="left">
-			              <input name="USERNAME" size="20" value="<?php echo $config->get('USERNAME','Security')?>" />
+			              <input name="USERNAME" size="20" value="<?php echo $config->get('USERNAME','SECURITY')?>" />
 			            </td>
 			          </tr>
 			          <tr>
@@ -636,7 +665,7 @@ if(!empty($_GET)){
 			              <p>PASSWORD:</p>
 			            </td>
 			            <td align="left">
-			              <input name="PASSWORD" size="20" type="password" value="<?php echo $config->get('PASSWORD','Security')?>" />
+			              <input name="PASSWORD" size="20" type="password" value="<?php echo $config->get('PASSWORD','SECURITY')?>" />
 			            </td>
 			          </tr>
 			          <tr>
@@ -644,7 +673,7 @@ if(!empty($_GET)){
 			              <p>MFPSECURED:</p>
 			            </td>
 			            <td align="left">
-			              <p><input type="checkbox" name="mfpsecured" <?php echo ($config->get('mfpsecured','Security') == "true")?'CHECKED':'';   ?>></p>
+			              <p><input type="checkbox" name="mfpsecured" <?php echo ($config->get('mfpsecured','SECURITY') == "true")?'CHECKED':'';   ?>></p>
 			            </td>
 			          </tr>
 			          <tr>
@@ -652,13 +681,13 @@ if(!empty($_GET)){
 			              <p>MFP API Key:</p>
 			            </td>
 			            <td align="left">
-			              <input name="mfpapikey" size="20" value="<?php echo $config->get('mfpapikey','Security')?>" />
+			              <input name="mfpapikey" size="20" value="<?php echo $config->get('mfpapikey','SECURITY')?>" />
 			            </td>
 			          </tr>
 			        </table>
-			        <input type="button" value="Save" onclick="updateSettings('Security');" />
+			        <input type="button" value="Save" onclick="updateSettings('SECURITY');" />
 			      </div>
-			      <div id="Mods" class="panel">
+			      <div id="CSS" class="panel">
 			        <h3>CSS Modifications:</h3>
 			        <table style="max-height:300px;">
 			          <tr align="center">
@@ -668,40 +697,43 @@ if(!empty($_GET)){
 			          </tr>
 			          <tr>
 			            <td align="center">
-			              <input type="radio" name="ENABLED" value="lighttheme" <?php echo ($config->get('ENABLED','Mods') == "lighttheme")?'CHECKED':'';?> />
+			              <input type="radio" name="ENABLED" value="lighttheme" <?php echo ($config->get('ENABLED','CSS') == "lighttheme")?'CHECKED':'';?> />
 			              <p>Light Theme</p>
 			            </td>
 			            <td align="center">
-			              <input type="radio" name="ENABLED" value="hernandito" <?php echo ($config->get('ENABLED','Mods') == "hernandito")?'CHECKED':'';   ?>>
+			              <input type="radio" name="ENABLED" value="hernandito" <?php echo ($config->get('ENABLED','CSS') == "hernandito")?'CHECKED':'';   ?>>
 			              <p>Hernandito's Theme</p>
 			            </td>
 			            <td align="center">
-			              <input type="radio" name="ENABLED" value="black_modern_glass" <?php echo ($config->get('ENABLED','Mods') == "black_modern_glass")?'CHECKED':'';?> />
+			              <input type="radio" name="ENABLED" value="black_modern_glass" <?php echo ($config->get('ENABLED','CSS') == "black_modern_glass")?'CHECKED':'';?> />
 			              <p>Black Modern Glass Theme</p>
 			            </td>
 			          </tr>
 			          <tr>
 			            <td><img class="widget" src="media/examples/minimal-posters.jpg" height="120px" /></td>
 			            <td><img class="widget" src="media/examples/minimal-banners.jpg" height="120px" /></td>
+			            <td></td>
 			          </tr>
 			          <tr>
 			            <td align="center">
-			              <input type="radio" name="ENABLED" value="comingepisodes-minimal-poster" <?php echo ($config->get('ENABLED','Mods') == "comingepisodes-minimal-poster")?'CHECKED':'';?> />
+			              <input type="radio" name="ENABLED" value="comingepisodes-minimal-poster" <?php echo ($config->get('ENABLED','CSS') == "comingepisodes-minimal-poster")?'CHECKED':'';?> />
 			              <p>Minimal Posters</p>
 			            </td>
 			            <td align="center">
-			              <input type="radio" name="ENABLED" value="comingepisodes-minimal-banner" <?php echo ($config->get('ENABLED','Mods') == "comingepisodes-minimal-banner")?'CHECKED':'';?> />
+			              <input type="radio" name="ENABLED" value="comingepisodes-minimal-banner" <?php echo ($config->get('ENABLED','CSS') == "comingepisodes-minimal-banner")?'CHECKED':'';?> />
 			              <p>Minimal Banners</p>
+			            </td>
+			            <td>
+			              <input type="radio" name="ENABLED" value="" <?php echo ($config->get('ENABLED','CSS') == "")?'CHECKED':'';   ?> />
+			              <p>OFF</p>
 			            </td>
 			          </tr>
 			        </table>
 			        <br />
 			        <br />
-			        <input type="radio" name="ENABLED" value="" <?php echo ($config->get('ENABLED','Mods') == "")?'CHECKED':'';   ?> />
-			        <p>OFF</p>
-			        <input type="button" value="Save" onclick="updateSettings('Mods');" />
+			        <input type="button" value="Save" onclick="updateSettings('CSS');" />
 			      </div>
-			      <div id="RSS_Widget" class="panel">
+			      <div id="RSS" class="panel">
 			        <h3>RSS Feeds</h3>
 			        <table id="table_rss">
 			          <tr>
@@ -709,7 +741,7 @@ if(!empty($_GET)){
 			            <td>URL</td>
 			          </tr>
 			          <?php
-			           $x = $config->get('RSS_Widget');
+			           $x = $config->get('RSS');
 			           foreach ($x as $title=>$url){
 			             echo "<tr>
 			                     <td>
@@ -726,9 +758,9 @@ if(!empty($_GET)){
 			        <input type="button" value="REMOVE" onclick="removeRowToTable('rss');" />
 			        <br />
 			        <br />
-			        <input type="button" value="Save" onclick="updateAlternative('RSS_Widget');" />
+			        <input type="button" value="Save" onclick="updateAlternative('RSS');" />
 			      </div>
-			      <div id="Control_Widget" class="panel">
+			      <div id="CONTROL" class="panel">
 			        <h3>Control Widget</h3>
 			          <table id="table_control">
 			            <tr>
@@ -736,7 +768,7 @@ if(!empty($_GET)){
 			              <td>URL</td>
 			            </tr>
 						      <?php
-						      $x = $config->get('Control_Widget');
+						      $x = $config->get('CONTROL');
 						      foreach ($x as $title=>$url){
 						        echo "<tr>
 						                <td>
@@ -753,7 +785,7 @@ if(!empty($_GET)){
 			          <input type="button" value="REMOVE" onclick="removeRowToTable('control');" />
 			          <br />
 			          <br />
-			          <input type="button" value="Save" onclick="updateAlternative('Control_Widget');" />
+			          <input type="button" value="Save" onclick="updateAlternative('CONTROL');" />
 			        </div>
 			      </div>
 			    </div>

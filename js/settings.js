@@ -92,7 +92,7 @@ function updateSettings(section) {
 		} else if (contents[i].name != '') {
 			params = params + '&' + contents[i].name + '=' + encodeURIComponent(value);
 		}
-	} //alert(params);
+	} 
 	ajaxRequest(params);
 }
 
@@ -100,27 +100,28 @@ function updateAlternative(section) {
 	var contents = document.getElementById(section).getElementsByTagName('input');
 	var params = 'section=' + section;
 	for (i = 0; i < contents.length; i++) {
-		if (contents[i].name == 'TITLE') {
+		if (contents[i].name == 'TITLE' && contents[i].value !='') {
 			params = params + '&' + escape(contents[i++].value) + '=' + encodeURIComponent(contents[i].value);
+		} else {
+			alert('Empty titles break MFP. Please correct it.');
+			stop();
 		} //var value = contents[i].value;
-	} //alert(params);
+	} 
 	ajaxRequest(params);
 }
 
 function ajaxRequest(params){
+	alert(params);
 	$.ajax({
 		type: 'GET',
 		url: "settings.php?" + params,
-		beforeSend: function() { // this is where we append a loading image
-			//$("#result").html('Saving');
-		},
 		success: function(data) { // successful request; do something with the data
 			//$("#result").html(data); //$("#result").html('Saved');
 			//alert(data);
 			alert('Settings saved.');
 		},
 		error: function() { // failed request; give feedback to user
-			alert("Sorry, but I couldn't create an XMLHttpRequest");
+			alert("Error saving settings.");
 		}
 	});
 }
