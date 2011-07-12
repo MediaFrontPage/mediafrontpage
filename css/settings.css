@@ -1,70 +1,61 @@
-.dock-container {
-	position:relative;
-	height:50px;
-	padding-left:0;
-	bottom:0
+#wrapper {
+    width: 900px;
+    margin: 0 auto;
 }
 
-a.dock-item {
-	display:block;
-	width:50px;
-	position:absolute;
-	text-align:center;
-	text-decoration:none;
-	bottom:0
+#intro {
+    padding-bottom: 10px;
 }
 
-.dock-item span {
-	display:none;
-	padding-left:20px;
-	bottom:0
+#slider {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
 }
 
-.dock-item img {
-	border:none;
-	margin:0 auto 5px;
-	width:100%;
-	bottom:0
+.scroll {
+    height: 80%;
+    width: 1000px;
+    overflow: auto;
+    overflow-x: hidden;
+    position: relative;
+    clear: both;
 }
 
-.bottom {
-	width:100%;
-  position: relative;
-	z-index:1000;
+.scrollContainer div.panel {
+    height: 80%;
+    width: 1000px;
 }
 
-div.tabs {
-	font-size:80%;
-	font-weight:700
+ul.navigation {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 5px;
 }
 
-a.tab {
-	border-bottom-width:0;
-	padding:2px 1em;
-	text-decoration:none;
-	cursor:pointer
+ul.navigation li {
+    display: inline;
+    margin-right: 10px;
 }
 
-a.tab,a.tab:visited {
-	color:gray
+ul.navigation a {
+    padding: 10px;
+	  color: #666666;
+    text-decoration: none;
 }
 
-a.tab:hover {
-	background-color:#d0d0d0;
-	color:#606060
+ul.navigation a:hover {
+	  color:#FF9522;
 }
 
-/*
-* note that by default all tab content areas
-* have display set to 'none'
-*/
-div.tabContent {
-	padding:4px;
-	display:none
+ul.navigation a.selected {
+	  color:#FF9522;
 }
-input {  
-	background:url(../media/bgNav.png);
-	border: 1px solid #000;
-	padding: 2px 1em 2px 1em;
-	color:#FFFFFF;
-}  
+
+ul.navigation a:focus {
+    outline: none;
+}
+.hide {
+    display: none;
+}
