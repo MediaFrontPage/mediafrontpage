@@ -94,7 +94,7 @@ if(!empty($_GET)){
 	        <li><a href="#HDD">Hard Drives</a></li>
 	        <li><a href="#MESSAGE">Message Widget</a></li>
 	        <li><a href="#SECURITY">Security</a></li>
-	        <li><a href="#CSS">CSS Mods</a></li>
+	        <li><a href="#MODS">CSS Mods</a></li>
 	        <li><a href="#RSS">RSS Feeds</a></li>
 	        <li><a href="#CONTROL">Control Widget</a></li>
         </ul>
@@ -687,7 +687,7 @@ if(!empty($_GET)){
 			        </table>
 			        <input type="button" value="Save" onclick="updateSettings('SECURITY');" />
 			      </div>
-			      <div id="CSS" class="panel">
+			      <div id="MODS" class="panel">
 			        <h3>CSS Modifications:</h3>
 			        <table style="max-height:300px;">
 			          <tr align="center">
