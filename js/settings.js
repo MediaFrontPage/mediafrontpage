@@ -1,6 +1,6 @@
 // this is a bit of a hack here
 // just list the tab content divs here
-var tabs = ["global", "XBMC", "SICKBEARD", "COUCHPOTATO", "SABNZBD", "TRANSMISSION", "UTORRENT", "JDOWNLOADER", "Search_Widget", "Trakt_Widget", "Security", "Mods", "NavBar_Section", "HardDrive_Widget", "Message_Widget", "RSS_Widget", "Control_Widget"]; // when the DOM is ready...
+var tabs = ["GLOBAL", "XBMC", "SICKBEARD", "COUCHPOTATO", "SABNZBD", "TRANSMISSION", "UTORRENT", "JDOWNLOADER", "SEARCH", "TRAKT", "SECURITY", "MODS", "NAVBAR", "HDD", "MESSAGE", "RSS", "CONTROL"]; // when the DOM is ready...
 
 $(document).ready(function() {
 	var $panels = $('#slider .scrollContainer > div');
