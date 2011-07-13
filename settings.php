@@ -697,15 +697,15 @@ if(!empty($_GET)){
 			          </tr>
 			          <tr>
 			            <td align="center">
-			              <input type="radio" name="ENABLED" value="lighttheme" <?php echo ($config->get('ENABLED','CSS') == "lighttheme")?'CHECKED':'';?> />
+			              <input type="radio" name="ENABLED" value="lighttheme" <?php echo ($config->get('ENABLED','MODS') == "lighttheme")?'CHECKED':'';?> />
 			              <p>Light Theme</p>
 			            </td>
 			            <td align="center">
-			              <input type="radio" name="ENABLED" value="hernandito" <?php echo ($config->get('ENABLED','CSS') == "hernandito")?'CHECKED':'';   ?>>
+			              <input type="radio" name="ENABLED" value="hernandito" <?php echo ($config->get('ENABLED','MODS') == "hernandito")?'CHECKED':'';   ?>>
 			              <p>Hernandito's Theme</p>
 			            </td>
 			            <td align="center">
-			              <input type="radio" name="ENABLED" value="black_modern_glass" <?php echo ($config->get('ENABLED','CSS') == "black_modern_glass")?'CHECKED':'';?> />
+			              <input type="radio" name="ENABLED" value="black_modern_glass" <?php echo ($config->get('ENABLED','MODS') == "black_modern_glass")?'CHECKED':'';?> />
 			              <p>Black Modern Glass Theme</p>
 			            </td>
 			          </tr>
@@ -716,22 +716,22 @@ if(!empty($_GET)){
 			          </tr>
 			          <tr>
 			            <td align="center">
-			              <input type="radio" name="ENABLED" value="comingepisodes-minimal-poster" <?php echo ($config->get('ENABLED','CSS') == "comingepisodes-minimal-poster")?'CHECKED':'';?> />
+			              <input type="radio" name="ENABLED" value="comingepisodes-minimal-poster" <?php echo ($config->get('ENABLED','MODS') == "comingepisodes-minimal-poster")?'CHECKED':'';?> />
 			              <p>Minimal Posters</p>
 			            </td>
 			            <td align="center">
-			              <input type="radio" name="ENABLED" value="comingepisodes-minimal-banner" <?php echo ($config->get('ENABLED','CSS') == "comingepisodes-minimal-banner")?'CHECKED':'';?> />
+			              <input type="radio" name="ENABLED" value="comingepisodes-minimal-banner" <?php echo ($config->get('ENABLED','MODS') == "comingepisodes-minimal-banner")?'CHECKED':'';?> />
 			              <p>Minimal Banners</p>
 			            </td>
 			            <td>
-			              <input type="radio" name="ENABLED" value="" <?php echo ($config->get('ENABLED','CSS') == "")?'CHECKED':'';   ?> />
+			              <input type="radio" name="ENABLED" value="" <?php echo ($config->get('ENABLED','MODS') == "")?'CHECKED':'';   ?> />
 			              <p>OFF</p>
 			            </td>
 			          </tr>
 			        </table>
 			        <br />
 			        <br />
-			        <input type="button" value="Save" onclick="updateSettings('CSS');" />
+			        <input type="button" value="Save" onclick="updateSettings('MODS');" />
 			      </div>
 			      <div id="RSS" class="panel">
 			        <h3>RSS Feeds</h3>
@@ -754,8 +754,8 @@ if(!empty($_GET)){
 			           }
 			           ?>
 			        </table>
-			        <input type="button" value="ADD" onclick="addRowToTable('rss', 40, 80);" />
-			        <input type="button" value="REMOVE" onclick="removeRowToTable('rss');" />
+			        <input type="button" value="ADD" onclick="addRowToTable('RSS', 40, 80);" />
+			        <input type="button" value="REMOVE" onclick="removeRowToTable('RSS');" />
 			        <br />
 			        <br />
 			        <input type="button" value="Save" onclick="updateAlternative('RSS');" />
@@ -781,8 +781,8 @@ if(!empty($_GET)){
 						      }
 						      ?>
 			          </table>
-			          <input type="button" value="ADD" onclick="addRowToTable('control', 40, 80);" />
-			          <input type="button" value="REMOVE" onclick="removeRowToTable('control');" />
+			          <input type="button" value="ADD" onclick="addRowToTable('CONTROL', 40, 80);" />
+			          <input type="button" value="REMOVE" onclick="removeRowToTable('CONTROL');" />
 			          <br />
 			          <br />
 			          <input type="button" value="Save" onclick="updateAlternative('CONTROL');" />
