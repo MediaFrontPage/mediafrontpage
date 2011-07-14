@@ -1,14 +1,12 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<!--
-   @author: Gustavo Hoirisch
-  -->
 <?php
 require_once('class.ConfigMagik.php');
 $config = new ConfigMagik('config.ini', true, true);
 
 if(!empty($_GET)){
+	$return = true;
   if(!isset($_GET['section'])){ 
-    echo 'ERROR'; 
+  	echo false;
+  	return false;
     exit;
   } else {
     $section_name = $_GET['section'];
@@ -16,49 +14,58 @@ if(!empty($_GET)){
     try{
       $section = $config->get($section_name);
     } catch(Exception $e){
-      echo 'Section '.$section_name.' does not exist!';
+      //echo 'Section '.$section_name.' does not exist!';
+      echo false;
+      return false;
       exit;
     }
-    echo 'UPDATING '.$section_name.' INFO';
-    echo '<br>';
+    //echo 'UPDATING '.$section_name.' INFO';
+    //echo '<br>';
     foreach ($_GET as $var=>$value){
       if($config->get($var, $section_name) != null){
         $content = $config->get($var, $section_name);
         //echo '<script>alert("'.$content.'");</script>';  
         if($content || $content == ''){
           if($content==$value){
-            echo '<b>'.$var.'</b>: No update required<br />';
+            //echo '<b>'.$var.'</b>: No update required<br />';
           }
           else{
             try{
               $config->set($var, $value, $section_name);
               echo '<b>'.$var.'</b>: updated<br>';
             } catch(Exception $e) {
-              echo 'Error! Updating variable: '.$var;
+            	echo false;
+            	return false;
             }
           }
         } else {
-          echo '<b>'.$var.'</b> does not exist<br>';
+          //echo '<b>'.$var.'</b> does not exist<br>';
         }
       } else {
         $content = $config->set($var, $value, $section_name);
-        echo '<b>'.$var.'</b>: '.$value.' (NEW)<br>';
       }
     }
     foreach ($section as $title=>$value){
       if(!isset($_GET[$title])){
         try{
           $config->removeKey($title, $section_name);
-          echo '<b>'.$title.'</b>: removed <br />';
+          //echo '<b>'.$title.'</b>: removed <br />';
         } catch(Exception $e){
-          echo 'Problem: '.$e;
+          echo false;
+          return false;
         }
       }
     }
     $config->save();
+    echo true;
+    return true;
   }
 } else {
 ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+   @author: Gustavo Hoirisch
+  -->
 
 <html>
 <head>

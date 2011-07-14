@@ -1,7 +1,3 @@
-// this is a bit of a hack here
-// just list the tab content divs here
-var tabs = ["GLOBAL", "XBMC", "SICKBEARD", "COUCHPOTATO", "SABNZBD", "TRANSMISSION", "UTORRENT", "JDOWNLOADER", "SEARCH", "TRAKT", "SECURITY", "MODS", "NAVBAR", "HDD", "MESSAGE", "RSS", "CONTROL"]; // when the DOM is ready...
-
 $(document).ready(function() {
 	var $panels = $('#slider .scrollContainer > div');
 	var $container = $('#slider .scrollContainer'); // if false, we'll float all the panels left and fix the width 
@@ -102,23 +98,23 @@ function updateAlternative(section) {
 	for (i = 0; i < contents.length; i++) {
 		if (contents[i].name == 'TITLE' && contents[i].value !='') {
 			params = params + '&' + escape(contents[i++].value) + '=' + encodeURIComponent(contents[i].value);
-		} else {
-			alert('Empty titles break MFP. Please correct it.');
-			stop();
 		} //var value = contents[i].value;
 	} 
 	ajaxRequest(params);
 }
 
 function ajaxRequest(params){
-	alert(params);
+	//alert(params);
 	$.ajax({
 		type: 'GET',
 		url: "settings.php?" + params,
 		success: function(data) { // successful request; do something with the data
 			//$("#result").html(data); //$("#result").html('Saved');
-			//alert(data);
-			alert('Settings saved.');
+			if(data == 1){
+				alert('Settings saved.');
+			} else {
+				alert('An error occured please try again or contact the developers.');
+			}
 		},
 		error: function() { // failed request; give feedback to user
 			alert("Error saving settings.");
@@ -147,7 +143,7 @@ function addRowToTable(section, size1, size2) {
 function removeRowToTable(section) {
 	var tbl = document.getElementById('table_' + section);
 	var lastRow = tbl.rows.length;
-	if (lastRow > 2) tbl.deleteRow(lastRow - 1);
+	if (lastRow > 1) tbl.deleteRow(lastRow - 1);
 }
 function saveAll() {
 	var i = 0;
