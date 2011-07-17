@@ -145,7 +145,6 @@ if(!empty($_GET)){
 			      </div>
 			      <div id="PROGRAMS" class="panel">
 			        <table cellspacing="30px">
-			          <tr><br /></tr>
 			          <tr>
 			            <td><a href="#XBMC" title="XBMC"><img src="media/XBMC.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
 			            <td><a href="#SABNZBD" title="SabNZBd+"><img src="media/SabNZBd.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
@@ -248,9 +247,12 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
+					    <input type=button value="Back" onClick="history.go(-1)">
 			        <input type="button" value="Save" onclick="updateSettings('WEBROOT');" />
 			      </div>
 			      <div id="XBMC" class="panel">
+			        <br />
+			        <br />
 			        <h3>XBMC</h3>
 			        <table>
 			          <tr>
@@ -286,9 +288,12 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
+					    <input type=button value="Back" onClick="history.go(-1)">
 			        <input type="button" value="Save" onclick="updateSettings('XBMC');" />
 			      </div>
 			      <div id="SICKBEARD" class="panel">
+			        <br />
+			        <br />
 			        <h3>Sickbeard</h3>
 			        <table>
 			          <tr>
@@ -324,9 +329,12 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
+					    <input type=button value="Back" onClick="history.go(-1)">
 			        <input type="button" value="Save" onclick="updateSettings('SICKBEARD');" />
 			      </div>
 			      <div id="COUCHPOTATO" class="panel">
+			        <br />
+			        <br />
 			        <h3>Couch Potato</h3>
 			        <table>
 			          <tr>
@@ -362,9 +370,12 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
+					    <input type=button value="Back" onClick="history.go(-1)">
 			        <input type="button" value="Save" onclick="updateSettings('COUCHPOTATO');" />
 			      </div>
 			      <div id="SABNZBD" class="panel">
+			        <br />
+			        <br />
 			        <h3>Sabnzbd+</h3>
 			        <table>
 			          <tr>
@@ -408,9 +419,12 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
+					    <input type=button value="Back" onClick="history.go(-1)">
 			        <input type="button" value="Save" onclick="updateSettings('SABNZBD');" />
 			      </div>
 			      <div id="TRANSMISSION" class="panel">
+			        <br />
+			        <br />
 			        <h3>Transmission</h3>
 			        <table>
 			          <tr>
@@ -446,9 +460,12 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
+					    <input type=button value="Back" onClick="history.go(-1)">
 			        <input type="button" value="Save" onclick="updateSettings('TRANSMISSION');" />
 			      </div>
 			      <div id="UTORRENT" class="panel">
+			        <br />
+			        <br />
 			        <h3>uTorrent</h3>
 			        <table>
 			          <tr>
@@ -484,9 +501,12 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
+					    <input type=button value="Back" onClick="history.go(-1)">
 			        <input type="button" value="Save" onclick="updateSettings('UTORRENT');" />
 			      </div>
 			      <div id="JDOWNLOADER" class="panel">
+			        <br />
+			        <br />
 			        <h3>jDownloader</h3>
 			        <table>
 			          <tr>
@@ -520,8 +540,91 @@ if(!empty($_GET)){
 			            <td align="left"><input name="PASSWORD" size="20" type="password" value="<?php echo $config->get('PASSWORD','JDOWNLOADER')?>" /></td>
 			          </tr>
 			        </table>
+					    <input type=button value="Back" onClick="history.go(-1)">
 			        <input type="button" value="Save" onclick="updateSettings('JDOWNLOADER');" />
 			      </div>
+			      <div id="SUBSONIC" class="panel">
+			        <br />
+			        <br />
+			        <h3>SubSonic</h3>
+			        <table>
+			          <tr>
+			            <td align="right">
+			              <p>IP:</p>
+			            </td>
+			            <td align="left">
+			              <input name="IP" size="20" value="<?php echo $config->get('IP','SUBSONIC')?>" />
+			            </td>
+			          </tr>
+			          <tr>
+			            <td align="right">
+			              <p>PORT:</p>
+			            </td>
+			            <td align="left">
+			              <input name="PORT" size="4" value="<?php echo $config->get('PORT','SUBSONIC')?>" />
+			            </td>
+			          </tr>
+			          <tr>
+			            <td align="right">
+			              <p>USERNAME:</p>
+			            </td>
+			            <td align="left">
+			              <input name="USERNAME" size="20" value="<?php echo $config->get('USERNAME','SUBSONIC')?>" />
+			            </td>
+			          </tr>
+			          <tr>
+			            <td align="right">
+			              <p>PASSWORD:</p>
+			            </td>
+			            <td align="left">
+			              <input name="PASSWORD" size="20" type="password" value="<?php echo $config->get('PASSWORD','SUBSONIC')?>" />
+			            </td>
+			          </tr>
+			        </table>
+					    <input type=button value="Back" onClick="history.go(-1)">
+			        <input type="button" value="Save" onClick="updateSettings('SUBSONIC');" />
+			      </div>
+			      <div id="HEADPHONES" class="panel">
+			        <br />
+			        <br />
+			        <h3>HeadPhones</h3>
+			        <table>
+			          <tr>
+			            <td align="right">
+			              <p>IP:</p>
+			            </td>
+			            <td align="left">
+			              <input name="IP" size="20" value="<?php echo $config->get('IP','HEADPHONES')?>" />
+			            </td>
+			          </tr>
+			          <tr>
+			            <td align="right">
+			              <p>PORT:</p>
+			            </td>
+			            <td align="left">
+			              <input name="PORT" size="4" value="<?php echo $config->get('PORT','HEADPHONES')?>" />
+			            </td>
+			          </tr>
+			          <tr>
+			            <td align="right">
+			              <p>USERNAME:</p>
+			            </td>
+			            <td align="left">
+			              <input name="USERNAME" size="20" value="<?php echo $config->get('USERNAME','HEADPHONES')?>" />
+			            </td>
+			          </tr>
+			          <tr>
+			            <td align="right">
+			              <p>PASSWORD:</p>
+			            </td>
+			            <td align="left">
+			              <input name="PASSWORD" size="20" type="password" value="<?php echo $config->get('PASSWORD','HEADPHONES')?>" />
+			            </td>
+			          </tr>
+			        </table>
+					    <input type=button value="Back" onClick="history.go(-1)">
+			        <input type="button" value="Save" onClick="updateSettings('HEADPHONES');" />
+			      </div>				  
 			      <div id="SEARCH" class="panel">
 			        <h3>Search Widget</h3>
 			        <table>
