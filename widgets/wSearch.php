@@ -24,7 +24,6 @@ BODY;
 ?>
 		<html>
 			<head>
-				<title>Media Front Page - Search Widget</title>
 				<link rel='stylesheet' type='text/css' href='css/front.css'>
 		        <script type="text/javascript" src="widgets/searchComponents/searchWidget.js"></script>
 			</head>

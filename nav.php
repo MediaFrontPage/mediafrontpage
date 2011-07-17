@@ -5,15 +5,9 @@ if ($authsecured && (!isset($_SESSION['loggedin']) || !$_SESSION['loggedin'])) {
     header('Location: login.php');
     exit;
 }
-?>
-<?php
-include "config.php";
-echo "<html>";
-echo "<head>";
-echo "<title>Navigation</title>";
-echo "<link rel='stylesheet' type='text/css' href='css/nav.css'>";
 echo "<script type=\"text/javascript\" language=\"javascript\">";
 echo 'function logout(){
+     alert("Logging out");
     var xmlhttp;
     if (window.XMLHttpRequest)
       {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -36,79 +30,66 @@ echo 'function logout(){
     xmlhttp.send();
     }';
 echo "</script>";
-echo "</head>";
-echo "<body>";
-echo "<div id='header'>";
-echo "<div id='home'>";
-echo "<a href='./mediafrontpage.php' target='main'></a>";
-echo "</div>";
-echo "<div id='nav-menu'>";
-echo "<ul>";
+?>
+		<link rel="stylesheet" href="css/nav_style.css" type="text/css" charset="utf-8"/>
+		<link href="css/widget.css" rel="stylesheet" type="text/css" />	
+		<link href="css/front.css" rel="stylesheet" type="text/css" />	
+        
+        		<!-- START: Dynamic Header Inserts From Widgets -->
+<?php
+		if(!empty($customStyleSheet)) {
+			echo "\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"".$customStyleSheet."\">\n";
+		}
+?>
+		<!-- END: Dynamic Header Inserts From Widgets -->
+		<div class="header"></div>
+<ul id="navigation">
+<li><a href="./" style='background-image: url(./media/nav/mfp.png)'><H3>Widgets</H3></a></li>
+<?php
 if(!empty($navlink)){
 	foreach( $navlink as $navlinklabel => $navlinkpath) {
-		echo "<li><a href='".$navlinkpath."' target='main'>".$navlinklabel."</a></li>";
-	}
+    if(!is_array($navlinkpath)){
+      $image = (file_exists('./media/nav/'.$navlinklabel.'.png')) ? $navlinklabel : 'default';
+      echo "<li><a href='".$navlinkpath."' style='background-image: url(./media/nav/".$image.".png)'><H3>".$navlinklabel."</H3></a></li>";
+    }
+    else{
+      $title = (!empty($navlinkpath['title'])) ? $navlinkpath['title'] : $navlinklabel;
+      $image = (!empty($navlinkpath['image']) && file_exists('./media/nav/'.$navlinkpath['image'])) ? $navlinkpath['image'] : 'default.png';
+      $target = (!empty($navlinkpath['target'])) ? $navlinkpath['target'] : '';
+      echo "<li><a href='".$navlinkpath['path']."' target='".$target."' style='background-image: url(./media/nav/".$image.")'><H3>".$title."</H3></a></li>";    
+    }
+  }
 }
-if(!empty($navlink_blank)){
-	foreach( $navlink_blank as $navlinklabel => $navlinkpath) {
-		echo "<li><a href='".$navlinkpath."' target='_blank'>".$navlinklabel."</a></li>";
-	}
-}
-
-if(!empty($navselect)){
-	echo "<select onchange=\"top.frames['main'].location.href = this.value;\">";
-	echo "<option value='mediafrontpage.php' selected>MFP</option>";
-	foreach($navselect as $navselectlabel => $navselectpath){
-		echo "<option value='".$navselectpath."'>".$navselectlabel."</option>";
-
-	}
-	echo "</select>";
-}
-echo "<div id='nav-menu2' style='text-decoration: none; font-size:small; position:absolute; top:0; right:0;'>";
-echo "<ul><li><a href='settings.php' target='main'><img src='./media/settings.png' height='15px;'/></a></li></ul>";
-//<--START LOGOUT --> 
-require_once('config.php');
+//<--START LOGOUT--> 
+echo "<li><a href='settings.php' style='background-image: url(./media/nav/config.png)'><H3>Config</H3></a></li>";
 if ($authsecured) {
-  echo "<ul><li><a href='#' onclick=\"logout();\"/>Logout</a></li></ul>";
+  echo "<li><a href='login.php' onclick='logout();' style='background-image: url(./media/nav/logout.png)'><H3>Logout</H3></a></li>";
 }
 //<--END LOGOUT-->
-
-echo '</div>';
-echo "</ul>";
-echo "</div>";
-echo "</div>";
-
-if(!empty($subnavlink)||!empty($subnavlink_blank)||!empty($subnavselect)){
-	echo "<div id='nav-menu2'>";
-	//echo "<br> ";
-	echo "<ul>";
-
-	if(!empty($subnavlink)){
-		foreach( $subnavlink as $navlinklabel => $navlinkpath) {
-			echo "<li><a href='".$navlinkpath."' target='main'>".$navlinklabel."</a></li>";
-		}
-	}
-	if(!empty($subnavlink_blank)){
-		foreach( $subnavlink_blank as $navlinklabel => $navlinkpath) {
-			echo "<li><a href='".$navlinkpath."' target='_blank'>".$navlinklabel."</a></li>";
-		}
-	}
-	
-/*
-	if(!empty($subnavselect)){
-		echo "<li><select onchange=\"top.frames['main'].location.href = this.value;\">";
-		echo "<option value='mediafrontpage.php' selected></option>";
-		foreach($subnavselect as $navselectlabel => $navselectpath){
-			echo "<option value='$navselectpath'>".$navselectlabel."</option>";
-		}
-		echo "</select></li>";
-	}
-*/
-
-	echo "</ul>";
-	echo "</div>";
-	echo "</div>";
-}
-echo "</body>";
-echo "</html>";
 ?>
+</ul>
+</div>
+<script type="text/javascript" src="js/jquery-1.3.2.js"></script> 
+<script type="text/javascript">
+$(function() {
+    var d=300;
+    $('#navigation a').each(function(){
+        $(this).stop().animate({
+            'marginTop':'-80px'
+        },d+=150);
+    });
+
+    $('#navigation > li').hover(
+    function () {
+        $('a',$(this)).stop().animate({
+            'marginTop':'-2px'
+        },200);
+    },
+    function () {
+        $('a',$(this)).stop().animate({
+            'marginTop':'-80px'
+        },200);
+    }
+  );
+});
+</script>

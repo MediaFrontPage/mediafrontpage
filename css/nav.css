@@ -3,7 +3,6 @@ html,body {
 }
 
 body {
-  background:url(../media/bgNav.png);
   font-family: 'Helvetica Neue','HelveticaNeue',Helvetica, Arial, sans-serif;
   font-size:100%;
   color: #eee;
@@ -80,57 +79,9 @@ a:visited {
   background: url(../media/home-inverse.png) no-repeat;   
 }
 
-
-#nav-menu {
-
-  display: block;
-  font-size:1em;
-  margin-top:0px;
-  margin-left:0;
-  padding-right:10px;
-  overflow: hidden;
-  /*width: 2000px;*/
-}
-
-#nav-menu ul {
-  padding-left:0px;
-}
-
-
-#nav-menu li {
-  display: inline;
-  float: left;
-  margin:0;
-}
-
-#nav-menu li a {
-  color: #ccc;
-  text-decoration: none;
-  display: block;
-  float: left;
-  font-size: 15px;
-  line-height: 25px;
-  min-height: 25px;
-  padding:0 26px 0 24px;
-  position: relative;
-  text-shadow: rgba(0,0,0,.5) 0px 1px 0px;
-  background:url(../media/bgNavSep.png) no-repeat right center;
-}
-
-#nav-menu li a:hover {
-  color: #FF9522;
-  background-color: rgba(0,0,0,.05);
-  -webkit-box-shadow:0 2px 8px rgba(0,0,0,.25) inset;
-  text-shadow: rgba(255,255,255,.5) 0px 1px 10px;
-}
-
-#nav-menu li a:active  {
-  color: #FF9522
-}
 /*---------------------/
   Hernandito SubMenu  /
 --------------------*/
-
 
 #header2 {
   width:220px;
@@ -138,7 +89,7 @@ a:visited {
 }
 
 
-#nav-menu2 {
+#footer {
 
   display: block;
   font-size:.8em;
@@ -150,19 +101,19 @@ a:visited {
   /*width: 2000px;*/
 }
 
-#nav-menu2 ul {
+#footer ul {
   margin-right:20px;
   float: right;
 }
 
 
-#nav-menu2 li {
+#footer li {
   display: inline;
   float: left;
   margin:0;
 }
 
-#nav-menu2 li a {
+#footer li a {
   color: #ccc;
   text-decoration: none;
   display: block;
@@ -176,19 +127,19 @@ a:visited {
   background:url(../media/bgNavSep.png) no-repeat right center;
 }
 
-#nav-menu2 li a:hover {
+#footer li a:hover {
   color: #FF9522;
   background-color: rgba(0,0,0,.05);
   -webkit-box-shadow:0 2px 8px rgba(0,0,0,.25) inset;
   text-shadow: rgba(255,255,255,.5) 0px 1px 10px;
 }
 
-#nav-menu2 li a:active  {
+#footer li a:active  {
   color: #FF9522
 }
 
 /* Hide from IE5-Mac \*/
-#nav-menu2 li a
+#footer li a
 
 
 {
