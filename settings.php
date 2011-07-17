@@ -147,19 +147,19 @@ if(!empty($_GET)){
 			        <table cellspacing="30px">
 			          <tr><br /></tr>
 			          <tr>
-			            <td><a href="#XBMC" title="XBMC"><img src="media/XBMC.png" /></a></td>
-			            <td><a href="#SABNZBD" title="SabNZBd+"><img src="media/SabNZBd.png" /></a></td>
-			            <td><a href="#SUBSONIC" title="Subsonic"><img src="media/SubSonic.png" /></a></td>
+			            <td><a href="#XBMC" title="XBMC"><img src="media/XBMC.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
+			            <td><a href="#SABNZBD" title="SabNZBd+"><img src="media/SabNZBd.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
+			            <td><a href="#SUBSONIC" title="Subsonic"><img src="media/SubSonic.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
 			          </tr>
 			          <tr>
-			            <td><a href="#SICKBEARD" title="Sick Beard"><img src="media/SickBeard.png" /></a></td>
-			            <td><a href="#COUCHPOTATO" title="Couch Potato"><img src="media/CouchPotato.png" /></a></td>
-                  <td><a href="#HEADPHONES" title="Headphones"><img src="media/HeadPhones.png" /></a></td>
+			            <td><a href="#SICKBEARD" title="Sick Beard"><img src="media/SickBeard.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
+			            <td><a href="#COUCHPOTATO" title="Couch Potato"><img src="media/CouchPotato.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
+                  <td><a href="#HEADPHONES" title="Headphones"><img src="media/HeadPhones.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
 			          </tr>
 			          <tr>
-			            <td><a href="#TRANSMISSION" title="Transmission"><img src="media/Transmission.png" /></a></td>
-			            <td><a href="#UTORRENT" title="uTorrent"><img src="media/uTorrent.png" /></a></td>
-			            <td><a href="#JDOWNLOADER" title="jDownloader"><img src="media/JDownloader.png" /></a></td>
+			            <td><a href="#TRANSMISSION" title="Transmission"><img src="media/Transmission.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
+			            <td><a href="#UTORRENT" title="uTorrent"><img src="media/uTorrent.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
+			            <td><a href="#JDOWNLOADER" title="jDownloader"><img src="media/JDownloader.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
 			          </tr>
 			          <tr><td colspan="3"><input type="button" value="REVERSE PROXIES" onclick="window.location.href='#WEBROOT'" /></td></tr>
 			        </table>
@@ -844,50 +844,48 @@ if(!empty($_GET)){
 			      </div>
 			      <div id="CONTROL" class="panel">
 			        <h3>Control Widget</h3>
-			          <table id="table_control">
-			            <tr>
-			              <td>Title</td>
-			              <td>URL</td>
-			            </tr>
-						      <?php
-						      $x = $config->get('CONTROL');
-						      foreach ($x as $title=>$url){
-						        echo "<tr>
-						                <td>
-						                  <input size='40' name='TITLE' value='".urldecode(str_ireplace('_', ' ', $title))."'/>
-						                </td>
-						                <td>
-						                  <input size='80' name='VALUE' value='$url'/>
-						                </td>
-						              </tr>";
-						      }
-						      ?>
-			          </table>
-			          <input type="button" value="ADD" onclick="addRowToTable('CONTROL', 40, 80);" />
-			          <input type="button" value="REMOVE" onclick="removeRowToTable('CONTROL');" />
-			          <br />
-			          <br />
-			          <input type="button" value="Save" onclick="updateAlternative('CONTROL');" />
-			        </div>
+			        <table id="table_control">
+			          <tr>
+			            <td>Title</td>
+			            <td>URL</td>
+			          </tr>
+						    <?php
+						    $x = $config->get('CONTROL');
+						    foreach ($x as $title=>$url){
+						      echo "<tr>
+						              <td>
+						                <input size='40' name='TITLE' value='".urldecode(str_ireplace('_', ' ', $title))."'/>
+						              </td>
+						              <td>
+						                <input size='80' name='VALUE' value='$url'/>
+						              </td>
+						            </tr>";
+						    }
+						    ?>
+			        </table>
+			        <input type="button" value="ADD" onclick="addRowToTable('CONTROL', 40, 80);" />
+			        <input type="button" value="REMOVE" onclick="removeRowToTable('CONTROL');" />
+			        <br />
+			        <br />
+			        <input type="button" value="Save" onclick="updateAlternative('CONTROL');" />
+			      </div>
 			      <div id="ABOUT" class="panel">
 			        <h3>About MediaFrontPage</h3>
-			          <table>
-			            <tr>
-			              <td>
-			                I'll put some info here and possibly a donate button of sorts. <br />
-			                Maybe in the future the auto update feature can also be in here. <br />
-			                And this can possibly be the 1st part of the settings page when this is ready.
-			              </td>
-			            </tr>
-			            <tr>
-			            </tr>
-			          </table>
-			        </div>
+			        <table>
+			          <tr>
+			            <td>
+			              I'll put some info here and possibly a donate button of sorts. <br />
+			              Maybe in the future the auto update feature can also be in here. <br />
+			              And this can possibly be the 1st part of the settings page when ready.
+			            </td>
+			          </tr>
+			          <tr>
+			          </tr>
+			        </table>
 			      </div>
 			    </div>
 			  </div>
         <!-- <input type="button" value="Save ALL" onclick="saveAll();">  -->
-        <div id="result" style="float: right;"></div>
       </div>
     </div>  
   </center>
