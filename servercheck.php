@@ -5,14 +5,6 @@
 function redirect(){
 	window.location = 'index.php';
 }
-function toggle(div){
-	if(document.getElementById(div).style.display == 'inline'){
-		document.getElementById(div).style.display = 'none';
-	}
-	else{
-		document.getElementById(div).style.display = 'inline';
-	}
-}
 </script>
 <link href="css/front.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
@@ -77,14 +69,25 @@ if(extension_loaded('curl')){
 	echo "<tr><td>cURL <b>NOT</b> found</td><td><img src='media/red-cross.png' height='15px'/></td></tr>";
 	$redirect = false;
 }
-if (file_exists('config.php')){
-	echo "<tr><td><input type='button' value='config.php' onclick=\"toggle('config'); \"/> found. </td><td><img src='media/green-tick.png' height='15px'/></td></tr>";
+if (file_exists('config.ini')){
+	echo "<tr><td>Config found. </td><td><img src='media/green-tick.png' height='15px'/></td></tr>";
 }else{
-	echo "<tr><td><input type='button' value='config.php' onclick=\"toggle('config'); \"/>  <b>NOT</b> found";
-	if(file_exists('default-config.php')){
+	//echo "<tr><td><input type='button' value='config.ini' onclick=\"toggle('config'); \"/>  <b>NOT</b> found";
+	if(file_exists('default-config.ini')){
+		if(copy("default-config.ini", "config.ini")){
+			echo "<tr><td>Config created successfully";
+			echo "</td><td><img src='media/green-tick.png' height='15px'/></td></tr>";
+		}
+		else{
+			echo "<tr><td>Config could not be created! Please check if permissions are correct";
+			echo "</td><td><img src='media/red-cross.png' height='15px'/></td></tr>";
+			$redirect = false;
+		}
+	} else {
+		echo "<tr><td>No config file found please redownload MediaFrontPage.";
+		echo "</td><td><img src='media/red-cross.png' height='15px'/></td></tr>";
+		$redirect = false;
 	}
-	echo "</td><td><img src='media/red-cross.png' height='15px'/></td></tr>";
-	$redirect = false;
 }
 if (file_exists('layout.php')){
 	$valid = true;
@@ -108,11 +111,11 @@ if (file_exists('layout.php')){
 	$valid = true;
 	if(file_exists("default-layout.php")){
 		if(copy("default-layout.php", "layout.php")){
-			echo " renamed successfully<br><br>";
+			echo " renamed successfully. ";
 		}
 	}
 	else{
-		echo " could not be found<br>";
+		echo " could not be found. ";
 		$redirect = false;
 		$valid = false;
 	}
@@ -145,79 +148,6 @@ if($redirect){
 	echo "<p>It looks like some problems were found, please fix them then <input type=\"button\" value=\"reload\" onClick=\"window.location.reload()\"> the page.</p>";
 	echo "<p>If further assistance is needed, please visit the <a href='http://forum.xbmc.org/showthread.php?t=83304' target='_blank'>forum</a> or our <a href='http://mediafrontpage.lighthouseapp.com' target='_blank'>project page</a>.</p>";
 	echo "Attention WINDOWS users, please remember our WEB Server of choice for your platform is <a href='http://www.uniformserver.com/' target='_blank'>The Uniform Server</a>.";
-}
-	if(file_exists('default-config.php') || file_exists('config.php')){
-		$valid = true;
-		if(file_exists('config.php')){
-			$load = "config.php";
-		}else{
-			$load = "default-config.php";
-		}
-		if(isset($_POST['save_file']) && $_POST['save_file']) {
-			if(file_exists('config.php')){
-				$load = 'config.php';
-			}else{
-				if(copy("default-config.php", "config.php")){
-					$load = 'config.php';
-				}else{
-					$load = 'default-config.php';
-					$valid = false;
-				}
-			}
-			$savecontent = stripslashes($_POST['savecontent']);
-			$fp = @fopen($load, "w");
-			if ($fp) {
-				fwrite($fp, $savecontent);
-				fclose($fp);
-				if($valid){
-					echo "
-					<script>
-						alert('Configuration saved successfully');
-						window.location = 'servercheck.php';
-					</script>";
-
-				}else{
-					echo "<script>alert('Unable to save configuration. Please open default-config.php in a text editor, fill in your information and save it as config.php.');</script>";
-				}
-				print '<a href='.$_SERVER['PHP_SELF'].'><input type="button" value="Refresh" /></a>';
-				//print "<html><head><META http-equiv=\"refresh\" content=\"0;URL='".$_SERVER['PHP_SELF']."'\"></head><body>";
-
-			}
-		}
-		$fp = @fopen($load, "r");
-		$loadcontent = fread($fp, filesize($load));
-		$lines = explode("\n", $loadcontent);
-		$count = count($lines);
-		$loadcontent = htmlspecialchars($loadcontent);
-		fclose($fp);
-		$line = '';
-		for ($a = 1; $a < $count+1; $a++) {
-			$line .= "$a\n";
-		}
-?>
-<div id='config' style='display:none;'>
-  <table class="widget" cellpadding=0 cellspacing=0 id=1>
-    <tr style="cursor: move; ">
-      <td align=center colspan=2 height=25><div class="widget-head">MediaFrontPage One-Time Setup (<?php echo $load; ?>)</div></td>
-    <tr>
-      <td align=right><form method=post action="<?php echo $_SERVER['PHP_SELF']?>">
-          <table width="50%" valign="top" border="0" cellspacing="1" cellpadding="1">
-            <tr>
-              <td width="50%" align="right" valign="top"><pre style="color:#FF9522; text-align: right; padding: 2px; overflow: auto; border: 0px groove; font-size: 10px" name="lines" cols="5" rows="<?php echo $count+10;?>"><?php echo $line;?>
-</pre></td>
-              <td width="100%" align="center" valign="top"><textarea style="border:1px solid #2C2D32; background:#2C2D32; color:#666666; text-align: left;  padding-left: 3px; overflow: auto; font-size: 10px" name="savecontent" cols="160" rows="<?php echo $count;?>" wrap="OFF"><?php echo $loadcontent?>
-	</textarea></td>
-            </tr>
-          </table>
-          <input type="submit" name="save_file" value="Save">
-        </form></td>
-    </tr>
-    </tr>
-
-  </table>
-  <p>&nbsp;</p>
-</div>
-<?php
 }
 ?>
 </body>

@@ -1,5 +1,5 @@
 .DS_Store
 layout.php
-config.php
+config.ini
 m/mobileconfig.php
 sbpcache/*

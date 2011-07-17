@@ -1,0 +1,61 @@
+#wrapper {
+    width: 900px;
+    margin: 0 auto;
+}
+
+#intro {
+    padding-bottom: 10px;
+}
+
+#slider {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.scroll {
+    height: 80%;
+    width: 1000px;
+    overflow: auto;
+    overflow-x: hidden;
+    position: relative;
+    clear: both;
+}
+
+.scrollContainer div.panel {
+    height: 80%;
+    width: 1000px;
+}
+
+ul.navigation {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 5px;
+}
+
+ul.navigation li {
+    display: inline;
+    margin-right: 5px;
+}
+
+ul.navigation a {
+    padding: 5px;
+	  color: #666666;
+    text-decoration: none;
+}
+
+ul.navigation a:hover {
+	  color:#FF9522;
+}
+
+ul.navigation a.selected {
+	  color:#FF9522;
+}
+
+ul.navigation a:focus {
+    outline: none;
+}
+.hide {
+    display: none;
+}
