@@ -98,8 +98,8 @@ function updateAlternative(section) {
 	for (i = 0; i < contents.length; i++) {
 		if (contents[i].name == 'TITLE' && contents[i].value !='') {
 			params = params + '&' + escape(contents[i++].value) + '=' + encodeURIComponent(contents[i].value);
-		} //var value = contents[i].value;
-	} 
+		}
+	}
 	ajaxRequest(params);
 }
 
@@ -109,11 +109,10 @@ function ajaxRequest(params){
 		type: 'GET',
 		url: "settings.php?" + params,
 		success: function(data) { // successful request; do something with the data
-			//$("#result").html(data); //$("#result").html('Saved');
 			if(data == 1){
 				alert('Settings saved.');
 			} else {
-				alert('An error occured please try again or contact the developers.');
+				alert("An error occured please try again or contact the developers.\n Error: "+data);
 			}
 		},
 		error: function() { // failed request; give feedback to user

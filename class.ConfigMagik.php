@@ -34,7 +34,7 @@ class ConfigMagik{
 	* @param  bool $process_sections TRUE or FALSE to enable or disable sections in your ini-file (enabled by default).
 	* @return void Returns nothing, like any other constructor-method ¦¬] .
 	*/
-	function ConfigMagik( $path=null, $synchronize=false, $process_sections=true){
+	function ConfigMagik( $path=null, $synchronize=true, $process_sections=true){
 		// check whether to enable processing-sections or not
 		if ( isset( $process_sections)) $this->PROCESS_SECTIONS = $process_sections;
 		// check whether to enable synchronisation or not
@@ -221,7 +221,7 @@ class ConfigMagik{
 		
 		// PROTECTED_MODE-prefix
 		if ( $this->PROTECTED_MODE) {
-			$content .= "<?PHP\n; /*\n; -- BEGIN PROTECTED_MODE\n";
+			$content .= "<?PHP\n; /*\n;\n";
 		}
 		
 		// config-header
@@ -244,7 +244,7 @@ class ConfigMagik{
 		
 		// add PROTECTED_MODE-ending
 		if ( $this->PROTECTED_MODE) {
-			$content .= "\n; -- END PROTECTED_MODE\n; */\n?>\n";	
+			$content .= "\n;\n; */\n?>\n";	
 		}
 
 		// write to file
