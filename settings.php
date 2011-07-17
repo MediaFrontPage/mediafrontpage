@@ -91,6 +91,7 @@ if(!empty($_GET)){
 	        <li><a href="#MODS">CSS Mods</a></li>
 	        <li><a href="#RSS">RSS Feeds</a></li>
 	        <li><a href="#CONTROL">Control Widget</a></li>
+	        <li><a href="#ABOUT">About</a></li>
         </ul>
       <!-- element with overflow applied -->
 		  	<div class="scroll">
@@ -160,7 +161,94 @@ if(!empty($_GET)){
 			            <td><a href="#UTORRENT" title="uTorrent"><img src="media/uTorrent.png" /></a></td>
 			            <td><a href="#JDOWNLOADER" title="jDownloader"><img src="media/JDownloader.png" /></a></td>
 			          </tr>
+			          <tr><td colspan="3"><input type="button" value="REVERSE PROXIES" onclick="window.location.href='#WEBROOT'" /></td></tr>
 			        </table>
+			      </div>
+			      <div id="WEBROOT" class="panel">
+			        <table>
+			          <tr><br /></tr>
+			          <tr>
+			            <td align="right">
+			              <p>ENABLED:</p>
+			            </td>
+			            <td align="left">
+			              <p><input type="checkbox" name="ENABLED" <?php echo ($config->get('ENABLED','WEBROOT')=="true")?'CHECKED':'';?>></p>
+			            </td>
+			          </tr>
+			          <tr>
+			            <td align="right">
+			              <p>XBMC:</p>
+			            </td>
+			            <td align="left">
+			              <input name="XBMC" size="20" value="<?php echo $config->get('XBMC','WEBROOT')?>">
+			            </td>
+			          </tr>
+			          <tr>
+			            <td align="right">
+			              <p>Sickbeard:</p>
+			            </td>
+			            <td align="left">
+			              <input name="SICKBEARD" size="20" value="<?php echo $config->get('SICKBEARD','WEBROOT')?>">
+			            </td>
+			          </tr>
+			          <tr>
+			            <td align="right">
+			              <p>Couch Potato:</p>
+			            </td>
+			            <td align="left">
+			              <input name="COUCHPOTATO" size="20" value="<?php echo $config->get('COUCHPOTATO','WEBROOT')?>">
+			            </td>
+			          </tr>
+			          <tr>
+			            <td align="right">
+			              <p>SabNZBd+:</p>
+			            </td>
+			            <td align="left">
+			              <input name="SABNZBD" size="20" value="<?php echo $config->get('SABNZBD','WEBROOT')?>">
+			            </td>
+			          </tr>
+			          <tr>
+			            <td align="right">
+			              <p>jDownloader:</p>
+			            </td>
+			            <td align="left">
+			              <input name="JDOWNLOADER" size="20" value="<?php echo $config->get('JDOWNLOADER','WEBROOT')?>">
+			            </td>
+			          </tr>
+			          <tr>
+			            <td align="right">
+			              <p>Transmission:</p>
+			            </td>
+			            <td align="left">
+			              <input name="TRANSMISSION" size="20" value="<?php echo $config->get('TRANSMISSION','WEBROOT')?>">
+			            </td>
+			          </tr>
+			          <tr>
+			            <td align="right">
+			              <p>uTorrent:</p>
+			            </td>
+			            <td align="left">
+			              <input name="UTORRENT" size="20" value="<?php echo $config->get('UTORRENT','WEBROOT')?>">
+			            </td>
+			          </tr>
+			          <tr>
+			            <td align="right">
+			              <p>Headphones:</p>
+			            </td>
+			            <td align="left">
+			              <input name="HEADPHONES" size="20" value="<?php echo $config->get('HEADPHONES','WEBROOT')?>">
+			            </td>
+			          </tr>
+			          <tr>
+			            <td align="right">
+			              <p>SubSonic:</p>
+			            </td>
+			            <td align="left">
+			              <input name="SUBSONIC" size="20" value="<?php echo $config->get('SUBSONIC','WEBROOT')?>">
+			            </td>
+			          </tr>
+			        </table>
+			        <input type="button" value="Save" onclick="updateSettings('WEBROOT');" />
 			      </div>
 			      <div id="XBMC" class="panel">
 			        <h3>XBMC</h3>
@@ -780,6 +868,20 @@ if(!empty($_GET)){
 			          <br />
 			          <br />
 			          <input type="button" value="Save" onclick="updateAlternative('CONTROL');" />
+			        </div>
+			      <div id="ABOUT" class="panel">
+			        <h3>About MediaFrontPage</h3>
+			          <table>
+			            <tr>
+			              <td>
+			                I'll put some info here and possibly a donate button of sorts. <br />
+			                Maybe in the future the auto update feature can also be in here. <br />
+			                And this can possibly be the 1st part of the settings page when this is ready.
+			              </td>
+			            </tr>
+			            <tr>
+			            </tr>
+			          </table>
 			        </div>
 			      </div>
 			    </div>
