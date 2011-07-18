@@ -1,0 +1,199 @@
+/*Front.CSS */
+body {
+	background-image:url(media_space6/background.jpg) !IMPORTANT;
+	background-attachment:fixed !IMPORTANT;
+	background-repeat:no-repeat !IMPORTANT;
+	background-size: 100% !IMPORTANT;
+	color: #ff0033 !IMPORTANT;
+	height: 100%;
+	-webkit-font-smoothing: antialiased !IMPORTANT;
+}
+/*Start 3 or 4 Columns*/
+
+#main .section {
+	float: left;
+	min-height: 400px;
+	height: auto !important;
+}
+#main #section1 {
+	width: 25% !important;
+}
+#main #section2 {
+	width: 25% !important;
+}
+#main #section3 {
+	width: 25% !important;
+}
+#main #section4 {
+	width: 25% !important;
+}
+/*End 3 or 4 Columns */
+
+/* Start Comming Episodes */
+
+	/* TV Show Title */
+	div.tvshowDiv > table tr th > span.tvshowTitle a {
+	display: block !important;
+	text-align: left !important;
+	float: left !important;
+	padding: 3px 0px 4px !important;
+	font-size: 16px !important;
+	text-decoration: none !important;
+}
+/* Border */
+	div.tvshowDiv > table tr th {
+	background-color: black !important;
+	border-bottom: none !important;
+	background-color: transparent !important;
+}
+/* Episode Summary */
+	div.ep_summary {
+	display: block !important;
+	vertical-align: top !important;
+	visibility: visible !important;
+	color: #fff !important;
+	font-size: 12px !important;
+}
+/* Poster - doesn't float? */
+	.posterThumb {
+	float:right !important;
+	clear: right !important;
+}
+/* End Comming Episodes */
+
+/* Start Page Text*/
+	h3 {
+	color: #ffffff !IMPORTANT;
+}
+table {
+	font-size: 1.0em !IMPORTANT;
+}
+a:link {
+	color:#ff0033 !IMPORTANT;
+}
+a:hover {
+	color:#ffffff !IMPORTANT;
+}
+a:visited {
+	color:#ff0033 !IMPORTANT;
+}
+/* End Page Text*/
+
+/* Start Progress Bars */
+	.progressbar {
+	border: 1px solid #ff0033 !IMPORTANT;
+	background: black !IMPORTANT;
+	box-shadow: black !IMPORTANT;
+	border-color: black !IMPORTANT;
+	border-radius: 6px 6px 6px 6px;
+	display: block;
+}
+.progress {
+	background: #ff0033 !IMPORTANT;
+	box-shadow: black !IMPORTANT;
+	border-color: black !IMPORTANT;
+	border-radius: 6px 0px 0px 6px;
+	display: block;
+}
+.progressbar .warning {
+	background: #ff0033;
+}
+
+#wHardDrives .progresslabel {
+	color: #ffffff !IMPORTANT
+}
+.progresslabel {
+	font-color:white !IMPORTANT;
+}
+
+/* End Progress Bars */
+
+#wNowPlaying #thumbblock img {
+	border: 0px !IMPORTANT;
+}
+.odd {
+	background-color: black !IMPORTANT;
+}
+.even {
+	background-color: #ff0033 !IMPORTANT;
+}
+#wSearch tr.row:hover {
+	background-color: transparent !IMPORTANT;
+}
+#wSearch .actor-odd {
+	background-color:#transparent !IMPORTANT;
+}
+/*END Front.CSS */
+
+#main .section .widget {
+	border: 1px solid black !IMPORTANT;
+	border-radius: 10px 10px 10px 10px !IMPORTANT;
+}
+.widget .widget-head {
+	background-color: black !IMPORTANT;
+	border-bottom:1px solid white !IMPORTANT;
+}
+.widget-list a:hover {
+	color:white !IMPORTANT;
+}
+tbody p {
+	color: #ff0033 !IMPORTANT;
+}
+h1 {
+	color: #ff0033 !IMPORTANT;
+}
+.widget .widget-content {
+	background: rgba(0, 0, 0, 0.25) !IMPORTANT;
+}
+.widget .widget-content .alt {
+	background: transparent !IMPORTANT;
+}
+div.tvshowDiv > table tr th img, td > a > img {
+	border: 0 none !important;
+	margin: 0 !important;
+	clear: right !important;
+	color:#ff0033 !important;
+}
+span {
+	color: #ff0033 !important;
+}
+#system p {
+	color:#ff0033 !important;
+}
+#libxbmc p {
+	color:#ff0033 !important;
+}
+#systemxbmc p {
+	color:#ff0033 !important;
+}
+#nowplaying p {
+	color:#ff0033 !important;
+}
+input {
+	border:1px solid white !important;
+	background:#ff0033 !important;
+	color:white !important;
+}
+/* NEW ADDITIONS FOR NAV MENU */
+ul#navigation li a {
+	background-color:rgba(0, 0, 0, 0.25);
+	border-radius: 10px 10px 10px 10px !IMPORTANT;
+}
+ul#navigation li a:hover {
+	background-color:rgba(255, 0, 0, 0.25);
+}
+/* NEW ADDITIONS FOR STATIC WIDGET */
+body {
+}
+.widget {
+	background: rgba(0, 0, 0, 0.25) !IMPORTANT;
+	border-radius: 10px 10px 10px 10px !IMPORTANT;
+	border:1px solid black !IMPORTANT;
+}
+.widget-head {
+	background-color: transparent !IMPORTANT;
+	border:1px solid black !IMPORTANT;
+}
+.h3 {
+	margin: 0 0 .5em 0;
+}

@@ -105,7 +105,7 @@ if(!empty($_GET)){
 			              <p>Global URL:</p>
 			            </td>
 			            <td align="left">
-			              <p><input type="checkbox" name="ENABLED" <?php echo ($config->get('ENABLED','GLOBAL')=="true")?'CHECKED':'';?>></p>
+			              <p><input type="checkbox" name="ENABLED" <?php echo ($config->get('ENABLED','GLOBAL')=="true")?'CHECKED':'';?>>
 			            </td>
 			          </tr>
 			          <tr>
@@ -148,21 +148,27 @@ if(!empty($_GET)){
 				   <h3>Program Settings</h3>
 			        <table cellspacing="30px">
 			          <tr>
-			            <td><a href="#XBMC" title="XBMC"><img src="media/nav/XBMC.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
-			            <td><a href="#SABNZBD" title="SabNZBd+"><img src="media/nav/SabNZBd.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
-			            <td><a href="#SUBSONIC" title="Subsonic"><img src="media/nav/SubSonic.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
+					    <td><a href="#XBMC" title="XBMC"><img src="media/nav/XBMC.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
+			            <td></td>
+						<td><a href="#SABNZBD" title="SabNZBd+"><img src="media/nav/SabNZBd.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
+			            <td></td>
+						<td><a href="#SUBSONIC" title="Subsonic"><img src="media/nav/SubSonic.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
 			          </tr>
 			          <tr>
-			            <td><a href="#SICKBEARD" title="Sick Beard"><img src="media/nav/SickBeard.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
+			            <td></td>
+						<td><a href="#SICKBEARD" title="Sick Beard"><img src="media/nav/SickBeard.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
 			            <td><a href="#COUCHPOTATO" title="Couch Potato"><img src="media/nav/CouchPotato.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
-                  <td><a href="#HEADPHONES" title="Headphones"><img src="media/nav/HeadPhones.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
-			          </tr>
+						<td><a href="#HEADPHONES" title="Headphones"><img src="media/nav/HeadPhones.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
+			            <td></td>
+					  </tr>
 			          <tr>
 			            <td><a href="#TRANSMISSION" title="Transmission"><img src="media/nav/Transmission.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
-			            <td><a href="#UTORRENT" title="uTorrent"><img src="media/nav/uTorrent.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
-			            <td><a href="#JDOWNLOADER" title="jDownloader"><img src="media/nav/JDownloader.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
+			            <td></td>
+						<td><a href="#UTORRENT" title="uTorrent"><img src="media/nav/uTorrent.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
+			            <td></td>
+						<td><a href="#JDOWNLOADER" title="jDownloader"><img src="media/nav/JDownloader.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
 			          </tr>
-			          <tr><td colspan="3"><input type="button" value="REVERSE PROXIES" onclick="window.location.href='#WEBROOT'" /></td></tr>
+			          <tr><td colspan="5"><input type="button" value="REVERSE PROXIES" onclick="window.location.href='#WEBROOT'" /></td></tr>
 			        </table>
 			      </div>
 			      <div id="WEBROOT" class="panel"><br><br>
@@ -858,55 +864,57 @@ if(!empty($_GET)){
 			        <input type="button" value="Save" onclick="updateSettings('SECURITY');" />
 			      </div>
 			      <div id="MODS" class="panel"><br><br>
-            <h3>CSS Modifications:</h3>
-            <table border="0" cellpadding="0" cellspacing="10">
-              <tr>
-                <td><img class="widget" src="media/examples/lightheme.jpg" height="120px" /></td>
-                <td><img class="widget" src="media/examples/hernadito.jpg" height="120px" /></td>
-                <td><img class="widget" src="media/examples/dpickles.jpg" height="120px" /></td>
-                <td><img src="media/examples/black_modern_glass.jpg" height="120" class="widget" /></td>
-              </tr>
-              <tr>
-                <td><p>
-                    <input type="radio" name="ENABLED" value="lighttheme" <?php echo ($config->get('ENABLED','MODS') == "lighttheme")?'CHECKED':'';?> />
-                    Light Theme</p></td>
-                <td><p>
-                    <input type="radio" name="ENABLED" value="hernandito" <?php echo ($config->get('ENABLED','MODS') == "hernandito")?'CHECKED':'';   ?> />
-                    Hernandito's Theme</p></td>
-                <td><p>
-                    <input type="radio" name="ENABLED" value="dpickles" <?php echo ($config->get('ENABLED','MODS') == "dpickles")?'CHECKED':'';?> />
-                    DPickles Theme</p></td>
-                <td><p>
-                    <input type="radio" name="ENABLED" value="black_modern_glass" <?php echo ($config->get('ENABLED','MODS') == "black_modern_glass")?'CHECKED':'';?> />
-                    Black Modern Glass Theme</p></td>
-              </tr>
-              <tr>
-                <td><img class="widget" src="media/examples/minimal-posters.jpg" height="120px" /></td>
-                <td><img class="widget" src="media/examples/minimal-banners.jpg" height="120px" /></td>
-                <td><img src="media/examples/original.jpg" height="120" class="widget" /></td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td><p>
-                    <input type="radio" name="ENABLED" value="comingepisodes-minimal-poster" <?php echo ($config->get('ENABLED','MODS') == "comingepisodes-minimal-poster")?'CHECKED':'';?> />
-                    Minimal Posters</p></td>
-                <td><p>
-                    <input type="radio" name="ENABLED" value="comingepisodes-minimal-banner" <?php echo ($config->get('ENABLED','MODS') == "comingepisodes-minimal-banner")?'CHECKED':'';?> />
-                    Minimal Banners</p></td>
-                <td><p>
-                    <input type="radio" name="ENABLED" value="" <?php echo ($config->get('ENABLED','MODS') == "")?'CHECKED':'';   ?> />
-                    OFF</p></td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td colspan="2"><p>
-                    <input type="button" value="Save" onClick="updateSettings('MODS');" />
-                  </p></td>
-                <td>&nbsp;</td>
-                  </p>
-              </tr>
-            </table></div>
+					  <h3>CSS Modifications:</h3>
+					  <table border="0" cellpadding="0" cellspacing="10">
+						<tr>
+						  <td><img class="widget" src="media/examples/lightheme.jpg" height="120px" /></td>
+						  <td><img class="widget" src="media/examples/hernadito.jpg" height="120px" /></td>
+						  <td><img class="widget" src="media/examples/dpickles.jpg" height="120px" /></td>
+						  <td><img src="media/examples/black_modern_glass.jpg" height="120" class="widget" /></td>
+						</tr>
+						<tr>
+						  <td><p>
+							  <input type="radio" name="ENABLED" value="lighttheme" <?php echo ($config->get('ENABLED','MODS') == "lighttheme")?'CHECKED':'';?> />
+							  Light Theme</p></td>
+						  <td><p>
+							  <input type="radio" name="ENABLED" value="hernandito" <?php echo ($config->get('ENABLED','MODS') == "hernandito")?'CHECKED':'';   ?> />
+							  Hernandito's Theme</p></td>
+						  <td><p>
+							  <input type="radio" name="ENABLED" value="dpickles" <?php echo ($config->get('ENABLED','MODS') == "dpickles")?'CHECKED':'';?> />
+							  DPickles Theme</p></td>
+						  <td><p>
+							  <input type="radio" name="ENABLED" value="black_modern_glass" <?php echo ($config->get('ENABLED','MODS') == "black_modern_glass")?'CHECKED':'';?> />
+							  Black Modern Glass Theme</p></td>
+						</tr>
+						<tr>
+						  <td><img src="media/examples/space6.jpg" height="120" class="widget" /></td>
+						  <td><img class="widget" src="media/examples/minimal-posters.jpg" height="120px" /></td>
+						  <td><img class="widget" src="media/examples/minimal-banners.jpg" height="120px" /></td>
+						  <td><img src="media/examples/original.jpg" height="120" class="widget" /></td>
+						</tr>
+						<tr>
+						  <td><p>
+							  <input type="radio" name="ENABLED" value="space6" <?php echo ($config->get('ENABLED','MODS') == "space6")?'CHECKED':'';?> />
+							  Space 6 Theme</p></td>
+						  <td><p>
+							  <input type="radio" name="ENABLED" value="comingepisodes-minimal-poster" <?php echo ($config->get('ENABLED','MODS') == "comingepisodes-minimal-poster")?'CHECKED':'';?> />
+							  Minimal Posters</p></td>
+						  <td><p>
+							  <input type="radio" name="ENABLED" value="comingepisodes-minimal-banner" <?php echo ($config->get('ENABLED','MODS') == "comingepisodes-minimal-banner")?'CHECKED':'';?> />
+							  Minimal Banners</p></td>
+						  <td><input type="radio" name="ENABLED" value="" <?php echo ($config->get('ENABLED','MODS') == "")?'CHECKED':'';   ?> />
+							OFF</td>
+						</tr>
+						<tr>
+						  <td>&nbsp;</td>
+						  <td colspan="2"><p>
+							  <input type="button" value="Save" onClick="updateSettings('MODS');" />
+							</p></td>
+						  <td>&nbsp;</td>
+						  </p>
+						</tr>
+					  </table>
+					</div>
 			      <div id="RSS" class="panel"><br><br>
 			        <h3>RSS Feeds</h3>
 			        <table id="table_rss">
