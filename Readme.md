@@ -6,8 +6,7 @@ Your HTPC utilises a number of different programs to do certain tasks. What Medi
 ![preview thumb](https://github.com/DejaVu77/mediafrontpage/raw/master/media/Readme.md/full_screenshot.jpg)
 
 This version of MediaFrontPage is a modification of the [Original](http://www.github.com/mediafrontpage/mediafrontpage) that has got rid of the Frameset and added Dynamic Navigation Menu. 
-
-<embed src="http://www.youtube.com/v/SsaebIwAn64?&amp;hl=en_GB&amp;rel=0&loop=1&autoplay=1&autohide=1&showinfo=0" type="application/x-shockwave-flash" width="800" height="95" allowfullscreen="false"></embed></object>
+Click [here](http://www.youtube.com/v/SsaebIwAn64) to view it in action
 
 MediaFrontPage can make use of, but is not limited to, the following projects:
 
