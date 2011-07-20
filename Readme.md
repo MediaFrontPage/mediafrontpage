@@ -1,21 +1,34 @@
-#MediaFrontPage
+#MediaFrontPage ![MFP](https://github.com/DejaVu77/mediafrontpage/raw/master/media/nav/mfp.png)
 
 MediaFrontPage is a HTPC Web Program Organiser.
 Your HTPC utilises a number of different programs to do certain tasks. What MediaFrontPage does is creates a user specific web page that will be your nerve centre for everything you will need.
 
-![preview thumb](http://img715.imageshack.us/img715/1564/screenshot20101118at120.png)
+![preview thumb](https://github.com/DejaVu77/mediafrontpage/raw/master/media/Readme.md/full_screenshot.jpg)
+
+This version of MediaFrontPage is a modification of the [Original](http://www.github.com/mediafrontpage/mediafrontpage) that has got rid of the Frameset and added Dynamic Navigation Menu. 
+
+<embed src="http://www.youtube.com/v/SsaebIwAn64?&amp;hl=en_GB&amp;rel=0&loop=1&autoplay=1&autohide=1&showinfo=0" type="application/x-shockwave-flash" width="800" height="95" allowfullscreen="false"></embed></object>
 
 MediaFrontPage can make use of, but is not limited to, the following projects:
 
-* Sick Beard
-* CouchPotato
-* SabNZBd+
-* SubSonic
-* Transmission (WebGUI)
-* uTorrent (WebGUI)
-* XBMC (WebGUI)
-* JSON
-* JQUERY
+![SickBeard](https://github.com/DejaVu77/mediafrontpage/raw/master/media/nav/SickBeard.png)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![CouchPotato](https://github.com/DejaVu77/mediafrontpage/raw/master/media/nav/CouchPotato.png)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![SabNZBd](https://github.com/DejaVu77/mediafrontpage/raw/master/media/nav/SabNZBd.png)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![SubSonic](https://github.com/DejaVu77/mediafrontpage/raw/master/media/nav/SubSonic.png)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![HeadPhones](https://github.com/DejaVu77/mediafrontpage/raw/master/media/nav/HeadPhones.png)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![Transmission](https://github.com/DejaVu77/mediafrontpage/raw/master/media/nav/Transmission.png)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![uTorrent](https://github.com/DejaVu77/mediafrontpage/raw/master/media/nav/uTorrent.png)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![XBMC](https://github.com/DejaVu77/mediafrontpage/raw/master/media/nav/XBMC.png)
+
+**[SickBeard](http://sickbeard.com/)&nbsp;&nbsp;[CouchPotato](http://couchpotatoapp.com/)&nbsp;&nbsp;&nbsp;[SabNZBd+](http://sabnzbd.org)&nbsp;&nbsp;&nbsp;&nbsp;[SubSonic](http://www.subsonic.org/pages/index.jsp)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[HeadPhones](https://github.com/rembo10/headphones)&nbsp;&nbsp;[Transmission](http://www.transmissionbt.com/)&nbsp;&nbsp;&nbsp;[uTorrent](http://www.utorrent.com/)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[XBMC](http://xbmc.org/)**
+
+## Available Skins
+
+###MFP Original&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MFP Light Theme
+![MFP Original](https://github.com/DejaVu77/mediafrontpage/raw/master/media/Readme.md/sample_original.jpg) ![MFP Light Theme](https://github.com/DejaVu77/mediafrontpage/raw/master/media/Readme.md/sample_lighttheme.jpg)
+
+###Hernandito [XBMC Member](http://forum.xbmc.org/member.php?u=86731)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DPickles [XBMC Member](http://forum.xbmc.org/member.php?u=80823)
+![Hernandito](https://github.com/DejaVu77/mediafrontpage/raw/master/media/Readme.md/sample_hernandito.jpg)
+![DPickles](https://github.com/DejaVu77/mediafrontpage/raw/master/media/Readme.md/sample_dpickles.jpg)
+
+###Black Modern Glass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Space 6
+
+![Black Modern Glass](https://github.com/DejaVu77/mediafrontpage/raw/master/media/Readme.md/sample_black_modern_glass.jpg)
+![Space 6](https://github.com/DejaVu77/mediafrontpage/raw/master/media/Readme.md/sample_space6.jpg)
+######Both 'Black Modern Glass' & 'Space 6' were contributed by DejaVu [XBMC Member](http://forum.xbmc.org/member.php?u=68433)
 
 ## Dependencies
 
@@ -24,7 +37,7 @@ MediaFrontPage requires aa Apache/PHP Webserver to be running on the machine or 
 
 ## Bugs
 
-This project is always being updated by like minded individuals and bugs will exist. If you find a bug, please report it at [XBMC Support Thread] (http://forum.xbmc.org/showthread.php?t=8330), and include as much information as possible.
+This project is always being updated by like minded individuals and bugs will exist. If you find a bug or have an issue, please create a ticket @ [MediaFrontPage Tickets](http://mediafrontpage.lighthouseapp.com/tickets), and include as much information as possible. If you have any comments or suggestions, please visit us at MediaFrontPages Original home @ [XBMC's Forum](http://forum.xbmc.org/showthread.php?t=83304).
 
 ## Install
 ###Ubuntu Commandline/XBMCLive
@@ -33,40 +46,20 @@ This project is always being updated by like minded individuals and bugs will ex
 
 2 - Clone the Git to the required directory, XBMCLive = /var/www.
 
-sudo git clone git://github.com/gugahoi/mediafrontpage.git "/var/www"
+`sudo git clone git://github.com/dejavu77/mediafrontpage.git /var/www`
 
-3 - Open default-config.php with gedit or nano and edit appropriately
+3 - Ensure file permissions allow your web server to write to the directory.
 
-sudo nano /var/www/default-config.php
+`sudo chmod 777 /var/www/*`
 
-4 - Rename default-config.php to config.php
+4 - Install PHP-Curl
 
-sudo mv /var/www/default-config.php /var/www/config.php
+`sudo apt-get install php5-curl`
 
-5 - Rename default-layout.php to layout.php
-
-sudo mv /var/www/default-layout.php /var/www/layout.php
-
-6 - Ensure file permissions allow web server to write to layout.php eg use chmod
-
-sudo chmod 777 /var/www/layout.php
-
-7 - Install PHP-Curl
-
-sudo apt-get install php5-curl
+5 - Goto your Server's localhost or IP and follow the onscreen instructions.
 
 
-Optional
---------
-8 - Sickbeard image cache to speed up image loading times.
-
-a) Create a folder named sbpcache 
- 
-sudo mkdir /var/www/sbpcache
-
-b) Give MFP write permissions to the Cache folder
-
-sudo chmod 777 /var/www/sbpcache
+6 - If everything went well, you will be automatically forwarded to the MediaFrontPage Configuration page where you will need to setup a number of settings before being able to enjoy this program to it's fullest. 
 
 ## List of available Widgets 5th May 2011
 
