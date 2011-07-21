@@ -112,6 +112,21 @@ while(!$found){
      $TRANSMISSION_PORT      = $Config->get('PORT','TRANSMISSION');
      $TRANSMISSION_USERNAME  = $Config->get('USERNAME','TRANSMISSION');
      $TRANSMISSION_PASS      = $Config->get('PASSWORD','TRANSMISSION');
+
+/* SubSonic Section*/
+
+     $SUBSONIC_IP            = $Config->get('IP','SUBSONIC');
+     $SUBSONIC_PORT          = $Config->get('PORT','SUBSONIC');
+     $SUBSONIC_USERNAME      = $Config->get('USERNAME','SUBSONIC');
+     $SUBSONIC_PASS          = $Config->get('PASSWORD','SUBSONIC');
+
+/* HeadPhones Section*/
+
+     $HEADPHONES_IP          = $Config->get('IP','HEADPHONES');
+     $HEADPHONES_PORT        = $Config->get('PORT','HEADPHONES');
+     $HEADPHONES_USERNAME    = $Config->get('USERNAME','HEADPHONES');
+     $HEADPHONES_PASS        = $Config->get('PASSWORD','HEADPHONES');
+
 /*Builtin Authentication*/
 
      $AUTH_ON                = filter_var($Config->get('PASSWORD_PROTECTED','SECURITY'), FILTER_VALIDATE_BOOLEAN);;
@@ -398,11 +413,14 @@ if($GLOBAL_MACHINE)
      if(empty($TRANSMISSION_IP) && !empty($TRANSMISSION_PORT)){
           $TRANSMISSION_IP = $GLOBAL_IP;
      }
-}
-//Authentication Global Settings//
-if(empty($AUTH_USERNAME)||empty($AUTH_PASS)){
-  $AUTH_USERNAME = $GLOBAL_USER;
-  $AUTH_PASS     = $GLOBAL_PASS;
+     //SubSonic Global Settings//
+     if(empty($SUBSONIC_IP) && !empty($SUBSONIC_PORT)){
+          $SUBSONIC_IP = $GLOBAL_IP;
+     }
+     //HeadPhones Global Settings//
+     if(empty($HEADPHONES_IP) && !empty($HEADPHONES_PORT)){
+          $HEADPHONES_IP = $GLOBAL_IP;
+     }
 }
 if($GLOBAL_USER_PASS){
   if(empty($XBMC_USERNAME) && empty($XBMC_PASS)){
@@ -434,6 +452,14 @@ if($GLOBAL_USER_PASS){
     $SICKBEARD_USERNAME = $GLOBAL_USER;
     $SICKBEARD_PASS     = $GLOBAL_PASS;
   }
+  if(empty($SUBSONIC_USERNAME) && empty($SUBSONIC_PASS)){
+    $SUBSONIC_USERNAME = $GLOBAL_USER;
+    $SUBSONIC_PASS     = $GLOBAL_PASS;
+  }
+  if(empty($HEADPHONES_USERNAME) && empty($HEADPHONES_PASS)){
+    $HEADPHONES_USERNAME = $GLOBAL_USER;
+    $HEADPHONES_PASS     = $GLOBAL_PASS;
+  }
 }
 
 
@@ -447,6 +473,8 @@ $COUCHPOTATOlogin       = (!empty($COUCHPOTATO_USERNAME)&&!empty($COUCHPOTATO_PA
 $uTorrentlogin          = (!empty($uTORRENT_USERNAME)&&!empty($uTORRENT_PASS))?"$uTORRENT_USERNAME:$uTORRENT_PASS@":"";
 $TRANSMISSIONlogin      = (!empty($TRANSMISSION_USERNAME)&&!empty($TRANSMISSION_PASS))?"$TRANSMISSION_USERNAME:$TRANSMISSION_PASS@":"";
 $JDOWNLOADERlogin       = (!empty($JDOWNLOADER_USERNAME)&&!empty($JDOWNLOADER_PASS))?"$JDOWNLOADER_USERNAME:$JDOWNLOADER_PASS@":"";
+$SUBSONIClogin          = (!empty($SUBSONIC_USERNAME)&&!empty($SUBSONIC_PASS))?"$SUBSONIC_USERNAME:$SUBSONIC_PASS@":"";
+$HEADPHONESlogin        = (!empty($HEADPHONES_USERNAME)&&!empty($HEADPHONES_PASS))?"$HEADPHONES_USERNAME:$HEADPHONES_PASS@":"";
 
 $transmission_admin     = $TRANSMISSION_USERNAME;
 $transmission_pass      = $TRANSMISSION_PASS;     
@@ -499,7 +527,9 @@ if($REVERSE_PROXY){
    $jd_url                 = "http://$JDOWNLOADERlogin"."$JDOWNLOADER_IP:$JDOWNLOADER_REMOTEPORT/";
    $jd_weburl              = "http://$JDOWNLOADER_IP:$JDOWNLOADER_WEBPORT/";
    $transmission_url       = "http://$TRANSMISSION_IP:$TRANSMISSION_PORT/transmission/rpc";     
-   $transmission_web       = "http://$TRANSMISSIONlogin"."$TRANSMISSION_IP:$TRANSMISSION_PORT/transmission/web/";     
+   $transmission_web       = "http://$TRANSMISSIONlogin"."$TRANSMISSION_IP:$TRANSMISSION_PORT/transmission/web/";
+   $subsonic_url           = "http://$SUBSONIC_IP:$SUBSONIC_PORT/login.view?user=$SUBSONIC_USERNAME&password=$SUBSONIC_PASS";
+   $headphones_url         = "http://$HEADPHONESlogin"."$HEADPHONES_IP:$HEADPHONES_PORT/";
 }
 if ($authsecured && session_id()=='') session_start();
 ?>	
