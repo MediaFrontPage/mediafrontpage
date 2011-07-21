@@ -25,10 +25,10 @@ if (empty ($arrLayout)) {
 		<script type="text/javascript" language="javascript" src="js/popuptext.js"></script>
 		<script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.2.6.min.js"></script>
 		<script type="text/javascript" src="js/highslide/highslide.js"></script>
-    	<script type="text/javascript" src="js/jquery.tablesorter.js"></script>
-    	<script type="text/javascript" src="js/prettyPhoto/jquery.prettyPhoto.js"></script>
+   	<script type="text/javascript" src="js/jquery.tablesorter.js"></script>
+    <script type="text/javascript" src="js/prettyPhoto/jquery.prettyPhoto.js"></script>
 		<link rel="stylesheet" type="text/css" href="js/prettyPhoto/prettyPhoto.css" />
-    	<script type="text/javascript" src="js/prettyLoader/js/jquery.prettyLoader.js"></script>
+    <script type="text/javascript" src="js/prettyLoader/js/jquery.prettyLoader.js"></script>
 		<link rel="stylesheet" type="text/css" href="js/prettyLoader/css/prettyLoader.css" />
 		<link rel="stylesheet" type="text/css" href="js/highslide/highslide.css" />
 		<script type="text/javascript">
