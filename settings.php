@@ -79,6 +79,7 @@ if(!empty($_GET)){
 					<br />
       <div id="slider">
         <ul class="navigation">
+	        <li><a href="#ABOUT">About</a></li>
 	        <li><a href="#GLOBAL">General</a></li>
 	        <li><a href="#PROGRAMS">Programs</a></li>
 	        <li><a href="#SEARCH">Search Widget</a></li>
@@ -91,12 +92,44 @@ if(!empty($_GET)){
 	        <li><a href="#MODS">CSS Mods</a></li>
 	        <li><a href="#RSS">RSS Feeds</a></li>
 	        <li><a href="#CONTROL">Control Widget</a></li>
-	        <li><a href="#ABOUT">About</a></li>
         </ul>
       <!-- element with overflow applied -->
 		  	<div class="scroll">
 	    		<!-- the element that will be scrolled during the effect -->
 	    		<div class="scrollContainer">
+			      <div id="ABOUT" class="panel">
+			        <table cellpadding="5px">
+			          <tr>
+			            <img src="media/mfp.png" />
+			          </tr>
+			          <tr>
+			            <td colspan="2">
+			              <p align="justify" style="width: 500px;padding-bottom: 20px;">
+			                MediaFrontPage is a fantastic tool that was originally created by <a href="http://forum.xbmc.org/member.php?u=24286">Nick8888</a>. It has had a fair share of contributors and it is always looking for more people to join in and help with the development. If you'd like to contribute please consider making a donation or come and join us developing this great tool.
+<!-- 			                As of this writing it has been kept mainly by <a href="http://forum.xbmc.org/member.php?u=68433">DejaVu</a> and <a href="http://forum.xbmc.org/member.php?u=52241">gugahoi</a>. -->
+			              </p>
+			              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+			                <input type="hidden" name="cmd" value="_s-xclick">
+			                <input type="hidden" name="hosted_button_id" value="D2R8MBBL7EFRY">
+			                <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online.">
+			                <img alt="" border="0" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1">
+			              </form>
+			            </td>
+			          </tr>
+			          <tr align="left">
+			          	<td>Homepage</td><td><a href="http://mediafrontpage.net/">http://mediafrontpage.net/</a></td>
+			          </tr>
+			          <tr align="left">
+			            <td>Forum</td><td><a href="http://forum.xbmc.org/showthread.php?t=83304">http://forum.xbmc.org/showthread.php?t=83304</a></td>
+			          </tr>
+			          <tr align="left">
+			            <td>Source</td><td><a href="https://github.com/MediaFrontPage/mediafrontpage">https://github.com/MediaFrontPage/mediafrontpage</a></td>
+			          </tr>
+			          <tr align="left">
+			            <td>Bug Tracker</td><td><a href="http://mediafrontpage.lighthouseapp.com">http://mediafrontpage.lighthouseapp.com</a></td>
+			          </tr>
+			        </table>
+			      </div>
 			      <div id="GLOBAL" class="panel">
 			        <table>
 			          <tr>
@@ -971,20 +1004,6 @@ if(!empty($_GET)){
 			        <br />
 			        <br />
 			        <input type="button" value="Save" onclick="updateAlternative('CONTROL');" />
-			      </div>
-			      <div id="ABOUT" class="panel">
-			        <h3>About MediaFrontPage</h3>
-			        <table>
-			          <tr>
-			            <td>
-			              I'll put some info here and possibly a donate button of sorts. <br />
-			              Maybe in the future the auto update feature can also be in here. <br />
-			              And this can possibly be the 1st part of the settings page when ready.
-			            </td>
-			          </tr>
-			          <tr>
-			          </tr>
-			        </table>
 			      </div>
 			    </div>
 			  </div>
