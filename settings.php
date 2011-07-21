@@ -105,7 +105,7 @@ if(!empty($_GET)){
 			          <tr>
 			            <td colspan="2">
 			              <p align="justify" style="width: 500px;padding-bottom: 20px;">
-			                MediaFrontPage is a fantastic tool that was originally created by <a href="http://forum.xbmc.org/member.php?u=24286">Nick8888</a>. It has had a fair share of contributors and it is always looking for more people to join in and help with the development. If you'd like to contribute please consider making a donation or come and join us developing this great tool.
+			                MediaFrontPage is a HTPC Web Program Organiser. Your HTPC utilises a number of different programs to do certain tasks. What MediaFrontPage does is creates a user specific web page that will be your nerve centre for everything you will need. It was originally created by <a href="http://forum.xbmc.org/member.php?u=24286">Nick8888</a> and has had a fair share of contributors. If you'd like to contribute please consider making a donation or come and join us developing this great tool.
 <!-- 			                As of this writing it has been kept mainly by <a href="http://forum.xbmc.org/member.php?u=68433">DejaVu</a> and <a href="http://forum.xbmc.org/member.php?u=52241">gugahoi</a>. -->
 			              </p>
 			              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
