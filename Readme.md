@@ -5,7 +5,8 @@ Your HTPC utilises a number of different programs to do certain tasks. What Medi
 
 ![preview thumb](https://github.com/DejaVu77/mediafrontpage/raw/master/media/Readme.md/full_screenshot.jpg)
 
-This version of MediaFrontPage is a modification of the [Original](http://www.github.com/mediafrontpage/mediafrontpage) that has got rid of the Frameset and added Dynamic Navigation Menu. 
+This version of MediaFrontPage is a modification of the [Original](http://www.github.com/mediafrontpage/mediafrontpage) that has got rid of the Frameset and added Dynamic Navigation Menu.
+
 Click [here](http://www.youtube.com/v/SsaebIwAn64) to view it in action
 
 MediaFrontPage can make use of, but is not limited to, the following projects:
@@ -49,7 +50,7 @@ This project is always being updated by like minded individuals and bugs will ex
 
 3 - Ensure file permissions allow your web server to write to the directory.
 
-`sudo chmod 777 /var/www/*`
+`sudo chmod 777 /var/www/`
 
 4 - Install PHP-Curl
 

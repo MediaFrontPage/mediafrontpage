@@ -3,7 +3,7 @@
 <title>MediaFrontPage Server Check</title>
 <script type="text/javascript">
 function redirect(){
-	window.location = 'index.php';
+	window.location = 'settings.php';
 }
 </script>
 <link href="css/front.css" rel="stylesheet" type="text/css" />
@@ -140,7 +140,7 @@ echo '</table>';
 if($redirect){
 	//echo "<script>setTimeout('redirect()', 5000);</script>";
 	echo "<p>Congratulations! Everything seems to be in working order.</p>";
-	echo "<p><input type='button' onclick=\"window.location = 'index.php';\" value='CONTINUE' /></p>";
+	echo "<p><input type='button' onclick=\"window.location = 'settings.php';\" value='CONTINUE' /></p>";
 	if (file_exists('firstrun.php')){
 		unlink('firstrun.php');
 	}
