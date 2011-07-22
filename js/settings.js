@@ -117,7 +117,7 @@ function ajaxRequest(params){
 			} else {
 			  $.pnotify({
 				  pnotify_title: 'Error!',
-				  pnotify_text: "An error occured please try again or contact the developers.\n Error: "+data,
+				  pnotify_text: data,
 				  pnotify_type: 'error'
 			  });
 
