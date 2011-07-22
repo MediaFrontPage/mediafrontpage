@@ -68,6 +68,10 @@ if(!empty($_GET)){
   <script src="js/jquery.scrollTo-1.3.3-min.js" type="text/javascript"></script>
   <script src="js/jquery.localscroll-1.2.5-min.js" type="text/javascript"></script>
   <script src="js/jquery.serialScroll-1.2.1-min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>  
+  <link rel="stylesheet" type="text/css" href="css/jquery.pnotify.default.css">
+  <link rel="stylesheet" type="text/css" href="css/UI/jquery-ui-1.8.14.custom.css">
+  <script src="js/jquery.pnotify.js" type="text/javascript"></script>  
 </head>
 
 <body style="overflow: hidden;">
@@ -105,8 +109,8 @@ if(!empty($_GET)){
 			          <tr>
 			            <td colspan="2">
 			              <p align="justify" style="width: 500px;padding-bottom: 20px;">
-			                MediaFrontPage is a HTPC Web Program Organiser. Your HTPC utilises a number of different programs to do certain tasks. What MediaFrontPage does is creates a user specific web page that will be your nerve centre for everything you will need. It was originally created by <a href="http://forum.xbmc.org/member.php?u=24286">Nick8888</a> and has had a fair share of contributors. If you'd like to contribute please consider making a donation or come and join us developing this great tool.
-<!-- 			                As of this writing it has been kept mainly by <a href="http://forum.xbmc.org/member.php?u=68433">DejaVu</a> and <a href="http://forum.xbmc.org/member.php?u=52241">gugahoi</a>. -->
+			                MediaFrontPage is a HTPC Web Program Organiser. Your HTPC utilises a number of different programs to do certain tasks, what MediaFrontPage does is creates it user specific web page that will be your nerve centre for everything you will need. It was originally created by <a href="http://forum.xbmc.org/member.php?u=24286">Nick8888</a> and has had a fair share of contributors. If you'd like to contribute please consider making a donation or come and join us developing this great tool.
+<!-- 			                As of this writing MFP has been kept mainly by <a href="http://forum.xbmc.org/member.php?u=68433">DejaVu</a> and <a href="http://forum.xbmc.org/member.php?u=52241">gugahoi</a>. -->
 			              </p>
 			              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
 			                <input type="hidden" name="cmd" value="_s-xclick">
@@ -174,7 +178,7 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
-			        <input type="button" value="Save" onclick="updateSettings('GLOBAL');" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('GLOBAL');" />
 			      </div>
 			      <div id="PROGRAMS" class="panel">
 			        <table cellspacing="30px">
@@ -193,7 +197,7 @@ if(!empty($_GET)){
 			            <td><a href="#UTORRENT" title="uTorrent"><img src="media/uTorrent.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
 			            <td><a href="#JDOWNLOADER" title="jDownloader"><img src="media/JDownloader.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
 			          </tr>
-			          <tr><td colspan="3"><input type="button" value="REVERSE PROXIES" onclick="window.location.href='#WEBROOT'" /></td></tr>
+			          <tr><td colspan="3"><input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="REVERSE PROXIES" onclick="window.location.href='#WEBROOT'" /></td></tr>
 			        </table>
 			      </div>
 			      <div id="WEBROOT" class="panel">
@@ -280,8 +284,8 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
-					    <input type=button value="Back" onClick="history.go(-1)">
-			        <input type="button" value="Save" onclick="updateSettings('WEBROOT');" />
+					    <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('WEBROOT');" />
 			      </div>
 			      <div id="XBMC" class="panel">
 			        <br />
@@ -321,8 +325,8 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
-					    <input type=button value="Back" onClick="history.go(-1)">
-			        <input type="button" value="Save" onclick="updateSettings('XBMC');" />
+					    <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('XBMC');" />
 			      </div>
 			      <div id="SICKBEARD" class="panel">
 			        <br />
@@ -362,8 +366,8 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
-					    <input type=button value="Back" onClick="history.go(-1)">
-			        <input type="button" value="Save" onclick="updateSettings('SICKBEARD');" />
+					    <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('SICKBEARD');" />
 			      </div>
 			      <div id="COUCHPOTATO" class="panel">
 			        <br />
@@ -403,8 +407,8 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
-					    <input type=button value="Back" onClick="history.go(-1)">
-			        <input type="button" value="Save" onclick="updateSettings('COUCHPOTATO');" />
+					    <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('COUCHPOTATO');" />
 			      </div>
 			      <div id="SABNZBD" class="panel">
 			        <br />
@@ -452,8 +456,8 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
-					    <input type=button value="Back" onClick="history.go(-1)">
-			        <input type="button" value="Save" onclick="updateSettings('SABNZBD');" />
+					    <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('SABNZBD');" />
 			      </div>
 			      <div id="TRANSMISSION" class="panel">
 			        <br />
@@ -493,8 +497,8 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
-					    <input type=button value="Back" onClick="history.go(-1)">
-			        <input type="button" value="Save" onclick="updateSettings('TRANSMISSION');" />
+					    <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('TRANSMISSION');" />
 			      </div>
 			      <div id="UTORRENT" class="panel">
 			        <br />
@@ -534,8 +538,8 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
-					    <input type=button value="Back" onClick="history.go(-1)">
-			        <input type="button" value="Save" onclick="updateSettings('UTORRENT');" />
+					    <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('UTORRENT');" />
 			      </div>
 			      <div id="JDOWNLOADER" class="panel">
 			        <br />
@@ -573,8 +577,8 @@ if(!empty($_GET)){
 			            <td align="left"><input name="PASSWORD" size="20" type="password" value="<?php echo $config->get('PASSWORD','JDOWNLOADER')?>" /></td>
 			          </tr>
 			        </table>
-					    <input type=button value="Back" onClick="history.go(-1)">
-			        <input type="button" value="Save" onclick="updateSettings('JDOWNLOADER');" />
+					    <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('JDOWNLOADER');" />
 			      </div>
 			      <div id="SUBSONIC" class="panel">
 			        <br />
@@ -614,8 +618,8 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
-					    <input type=button value="Back" onClick="history.go(-1)">
-			        <input type="button" value="Save" onClick="updateSettings('SUBSONIC');" />
+					    <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onClick="updateSettings('SUBSONIC');" />
 			      </div>
 			      <div id="HEADPHONES" class="panel">
 			        <br />
@@ -655,8 +659,8 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
-					    <input type=button value="Back" onClick="history.go(-1)">
-			        <input type="button" value="Save" onClick="updateSettings('HEADPHONES');" />
+					    <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onClick="updateSettings('HEADPHONES');" />
 			      </div>				  
 			      <div id="SEARCH" class="panel">
 			        <h3>Search Widget</h3>
@@ -718,7 +722,7 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
-			        <input type="button" value="Save" onclick="updateSettings('SEARCH');" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('SEARCH');" />
 			      </div>
 			      <div id="TRAKT" class="panel">
 			        <h3>Trakt.tv</h3>
@@ -747,7 +751,7 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
-			        <input type="button" value="Save" onclick="updateSettings('TRAKT');" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('TRAKT');" />
 			      </div>
 			      <div id="NAVBAR" class="panel">
 			        <h3>Nav Links</h3>
@@ -770,11 +774,11 @@ if(!empty($_GET)){
 			           }
 			           ?>
 			        </table>
-			        <input type="button" value="ADD" onclick="addRowToTable('nav', 13, 30);" />
-			        <input type="button" value="REMOVE" onclick="removeRowToTable('nav');" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="ADD" onclick="addRowToTable('nav', 13, 30);" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="REMOVE" onclick="removeRowToTable('nav');" />
 			        <br />
 			        <br />
-			        <input type="button" value="Save & Reload" onclick="updateAlternative('NAVBAR');setTimeout(top.frames['nav'].location.reload(), 5000);" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save & Reload" onclick="updateAlternative('NAVBAR');setTimeout(top.frames['nav'].location.reload(), 5000);" />
 			      </div>
 			      <div id="SUBNAV" class="panel">
 			        <h3>SubNav Links</h3>
@@ -797,11 +801,11 @@ if(!empty($_GET)){
 			           }
 			           ?>
 			        </table>
-			        <input type="button" value="ADD" onclick="addRowToTable('subnav', 13, 30);" />
-			        <input type="button" value="REMOVE" onclick="removeRowToTable('subnav');" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="ADD" onclick="addRowToTable('subnav', 13, 30);" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="REMOVE" onclick="removeRowToTable('subnav');" />
 			        <br />
 			        <br />
-			        <input type="button" value="Save & Reload" onclick="updateAlternative('SUBNAV');setTimeout(top.frames['nav'].location.reload(), 5000);" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save & Reload" onclick="updateAlternative('SUBNAV');setTimeout(top.frames['nav'].location.reload(), 5000);" />
 			      </div>
 			      <div id="HDD" class="panel">
 			        <h3>Hard Drives</h3>
@@ -824,11 +828,11 @@ if(!empty($_GET)){
 			           }
 			          ?>
 			        </table>
-			        <input type="button" value="ADD" onclick="addRowToTable('hdd', 20, 20);" />
-			        <input type="button" value="REMOVE" onclick="removeRowToTable('hdd');" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="ADD" onclick="addRowToTable('hdd', 20, 20);" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="REMOVE" onclick="removeRowToTable('hdd');" />
 			        <br />
 			        <br />
-			        <input type="button" value="Save" onclick="updateAlternative('HDD');" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateAlternative('HDD');" />
 			      </div>
 			      <div id="MESSAGE" class="panel">
 			        <h3>XBMC Instances for Message Widget</h3>
@@ -851,11 +855,11 @@ if(!empty($_GET)){
 			           }
 			           ?>
 			        </table>
-			        <input type="button" value="ADD" onclick="addRowToTable('msg', 10, 40);" />
-			        <input type="button" value="REMOVE" onclick="removeRowToTable('msg');" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="ADD" onclick="addRowToTable('msg', 10, 40);" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="REMOVE" onclick="removeRowToTable('msg');" />
 			        <br />
 			        <br />
-			        <input type="button" value="Save" onclick="updateAlternative('MESSAGE');" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateAlternative('MESSAGE');" />
 			      </div>
 			      <div id="SECURITY" class="panel">
 			        <h3>Security</h3>
@@ -903,7 +907,7 @@ if(!empty($_GET)){
 			            </td>
 			          </tr>
 			        </table>
-			        <input type="button" value="Save" onclick="updateSettings('SECURITY');" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('SECURITY');" />
 			      </div>
 			      <div id="MODS" class="panel">
 			        <h3>CSS Modifications:</h3>
@@ -949,7 +953,7 @@ if(!empty($_GET)){
 			        </table>
 			        <br />
 			        <br />
-			        <input type="button" value="Save" onclick="updateSettings('MODS');" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('MODS');" />
 			      </div>
 			      <div id="RSS" class="panel">
 			        <h3>RSS Feeds</h3>
@@ -972,11 +976,11 @@ if(!empty($_GET)){
 			           }
 			           ?>
 			        </table>
-			        <input type="button" value="ADD" onclick="addRowToTable('RSS', 40, 80);" />
-			        <input type="button" value="REMOVE" onclick="removeRowToTable('RSS');" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="ADD" onclick="addRowToTable('RSS', 40, 80);" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="REMOVE" onclick="removeRowToTable('RSS');" />
 			        <br />
 			        <br />
-			        <input type="button" value="Save" onclick="updateAlternative('RSS');" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateAlternative('RSS');" />
 			      </div>
 			      <div id="CONTROL" class="panel">
 			        <h3>Control Widget</h3>
@@ -999,11 +1003,11 @@ if(!empty($_GET)){
 						    }
 						    ?>
 			        </table>
-			        <input type="button" value="ADD" onclick="addRowToTable('CONTROL', 40, 80);" />
-			        <input type="button" value="REMOVE" onclick="removeRowToTable('CONTROL');" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="ADD" onclick="addRowToTable('CONTROL', 40, 80);" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="REMOVE" onclick="removeRowToTable('CONTROL');" />
 			        <br />
 			        <br />
-			        <input type="button" value="Save" onclick="updateAlternative('CONTROL');" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateAlternative('CONTROL');" />
 			      </div>
 			    </div>
 			  </div>
@@ -1011,8 +1015,16 @@ if(!empty($_GET)){
       </div>
     </div>  
   </center>
-  <?php 
-  }
-  ?>
+<!--
+  <div>
+    <input value="Regular Notice" onclick="$.pnotify({
+						pnotify_title: 'Regular Notice',
+						pnotify_text: 'Check me out! I\'m a notice.'
+					});" type="button" class="ui-button ui-widget ui-state-default ui-corner-all" role="button" aria-disabled="false">  
+	</div>
+-->
 </body>
 </html>
+<?php 
+}
+?>

@@ -89,7 +89,7 @@ function updateSettings(section) {
 			params = params + '&' + contents[i].name + '=' + encodeURIComponent(value);
 		}
 	} 
-	ajaxRequest(params);
+	ajaxRequest(params, section);
 }
 
 function updateAlternative(section) {
@@ -110,9 +110,17 @@ function ajaxRequest(params){
 		url: "settings.php?" + params,
 		success: function(data) { // successful request; do something with the data
 			if(data == 1){
-				alert('Settings saved.');
+			  $.pnotify({
+						pnotify_title: 'Settings Saved',
+						pnotify_opacity: .5
+					});
 			} else {
-				alert("An error occured please try again or contact the developers.\n Error: "+data);
+			  $.pnotify({
+				  pnotify_title: 'Error!',
+				  pnotify_text: "An error occured please try again or contact the developers.\n Error: "+data,
+				  pnotify_type: 'error'
+			  });
+
 			}
 		},
 		error: function() { // failed request; give feedback to user
