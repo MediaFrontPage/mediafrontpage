@@ -68,7 +68,7 @@ function widgetMessage() {
 	else{
 		echo "<option value='".substr($xbmcimgpath, 0, strlen($xbmcimgpath)-4)."'>Default</option>";
 	}
-	echo "</select> (add more in config.php)</p>
+	echo "</select> (add more on <a href='settings#MESSAGE'>settings page</a>)</p>
 	</div>";
 }
 if(!empty($_GET['msg']) && !empty($_GET['url']))
