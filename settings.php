@@ -2,7 +2,7 @@
 require_once('class.ConfigMagik.php');
 $config = new ConfigMagik('config.ini', true, true);
 
-if(!empty($_GET)){
+if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
 	if(!is_writeable('config.ini')){
 		echo 'Could not write to config.ini';
 		return false;
@@ -16,6 +16,7 @@ if(!empty($_GET)){
     if (!empty($_GET)){
 	    foreach ($_GET as $var => $value){
 	    //Here we go through all $_GET variables and add the values one by one.
+	      $var = urlencode($var);
         try{
           $config->set($var, $value, $section_name); //Setting variable '. $var.' to '.$value.' on section '.$section_name;
         } catch(Exception $e) {
@@ -31,6 +32,7 @@ if(!empty($_GET)){
 			//Here we go through all variables in the section and delete the ones that are in there but not in the $_GET variables
 			//Used mostly for deleting things.
       	if(!isset($_GET[$title]) && ($config->get($title, $section_name) !== NULL)){
+      	  $title = urlencode($title);
         	try{
             $config = new ConfigMagik('config.ini', true, true);
           	$config->removeKey($title, $section_name);  //$title removed;
@@ -976,8 +978,8 @@ if(!empty($_GET)){
 			           }
 			           ?>
 			        </table>
-			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="ADD" onclick="addRowToTable('RSS', 40, 80);" />
-			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="REMOVE" onclick="removeRowToTable('RSS');" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="ADD" onclick="addRowToTable('rss', 40, 80);" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="REMOVE" onclick="removeRowToTable('rss');" />
 			        <br />
 			        <br />
 			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateAlternative('RSS');" />
@@ -1003,8 +1005,8 @@ if(!empty($_GET)){
 						    }
 						    ?>
 			        </table>
-			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="ADD" onclick="addRowToTable('CONTROL', 40, 80);" />
-			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="REMOVE" onclick="removeRowToTable('CONTROL');" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="ADD" onclick="addRowToTable('control', 40, 80);" />
+			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="REMOVE" onclick="removeRowToTable('control');" />
 			        <br />
 			        <br />
 			        <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateAlternative('CONTROL');" />
