@@ -66,7 +66,21 @@ function widgetComingEpisodesHeader() {
         iFrameBody.innerHTML = serverResponse;
         addAltClass();
         addHighSlide();
+        removeAuth();
         //adjustHeight();
+      }
+
+      function removeAuth(){
+        var allHTMLTags = document.getElementById("comingepisodes_widget").getElementsByTagName("a");
+        for (i=0; i < allHTMLTags.length; i++) {
+          var currentItem = allHTMLTags[i];
+          //alert(currentItem);
+          var uri = parseUri(currentItem.href);
+          var auth = uri.userInfo;
+          var src = currentItem.href.replace(auth+'@','');
+          //alert(src);
+          currentItem.setAttribute('href', src);
+        }
       }
 
       function addAltClass() {
@@ -228,7 +242,7 @@ function comingSoonUrl($url = "") {
 
   if(empty($url)) {
     if(!(strpos($sickbeardcomingepisodes, "http") === 0)){
-      $url = "http://".$_SERVER['PHP_AUTH_USER'].":".$_SERVER['PHP_AUTH_PW']."@".$_SERVER['SERVER_NAME'].((strpos($sickbeardcomingepisodes, "/") === 0)?"":"/").$sickbeardcomingepisodes;
+      $url = "http://".$_SERVER['SERVER_NAME'].((strpos($sickbeardcomingepisodes, "/") === 0)?"":"/").$sickbeardcomingepisodes;
     } else {
       $url = $sickbeardcomingepisodes;
     }
