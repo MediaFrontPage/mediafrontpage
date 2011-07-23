@@ -16,6 +16,13 @@ if(mobile_device_detect(true,true,true,true,true,true,true,false,false) ) {
 $submenu = false;
 require_once "config.php";
 if(!empty($subnavlink)||!empty($subnavlink_blank)||!empty($subnavselect)){ $submenu = true; }
+// Checking to see if the user came from the server check page. If so, redirect to settings
+$settings = false;
+if(!empty($_SERVER['HTTP_REFERER'])){
+	if(strpos($_SERVER['HTTP_REFERER'],'servercheck')){
+		$settings = true;
+	}
+}
 ?>
 <html>
   <head>
@@ -26,7 +33,7 @@ if(!empty($subnavlink)||!empty($subnavlink_blank)||!empty($subnavselect)){ $subm
 
   <frameset rows="<?php echo ($submenu)?"62px":"35px";?>, *" frameborder="0" border="0" framespacing="0">
     <frame src="nav.php" name="nav" noresize scrolling="no">
-    <frame src="<?php echo strpos($_SERVER['HTTP_REFERER'],'servercheck')?'settings.php':'mediafrontpage.php'?>" name="main" noresize scrolling="auto">
+    <frame src="<?php echo ($settings)?'settings.php':'mediafrontpage.php'?>" name="main" noresize scrolling="auto">
   </frameset>
   <noframes>
     <p>Your browser does not support frames</p>
