@@ -151,8 +151,8 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
 			              <?php
 			                $commits = $github->getCommitApi()->getBranchCommits('gugahoi', 'mediafrontpage', 'master');
 			                echo "Version </td><td>".$commits['0']['parents']['0']['id'];
-			                if($commits['0']['parents']['0']['id'] !== @$config->get('version','ADVANCED')){
-			                  echo "\t***UPDATE Available***";
+			                if($commits['0']['parents']['0']['id'] !== $config->get('version','ADVANCED')){
+			                  echo "\t<a href='#' onclick='updateVersion();'>***UPDATE Available***</a>";
 			                }
 			              ?>
 			            </td>

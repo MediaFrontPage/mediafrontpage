@@ -160,3 +160,30 @@ function saveAll() {
 		i++;
 	}
 }
+
+function updateVersion(){
+	$.ajax({
+		type: 'GET',
+		url: "servercheck.php?update=true",
+		success: function(data) { // successful request; do something with the data
+			if(data == 1){
+        $.pnotify({
+  	      pnotify_title: 'Updating version',
+          pnotify_text: 'This will only update your COMMIT number to the latest one so you can be notified of new updates in the settings page. You will have to update MFP manually by downloading from Git to actually get the features.',
+          pnotify_opacity: .9,
+          pnotify_delay: 10000
+	});
+			} else {
+			  $.pnotify({
+				  pnotify_title: 'Error!',
+				  pnotify_text: data,
+				  pnotify_type: 'error'
+			  });
+
+			}
+		},
+		error: function() { // failed request; give feedback to user
+			alert("Error saving settings.");
+		}
+	});
+}
