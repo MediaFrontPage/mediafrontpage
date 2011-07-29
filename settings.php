@@ -142,9 +142,14 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
     								Github_Autoloader::register();
  								    $github = new Github_Client();
  								    $repo = $github->getRepoApi()->show('MediaFrontPage', 'mediafrontpage');
- 								    //echo '<pre>';print_r($repo);echo '</pre>';
  								    echo $repo['pushed_at'];
 			            ?>
+			            </td>
+			          </tr>
+			          <tr>
+			            <td>
+			              <?php
+			              ?>
 			            </td>
 			          </tr>
 			        </table>

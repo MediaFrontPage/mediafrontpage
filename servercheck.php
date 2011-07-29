@@ -142,6 +142,13 @@ if($redirect){
 	echo "<p>Congratulations! Everything seems to be in working order.</p>";
 	echo "<p><input type='button' onclick=\"window.location = 'index.php';\" value='CONTINUE' /></p>";
 	if (file_exists('firstrun.php')){
+	  require_once 'lib/class.settings.php';
+    require_once 'lib/github/Autoloader.php';
+	  Github_Autoloader::register();
+    $github = new Github_Client();
+    $commits = $github->getCommitApi()->getBranchCommits('MediaFrontPage', 'mediafrontpage', 'master');
+    $id = $commits['0']['parents']['0']['id'];
+	  $config->set('version', $id, 'ADVANCED');
 		unlink('firstrun.php');
 	}
 } else {
