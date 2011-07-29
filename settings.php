@@ -1,5 +1,5 @@
 <?php
-require_once('class.ConfigMagik.php');
+require_once('lib/class.settings.php');
 $config = new ConfigMagik('config.ini', true, true);
 
 if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
