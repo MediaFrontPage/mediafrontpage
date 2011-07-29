@@ -141,14 +141,19 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
 			              require_once 'lib/github/Autoloader.php';
     								Github_Autoloader::register();
  								    $github = new Github_Client();
- 								    $repo = $github->getRepoApi()->show('MediaFrontPage', 'mediafrontpage');
+ 								    $repo = $github->getRepoApi()->show('gugahoi', 'mediafrontpage');
  								    echo $repo['pushed_at'];
 			            ?>
 			            </td>
 			          </tr>
-			          <tr>
+			          <tr align="left">
 			            <td>
 			              <?php
+			                $commits = $github->getCommitApi()->getBranchCommits('gugahoi', 'mediafrontpage', 'master');
+			                echo "Version </td><td>".$commits['0']['parents']['0']['id'];
+			                if($commits['0']['parents']['0']['id'] !== @$config->get('version','ADVANCED')){
+			                  echo "\t***UPDATE Available***";
+			                }
 			              ?>
 			            </td>
 			          </tr>
