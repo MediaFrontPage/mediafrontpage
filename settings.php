@@ -134,6 +134,19 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
 			          <tr align="left">
 			            <td>Bug Tracker</td><td><a href="http://mediafrontpage.lighthouseapp.com">http://mediafrontpage.lighthouseapp.com</a></td>
 			          </tr>
+			          <tr align="left">
+			            <td>Last Updated</td>
+			            <td>
+			            <?php
+			              require_once 'lib/github/Autoloader.php';
+    								Github_Autoloader::register();
+ 								    $github = new Github_Client();
+ 								    $repo = $github->getRepoApi()->show('MediaFrontPage', 'mediafrontpage');
+ 								    //echo '<pre>';print_r($repo);echo '</pre>';
+ 								    echo $repo['pushed_at'];
+			            ?>
+			            </td>
+			          </tr>
 			        </table>
 			      </div>
 			      <div id="GLOBAL" class="panel">
