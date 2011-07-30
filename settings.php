@@ -120,7 +120,6 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                   <td colspan="2">
                     <p align="justify" style="width: 500px;padding-bottom: 20px;">
                       MediaFrontPage is a HTPC Web Program Organiser. Your HTPC utilises a number of different programs to do certain tasks, what MediaFrontPage does is creates it user specific web page that will be your nerve centre for everything you will need. It was originally created by <a href="http://forum.xbmc.org/member.php?u=24286">Nick8888</a> and has had a fair share of contributors. If you'd like to contribute please consider making a donation or come and join us developing this great tool.
-<!--                       As of this writing MFP has been kept mainly by <a href="http://forum.xbmc.org/member.php?u=68433">DejaVu</a> and <a href="http://forum.xbmc.org/member.php?u=52241">gugahoi</a>. -->
                     </p>
                     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
                       <input type="hidden" name="cmd" value="_s-xclick">
@@ -148,9 +147,9 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                   <?php
                     require_once 'lib/github/Autoloader.php';
                     Github_Autoloader::register();
-                     $github = new Github_Client();
-                     $repo = $github->getRepoApi()->show('gugahoi', 'mediafrontpage');
-                     echo $repo['pushed_at'];
+                    $github = new Github_Client();
+                    $repo = $github->getRepoApi()->show('gugahoi', 'mediafrontpage');
+                    echo $repo['pushed_at'];
                   ?>
                   </td>
                 </tr>
@@ -171,7 +170,7 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
               <h3>Global Settings</h3>
                 <table>
                   <tr>
-                    <td colspan="2"><p align="justify" style="width: 500px;">Use Global Settings if all your programs are installed to one computer and/or if you use the same Username and Password throughout. Changing a setting for that particular program overides this page.</p></td>
+                    <td colspan="2"><p align="justify" style="width: 500px;">Use Global Settings if all your programs are installed to one computer and/or if you use the same Username and Password throughout. Changing a setting for that particular program overrides this page.</p></td>
                   </tr>
                   <tr>
                     <td align="right"><p>Global URL:</p></td>
@@ -214,83 +213,91 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                   <td><a href="#JDOWNLOADER" title="jDownloader"><img src="media/Programs/JDownloader.png" style="opacity:0.4;filter:alpha(opacity=40)" onMouseOver="this.style.opacity=1;this.filters.alpha.opacity=100" onMouseOut="this.style.opacity=0.4;this.filters.alpha.opacity=40" /></a></td>
                 </tr>
                 <tr>
-					        <td align="center" colspan="9" ><p align="justify" style="width: 500px;">Here you can specify a Username / Password / IP Address / Ports for each program individually. These settings <i>will</i> overide the Global Setting.</p></td>
-				        </tr>
-				        <tr><td colspan="3"><input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="REVERSE PROXIES" onclick="window.location.href='#WEBROOT'" /></td></tr>
+                  <td align="center" colspan="9" ><p align="justify" style="width: 500px;">Here you can specify a Username / Password / IP Address / Ports for each program individually. These settings <i>will</i> overide the Global Setting.</p></td>
+                </tr>
+                <tr><td colspan="3"><input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="REVERSE PROXIES" onclick="window.location.href='#WEBROOT'" /></td></tr>
               </table>
             </div>
             <div id="WEBROOT" class="panel">
               <table>
-								<tr>
-									<td colspan="2"><p align="justify" style="width: 500px;">Reverse Proxy changes your programs locations from http://serverip:port to http://serverip/programs. These also need to be edited within some of the programs you use. Further information on this is available from <a href="http://mediafrontpage.lighthouseapp.com/projects/76089/apache-configuration-hints" target="_blank">MediaFrontPage's Development Site</a>.</p></td>
-								</tr>                
-				        <tr>
-									<td align="right"><p>Reverse Proxy:</p></td>
-									<td align="left"><p><input type="checkbox" Title="Tick To Enable" name="ENABLED" <?php echo ($config->get('ENABLED','WEBROOT')=="true")?'CHECKED':'';?> /></p></td>
-								</tr><tr>
-									<td align="right"><p>XBMC:</p></td>
-									<td align="left"><input name="XBMC" size="20" Title="XBMC's IP Address" value="<?php echo $config->get('XBMC','WEBROOT')?>" /></td>
-								</tr><tr>
-									<td align="right"><p>Sickbeard:</p></td>
-									<td align="left"><input name="SICKBEARD" size="20" Title="Sickbeard's IP Address" value="<?php echo $config->get('SICKBEARD','WEBROOT')?>" /></td>
-								</tr><tr>
-									<td align="right"><p>Couch Potato:</p></td>
-									<td align="left"><input name="COUCHPOTATO" size="20" Title="CouchPotato's IP Address" value="<?php echo $config->get('COUCHPOTATO','WEBROOT')?>" /></td>
-								</tr><tr>
-									<td align="right"><p>SabNZBd+:</p></td>
-									<td align="left"><input name="SABNZBD" size="20" Title="SabNZBd+'s IP Address" value="<?php echo $config->get('SABNZBD','WEBROOT')?>" /></td>
-								</tr><tr>
-									<td align="right"><p>jDownloader:</p></td>
-									<td align="left"><input name="JDOWNLOADER" size="20" Title="jDownloaders's IP Address" value="<?php echo $config->get('JDOWNLOADER','WEBROOT')?>" /></td>
-								</tr><tr>
-									<td align="right"><p>Transmission:</p></td>
-									<td align="left"><input name="TRANSMISSION" size="20" Title="Transmission's IP Address" value="<?php echo $config->get('TRANSMISSION','WEBROOT')?>" /></td>
-								</tr><tr>
-									<td align="right"><p>uTorrent:</p></td>
-									<td align="left"><input name="UTORRENT" size="20" Title="uTorrent's IP Address" value="<?php echo $config->get('UTORRENT','WEBROOT')?>" /></td>
-								</tr><tr>
-									<td align="right"><p>Headphones:</p></td>
-									<td align="left"><input name="HEADPHONES" size="20" Title="HeadPhones's IP Address" value="<?php echo $config->get('HEADPHONES','WEBROOT')?>" /></td>
-								</tr><tr>
-									<td align="right"><p>SubSonic:</p></td>
-									<td align="left"><input name="SUBSONIC" size="20" Title="SubSonic's IP Address" value="<?php echo $config->get('SUBSONIC','WEBROOT')?>" /></td>
-								</tr>              
-				      </table>
+                <tr>
+                  <td colspan="2"><p align="justify" style="width: 500px;">Reverse Proxy changes your programs locations from http://serverip:port to http://serverip/programs. These also need to be edited within some of the programs you use. Further information on this is available from <a href="http://mediafrontpage.lighthouseapp.com/projects/76089/apache-configuration-hints" target="_blank">MediaFrontPage's Development Site</a>.</p></td>
+                </tr>                
+                <tr>
+                  <td align="right"><p>Reverse Proxy:</p></td>
+                  <td align="left"><p><input type="checkbox" Title="Tick To Enable" name="ENABLED" <?php echo ($config->get('ENABLED','WEBROOT')=="true")?'CHECKED':'';?> /></p></td>
+                </tr>
+                <tr>
+                  <td align="right"><p>XBMC:</p></td>
+                  <td align="left"><input name="XBMC" size="20" Title="XBMC's IP Address" value="<?php echo $config->get('XBMC','WEBROOT')?>" /></td>
+                </tr>
+                <tr>
+                  <td align="right"><p>Sickbeard:</p></td>
+                  <td align="left"><input name="SICKBEARD" size="20" Title="Sickbeard's IP Address" value="<?php echo $config->get('SICKBEARD','WEBROOT')?>" /></td>
+                </tr>
+                <tr>
+                  <td align="right"><p>Couch Potato:</p></td>
+                  <td align="left"><input name="COUCHPOTATO" size="20" Title="CouchPotato's IP Address" value="<?php echo $config->get('COUCHPOTATO','WEBROOT')?>" /></td>
+                </tr>
+                <tr>
+                  <td align="right"><p>SabNZBd+:</p></td>
+                  <td align="left"><input name="SABNZBD" size="20" Title="SabNZBd+'s IP Address" value="<?php echo $config->get('SABNZBD','WEBROOT')?>" /></td>
+                </tr>
+                <tr>
+                  <td align="right"><p>jDownloader:</p></td>
+                  <td align="left"><input name="JDOWNLOADER" size="20" Title="jDownloaders's IP Address" value="<?php echo $config->get('JDOWNLOADER','WEBROOT')?>" /></td>
+                </tr>
+                <tr>
+                  <td align="right"><p>Transmission:</p></td>
+                  <td align="left"><input name="TRANSMISSION" size="20" Title="Transmission's IP Address" value="<?php echo $config->get('TRANSMISSION','WEBROOT')?>" /></td>
+                </tr>
+                <tr>
+                  <td align="right"><p>uTorrent:</p></td>
+                  <td align="left"><input name="UTORRENT" size="20" Title="uTorrent's IP Address" value="<?php echo $config->get('UTORRENT','WEBROOT')?>" /></td>
+                </tr>
+                <tr>
+                  <td align="right"><p>Headphones:</p></td>
+                  <td align="left"><input name="HEADPHONES" size="20" Title="HeadPhones's IP Address" value="<?php echo $config->get('HEADPHONES','WEBROOT')?>" /></td>
+                </tr>
+                <tr>
+                  <td align="right"><p>SubSonic:</p></td>
+                  <td align="left"><input name="SUBSONIC" size="20" Title="SubSonic's IP Address" value="<?php echo $config->get('SUBSONIC','WEBROOT')?>" /></td>
+                </tr>              
+              </table>
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('WEBROOT');" />
             </div>
             <div id="XBMC" class="panel">
               <br />
               <br />
-              <h3>XBMC</h3>
+              <a href="http://www.xbmc.org/" Title="Go to XBMC's home page"><h3>XBMC</h3></a>
               <table>
-								<tr>
-									<td colspan="2"><p align="justify" style="width: 500px;">To connect to XBMC, you will need to enable a few settings under Network Settings in XBMC.
-									  <i>
-									    <font style="padding-left:20px;">
-  									    <br>Allow control of XBMC via HTTP
-	  								    <br>Allow programs on this system to control XBMC
-		  							    <br>Allow programs on other systems to control XBMC.
-		  							  </font>
-									  </i></p>
-									</td>
-								</tr>
-								<tr>            
-									<td align="right"><p>XBMC IP:</p></td>
-									<td align="left"><input name="IP" Title="Insert your XBMC IP Address" size="20" value="<?php echo $config->get('IP','XBMC')?>" /></td>
-								</tr>
-								<tr>
-									<td align="right"><p>XBMC Port:</p></td>
-									<td align="left"><input name="PORT" Title="Insert your XBMC Port" size="4" value="<?php echo $config->get('PORT','XBMC')?>" /></td>
-								</tr>
-								<tr>
-									<td align="right"><p>XBMC Username:</p></td>
-									<td align="left"><input name="USERNAME" Title="Insert your XBMC Username" size="20" value="<?php echo $config->get('USERNAME','XBMC')?>" /></td>
-								</tr>
-								<tr>
-									<td align="right"><p>XBMC Password:</p></td>
-									<td align="left"><input type="password" Title="Insert your XBMC Password" name="PASSWORD" size="20" value="<?php echo $config->get('PASSWORD','XBMC')?>" /></td>
-								</tr>
+                <tr>
+                  <td colspan="2">
+                    <p align="justify" style="width: 500px;">To connect to XBMC, you need to enable these settings under Network Settings in XBMC.</p>
+                    <p align="justify" style="padding-left:20px;">
+                      &ndash; Allow control of XBMC via HTTP<br />
+                      &ndash; Allow programs on this system to control XBMC<br />
+                      &ndash; Allow programs on other systems to control XBMC.
+                    </p>
+                  </td>
+                </tr>
+                <tr>            
+                  <td align="right"><p>XBMC IP:</p></td>
+                  <td align="left"><input name="IP" Title="Insert your XBMC IP Address" size="20" value="<?php echo $config->get('IP','XBMC')?>" /></td>
+                </tr>
+                <tr>
+                  <td align="right"><p>XBMC Port:</p></td>
+                  <td align="left"><input name="PORT" Title="Insert your XBMC Port" size="4" value="<?php echo $config->get('PORT','XBMC')?>" /></td>
+                </tr>
+                <tr>
+                  <td align="right"><p>XBMC Username:</p></td>
+                  <td align="left"><input name="USERNAME" Title="Insert your XBMC Username" size="20" value="<?php echo $config->get('USERNAME','XBMC')?>" /></td>
+                </tr>
+                <tr>
+                  <td align="right"><p>XBMC Password:</p></td>
+                  <td align="left"><input type="password" Title="Insert your XBMC Password" name="PASSWORD" size="20" value="<?php echo $config->get('PASSWORD','XBMC')?>" /></td>
+                </tr>
               </table>
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('XBMC');" />
@@ -298,28 +305,28 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
             <div id="SICKBEARD" class="panel">
               <br />
               <br />
-              <h3>Sickbeard</h3>
-              <table>
-								<tr>
-									<td colspan="2"><p align="justify" style="width: 500px;">Enter the details where MediaFrontPage will find SickBeard.</p></td>
-								</tr>
-								<tr>
-									<td align="right"><p>SickBeard IP:</p></td>
-									<td align="left"><input name="IP" Title="Insert your SickBeard IP Address" size="20" value="<?php echo $config->get('IP','SICKBEARD')?>" /></td>
-								</tr>
-								<tr>
-									<td align="right"><p>SickBeard Port:</p></td>
-									<td align="left"><input name="PORT" Title="Insert your SickBeard Port" size="4" value="<?php echo $config->get('PORT','SICKBEARD')?>" /></td>
-								</tr>
-								<tr>
-				                	<td align="right"><p>SickBeard Username:</p></td>
-									<td align="left"><input name="USERNAME" Title="Insert your SickBeard Username" size="20" value="<?php echo $config->get('USERNAME','SICKBEARD')?>" /></td>
-								</tr>
-								<tr>
-									<td align="right"><p>SickBeard Password:</p></td>
-				                    <td align="left"><input name="PASSWORD" Title="Insert your SickBeard Password" size="20" type="password" value="<?php echo $config->get('PASSWORD','SICKBEARD')?>" /></td>
-								</tr>
-              </table>
+              <a href="http://www.sickbeard.com/" Title="Go to SickBeard's home page"><h3>Sickbeard</h3></a>
+                <table>
+                  <tr>
+                    <td colspan="2"><p align="justify" style="width: 500px;">Enter the details where MediaFrontPage will find SickBeard.</p></td>
+                  </tr>
+                  <tr>
+                    <td align="right"><p>SickBeard IP:</p></td>
+                    <td align="left"><input name="IP" Title="Insert your SickBeard IP Address" size="20" value="<?php echo $config->get('IP','SICKBEARD')?>" /></td>
+                  </tr>
+                  <tr>
+                    <td align="right"><p>SickBeard Port:</p></td>
+                    <td align="left"><input name="PORT" Title="Insert your SickBeard Port" size="4" value="<?php echo $config->get('PORT','SICKBEARD')?>" /></td>
+                  </tr>
+                  <tr>
+                    <td align="right"><p>SickBeard Username:</p></td>
+                    <td align="left"><input name="USERNAME" Title="Insert your SickBeard Username" size="20" value="<?php echo $config->get('USERNAME','SICKBEARD')?>" /></td>
+                  </tr>
+                  <tr>
+                    <td align="right"><p>SickBeard Password:</p></td>
+                    <td align="left"><input name="PASSWORD" Title="Insert your SickBeard Password" size="20" type="password" value="<?php echo $config->get('PASSWORD','SICKBEARD')?>" /></td>
+                  </tr>
+                </table>
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('SICKBEARD');" />
             </div>
