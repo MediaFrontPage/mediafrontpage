@@ -1,0 +1,144 @@
+xbmc-php-rpc
+------------
+
+xbmc-php-rpc is a PHP library for making remote procedure calls to XBMC. It
+supports HTTP and TCP transport mechanisms.
+
+
+Copyright
+---------
+
+xbmc-php-rpc is copyright © 2011 Karl Rixon <karl@karlrixon.co.uk>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+Getting Started
+---------------
+
+To use xbmc-php-rpc with your application, download and extract the source files,
+and place the rpc directory somewhere sensible.
+
+To begin using xbmc-php-rpc, follow the steps below.
+
+1. Choose a transport mechanism
+
+To use xbmc-php-rpc, first decide which transport mechanism you would like to use.
+Available options are HTTP (slower) and TCP (faster).
+
+2. Define connection parameters
+
+Next define the connection parameters. This can either be done by creating an
+associative array, or by using a URI string.
+
+The associative array should take the following structure:
+
+$params = array(
+    'host' => '192.168.0.123', // Required. The IP or hostname of XBMC.
+    'port' => 8080,            // Optional. The port to be used for connecting to XBMC.
+    'user' => 'xbmc',          // Optional. The username with which to authenticate with XBMC.
+    'pass' => 'password'       // Optional. The password with which to authenticate with XBMC.
+);
+
+The default port value is 8080, which is the default XBMC HTTP port. If you use a different
+HTTP port, or use TCP, you must set this value. The default TCP port is 9090.
+
+Username and password are only required if you are using HTTP, as there is no need
+to authenticate via TCP.
+
+Some examples of valid connection parameters arrays:
+
+$params = array('host' => '192.168.0.123');
+$params = array('host' => '192.168.0.123', 'port' => 9090);
+$params = array('host' => '192.168.0.123', 'port' => 8181, 'user' => 'jdoe', 'pass' => 'foobar');
+
+If you use a URI string, it should be in the following format:
+
+user:pass@host:port
+
+Again user, pass and port are optional, with the same notes mentioned above applicable.
+
+Some examples of valid URI string:
+
+192.168.0.123
+192.168.0.123:9090
+jdoe:foobar@192.168.0.123:8181
+
+3. Create a client object
+
+The last thing to do before you can start making remote procedure calls is create
+an instance of the appropriate client class, and pass the connection parameters
+to it.
+
+If the client is unable to connect to the server, an XBMC_RPC_ConnectionException
+will be thrown.
+
+HTTP Client:
+
+$params = 'jdoe:foobar@192.168.0.123';
+require_once 'rpc/HTTPClient.php';
+try {
+    $client = new XBMC_RPC_HTTPClient($params);
+} catch (XBMC_RPC_ConnectionException $e) {
+    die($e->getMessage());
+}
+
+TCP Client:
+
+$params = array('host' => '192.168.0.123', 'port' => 9090);
+require_once 'rpc/TCPClient.php';
+try {
+    $client = new XBMC_RPC_TCPClient($params);
+} catch (XBMC_RPC_ConnectionException $e) {
+    die($e->getMessage());
+}
+
+4. Make some remote procedure calls!
+
+You can now make RPCs by accessing namespaces and commands from the client object.
+For example, to send the ToggleMute command from the XBMC namespace:
+
+$response = $client->XBMC->ToggleMute();
+
+Response data is automatically converted into a native PHP type. For example, the
+above $response contains an int.
+
+You can pass arguments to the commands like this:
+
+$response = $client->XBMC->SetVolume(50);
+$response = $client->System->GetInfoLabels(array('System.Time', 'System.FreeSpace'));
+
+Although the XBMC JSON-RPC API only uses single level namespaces, xbmc-php-rpc
+supports deeply nested namespaces. Should XBMC ever start to use nested namespaces,
+xbmc-php-rpc will still work! For example:
+
+$response = $client->Foo->Bar->Baz->Go();
+
+A list of available commands is available here:
+http://wiki.xbmc.org/index.php?title=JSON_RPC
+
+You can also get a list of commands with descriptions from XBMC itself by calling
+the JSONRPC.Introspect command:
+
+$response = $client->JSONRPC->Introspect();
+
+A list of InfoLabels which can be read via the System.GetInfoLabels command is
+available here:
+http://wiki.xbmc.org/index.php?title=InfoLabels
+
+
+Documentation and Getting Help
+------------------------------
+
+Coming soon.
