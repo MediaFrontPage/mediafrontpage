@@ -32,7 +32,7 @@ This project is always being updated by like minded individuals and bugs will ex
 
 2 - Clone the Git to the required directory, XBMCLive and Ubuntu = /var/www.
 
-sudo git clone git://github.com/gugahoi/mediafrontpage.git "/var/www"
+sudo git clone git://github.com/MediaFrontPage/mediafrontpage.git "/var/www"
 
 3 - Ensure file permissions allow web server to write to MFP's folder. CHMOD recursively.
 
