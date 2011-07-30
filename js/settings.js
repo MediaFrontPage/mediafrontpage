@@ -164,7 +164,7 @@ function saveAll() {
 function updateVersion(){
 	$.ajax({
 		type: 'GET',
-		url: "servercheck.php?update=true",
+		url: "update.php?update=true",
 		success: function(data) { // successful request; do something with the data
 			if(data == 1){
         $.pnotify({
