@@ -13,12 +13,12 @@ lang : {
 	loadingTitle : 'Click to cancel',
 	focusTitle : 'Click to bring to front',
 	fullExpandTitle : 'Expand to actual size (f)',
-	creditsText : 'Powered by <i>Highslide JS</i>',
-	creditsTitle : 'Go to the Highslide JS homepage',
+	creditsText : 'MediaFrontPage',
+	creditsTitle : '',
 	restoreTitle : 'Click to close image, click and drag to move. Use arrow keys for next and previous.'
 },
 // See http://highslide.com/ref for examples of settings  
-graphicsDir : 'highslide/graphics/',
+graphicsDir : 'js/highslide/graphics/',
 expandCursor : 'zoomin.cur', // null disables
 restoreCursor : 'zoomout.cur', // null disables
 expandDuration : 250, // milliseconds
@@ -30,13 +30,13 @@ marginBottom : 15,
 zIndexCounter : 1001, // adjust to other absolutely positioned elements
 loadingOpacity : 0.75,
 allowMultipleInstances: true,
-numberOfImagesToPreload : 5,
+numberOfImagesToPreload : 1,
 outlineWhileAnimating : 2, // 0 = never, 1 = always, 2 = HTML only 
 outlineStartOffset : 3, // ends at 10
 padToMinWidth : false, // pad the popup width to make room for wide caption
 fullExpandPosition : 'bottom right',
 fullExpandOpacity : 1,
-showCredits : true, // you can set this to false if you want
+showCredits : false, // you can set this to false if you want
 creditsHref : 'http://highslide.com/',
 creditsTarget : '_self',
 enableKeyListener : true,

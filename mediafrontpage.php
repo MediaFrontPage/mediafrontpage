@@ -43,11 +43,11 @@ if (empty ($arrLayout)) {
 			
 			hs.showCredits = false; 
 			hs.graphicsDir = 'js/highslide/graphics/';
-			hs.wrapperClassName = 'borderless';
-			//hs.outlineType = 'outer-glow';
+			//hs.wrapperClassName = 'borderless';
+			hs.outlineType = 'outer-glow';
 			//hs.outlineType = 'borderless';
 			//hs.outlineType = 'rounded-white';
-			hs.outlineType = null;
+			//hs.outlineType = null;
 			//hs.wrapperClassName = 'outer-glow';
 			hs.dimmingOpacity = 0.75;
 			//]]>
