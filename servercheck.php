@@ -1,24 +1,3 @@
-<?php
-if(isset($_GET['update']) && $_GET['update']){
-  updateVersion();
-}
-
-function updateVersion(){
-	require_once 'lib/class.settings.php';
-  require_once 'lib/github/Autoloader.php';
-	Github_Autoloader::register();
-  $github = new Github_Client();
-  $commits = $github->getCommitApi()->getBranchCommits('gugahoi', 'mediafrontpage', 'master');
-  $id = $commits['0']['parents']['0']['id'];
-  $config = new ConfigMagik('config.ini', true, true);
-	try{
-  	$config->set('version', $id, 'ADVANCED');
-  } catch (Exception $e){
-    echo false; exit;
-  }
-  echo true; exit;
-}
-?>
 <html>
 <head>
 <title>MediaFrontPage Server Check</title>
@@ -162,7 +141,6 @@ if($redirect){
 	//echo "<script>setTimeout('redirect()', 5000);</script>";
 	echo "<p>Congratulations! Everything seems to be in working order.</p>";
 	echo "<p><input type='button' onclick=\"window.location = 'index.php';\" value='CONTINUE' /></p>";
-  updateVersion();
 	if (file_exists('firstrun.php')){
 		unlink('firstrun.php');
 	}
