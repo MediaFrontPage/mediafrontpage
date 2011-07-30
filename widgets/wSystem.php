@@ -151,7 +151,7 @@ function wSystem(){
 }
 if(!empty($_GET['style']) && ($_GET['style'] == "w")) {
 	require_once "../config.php";
-	require_once '../XBMC-Class/rpc/HTTPClient.php';
+	require_once '../lib/xbmc/rpc/HTTPClient.php';
 	if($_GET['style'] == "w") {
 ?>
 <html>

@@ -1,3 +1,39 @@
-To use MFP with the latest XBMC Nightly builds (post Dharma 10) replace your xbmcjsonlib.php in the root of mfp with xbmcjsonlib_Nigthly.php in this folder and rename it to xbmcjsonlib.php.
+To use XBMC over a reverse proxy you will need to replace and edit a couple of files in your computer. 
 
-All praises go to SleepyP!
+1. Enable the proper apache modules (In my case I used proxy_http and mod_proxy). The command is usually 'a2enmod MODULE'.
+2. Allow URL rewriting/proxying in your apache file (in my case it was --> /etc/apache2/sites-enabled/default) and add the following lines, adjusting them to match your configuration:
+
+    ProxyPass /xbmc/ http://localhost:8080/
+    ProxyPassReverse http://localhost:8080/ /xbmc/
+    ProxyPass /xbmc/jsonrpc http://localhost:8080/jsonrpc
+    ProxyPassReverse http://localhost:8080/jsonrpc /xbmc/jsonrpc
+
+Those 4 lines are the same as:
+
+    <Location /xbmc/>
+      ProxyPass        http://localhost:8080/
+      ProxyPassReverse http://localhost:8080/
+    </Location>
+    <Location /xbmc/jsonrpc>
+      ProxyPass        http://localhost:8080/jsonrpc
+      ProxyPassReverse http://localhost:8080/jsonrpc
+    </Location>
+
+So pick which one you prefer.
+
+3. You will need to replace the XBMC WebServer files with the ones in this folder.
+
+    On Ubuntu Linux the paths are the following:
+      /usr/share/xbmc/addons/webinterface.default/js/MediaLibrary.js
+      /usr/share/xbmc/addons/webinterface.default/js/Core.js
+      /usr/share/xbmc/addons/webinterface.default/index.html 
+
+Don't forget to check if the permissions are the same as before.
+
+4. Restart your Apache service and you should be set.
+    For Ubuntu the command is:
+      service apache2 restart
+
+Now XBMC's jsonrpc server should be accessible through http://localhost/xbmc/jsonrpc
+For more information on Reverse Proxies for your other programs that are being used by MediaFrontPage visit SleepyP's tutorial at:
+    http://mediafrontpage.lighthouseapp.com/projects/76089/apache-configuration-hints
