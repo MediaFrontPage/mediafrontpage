@@ -174,26 +174,26 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                   </tr>
                   <tr>
                     <td align="right"><p>Global URL:</p></td>
-                    <td align="left"><p><input type="checkbox"  Title="Tick to Enable" name="ENABLED" <?php echo ($config->get('ENABLED','GLOBAL')=="true")?'CHECKED':'';?>></td>
+                    <td align="left"><p><input type="checkbox"  title="Tick to Enable" name="ENABLED" <?php echo ($config->get('ENABLED','GLOBAL')=="true")?'CHECKED':'';?>></td>
                   </tr>
                   <tr>
                     <td align="right"><p>Global IP:</p></td>
-                    <td align="left"><p><input name="URL" size="20" Title="Insert IP Address or Network Name" value="<?php echo $config->get('URL','GLOBAL')?>"></td>
+                    <td align="left"><p><input name="URL" size="20" title="Insert IP Address or Network Name" value="<?php echo $config->get('URL','GLOBAL')?>"></td>
                   </tr>
                   <tr>
                     <td align="right"><p>Global Authentication:</p></td>
-                    <td align="left"><p><input type="checkbox" Title="Tick to Enable" name="AUTHENTICATION" <?php echo ($config->get('AUTHENTICATION','GLOBAL') == "true")?'CHECKED':'';?>></p></td>
+                    <td align="left"><p><input type="checkbox" title="Tick to Enable" name="AUTHENTICATION" <?php echo ($config->get('AUTHENTICATION','GLOBAL') == "true")?'CHECKED':'';?>></p></td>
                   </tr>
                   <tr>
                     <td align="right"><p>Global Username:</p></td>
-                    <td align="left"><input name="USERNAME" Title="Insert your Global Username" size="20" value="<?php echo $config->get('USERNAME','GLOBAL')?>"></td>
+                    <td align="left"><input name="USERNAME" title="Insert your Global Username" size="20" value="<?php echo $config->get('USERNAME','GLOBAL')?>"></td>
                   </tr>
                   <tr>
                     <td align="right"><p>Global Password:</p></td>
-                    <td align="left"><input type="password" Title="Insert your Global Password" name="PASSWORD" size="20" value="<?php echo $config->get('PASSWORD','GLOBAL')?>"></td>
+                    <td align="left"><input type="password" title="Insert your Global Password" name="PASSWORD" size="20" value="<?php echo $config->get('PASSWORD','GLOBAL')?>"></td>
                   </tr>
                 </table>
-              <input type="button" Title="Save these Settings" value="Save" class="ui-button ui-widget ui-state-default ui-corner-all" onClick="updateSettings('GLOBAL');" />
+              <input type="button" title="Save these Settings" value="Save" class="ui-button ui-widget ui-state-default ui-corner-all" onClick="updateSettings('GLOBAL');" />
             </div>
             <div id="PROGRAMS" class="panel">
               <table cellspacing="30px">
@@ -225,43 +225,43 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                 </tr>                
                 <tr>
                   <td align="right"><p>Reverse Proxy:</p></td>
-                  <td align="left"><p><input type="checkbox" Title="Tick To Enable" name="ENABLED" <?php echo ($config->get('ENABLED','WEBROOT')=="true")?'CHECKED':'';?> /></p></td>
+                  <td align="left"><p><input type="checkbox" title="Tick To Enable" name="ENABLED" <?php echo ($config->get('ENABLED','WEBROOT')=="true")?'CHECKED':'';?> /></p></td>
                 </tr>
                 <tr>
                   <td align="right"><p>XBMC:</p></td>
-                  <td align="left"><input name="XBMC" size="20" Title="XBMC's IP Address" value="<?php echo $config->get('XBMC','WEBROOT')?>" /></td>
+                  <td align="left"><input name="XBMC" size="20" title="XBMC's IP Address" value="<?php echo $config->get('XBMC','WEBROOT')?>" /></td>
                 </tr>
                 <tr>
                   <td align="right"><p>Sickbeard:</p></td>
-                  <td align="left"><input name="SICKBEARD" size="20" Title="Sickbeard's IP Address" value="<?php echo $config->get('SICKBEARD','WEBROOT')?>" /></td>
+                  <td align="left"><input name="SICKBEARD" size="20" title="Sickbeard's IP Address" value="<?php echo $config->get('SICKBEARD','WEBROOT')?>" /></td>
                 </tr>
                 <tr>
                   <td align="right"><p>Couch Potato:</p></td>
-                  <td align="left"><input name="COUCHPOTATO" size="20" Title="CouchPotato's IP Address" value="<?php echo $config->get('COUCHPOTATO','WEBROOT')?>" /></td>
+                  <td align="left"><input name="COUCHPOTATO" size="20" title="CouchPotato's IP Address" value="<?php echo $config->get('COUCHPOTATO','WEBROOT')?>" /></td>
                 </tr>
                 <tr>
                   <td align="right"><p>SabNZBd+:</p></td>
-                  <td align="left"><input name="SABNZBD" size="20" Title="SabNZBd+'s IP Address" value="<?php echo $config->get('SABNZBD','WEBROOT')?>" /></td>
+                  <td align="left"><input name="SABNZBD" size="20" title="SabNZBd+'s IP Address" value="<?php echo $config->get('SABNZBD','WEBROOT')?>" /></td>
                 </tr>
                 <tr>
                   <td align="right"><p>jDownloader:</p></td>
-                  <td align="left"><input name="JDOWNLOADER" size="20" Title="jDownloaders's IP Address" value="<?php echo $config->get('JDOWNLOADER','WEBROOT')?>" /></td>
+                  <td align="left"><input name="JDOWNLOADER" size="20" title="jDownloaders's IP Address" value="<?php echo $config->get('JDOWNLOADER','WEBROOT')?>" /></td>
                 </tr>
                 <tr>
                   <td align="right"><p>Transmission:</p></td>
-                  <td align="left"><input name="TRANSMISSION" size="20" Title="Transmission's IP Address" value="<?php echo $config->get('TRANSMISSION','WEBROOT')?>" /></td>
+                  <td align="left"><input name="TRANSMISSION" size="20" title="Transmission's IP Address" value="<?php echo $config->get('TRANSMISSION','WEBROOT')?>" /></td>
                 </tr>
                 <tr>
                   <td align="right"><p>uTorrent:</p></td>
-                  <td align="left"><input name="UTORRENT" size="20" Title="uTorrent's IP Address" value="<?php echo $config->get('UTORRENT','WEBROOT')?>" /></td>
+                  <td align="left"><input name="UTORRENT" size="20" title="uTorrent's IP Address" value="<?php echo $config->get('UTORRENT','WEBROOT')?>" /></td>
                 </tr>
                 <tr>
                   <td align="right"><p>Headphones:</p></td>
-                  <td align="left"><input name="HEADPHONES" size="20" Title="HeadPhones's IP Address" value="<?php echo $config->get('HEADPHONES','WEBROOT')?>" /></td>
+                  <td align="left"><input name="HEADPHONES" size="20" title="HeadPhones's IP Address" value="<?php echo $config->get('HEADPHONES','WEBROOT')?>" /></td>
                 </tr>
                 <tr>
                   <td align="right"><p>SubSonic:</p></td>
-                  <td align="left"><input name="SUBSONIC" size="20" Title="SubSonic's IP Address" value="<?php echo $config->get('SUBSONIC','WEBROOT')?>" /></td>
+                  <td align="left"><input name="SUBSONIC" size="20" title="SubSonic's IP Address" value="<?php echo $config->get('SUBSONIC','WEBROOT')?>" /></td>
                 </tr>              
               </table>
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
@@ -270,11 +270,11 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
             <div id="XBMC" class="panel">
               <br />
               <br />
-              <a href="http://www.xbmc.org/" Title="Go to XBMC's home page"><h3>XBMC</h3></a>
+              <a href="http://www.xbmc.org/" title="Go to XBMC's home page"><h3>XBMC</h3></a>
               <table>
                 <tr>
                   <td colspan="2">
-                    <p align="justify" style="width: 500px;">To connect to XBMC, you need to enable these settings under Network Settings in XBMC.</p>
+                    <p align="justify">To connect to XBMC, you need to enable these settings under Network Settings in XBMC.</p>
                     <p align="justify" style="padding-left:20px;">
                       &ndash; Allow control of XBMC via HTTP<br />
                       &ndash; Allow programs on this system to control XBMC<br />
@@ -284,19 +284,19 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                 </tr>
                 <tr>            
                   <td align="right"><p>XBMC IP:</p></td>
-                  <td align="left"><input name="IP" Title="Insert your XBMC IP Address" size="20" value="<?php echo $config->get('IP','XBMC')?>" /></td>
+                  <td align="left"><input name="IP" title="Insert your XBMC IP Address" size="20" value="<?php echo $config->get('IP','XBMC')?>" /></td>
                 </tr>
                 <tr>
                   <td align="right"><p>XBMC Port:</p></td>
-                  <td align="left"><input name="PORT" Title="Insert your XBMC Port" size="4" value="<?php echo $config->get('PORT','XBMC')?>" /></td>
+                  <td align="left"><input name="PORT" title="Insert your XBMC Port" size="4" value="<?php echo $config->get('PORT','XBMC')?>" /></td>
                 </tr>
                 <tr>
                   <td align="right"><p>XBMC Username:</p></td>
-                  <td align="left"><input name="USERNAME" Title="Insert your XBMC Username" size="20" value="<?php echo $config->get('USERNAME','XBMC')?>" /></td>
+                  <td align="left"><input name="USERNAME" title="Insert your XBMC Username" size="20" value="<?php echo $config->get('USERNAME','XBMC')?>" /></td>
                 </tr>
                 <tr>
                   <td align="right"><p>XBMC Password:</p></td>
-                  <td align="left"><input type="password" Title="Insert your XBMC Password" name="PASSWORD" size="20" value="<?php echo $config->get('PASSWORD','XBMC')?>" /></td>
+                  <td align="left"><input type="password" title="Insert your XBMC Password" name="PASSWORD" size="20" value="<?php echo $config->get('PASSWORD','XBMC')?>" /></td>
                 </tr>
               </table>
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
@@ -305,26 +305,26 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
             <div id="SICKBEARD" class="panel">
               <br />
               <br />
-              <a href="http://www.sickbeard.com/" Title="Go to SickBeard's home page"><h3>Sickbeard</h3></a>
+              <a href="http://www.sickbeard.com/" title="Go to SickBeard's home page"><h3>Sickbeard</h3></a>
                 <table>
                   <tr>
-                    <td colspan="2"><p align="justify" style="width: 500px;">Enter the details where MediaFrontPage will find SickBeard.</p></td>
+                    <td colspan="2"><p>Enter the details where MediaFrontPage will find SickBeard.</p></td>
                   </tr>
                   <tr>
                     <td align="right"><p>SickBeard IP:</p></td>
-                    <td align="left"><input name="IP" Title="Insert your SickBeard IP Address" size="20" value="<?php echo $config->get('IP','SICKBEARD')?>" /></td>
+                    <td align="left"><input name="IP" title="Insert your SickBeard IP Address" size="20" value="<?php echo $config->get('IP','SICKBEARD')?>" /></td>
                   </tr>
                   <tr>
                     <td align="right"><p>SickBeard Port:</p></td>
-                    <td align="left"><input name="PORT" Title="Insert your SickBeard Port" size="4" value="<?php echo $config->get('PORT','SICKBEARD')?>" /></td>
+                    <td align="left"><input name="PORT" title="Insert your SickBeard Port" size="4" value="<?php echo $config->get('PORT','SICKBEARD')?>" /></td>
                   </tr>
                   <tr>
                     <td align="right"><p>SickBeard Username:</p></td>
-                    <td align="left"><input name="USERNAME" Title="Insert your SickBeard Username" size="20" value="<?php echo $config->get('USERNAME','SICKBEARD')?>" /></td>
+                    <td align="left"><input name="USERNAME" title="Insert your SickBeard Username" size="20" value="<?php echo $config->get('USERNAME','SICKBEARD')?>" /></td>
                   </tr>
                   <tr>
                     <td align="right"><p>SickBeard Password:</p></td>
-                    <td align="left"><input name="PASSWORD" Title="Insert your SickBeard Password" size="20" type="password" value="<?php echo $config->get('PASSWORD','SICKBEARD')?>" /></td>
+                    <td align="left"><input name="PASSWORD" title="Insert your SickBeard Password" size="20" type="password" value="<?php echo $config->get('PASSWORD','SICKBEARD')?>" /></td>
                   </tr>
                 </table>
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
@@ -333,252 +333,176 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
             <div id="COUCHPOTATO" class="panel">
               <br />
               <br />
-              <h3>Couch Potato</h3>
-              <table>
-                <tr>
-                  <td align="right">
-                    <p>IP:</p>
-                  </td>
-                  <td align="left">
-                    <input name="IP" size="20" value="<?php echo $config->get('IP','COUCHPOTATO')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>PORT:</p>
-                  </td>
-                  <td align="left">
-                    <input name="PORT" size="4" value="<?php echo $config->get('PORT','COUCHPOTATO')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>USERNAME:</p>
-                  </td>
-                  <td align="left">
-                    <input name="USERNAME" size="20" value="<?php echo $config->get('USERNAME','COUCHPOTATO')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>PASSWORD:</p>
-                  </td>
-                  <td align="left">
-                    <input name="PASSWORD" size="20" type="password" value="<?php echo $config->get('PASSWORD','COUCHPOTATO')?>" />
-                  </td>
-                </tr>
-              </table>
+              <a href="http://www.couchpotatoapp.com" target="_blank" title="Visit CouchPotato"><h3>Couch Potato</h3></a>
+							<table>
+				        <tr>
+									<td colspan="2"><p>Enter the details where MediaFrontPage will find CouchPotato.</p></td>
+								</tr>
+								<tr>
+									<td align="right"><p>Couch Potato IP:</p></td>
+									<td align="left"><input name="IP" title="Insert your CouchPotato IP Address" size="20" value="<?php echo $config->get('IP','COUCHPOTATO')?>" /></td>
+								</tr>
+								<tr>
+				          <td align="right"><p>Couch Potato Port:</p></td>
+				          <td align="left"><input name="PORT" title="Insert your CouchPotato Port" size="4" value="<?php echo $config->get('PORT','COUCHPOTATO')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>Couch Potato Username:</p></td>
+								  <td align="left"><input name="USERNAME" title="Insert your CouchPotato Username" size="20" value="<?php echo $config->get('USERNAME','COUCHPOTATO')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>Couch Potato Password:</p></td>
+									<td align="left"><input name="PASSWORD" title="Insert your CouchPotato Password" size="20" type="password" value="<?php echo $config->get('PASSWORD','COUCHPOTATO')?>" /></td>
+								</tr>
+							</table>
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('COUCHPOTATO');" />
             </div>
             <div id="SABNZBD" class="panel">
               <br />
               <br />
-              <h3>Sabnzbd+</h3>
-              <table>
-                <tr>
-                  <td align="right">
-                    <p>IP:</p>
-                  </td>
-                  <td align="left">
-                    <input name="IP" size="20" value="<?php echo $config->get('IP','SABNZBD')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>PORT:</p>
-                  </td>
-                  <td align="left">
-                    <input name="PORT" size="4" value="<?php echo $config->get('PORT','SABNZBD')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>USERNAME:</p>
-                  </td>
-                  <td align="left">
-                    <input name="USERNAME" size="20" value="<?php echo $config->get('USERNAME','SABNZBD')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>PASSWORD:</p>
-                  </td>
-                  <td align="left">
-                    <input name="PASSWORD" size="20" type="password" value="<?php echo $config->get('PASSWORD','SABNZBD')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>API:</p>
-                  </td>
-                  <td align="left">
-                    <input name="API" size="40" value="<?php echo $config->get('API','SABNZBD')?>" />
-                  </td>
-                </tr>
-              </table>
+              <a href="http://sabnzbd.org" title="Visit SabNZBd+" target="_blank"><h3>Sabnzbd+</h3></a>
+							<table>
+				        <tr>
+									<td colspan="2"><p>Enter the details where MediaFrontPage will find SabNZBd+.</p></td>
+								</tr>
+								<tr>
+									<td align="right"><p>SabNZBd+ IP:</p></td>
+									<td align="left"><input name="IP" title="Insert your SabNZBd+ IP Address" size="20" value="<?php echo $config->get('IP','SABNZBD')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>SabNZBd+ Port:</p></td>
+									<td align="left"><input name="PORT" title="Insert your SabNZBd+ Port" size="4" value="<?php echo $config->get('PORT','SABNZBD')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>SabNZBd+ Username:</p></td>
+									<td align="left"><input name="USERNAME" title="Insert your SabNZBd+ Username" size="20" value="<?php echo $config->get('USERNAME','SABNZBD')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>SabNZBd+ Password:</p></td>
+									<td align="left"><input name="PASSWORD" title="Insert your SabNZBd+ Password" size="20" type="password" value="<?php echo $config->get('PASSWORD','SABNZBD')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>SabNZBd+ API:</p></td>
+									<td align="left"><input name="API" title="Insert your SabNZBd+ API" type="password" size="40" value="<?php echo $config->get('API','SABNZBD')?>" /></td>
+								</tr>
+							</table>
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('SABNZBD');" />
             </div>
             <div id="TRANSMISSION" class="panel">
               <br />
               <br />
-              <h3>Transmission</h3>
-              <table>
-                <tr>
-                  <td align="right">
-                    <p>IP:</p>
-                  </td>
-                  <td align="left">
-                    <input name="IP" size="20" value="<?php echo $config->get('IP','TRANSMISSION')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>PORT:</p>
-                  </td>
-                  <td align="left">
-                    <input name="PORT" size="4" value="<?php echo $config->get('PORT','TRANSMISSION')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>USERNAME:</p>
-                  </td>
-                  <td align="left">
-                    <input name="USERNAME" size="20" value="<?php echo $config->get('USERNAME','TRANSMISSION')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>PASSWORD:</p>
-                  </td>
-                  <td align="left">
-                    <input name="PASSWORD" size="20" type="password" value="<?php echo $config->get('PASSWORD','TRANSMISSION')?>" />
-                  </td>
-                </tr>
-              </table>
+              <a href="http://www.transmissionbt.com" target="_blank" title="Visit Transmission"><h3>Transmission</h3></a>
+							<table>
+								<tr>
+									<td colspan="2"><p>Enter the details where MediaFrontPage will find Transmission.</p></td>
+								</tr>
+								<tr>
+									<td align="right"><p>Transmission IP:</p></td>
+									<td align="left"><input name="IP" title="Insert your Transmission IP Address" size="20" value="<?php echo $config->get('IP','TRANSMISSION')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>Transmission Port:</p></td>
+									<td align="left"><input name="PORT" title="Insert your Transmission Port" size="4" value="<?php echo $config->get('PORT','TRANSMISSION')?>" /></td>
+								</tr>
+								<tr>
+				                	<td align="right"><p>Transmission Username:</p></td>
+				                    <td align="left"><input name="USERNAME" title="Insert your Transmission Username" size="20" value="<?php echo $config->get('USERNAME','TRANSMISSION')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>Transmission Password:</p></td>
+									<td align="left"><input name="PASSWORD" title="Insert your Transmission Password" size="20" type="password" value="<?php echo $config->get('PASSWORD','TRANSMISSION')?>" /></td>
+								</tr>
+							</table>
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('TRANSMISSION');" />
             </div>
             <div id="UTORRENT" class="panel">
               <br />
               <br />
-              <h3>uTorrent</h3>
-              <table>
-                <tr>
-                  <td align="right">
-                    <p>IP:</p>
-                  </td>
-                  <td align="left">
-                    <input name="IP" size="20" value="<?php echo $config->get('IP','UTORRENT')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>PORT:</p>
-                  </td>
-                  <td align="left">
-                    <input name="PORT" size="4" value="<?php echo $config->get('PORT','UTORRENT')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>USERNAME:</p>
-                  </td>
-                  <td align="left">
-                    <input name="USERNAME" size="20" value="<?php echo $config->get('USERNAME','UTORRENT')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>PASSWORD:</p>
-                  </td>
-                  <td align="left">
-                    <input name="PASSWORD" size="20" type="password" value="<?php echo $config->get('PASSWORD','UTORRENT')?>" />
-                  </td>
-                </tr>
-              </table>
+              <a href="http://www.utorrent.com" target="_blank" title="Visit uTorrent"><h3>uTorrent</h3></a>
+							<table>
+								<tr>
+									<td colspan="2"><p>Enter the details where MediaFrontPage will find uTorrent.</p></td>
+								</tr>
+								<tr>
+									<td align="right"><p>uTorrent IP:</p></td>
+									<td align="left"><input name="IP" title="Insert your uTorrent IP Address" size="20" value="<?php echo $config->get('IP','UTORRENT')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>uTorrent Port:</p></td>
+									<td align="left"><input name="PORT" title="Insert your uTorrent Port" size="4" value="<?php echo $config->get('PORT','UTORRENT')?>" /></td>
+								</tr>
+								<tr>
+				               		<td align="right"><p>uTorrent Username:</p></td>
+									<td align="left"><input name="USERNAME" title="Insert your uTorrent Username" size="20" value="<?php echo $config->get('USERNAME','UTORRENT')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>uTorrent Password:</p></td>
+									<td align="left"><input name="PASSWORD" title="Insert your uTorrent Password" size="20" type="password" value="<?php echo $config->get('PASSWORD','UTORRENT')?>" /></td>
+								</tr>
+							</table>
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('UTORRENT');" />
             </div>
             <div id="JDOWNLOADER" class="panel">
               <br />
               <br />
-              <h3>jDownloader</h3>
-              <table>
-                <tr>
-                  <td align="right">
-                    <p>IP:</p>
-                  </td>
-                  <td align="left"><input name="IP" size="20" value="<?php echo $config->get('IP','JDOWNLOADER')?>" /></td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>WEB PORT:</p>
-                  </td>
-                  <td align="left"><input name="WEB_PORT" size="4" value="<?php echo $config->get('WEB_PORT','JDOWNLOADER')?>" /></td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>REMOTE PORT:</p>
-                  </td>
-                  <td align="left"><input name="REMOTE_PORT" size="4" value="<?php echo $config->get('REMOTE_PORT','JDOWNLOADER')?>" /></td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>USERNAME:</p>
-                  </td>
-                  <td align="left"><input name="USERNAME" size="20" value="<?php echo $config->get('USERNAME','JDOWNLOADER')?>" /></td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>PASSWORD:</p>
-                  </td>
-                  <td align="left"><input name="PASSWORD" size="20" type="password" value="<?php echo $config->get('PASSWORD','JDOWNLOADER')?>" /></td>
-                </tr>
-              </table>
+              <a href="http://jdownloader.org/home/index?s=lng_en" target="_blank" title="Visit jDownloader"><h3>jDownloader</h3></a>
+							<table>
+								<tr>
+									<td colspan="2"><p>Enter the details where MediaFrontPage will find jDownloader.</p></td>
+								</tr>
+								<tr>
+									<td align="right"><p>jDownloader IP:</p></td>
+									<td align="left"><input name="IP" title="Insert your jDownloader IP Address" size="20" value="<?php echo $config->get('IP','JDOWNLOADER')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>jDownloader Web Port:</p></td>
+				          <td align="left"><input name="WEB_PORT" title="Insert your jDownloader Web Port" size="4" value="<?php echo $config->get('WEB_PORT','JDOWNLOADER')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>jDownloader Remote Port:</p></td>
+									<td align="left"><input name="REMOTE_PORT" title="Insert your jDownloader Remote Port" size="4" value="<?php echo $config->get('REMOTE_PORT','JDOWNLOADER')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>jDownloader Username:</p></td>
+				          <td align="left"><input name="USERNAME" title="Insert your jDownloader Username" size="20" value="<?php echo $config->get('USERNAME','JDOWNLOADER')?>" /></td>
+								</tr>
+								<tr>
+				          <td align="right"><p>jDownloader Password:</p></td>
+				          <td align="left"><input name="PASSWORD" title="Insert your jDownloader Password" size="20" type="password" value="<?php echo $config->get('PASSWORD','JDOWNLOADER')?>" /></td>
+								</tr>
+							</table>
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('JDOWNLOADER');" />
             </div>
             <div id="SUBSONIC" class="panel">
               <br />
               <br />
-              <h3>SubSonic</h3>
-              <table>
-                <tr>
-                  <td align="right">
-                    <p>IP:</p>
-                  </td>
-                  <td align="left">
-                    <input name="IP" size="20" value="<?php echo $config->get('IP','SUBSONIC')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>PORT:</p>
-                  </td>
-                  <td align="left">
-                    <input name="PORT" size="4" value="<?php echo $config->get('PORT','SUBSONIC')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>USERNAME:</p>
-                  </td>
-                  <td align="left">
-                    <input name="USERNAME" size="20" value="<?php echo $config->get('USERNAME','SUBSONIC')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>PASSWORD:</p>
-                  </td>
-                  <td align="left">
-                    <input name="PASSWORD" size="20" type="password" value="<?php echo $config->get('PASSWORD','SUBSONIC')?>" />
-                  </td>
-                </tr>
-              </table>
+              <a href="http://www.subsonic.org/pages/index.jsp" target="_blank" title="Visit SubSonic"><h3>SubSonic</h3></a>
+							<table>
+								<tr>
+									<td colspan="2"><p>Enter the details where MediaFrontPage will find SubSonic.</p></td>
+								</tr>
+								<tr>
+									<td align="right"><p>SubSonic IP:</p></td>
+									<td align="left"><input name="IP" title="Insert your SubSonic IP Address" size="20" value="<?php echo $config->get('IP','SUBSONIC')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>SubSonic Port:</p></td>
+									<td align="left"><input name="PORT" title="Insert your SubSonic Port" size="4" value="<?php echo $config->get('PORT','SUBSONIC')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>SubSonic Username:</p></td>
+									<td align="left"><input name="USERNAME" title="Insert your SubSonic Username" size="20" value="<?php echo $config->get('USERNAME','SUBSONIC')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>SubSonic Password:</p></td>
+									<td align="left"><input name="PASSWORD" title="Insert your SubSonic Password" size="20" type="password" value="<?php echo $config->get('PASSWORD','SUBSONIC')?>" /></td>
+								</tr>
+							</table>
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onClick="updateSettings('SUBSONIC');" />
             </div>
@@ -586,103 +510,65 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
               <br />
               <br />
               <h3>HeadPhones</h3>
-              <table>
-                <tr>
-                  <td align="right">
-                    <p>IP:</p>
-                  </td>
-                  <td align="left">
-                    <input name="IP" size="20" value="<?php echo $config->get('IP','HEADPHONES')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>PORT:</p>
-                  </td>
-                  <td align="left">
-                    <input name="PORT" size="4" value="<?php echo $config->get('PORT','HEADPHONES')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>USERNAME:</p>
-                  </td>
-                  <td align="left">
-                    <input name="USERNAME" size="20" value="<?php echo $config->get('USERNAME','HEADPHONES')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>PASSWORD:</p>
-                  </td>
-                  <td align="left">
-                    <input name="PASSWORD" size="20" type="password" value="<?php echo $config->get('PASSWORD','HEADPHONES')?>" />
-                  </td>
-                </tr>
-              </table>
+							<table>
+								<tr>
+									<td colspan="2"><p>Enter the details where MediaFrontPage will find HeadPhones.</p></td>
+								</tr>
+								<tr>
+									<td align="right"><p>HeadPhones IP:</p></td>
+									<td align="left"><input name="IP" title="Insert your HeadPhones IP Address"  size="20" value="<?php echo $config->get('IP','HEADPHONES')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>HeadPhones Port:</p></td>
+									<td align="left"><input name="PORT" title="Insert your HeadPhones Port"  size="4" value="<?php echo $config->get('PORT','HEADPHONES')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>HeadPhones Username:</p></td>
+									<td align="left"><input name="USERNAME" title="Insert your HeadPhones Username"  size="20" value="<?php echo $config->get('USERNAME','HEADPHONES')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>HeadPhones Password:</p></td>
+									<td align="left"><input name="PASSWORD" title="Insert your HeadPhones Password"  size="20" type="password" value="<?php echo $config->get('PASSWORD','HEADPHONES')?>" /></td>
+								</tr>
+							</table>
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Back" onClick="history.go(-1)">
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onClick="updateSettings('HEADPHONES');" />
             </div>          
             <div id="SEARCH" class="panel">
               <h3>Search Widget</h3>
-              <table>
-                <tr>
-                  <td align="right">
-                    <p>Preferred Site:</p>
-                  </td>
-                  <td align="left">
-                    <p>
-                      <input type="radio" name="preferred_site" value="1" <?php echo ($config->get('preferred_site','SEARCH')=="1")?'CHECKED':'';?> />
-                        NZB Matrix 
-                      <input type="radio" name="preferred_site" value="2" <?php echo ($config->get('preferred_site','SEARCH')=="2")?'CHECKED':'';?> />
-                        nzb.su
-                    </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>Preffered Category:</p>
-                  </td>
-                  <td align="left">
-                    <input name="preferred_categories" size="20" value="<?php echo $config->get('preferred_categories','SEARCH')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>NZB Matrix USERNAME:</p>
-                  </td>
-                  <td align="left">
-                    <input name="NZBMATRIX_USERNAME" size="20" value="<?php echo $config->get('NZBMATRIX_USERNAME','SEARCH')?>" />
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>NZB Matrix API:</p>
-                  </td>
-                  <td align="left">
-                    <input name="NZBMATRIX_API" size="40" value="<?php echo $config->get('NZBMATRIX_API','SEARCH')?>" />
-                    <a href="http://nzbmatrix.com/account.php"><img src="media/question.png" height="20px"></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>NZB.su API:</p>
-                  </td>
-                  <td align="left">
-                    <input name="NZBSU_API" size="40" value="<?php echo $config->get('NZBSU_API','SEARCH')?>" />
-                    <a href="http://nzb.su/profile"><img src="media/question.png" height="20px"></a>
-                  </td>
-                </tr>
-                <tr>
-                  <td align="right">
-                    <p>NZB.su DL Code:</p>
-                  </td>
-                  <td align="left">
-                    <input name="NZB_DL" size="40" value="<?php echo $config->get('NZB_DL','SEARCH')?>" />
-                    <a href="http://nzb.su/rss"><img src="media/question.png" height="20px"></a>
-                  </td>
-                </tr>
-              </table>
+							<table>
+								<tr>
+									<td colspan="2"><p align="justify" style="width: 500px;">Here you can specify your prefered Search criteria.</p></td>
+								</tr><tr>
+									<td align="right"><p>Preferred Index Site:</p></td>
+									<td align="left">
+									  <p>
+									    <input type="radio" Title="Defaults to NZBMatrix" name="preferred_site" value="1" <?php echo ($config->get('preferred_site','SEARCH')=="1")?'CHECKED':'';?> />NZB Matrix 
+									    <input type="radio" Title="Defaults to NZB.SU" name="preferred_site" value="2" <?php echo ($config->get('preferred_site','SEARCH')=="2")?'CHECKED':'';?> />NZB.SU
+									  </p>
+									</td>
+								</tr>
+								<tr>
+									<td align="right"><p>Preferred Category:</p></td>
+									<td align="left"><input name="preferred_categories" Title="This denotes which Category you want to search by default from your Preferred Provider." size="20" value="<?php echo $config->get('preferred_categories','SEARCH')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>NZB Matrix Username:</p></td>
+									<td align="left"><input name="NZBMATRIX_USERNAME" Title="Insert your NZBMatrix Username" size="20" value="<?php echo $config->get('NZBMATRIX_USERNAME','SEARCH')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>NZB Matrix API:</p></td>
+									<td align="left"><input name="NZBMATRIX_API" Title="Insert your NZBMatrix API" type="password" size="40" value="<?php echo $config->get('NZBMATRIX_API','SEARCH')?>" /><a href="http://nzbmatrix.com/account.php" target="_blank" title="go to Account page"><img src="media/question.png" height="20px"></a></td>
+								</tr>
+								<tr>
+									<td align="right"><p>NZB.SU API:</p></td>
+									<td align="left"><Input name="NZBSU_API" Title="Insert your NZB.SU API" type="password" size="40" value="<?php echo $config->get('NZBSU_API','SEARCH')?>" /><a href="http://nzb.su/profile" target="_blank" title="go to profile page"><img src="media/question.png" height="20px"></a></td>
+								</tr>
+								<tr>
+				          <td align="right"><p>NZB.SU Download Code:</p></td>
+									<td align="left"><input name="NZB_DL" Title="Insert your NZB.SU Download Code" type="password" size="40" value="<?php echo $config->get('NZB_DL','SEARCH')?>" /><a href="http://nzb.su/rss" target="_blank" title="go to rss profile page"><img src="media/question.png" height="20px"></a></td>
+								</tr>
+							</table>
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('SEARCH');" />
             </div>
             <div id="TRAKT" class="panel">
@@ -718,7 +604,7 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
               <h3>Nav Links</h3>
               <table id='table_nav'>
                 <tr>
-                  <td>Title</td>
+                  <td>title</td>
                   <td>URL</td>
                 </tr>
                 <?php
@@ -726,7 +612,7 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                  foreach ($x as $title=>$url){
                    echo "<tr>
                            <td>
-                             <input size='13' name='TITLE' value='".str_ireplace('_', ' ', $title)."'/>
+                             <input size='13' name='title' value='".str_ireplace('_', ' ', $title)."'/>
                            </td>
                            <td>
                              <input name='VALUE' size='30' value='$url'/>
@@ -745,7 +631,7 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
               <h3>SubNav Links</h3>
               <table id='table_subnav'>
                 <tr>
-                  <td>Title</td>
+                  <td>title</td>
                   <td>URL</td>
                 </tr>
                 <?php
@@ -753,7 +639,7 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                  foreach ($x as $title=>$url){
                    echo "<tr>
                            <td>
-                             <input size='13' name='TITLE' value='".str_ireplace('_', ' ', $title)."'/>
+                             <input size='13' name='title' value='".str_ireplace('_', ' ', $title)."'/>
                            </td>
                            <td>
                              <input name='VALUE' size='30' value='$url'/>
@@ -772,7 +658,7 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
               <h3>Hard Drives</h3>
               <table id='table_hdd'>
                 <tr>
-                  <td>Title</td>
+                  <td>title</td>
                   <td>Path</td>
                 </tr>
                 <?php
@@ -780,7 +666,7 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                  foreach ($x as $title=>$url){
                    echo "<tr>
                            <td>
-                             <input size='20' name='TITLE' value='".str_ireplace('_', ' ', $title)."'/>
+                             <input size='20' name='title' value='".str_ireplace('_', ' ', $title)."'/>
                            </td>
                            <td>
                              <input name ='VALUE' size='20' value='$url'/>
@@ -799,7 +685,7 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
               <h3>XBMC Instances for Message Widget</h3>
               <table id="table_msg">
                 <tr>
-                  <td>Title</td>
+                  <td>title</td>
                   <td>URL</td>
                 </tr>
                 <?php
@@ -807,7 +693,7 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                  foreach ($x as $title=>$url){
                    echo "<tr>
                            <td>
-                             <input size='10' name='TITLE' value='".str_ireplace('_', ' ', $title)."'/>
+                             <input size='10' name='title' value='".str_ireplace('_', ' ', $title)."'/>
                            </td>
                            <td>
                              <input size='40' name='VALUE' value='$url'/>
@@ -920,7 +806,7 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
               <h3>RSS Feeds</h3>
               <table id="table_rss">
                 <tr>
-                  <td>Title</td>
+                  <td>title</td>
                   <td>URL</td>
                 </tr>
                 <?php
@@ -928,7 +814,7 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                  foreach ($x as $title=>$url){
                    echo "<tr>
                            <td>
-                             <input size='40' name='TITLE' value='".urldecode(str_ireplace('_', ' ', $title))."'/>
+                             <input size='40' name='title' value='".urldecode(str_ireplace('_', ' ', $title))."'/>
                            </td>
                            <td>
                              <input size='80' name='VALUE' value='$url'/>
@@ -947,7 +833,7 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
               <h3>Control Widget</h3>
               <table id="table_control">
                 <tr>
-                  <td>Title</td>
+                  <td>title</td>
                   <td>URL</td>
                 </tr>
                 <?php
@@ -955,7 +841,7 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                 foreach ($x as $title=>$url){
                   echo "<tr>
                           <td>
-                            <input size='40' name='TITLE' value='".urldecode(str_ireplace('_', ' ', $title))."'/>
+                            <input size='40' name='title' value='".urldecode(str_ireplace('_', ' ', $title))."'/>
                           </td>
                           <td>
                             <input size='80' name='VALUE' value='$url'/>
