@@ -47,7 +47,15 @@ function download($url){
       exit;
     }
   }
-
+  
+  if(file_exists('update')){
+    unlink('update');
+    echo 'Deleted leftover update from previous update<br>';
+  }
+  if(file_exists('update.zip')){
+    unlink('update.zip');
+    echo 'Deleted leftover ZIP from previous update<br>';
+  }
   $userAgent = 'Googlebot/2.1 (http://www.googlebot.com/bot.html)';
   $file_zip = "update.zip";
   $file_txt = "update";
@@ -66,12 +74,12 @@ function download($url){
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 	curl_setopt($ch, CURLOPT_AUTOREFERER, true);
 	curl_setopt($ch, CURLOPT_BINARYTRANSFER,true);
-	curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+	curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 	curl_setopt($ch, CURLOPT_FILE, $fp);
 	
 	$page = curl_exec($ch);
 	
-	//In case the donwload failed
+	//In case the download failed
 	if (!$page) {
 	  echo "<br />cURL error number:" .curl_errno($ch);
 	  echo "<br />cURL error:" . curl_error($ch);
@@ -84,20 +92,32 @@ function download($url){
 	echo "<br>Saved as file: $file_zip";
 	echo "<br>About to unzip ...";
 	
-	// Un zip the file 
-	
+	// Unzip the file 
 	$zip = new ZipArchive;
-	if (! $zip) {
+	if (!$zip) {
 	  echo "<br>Could not make ZipArchive object.";
 	  exit;
 	}
 	if($zip->open("$file_zip") != "true") {
-	  echo "<br>Could not open $file_zip";
+	  echo "<br>Could not open $file_zip. Code: ";
 	}
 	$zip->extractTo("$file_txt");
 	$zip->close();
-	
 	echo "<br>Unzipped file to: $file_txt<br><br>";	
+	$name = '';
+	if ($handle = opendir('update')) {
+    //echo "Directory handle: $handle\n";
+    //echo "Files:\n";
+
+    /* This is the correct way to loop over the directory. */
+    while (false !== ($file = readdir($handle))) {
+      if(strstr($file,'mediafrontpage')){
+        $name = $file;
+      }
+    }
+
+    closedir($handle);
+  }
 }
 download('https://nodeload.github.com/DejaVu77/mediafrontpage/zipball/561e9ea2e21dbb4c126877ccf1a9c95860bad79b');
 ?>
