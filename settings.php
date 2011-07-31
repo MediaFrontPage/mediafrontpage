@@ -1,5 +1,5 @@
 <?php
-require_once('lib/class.settings.php');
+require 'lib/class.settings.php';require 'lib/class.github.php';
 $config = new ConfigMagik('config.ini', true, true);
 
 if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
@@ -145,21 +145,20 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                   <td>Last Updated</td>
                   <td>
                   <?php
-                    require_once 'lib/github/Autoloader.php';
-                    Github_Autoloader::register();
-                    $github = new Github_Client();
-                    $repo = $github->getRepoApi()->show('gugahoi', 'mediafrontpage');
-                    echo $repo['pushed_at'];
+                    $github = new GitHub('gugahoi','mediafrontpage');
+                    $date   = $github->getInfo();
+                    echo $date['pushed_at'];
                   ?>
                   </td>
                 </tr>
                 <tr align="left">
                   <td>
                     <?php
-                      $commits = $github->getCommitApi()->getBranchCommits('gugahoi', 'mediafrontpage', 'master');
-                      echo "Version </td><td>".$commits['0']['parents']['0']['id'];
-                      if($commits['0']['parents']['0']['id'] !== $config->get('version','ADVANCED')){
-                        echo "\t<a href='#' onclick='updateVersion();'>***UPDATE Available***</a>";
+                      $commit = $github->getCommits();
+                      $commitNo = $commit['0']['sha'];
+                      echo "Version </td><td>".$commitNo;
+                      if($commitNo != $config->get('version','ADVANCED')){
+                        echo "\t<a href='#' onclick='updateVersion();' title='".$commitNo." - Description: ".$commit['0']['commit']['message']."'>***UPDATE Available***</a>";
                       }
                     ?>
                   </td>
