@@ -27,6 +27,13 @@ class GitHub{
 	  return $this->request($this->URL.'repos/'.$this->USER.'/'.$this->REPO.'/commits');
 	}
 	
+	function getDownload($id = ''){
+	  if($id!==''){
+	    $id = '/'.$id;
+	  }
+	  return $this->request($this->URL.'repos/'.$this->USER.'/'.$this->REPO.'/downloads'.$id);
+	}
+	
 	//creates a cURL request to the API.
 	function request($url){
 	  $ch = curl_init();
