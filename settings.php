@@ -1,5 +1,5 @@
 <?php
-require_once('lib/class.settings.php');
+require 'lib/class.settings.php';require 'lib/class.github.php';
 $config = new ConfigMagik('config.ini', true, true);
 
 if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
@@ -145,21 +145,21 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                   <td>Last Updated</td>
                   <td>
                   <?php
-                    require_once 'lib/github/Autoloader.php';
-                    Github_Autoloader::register();
-                    $github = new Github_Client();
-                    $repo = $github->getRepoApi()->show('gugahoi', 'mediafrontpage');
-                    echo $repo['pushed_at'];
+                    $github = new GitHub('gugahoi','mediafrontpage');
+                    $date   = $github->getInfo();
+                    echo $date['pushed_at'];
                   ?>
                   </td>
                 </tr>
                 <tr align="left">
                   <td>
                     <?php
-                      $commits = $github->getCommitApi()->getBranchCommits('gugahoi', 'mediafrontpage', 'master');
-                      echo "Version </td><td>".$commits['0']['parents']['0']['id'];
-                      if($commits['0']['parents']['0']['id'] !== $config->get('version','ADVANCED')){
-                        echo "\t<a href='#' onclick='updateVersion();'>***UPDATE Available***</a>";
+                      $commit = $github->getCommits();
+                      $commitNo = $commit['0']['sha'];
+                      $currentVersion = $config->get('version','ADVANCED');
+                      echo "Version </td><td><a href='https://github.com/gugahoi/mediafrontpage/commit/".$currentVersion."' target='_blank'>".$currentVersion.'</a>';
+                      if($commitNo != $currentVersion){
+                        echo "\t<a href='#' onclick='updateVersion();' title='".$commitNo." - Description: ".$commit['0']['commit']['message']."'>***UPDATE Available***</a>";
                       }
                     ?>
                   </td>
@@ -720,9 +720,9 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
               <p align="justify" style="width: 500px;">These are 'user created' CSS modifications submitted by some of our users. These change mainly the look and colours of MediaFrontPage. If you want to contribute your own modification, submit it to us on the <a href="http://forum.xbmc.org/showthread.php?t=83304" target="_blank">MediaFrontPage Support Thread</a>.</p>
               <table style="max-height:300px;">
                 <tr align="center">
-                  <td><img class="widget" src="media/examples/lightheme.jpg" height="120px" /></td>
-                  <td><img class="widget" src="media/examples/hernadito.jpg" height="120px" /></td>
-                  <td><img class="widget" src="media/examples/black_modern_glass.jpg" height="120px" /></td>
+                  <td><img class="widget" src="media/examples/lightheme.jpg" height="100px" /></td>
+                  <td><img class="widget" src="media/examples/hernadito.jpg" height="100px" /></td>
+                  <td><img class="widget" src="media/examples/black_modern_glass.jpg" height="100px" /></td>
                 </tr>
                 <tr>
                   <td align="center">
@@ -739,8 +739,8 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                   </td>
                 </tr>
                 <tr>
-                  <td><img class="widget" src="media/examples/minimal-posters.jpg" height="120px" /></td>
-                  <td><img class="widget" src="media/examples/minimal-banners.jpg" height="120px" /></td>
+                  <td><img class="widget" src="media/examples/minimal-posters.jpg" height="100px" /></td>
+                  <td><img class="widget" src="media/examples/minimal-banners.jpg" height="100px" /></td>
                   <td></td>
                 </tr>
                 <tr>
@@ -758,8 +758,6 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                   </td>
                 </tr>
               </table>
-              <br />
-              <br />
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('MODS');" />
             </div>
             <div id="RSS" class="panel">
