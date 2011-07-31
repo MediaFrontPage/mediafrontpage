@@ -72,7 +72,6 @@ if(extension_loaded('curl')){
 if (file_exists('config.ini')){
 	echo "<tr><td>Config found. </td><td><img src='media/green-tick.png' height='15px'/></td></tr>";
 }else{
-	//echo "<tr><td><input type='button' value='config.ini' onclick=\"toggle('config'); \"/>  <b>NOT</b> found";
 	if(file_exists('default-config.ini')){
 		if(copy("default-config.ini", "config.ini")){
 			echo "<tr><td>Config created successfully";
@@ -94,7 +93,7 @@ if (file_exists('layout.php')){
 	echo "<tr><td>layout.php found";
 	if(!is_writable('layout.php')){
 		if(@chmod("layout.php", 0777)){
-			echo " and CHMODDED";
+			echo "";
 		}
 		else{
 			echo ", could not be written. Please CHMOD it.";
@@ -107,38 +106,21 @@ if (file_exists('layout.php')){
 	}
 	echo ($valid)?"</td><td><img src='media/green-tick.png' height='15px'/></td></tr>":"</td><td><img src='media/red-cross.png' height='15px'/></td></tr>";
 }else{
-	echo '<tr><td>default-layout.php';
 	$valid = true;
 	if(file_exists("default-layout.php")){
 		if(copy("default-layout.php", "layout.php")){
-			echo " renamed successfully. ";
+			echo " Layout created successfully. ";
 		}
 	}
 	else{
-		echo " could not be found. ";
+		echo " Layout could not be created please redownload MFP. ";
 		$redirect = false;
 		$valid = false;
-	}
-	if(file_exists("layout.php")){
-		if(!is_writable('layout.php')){
-			if(@chmod("layout.php", 0777)){
-				echo " and CHMODDED";
-			}
-			else{
-				echo ", could not be written. Please CHMOD it.";
-				$redirect = false;
-				$valid = false;
-			}
-		}
-		else{
-			echo ", writeable";
-		}
 	}
 	echo ($valid)?"</td><td><img src='media/green-tick.png' height='15px'/></td></tr>":"</td><td><img src='media/red-cross.png' height='15px'/></td></tr>";
 }
 echo '</table>';
 if($redirect){
-	//echo "<script>setTimeout('redirect()', 5000);</script>";
 	echo "<p>Congratulations! Everything seems to be in working order.</p>";
 	echo "<p><input type='button' onclick=\"window.location = 'index.php';\" value='CONTINUE' /></p>";
 	if (file_exists('firstrun.php')){
