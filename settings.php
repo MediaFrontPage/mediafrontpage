@@ -156,8 +156,9 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                     <?php
                       $commit = $github->getCommits();
                       $commitNo = $commit['0']['sha'];
-                      echo "Version </td><td>".$commitNo;
-                      if($commitNo != $config->get('version','ADVANCED')){
+                      $currentVersion = $config->get('version','ADVANCED');
+                      echo "Version </td><td><a href='https://github.com/gugahoi/mediafrontpage/commit/".$currentVersion."' target='_blank'>".$currentVersion.'</a>';
+                      if($commitNo != $currentVersion){
                         echo "\t<a href='#' onclick='updateVersion();' title='".$commitNo." - Description: ".$commit['0']['commit']['message']."'>***UPDATE Available***</a>";
                       }
                     ?>
