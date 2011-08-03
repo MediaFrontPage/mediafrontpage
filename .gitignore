@@ -3,3 +3,5 @@ layout.php
 config.ini
 m/mobileconfig.php
 sbpcache/*
+update/*
+update.zip
