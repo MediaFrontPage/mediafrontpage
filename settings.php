@@ -801,16 +801,16 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                 foreach ($x as $title=>$url){
                   echo "<tr>
                           <td>
-                            <input size='40' name='title' value='".urldecode(str_ireplace('_', ' ', $title))."'/>
+                            <input size='20' name='title' value='".urldecode(str_ireplace('_', ' ', $title))."'/>
                           </td>
                           <td>
-                            <input size='80' name='VALUE' value='$url'/>
+                            <input size='40' name='VALUE' value='$url'/>
                           </td>
                         </tr>";
                 }
                 ?>
               </table>
-              <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="ADD" onclick="addRowToTable('control', 40, 80);" />
+              <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="ADD" onclick="addRowToTable('control', 20, 40);" />
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="REMOVE" onclick="removeRowToTable('control');" />
               <br />
               <br />
