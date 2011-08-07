@@ -84,14 +84,16 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
 
 	$updateContents = scandir('update/'.$name);
   foreach($updateContents as $number=>$fileName){
-    if(is_dir($fileName)){
-      moveDownload('update/'.$name.'/'.$fileName, $fileName);
-    } else {
-      if(rename('update/'.$name.'/'.$fileName, $fileName)){
-        echo '<br />'.$filename.' moved successfully <font color="green">OK</font>';
-      } else {
-        echo '<br />Could not move file '.$fileName.'<font color="red">ERROR</font>';
-      }
+    if($fileName != 'update' && $fileName != 'config.ini' && $fileName != 'layout.php' && $fileName != '..' && $fileName != '.' && $fileName != '.git' && $fileName != '.gitignore'){
+	    if(is_dir($fileName)){
+	      moveDownload('update/'.$name.'/'.$fileName, 'tmp/'.$fileName);
+	    } else {
+	      if(rename('update/'.$name.'/'.$fileName, 'tmp/'.$fileName)){
+	        echo '<br />'.$filename.' moved successfully <font color="green">OK</font>';
+	      } else {
+	        echo '<br />Could not move file '.$fileName.'<font color="red">ERROR</font>';
+	      }
+	    }
     }
   }
 
