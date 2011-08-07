@@ -81,20 +81,20 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
 
   deleteOld();
 
-  /*
-$updateContents = scandir('update/'.$name);
+
+	$updateContents = scandir('update/'.$name);
   foreach($updateContents as $number=>$fileName){
     if(is_dir($fileName)){
-      moveDownload('update/'.$name.'/'.$fileName,'');
+      moveDownload('update/'.$name.'/'.$fileName, $fileName);
     } else {
       if(rename('update/'.$name.'/'.$fileName, $fileName)){
-        echo $filename.' moved successfully';
+        echo '<br />'.$filename.' moved successfully <font color="green">OK</font>';
       } else {
-        echo 'Could not move file '.$fileName;
+        echo '<br />Could not move file '.$fileName.'<font color="red">ERROR</font>';
       }
     }
   }
-*/
+
 }
 
 function unzip($file, $extractDir = 'update'){
