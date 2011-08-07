@@ -79,9 +79,28 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
     closedir($handle);
   }
 
-  deleteOld();
+  //deleteOld();
 
+	echo '<font size="20">OLD STUFF</font>';
+	echo '<table>';
+	$updateContents = scandir('./');
+  foreach($updateContents as $number=>$fileName){
+    if($fileName != 'update' && $fileName != 'config.ini' && $fileName != 'layout.php' && $fileName != '..' && $fileName != '.' && $fileName != '.git' && $fileName != '.gitignore'){
+	    if(is_dir($fileName)){
+	      moveDownload($fileName, 'old/'.$fileName);
+	    } else {
+	      if(rename($fileName, 'old/'.$fileName)){
+	        echo '<tr><td>'.$fileName.' moved successfully </td><td><font color="green">OK</font></td></tr>';
+	      } else {
+	        echo '<tr><td>Could not move file '.$fileName.'</td><td><font color="red">ERROR</font></td></tr>';
+	      }
+	    }
+    }
+  }
+	echo '</table>';
 
+	echo '<font size="20">New stuff</font>';
+	echo '<table>';
 	$updateContents = scandir('update/'.$name);
   foreach($updateContents as $number=>$fileName){
     if($fileName != 'update' && $fileName != 'config.ini' && $fileName != 'layout.php' && $fileName != '..' && $fileName != '.' && $fileName != '.git' && $fileName != '.gitignore'){
@@ -89,14 +108,14 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
 	      moveDownload('update/'.$name.'/'.$fileName, 'tmp/'.$fileName);
 	    } else {
 	      if(rename('update/'.$name.'/'.$fileName, 'tmp/'.$fileName)){
-	        echo '<br />'.$filename.' moved successfully <font color="green">OK</font>';
+	        echo '<tr><td>'.$fileName.' moved successfully </td><td><font color="green">OK</font></td></tr>';
 	      } else {
-	        echo '<br />Could not move file '.$fileName.'<font color="red">ERROR</font>';
+	        echo '<tr><td>Could not move file '.$fileName.'</td><td><font color="red">ERROR</font></td></tr>';
 	      }
 	    }
     }
   }
-
+	echo '</table>';
 }
 
 function unzip($file, $extractDir = 'update'){
