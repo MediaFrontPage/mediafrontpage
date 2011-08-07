@@ -220,7 +220,7 @@ function rrmdir($dir) {
 function deleteOld(){
   $contents = scandir('./');
   foreach($contents as $number => $name){
-    if($name != 'update' && $name != 'config.ini' && $name != 'layout.php' && $name != '..' && $name != '.' && $name != '.git' && $name != '.gitignore'){
+    if($name != 'update' && $name != 'config.ini' && $name != 'layout.php' && $name != '..' && $name != '.' && $name != '.git' && $name != '.gitignore' && $name != 'tmp'){
       if(is_dir($name)){
         echo '<br />Deleting DIR: <b>'.$name.'</b>';
         rrmdir($name);
