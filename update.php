@@ -81,7 +81,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
 
   //deleteOld();
 
-	echo '<font size="20">OLD STUFF</font>';
+	echo '<p><font size="20">OLD STUFF</font></p>';
 	echo '<table>';
 	$updateContents = scandir('./');
   foreach($updateContents as $number=>$fileName){
@@ -99,7 +99,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
   }
 	echo '</table>';
 
-	echo '<font size="20">New stuff</font>';
+	echo '<p><font size="20">New stuff</font></p>';
 	echo '<table>';
 	$updateContents = scandir('update/'.$name);
   foreach($updateContents as $number=>$fileName){
@@ -196,16 +196,16 @@ function moveDownload($src,$dst){
         }
       }
       if(@rename($src . '/' . $file, $dst . '/' . $file)){
-        echo '<br /><font color="green">Moved successfully: '.$file.'</font>';
+	        echo '<tr><td>'.$file.' moved successfully </td><td><font color="green">OK</font></td></tr>';
       } else {
         if(@chmod($src.'/'.$file, 0777)){
           if(@rename($src . '/' . $file, $dst . '/' . $file)){
-            echo '<br /><font color="green">Moved successfully: '.$file.'</font>';
+	        	echo '<tr><td>'.$file.' moved successfully </td><td><font color="green">OK</font></td></tr>';
           } else {
-            echo '<br /><font color="red">Failed to move: '.$file.'. <b>RENAME</b> did not work.</font>';
+	        	echo '<tr><td>Could not move file '.$file.'</td><td><font color="red">ERROR RENAME</font></td></tr>';
           }
         } else {
-          echo '<br /><font color="red">Failed to move: '.$file.'. <b>CHMOD</b> did not work.</font>';
+	        echo '<tr><td>Could not move file '.$file.'</td><td><font color="red">ERROR CHMOD</font></td></tr>';
         }
       }
     } 
