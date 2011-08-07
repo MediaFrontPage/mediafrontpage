@@ -1,7 +1,6 @@
 <?php
 //@author: Gustavo Hoirisch
-echo $FILEPATH;
-rename('update', $FILEPATH.'tmp');
+
 function updateVersion(){
   require_once 'lib/class.settings.php';require_once 'lib/class.github.php';
   $github = new GitHub('gugahoi','mediafrontpage');
@@ -79,10 +78,11 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
     }
     closedir($handle);
   }
-  
+
   deleteOld();
 
-  $updateContents = scandir('update/'.$name);
+  /*
+$updateContents = scandir('update/'.$name);
   foreach($updateContents as $number=>$fileName){
     if(is_dir($fileName)){
       moveDownload('update/'.$name.'/'.$fileName,'');
@@ -94,6 +94,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
       }
     }
   }
+*/
 }
 
 function unzip($file, $extractDir = 'update'){
@@ -198,13 +199,13 @@ function rrmdir($dir) {
    foreach ($objects as $object) { 
      if ($object != "." && $object != "..") { 
        if (filetype($dir."/".$object) == "dir"){
-         echo 'Going into '.$dir."/".$object;
+         echo '<br />Going into '.$dir."/".$object;
          rrmdir($dir."/".$object);
        } else {
          if(unlink($dir."/".$object)){
-           echo 'Deleted: '.$dir."/".$object;
+          echo '<br />Deleting file: <b>'.$dir."/".$object.'</b> <font color="green">OK</font>';
          } else {
-           echo 'Failed to delete: '.$dir."/".$object;
+          echo '<br />Deleting file: <b>'.$dir."/".$object.'</b> <font color="red">FAILED</font>';
          }
        }
      } 
@@ -215,9 +216,9 @@ function rrmdir($dir) {
 }
 
 function deleteOld(){
-  $contents = scandir('/');
+  $contents = scandir('./');
   foreach($contents as $number => $name){
-    if($name != 'update' && $name != 'config.ini' && $name != 'layout.php'){
+    if($name != 'update' && $name != 'config.ini' && $name != 'layout.php' && $name != '..' && $name != '.' && $name != '.git' && $name != '.gitignore'){
       if(is_dir($name)){
         echo '<br />Deleting DIR: <b>'.$name.'</b>';
         rrmdir($name);
@@ -230,8 +231,6 @@ function deleteOld(){
       }
     }
   }
-
-
 }
-//download();
+download();
 ?>
