@@ -152,6 +152,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
         }
       }
     }
+    echo '</table>'; 
   }
 }
 
