@@ -7,7 +7,7 @@ function updateVersion(){
   $commit = $github->getCommits();
   $commitNo = $commit['0']['sha'];
   $config = new ConfigMagik('config.ini', true, true);
-  echo "<p>Updating commit number from: ".$config->get('version', 'ADVANCED');." -> ".$commitNo."</p>"
+  echo "<p>Updating commit number from: ".$config->get('version', 'ADVANCED');." -> ".$commitNo."</p>";
   try{
     $config->set('version', $commitNo, 'ADVANCED');
     echo "<font color='green'>OK</font>";
