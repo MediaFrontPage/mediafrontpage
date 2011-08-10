@@ -7,13 +7,13 @@ function updateVersion(){
   $commit = $github->getCommits();
   $commitNo = $commit['0']['sha'];
   $config = new ConfigMagik('config.ini', true, true);
+  echo "<p>Updating commit number from: ".$config->get('version', 'ADVANCED');." -> ".$commitNo."</p>"
   try{
     $config->set('version', $commitNo, 'ADVANCED');
+    echo "<font color='green'>OK</font>";
   } catch (Exception $e){
-    echo false; exit;
+    echo "<font color='red'>ERROR</font>";
   }
-  echo true;
-  exit;
 }
 
 function getNew(){
@@ -155,6 +155,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
       }
     }
     echo '</table>';
+    updateVersion();
   } else {
     echo "<p><font size='20' color='red'>FAILED</font></p>";
     $dir = scandir('tmp/');
