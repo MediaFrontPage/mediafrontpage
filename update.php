@@ -23,7 +23,7 @@ function getNew(){
 }
 
 function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zipball/master'){
-  
+  echo '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>';
   $userAgent = 'Googlebot/2.1 (http://www.googlebot.com/bot.html)';
   $file_zip = "update.zip";
 
@@ -78,7 +78,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
     closedir($handle);
   }
 
-  $successful = true;
+  $succesful = true;
   echo '<p onclick="$("#old").toggle("slow");"><font size="20">OLD STUFF</font></p>';
   echo '<table id="old" style="display: hidden;">';
   $updateContents = scandir('./');
@@ -230,5 +230,4 @@ function rrmdir($dir) {
     rmdir($dir); 
   } 
 }
-download();
 ?>
