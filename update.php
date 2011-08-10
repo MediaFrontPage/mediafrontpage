@@ -7,12 +7,12 @@ function updateVersion(){
   $commit = $github->getCommits();
   $commitNo = $commit['0']['sha'];
   $config = new ConfigMagik('config.ini', true, true);
-  echo "<p>Updating commit number from: ".$config->get('version', 'ADVANCED')." -> ".$commitNo."</p>";
+  echo "<p>Updating commit number from: ".$config->get('version', 'ADVANCED')." -> ".$commitNo;
   try{
     $config->set('version', $commitNo, 'ADVANCED');
-    echo "<font color='green'>OK</font>";
+    echo "  <font color='green'>OK</font></p>";
   } catch (Exception $e){
-    echo "<font color='red'>ERROR</font>";
+    echo "  <font color='red'>ERROR</font></p>";
   }
 }
 
@@ -24,7 +24,7 @@ function getNew(){
 
 function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zipball/master'){
   echo '<html><head>';
-  echo '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>';
+  echo '<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>';
   echo '</head><body>';
   $userAgent = 'Googlebot/2.1 (http://www.googlebot.com/bot.html)';
   $file_zip = "update.zip";
@@ -81,7 +81,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
   }
 
   $successful = true;
-  echo '<p onclick="$("#old").toggle("slow");"><font size="20">OLD STUFF</font></p>';
+  echo '<p onclick="$("#old").toggle();"><font size="20">OLD STUFF</font></p>';
   echo '<table id="old" style="display: none;">';
   $updateContents = scandir('./');
   foreach($updateContents as $number=>$fileName){
@@ -101,7 +101,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
   echo '</table>';
 
   if($successful){
-    echo '<p onclick="$("#new").toggle("slow");"><font size="20">New stuff</font></p>';
+    echo '<p onclick="$("#new").toggle();"><font size="20">New stuff</font></p>';
     echo '<table id="new" style="display: none;">';
     $updateContents = scandir('update/'.$name);
     foreach($updateContents as $number=>$fileName){
@@ -126,7 +126,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
   if($successful){
     echo "<p><font size='20' color='green'>UPDATE SUCCESSFULL</font></p>";
     $dir = scandir('update/');
-    echo "<p onclick=\"$(\"#end\").toggle(\"slow\");\">Cleaning up UPDATE</p><table id='end' style='display: none;'>";
+    echo "<p onclick=\"$(\"#end\").toggle();\">Cleaning up UPDATE</p><table id='end' style='display: none;'>";
     foreach($dir as $number=>$fileName){
       if($fileName != '..' && $fileName != '.'){
         if(is_dir($fileName)){
