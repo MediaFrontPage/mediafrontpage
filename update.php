@@ -79,15 +79,13 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
     closedir($handle);
   }
 
-  //deleteOld();
-
-	echo '<p><font size="20">OLD STUFF</font></p>';
-	echo '<table>';
+	echo '<p onclick="$("#old").toggle("slow");"><font size="20">OLD STUFF</font></p>';
+	echo '<table id="old" style="display: hidden;">';
 	$updateContents = scandir('./');
   foreach($updateContents as $number=>$fileName){
     if($fileName != 'update' && $fileName != 'config.ini' && $fileName != 'layout.php' && $fileName != '..' && $fileName != '.' && $fileName != '.git' && $fileName != '.gitignore'){
 	    if(is_dir($fileName)){
-	      moveDownload($fileName, 'old/'.$fileName);
+	      rename($fileName, 'old/'.$fileName);
 	    } else {
 	      if(rename($fileName, 'old/'.$fileName)){
 	        echo '<tr><td>'.$fileName.' moved successfully </td><td><font color="green">OK</font></td></tr>';
@@ -99,15 +97,15 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
   }
 	echo '</table>';
 
-	echo '<p><font size="20">New stuff</font></p>';
-	echo '<table>';
+	echo '<p onclick="$("#new").toggle("slow");"><font size="20">New stuff</font></p>';
+	echo '<table id="new" style="display: hidden;">';
 	$updateContents = scandir('update/'.$name);
   foreach($updateContents as $number=>$fileName){
     if($fileName != 'update' && $fileName != 'config.ini' && $fileName != 'layout.php' && $fileName != '..' && $fileName != '.' && $fileName != '.git' && $fileName != '.gitignore'){
 	    if(is_dir($fileName)){
-	      moveDownload('update/'.$name.'/'.$fileName, 'tmp/'.$fileName);
+	      rename('update/'.$name.'/'.$fileName, './'.$fileName);
 	    } else {
-	      if(rename('update/'.$name.'/'.$fileName, 'tmp/'.$fileName)){
+	      if(rename('update/'.$name.'/'.$fileName, './'.$fileName)){
 	        echo '<tr><td>'.$fileName.' moved successfully </td><td><font color="green">OK</font></td></tr>';
 	      } else {
 	        echo '<tr><td>Could not move file '.$fileName.'</td><td><font color="red">ERROR</font></td></tr>';
@@ -183,36 +181,6 @@ function cleanUp($extra = ''){
   }
 }
 
-/*
-/Recursively move items from src to dst. Will overwrite if needed.
-*/
-function moveDownload($src,$dst){ 
-  $dir = opendir($src); 
-  while(false !== ($file = readdir($dir))){ 
-    if (($file != '.') && ($file != '..') && ($file != 'config.ini') && ($file != 'layout.php') && ($file != 'sbpcache') && ($file !='update')){ 
-      if (is_dir($src.'/'.$file)){
-        if(file_exists($dst.'/'.$file)){
-          rrmdir($dst.'/'.$file);
-        }
-      }
-      if(@rename($src . '/' . $file, $dst . '/' . $file)){
-	        echo '<tr><td>'.$file.' moved successfully </td><td><font color="green">OK</font></td></tr>';
-      } else {
-        if(@chmod($src.'/'.$file, 0777)){
-          if(@rename($src . '/' . $file, $dst . '/' . $file)){
-	        	echo '<tr><td>'.$file.' moved successfully </td><td><font color="green">OK</font></td></tr>';
-          } else {
-	        	echo '<tr><td>Could not move file '.$file.'</td><td><font color="red">ERROR RENAME</font></td></tr>';
-          }
-        } else {
-	        echo '<tr><td>Could not move file '.$file.'</td><td><font color="red">ERROR CHMOD</font></td></tr>';
-        }
-      }
-    } 
-  } 
-  closedir($dir); 
-}
-
 //Deletes directories and it's contents. 
 function rrmdir($dir) { 
  if (is_dir($dir)) { 
@@ -235,23 +203,4 @@ function rrmdir($dir) {
    rmdir($dir); 
  } 
 }
-
-function deleteOld(){
-  $contents = scandir('./');
-  foreach($contents as $number => $name){
-    if($name != 'update' && $name != 'config.ini' && $name != 'layout.php' && $name != '..' && $name != '.' && $name != '.git' && $name != '.gitignore' && $name != 'tmp'){
-      if(is_dir($name)){
-        echo '<br />Deleting DIR: <b>'.$name.'</b>';
-        rrmdir($name);
-      } else {
-        if(unlink($name)){
-          echo '<br />Deleting file: <b>'.$name.'</b> <font color="green">OK</font>';
-        } else {
-          echo '<br />Deleting file: <b>'.$name.'</b> <font color="red">FAILED</font>';
-        }
-      }
-    }
-  }
-}
-download();
 ?>
