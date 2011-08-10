@@ -1,5 +1,5 @@
 <?php
-$wIndex["wTrakt"] = array("name" => "trakt.tv", "type" => "inline", "function" => "wTrakt();", "headerfunction" => "wTraktHeader();");
+$wIndex["wTrakt"] = array("name" => "trakt.tv", "type" => "ajax", "block" => "traktwrapper", "call" => "widgets/wTrakt.php?style=w", "headerfunction" => "wTraktHeader();", "interval" => "100000");
 
 function wTraktHeader()
 {
@@ -10,9 +10,9 @@ echo <<< TRAKTHEADER
 			$("a[rel^='prettyPhoto']").prettyPhoto(
 	        {
 	            social_tools: false
-	        });		
+	        });
 		 });
-		 				 				
+		clearInterval(traktwrapper_interval);
 		-->
 		</script>
 TRAKTHEADER;
@@ -32,11 +32,12 @@ function wTrakt()
 	wTraktMovieRecommendations();
 	echo '<h1>TV Recommendation</h1>';
 	wTraktTVRecommendations();
+	echo '<script>clearInterval(traktwrapper_interval);</script>';
 
 }
 function traktMethods($traktApiMethods, $post = false, $format = "json", $debug = false) //set debug to true to see the actual returned values
 {
-	require "config.php";
+	require "../config.php";
 	global $trakt_api, $trakt_username, $trakt_password;
 	$response;
 	echo (empty($trakt_api))?"<h1>API not set in config.php</h1>":"";
@@ -308,4 +309,24 @@ function printItem($type, $url, $title, $year, $poster, $overview, $runtime, $im
 	echo '</tr></table>';
 
 } 
+if(!empty($_GET['style']) && ($_GET['style'] == "w")) {
+	require_once "../config.php";
+	if($_GET['style'] == "w") {
+?>
+<html>
+	<head>
+		<title>Media Front Page - Trakt</title>
+		<link rel='stylesheet' type='text/css' href='css/front.css'>
+	</head>
+	<body>
+<?php
+		wTrakt();
+?>
+	</body>
+</html>
+<?php
+	} else {
+		wTrakt();
+	}
+}
 ?>
