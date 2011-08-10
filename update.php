@@ -80,7 +80,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
 
   $successful = true;
   echo '<p onclick="$("#old").toggle("slow");"><font size="20">OLD STUFF</font></p>';
-  echo '<table id="old" style="display: hidden;">';
+  echo '<table id="old" style="display: none;">';
   $updateContents = scandir('./');
   foreach($updateContents as $number=>$fileName){
     if($fileName != 'update' && $fileName != 'config.ini' && $fileName != 'layout.php' && $fileName != '..' && $fileName != '.' && $fileName != '.git' && $fileName != '.gitignore' && $fileName != 'tmp'){
@@ -100,7 +100,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
 
   if($successful){
     echo '<p onclick="$("#new").toggle("slow");"><font size="20">New stuff</font></p>';
-    echo '<table id="new" style="display: hidden;">';
+    echo '<table id="new" style="display: none;">';
     $updateContents = scandir('update/'.$name);
     foreach($updateContents as $number=>$fileName){
       if($fileName != 'update' && $fileName != 'config.ini' && $fileName != 'layout.php' && $fileName != '..' && $fileName != '.' && $fileName != '.git' && $fileName != '.gitignore' && $fileName != 'tmp'){
@@ -124,7 +124,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
   if($successful){
     echo "<p><font size='20' color='green'>UPDATE SUCCESSFULL</font></p>";
     $dir = scandir('update/');
-    echo "<p>Cleaning up UPDATE</p><table>";
+    echo "<p onclick=\"$(\"#end\").toggle(\"slow\");\">Cleaning up UPDATE</p><table id='end' style='display: none;'>";
     foreach($dir as $number=>$fileName){
       if($fileName != '..' && $fileName != '.'){
         if(is_dir($fileName)){
