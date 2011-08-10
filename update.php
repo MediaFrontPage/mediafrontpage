@@ -25,6 +25,15 @@ function getNew(){
 function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zipball/master'){
   echo '<html><head>';
   echo '<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>';
+  echo '<script>
+  			function toggle(id){
+          if (document.getElementById(id).style.display == "none"){
+            document.getElementById(id).style.display = "inline-block";
+          }else {
+            document.getElementById(id).style.display = "none";
+          }
+				}
+        </script>';
   echo '</head><body>';
   $userAgent = 'Googlebot/2.1 (http://www.googlebot.com/bot.html)';
   $file_zip = "update.zip";
@@ -81,8 +90,8 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
   }
 
   $successful = true;
-  echo '<p onclick="$("#old").toggle();"><font size="20">OLD STUFF</font></p>';
-  echo '<table id="old" style="display: none;">';
+  echo '<p onclick="toggle(\'old\');">Old stuff</p>';
+  echo '<div id="old" style="display: none;"><table>';
   $updateContents = scandir('./');
   foreach($updateContents as $number=>$fileName){
     if($fileName != 'update' && $fileName != 'config.ini' && $fileName != 'layout.php' && $fileName != '..' && $fileName != '.' && $fileName != '.git' && $fileName != '.gitignore' && $fileName != 'tmp'){
@@ -98,11 +107,11 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
       }
     }
   }
-  echo '</table>';
+  echo '</table></div>';
 
   if($successful){
-    echo '<p onclick="$("#new").toggle();"><font size="20">New stuff</font></p>';
-    echo '<table id="new" style="display: none;">';
+    echo '<p onclick="toggle(\'new\');">New stuff</p>';
+    echo '<div id="new" style="display: none;"><table>';
     $updateContents = scandir('update/'.$name);
     foreach($updateContents as $number=>$fileName){
       if($fileName != 'update' && $fileName != 'config.ini' && $fileName != 'layout.php' && $fileName != '..' && $fileName != '.' && $fileName != '.git' && $fileName != '.gitignore' && $fileName != 'tmp'){
@@ -119,14 +128,14 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
       }
     }
   }
-  echo '</table>';
+  echo '</table></div>';
   
   //If the renaming went through smoothly, need to clean up the downloaded and backed up files. Otherwise, 
   //move the files back and tell user to update manually.
   if($successful){
     echo "<p><font size='20' color='green'>UPDATE SUCCESSFULL</font></p>";
     $dir = scandir('update/');
-    echo "<p onclick=\"$(\"#end\").toggle();\">Cleaning up UPDATE</p><table id='end' style='display: none;'>";
+    echo "<p onclick=\"toggle(\'update\');\">Cleaning up UPDATE</p><table id='update' style='display: none;'>";
     foreach($dir as $number=>$fileName){
       if($fileName != '..' && $fileName != '.'){
         if(is_dir($fileName)){
@@ -142,7 +151,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
     }
     echo '</table>';
     $dir = scandir('tmp/');
-    echo "<p>Cleaning up TMP</p><table>";
+    echo "<p onclick=\"toggle(\'tmp\');\">Cleaning up TMP</p><table id='tmp' style='display: none;'>";
     foreach($dir as $number=>$fileName){
       if($fileName != '..' && $fileName != '.'){
         if(is_dir($fileName)){
