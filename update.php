@@ -7,7 +7,7 @@ function updateVersion(){
   $commit = $github->getCommits();
   $commitNo = $commit['0']['sha'];
   $config = new ConfigMagik('config.ini', true, true);
-  echo "<p>Updating commit number from: ".$config->get('version', 'ADVANCED');." -> ".$commitNo."</p>";
+  echo "<p>Updating commit number from: ".$config->get('version', 'ADVANCED')." -> ".$commitNo."</p>";
   try{
     $config->set('version', $commitNo, 'ADVANCED');
     echo "<font color='green'>OK</font>";
@@ -23,7 +23,9 @@ function getNew(){
 }
 
 function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zipball/master'){
+  echo '<html><head>';
   echo '<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>';
+  echo '</head><body>';
   $userAgent = 'Googlebot/2.1 (http://www.googlebot.com/bot.html)';
   $file_zip = "update.zip";
 
@@ -171,6 +173,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
     }
     echo '</table>'; 
   }
+  echo '</body></html>';
 }
 
 function unzip($file, $extractDir = 'update'){
