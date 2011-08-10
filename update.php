@@ -78,7 +78,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
     closedir($handle);
   }
 
-  $succesful = true;
+  $successful = true;
   echo '<p onclick="$("#old").toggle("slow");"><font size="20">OLD STUFF</font></p>';
   echo '<table id="old" style="display: hidden;">';
   $updateContents = scandir('./');
@@ -230,4 +230,5 @@ function rrmdir($dir) {
     rmdir($dir); 
   } 
 }
+download();
 ?>
