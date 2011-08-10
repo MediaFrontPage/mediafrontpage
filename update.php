@@ -134,13 +134,24 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
             echo '<tr><td>'.$fileName.' deleted successfully </td><td><font color="green">OK</font></td></tr>';
           } else {
             echo '<tr><td>Could not delete file '.$fileName.'</td><td><font color="red">ERROR</font></td></tr>';
-            $successful = false;
           }
         }
       }
     }
+    echo '</table>';
   } else {
     echo "<p><font size='20' color='red'>FAILED</font></p>";
+    $dir = scandir('tmp/');
+    echo "<p>Moving things back</p><table>";
+    foreach($dir as $number=>$fileName){
+      if($fileName != '..' && $fileName != '.'){
+        if(rename('tmp/'.$fileName, './'.$fileName)){
+          echo '<tr><td>'.$fileName.' moved successfully </td><td><font color="green">OK</font></td></tr>';
+        } else {
+          echo '<tr><td>Could not move file '.$fileName.'</td><td><font color="red">ERROR</font></td></tr>';
+        }
+      }
+    }
   }
 }
 
@@ -230,4 +241,5 @@ function rrmdir($dir) {
     rmdir($dir); 
   } 
 }
+download();
 ?>
