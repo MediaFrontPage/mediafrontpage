@@ -83,7 +83,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
   echo '<table id="old" style="display: hidden;">';
   $updateContents = scandir('./');
   foreach($updateContents as $number=>$fileName){
-    if($fileName != 'update' && $fileName != 'config.ini' && $fileName != 'layout.php' && $fileName != '..' && $fileName != '.' && $fileName != '.git' && $fileName != '.gitignore'){
+    if($fileName != 'update' && $fileName != 'config.ini' && $fileName != 'layout.php' && $fileName != '..' && $fileName != '.' && $fileName != '.git' && $fileName != '.gitignore' && $fileName != 'tmp'){
       if(is_dir($fileName)){
         rename($fileName, 'tmp/'.$fileName);
       } else {
@@ -103,7 +103,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
     echo '<table id="new" style="display: hidden;">';
     $updateContents = scandir('update/'.$name);
     foreach($updateContents as $number=>$fileName){
-      if($fileName != 'update' && $fileName != 'config.ini' && $fileName != 'layout.php' && $fileName != '..' && $fileName != '.' && $fileName != '.git' && $fileName != '.gitignore'){
+      if($fileName != 'update' && $fileName != 'config.ini' && $fileName != 'layout.php' && $fileName != '..' && $fileName != '.' && $fileName != '.git' && $fileName != '.gitignore' && $fileName != 'tmp'){
         if(is_dir($fileName)){
           rename('update/'.$name.'/'.$fileName, './'.$fileName);
         } else {
@@ -124,14 +124,30 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
   if($successful){
     echo "<p><font size='20' color='green'>UPDATE SUCCESSFULL</font></p>";
     $dir = scandir('update/');
-    echo "<p>Cleaning up</p><table>";
+    echo "<p>Cleaning up UPDATE</p><table>";
     foreach($dir as $number=>$fileName){
       if($fileName != '..' && $fileName != '.'){
         if(is_dir($fileName)){
           rrmdir('update/'.$fileName);
+        //} else {
+        //if(unlink('update/'.$fileName)){
+        //    echo '<tr><td>'.$fileName.' deleted successfully </td><td><font color="green">OK</font></td></tr>';
+        //  } else {
+        //    echo '<tr><td>Could not delete file '.$fileName.'</td><td><font color="red">ERROR</font></td></tr>';
+        //  }
+        }
+      }
+    }
+    echo '</table>';
+    $dir = scandir('tmp/');
+    echo "<p>Cleaning up TMP</p><table>";
+    foreach($dir as $number=>$fileName){
+      if($fileName != '..' && $fileName != '.'){
+        if(is_dir($fileName)){
+          rrmdir('tmp/'.$fileName);
         } else {
-          if(unlink('update/'.$fileName)){
-            echo '<tr><td>'.$fileName.' deleted successfully </td><td><font color="green">OK</font></td></tr>';
+        if(unlink('tmp/'.$fileName)){
+          echo '<tr><td>'.$fileName.' deleted successfully </td><td><font color="green">OK</font></td></tr>';
           } else {
             echo '<tr><td>Could not delete file '.$fileName.'</td><td><font color="red">ERROR</font></td></tr>';
           }
