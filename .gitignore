@@ -4,3 +4,5 @@ config.ini
 m/mobileconfig.php
 sbpcache/*
 update.zip
+update/*
+tmp/*
