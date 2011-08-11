@@ -37,10 +37,14 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
           }
 				}
         </script>';
-  echo '</head><body>';
+  echo '</head><body><center>';
   $userAgent = 'Googlebot/2.1 (http://www.googlebot.com/bot.html)';
   $file_zip = "update.zip";
-
+  echo '<div style="width:90%; height:95%;" class="widget">
+          <div class="widget-head">
+            <h3>MediaFrontPage Update</h3>
+          </div>';
+      
   echo "Starting";
 
   $ch = curl_init();
@@ -93,7 +97,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
   }
 
   $successful = true;
-  echo '<p onclick="toggle(\'old\');">Old stuff</p>';
+  echo '<button onclick="toggle(\'old\');" value="Old stuff" />';
   echo '<div id="old" style="display: none;"><table>';
   $updateContents = scandir('./');
   foreach($updateContents as $number=>$fileName){
@@ -113,13 +117,17 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
   echo '</table></div>';
 
   if($successful){
-    echo '<p onclick="toggle(\'new\');">New stuff</p>';
+    echo '<button onclick="toggle(\'new\');" value="New stuff" />';
     echo '<div id="new" style="display: none;"><table>';
     $updateContents = scandir('update/'.$name);
     foreach($updateContents as $number=>$fileName){
       if($fileName != 'update' && $fileName != 'config.ini' && $fileName != 'layout.php' && $fileName != '..' && $fileName != '.' && $fileName != '.git' && $fileName != '.gitignore' && $fileName != 'tmp'){
         if(is_dir($fileName)){
-          rename('update/'.$name.'/'.$fileName, './'.$fileName);
+          if(rename('update/'.$name.'/'.$fileName, './'.$fileName)){
+            echo '<tr><td>DIR: '.$fileName.' moved successfully </td><td><font color="green">OK</font></td></tr>';
+          } else {
+            echo '<tr><td>Could not move dir '.$fileName.'</td><td><font color="red">ERROR</font></td></tr>';
+          }
         } else {
           if(rename('update/'.$name.'/'.$fileName, './'.$fileName)){
             echo '<tr><td>'.$fileName.' moved successfully </td><td><font color="green">OK</font></td></tr>';
@@ -185,7 +193,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
     }
     echo '</table>'; 
   }
-  echo '</body></html>';
+  echo '</div></center></body></html>';
 }
 
 function unzip($file, $extractDir = 'update'){
