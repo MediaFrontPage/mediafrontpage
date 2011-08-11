@@ -164,7 +164,12 @@ if(!empty($_GET)){
   }
   if(isset($_GET['cleanup']) && $_GET['cleanup']){
     if(isset($_GET['dir']) && $_GET['dir'] != ''){
-      rrmdir($_GET['dir']);
+      if(rrmdir($_GET['dir'], false)){
+        echo true; return true;
+      } else {
+        echo false; return false;
+      }
+      
     } else {
       echo false; return false;
     }
