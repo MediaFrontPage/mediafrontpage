@@ -59,7 +59,7 @@ function moveUpdate(){
     closedir($handle);
   }
   if($name != ''){
-    if(moveDir($name, '.', false)){
+    if(moveDir('update/'.$name, '.', false)){
       echo true; return true;
     }
   }
