@@ -5,7 +5,7 @@ header("Content-type: text/css");
 
 ?><?php
 
-if ( $banner == true )
+if ( $banner == "true" )
 { 
 			 echo ( "
 			 
@@ -214,7 +214,7 @@ div#comingepisodes_widget{
 			 " );
     }
 	
-	elseif ( $poster == true )
+	elseif ( $poster == "true" )
 { 
 			 echo ( "
 
