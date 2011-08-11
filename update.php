@@ -40,9 +40,9 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
   echo '</head><body><center>';
   $userAgent = 'Googlebot/2.1 (http://www.googlebot.com/bot.html)';
   $file_zip = "update.zip";
-  echo '<div style="width:90%; height:95%;" class="widget">
+  echo '<div style="width:90%; height:100%; overflow: scroll;" class="widget">
           <div class="widget-head">
-            <h3>MediaFrontPage Update</h3>
+            <h3>MediaFrontPage Auto-Update</h3>
           </div>';
       
   echo "Starting";
@@ -97,7 +97,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
   }
 
   $successful = true;
-  echo '<button type="button" onclick="toggle(\'old\');">Old stuff</button>';
+  echo '<p><button type="button" onclick="toggle(\'old\');">Old stuff</button>';
   echo '<div id="old" style="display: none;"><table>';
   $updateContents = scandir('./');
   foreach($updateContents as $number=>$fileName){
@@ -114,10 +114,10 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
       }
     }
   }
-  echo '</table></div>';
+  echo '</table></div></p>';
 
   if($successful){
-    echo '<button type="button" onclick="toggle(\'new\');">New stuff</button>';
+    echo '<p><button type="button" onclick="toggle(\'new\');">New stuff</button>';
     echo '<div id="new" style="display: none;"><table>';
     $updateContents = scandir('update/'.$name);
     foreach($updateContents as $number=>$fileName){
@@ -139,14 +139,14 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
       }
     }
   }
-  echo '</table></div>';
+  echo '</table></div></p>';
   
   //If the renaming went through smoothly, need to clean up the downloaded and backed up files. Otherwise, 
   //move the files back and tell user to update manually.
   if($successful){
     echo "<p><font size='20' color='green'>UPDATE SUCCESSFULL</font></p>";
     $dir = scandir('update/');
-    echo "<p onclick=\"toggle(\'update\');\">Cleaning up UPDATE</p><table id='update' style='display: none;'>";
+    echo "<p><button onclick=\"toggle(\'update\');\">Cleaning up UPDATE</button><div id='update' style='display: none;'><table>";
     foreach($dir as $number=>$fileName){
       if($fileName != '..' && $fileName != '.'){
         if(is_dir($fileName)){
@@ -160,9 +160,9 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
         }
       }
     }
-    echo '</table>';
+    echo '</table></div></p>';
     $dir = scandir('tmp/');
-    echo "<p onclick=\"toggle(\'tmp\');\">Cleaning up TMP</p><table id='tmp' style='display: none;'>";
+    echo "<p><button onclick=\"toggle(\'tmp\');\">Cleaning up TMP</button><div id='tmp' style='display: none;'><table>";
     foreach($dir as $number=>$fileName){
       if($fileName != '..' && $fileName != '.'){
         if(is_dir($fileName)){
@@ -177,9 +177,10 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
       }
     }
     echo '</table>';
+    echo '</table></div></p>';
     updateVersion();
   } else {
-    echo "<p><font size='20' color='red'>FAILED</font></p>";
+    echo "<p><font size='20' color='red'>UPDATE FAILED</font></p>";
     $dir = scandir('tmp/');
     echo "<p>Moving things back</p><table>";
     foreach($dir as $number=>$fileName){
