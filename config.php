@@ -324,7 +324,12 @@ while(!$found){
 //$customStyleSheet = "css/comingepisodes-minimal-poster.css";
 //$customStyleSheet = "css/black_velvet.css";
 //$customStyleSheet = "css/hernandito.css";
-         $customStyleSheet = 'css/'.$Config->get('ENABLED','MODS').'.css';
+         $customStyleSheet = 'css/'.$Config->get('ENABLED','THEMES').'.css';
+		 
+		 //Coming Episode Styles //
+		 
+		$banner = $Config->get('BANNER','WIDGET_MODS');
+		$poster = $Config->get('POSTER','WIDGET_MODS');
 
                               // Message Section //
 
