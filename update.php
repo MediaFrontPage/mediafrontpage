@@ -8,6 +8,12 @@ if(!empty($_GET)){
   if(isset($_GET['unzip'] && $_GET['unzip']){
     unzip($file_zip, 'update');
   }
+  if(isset($_GET['update'] && $_GET['update']){
+    updateVersion();
+  }
+  if(isset($_GET['remove'] && $_GET['remove'] != false){
+    rrmdir($_GET['remove']);
+  }
 }
 
 function main($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zipball/master'){
@@ -202,24 +208,29 @@ function rrmdir($dir, $remove = true) {
     foreach ($objects as $object) { 
       if ($object != "." && $object != "..") { 
         if (filetype($dir."/".$object) == "dir"){
-          rrmdir($dir."/".$object);
+          if(rrmdir($dir."/".$object)){
+            return true;
+          } else {
+            return false;
+          }
         } else {
           if(unlink($dir."/".$object)){
-            echo '<tr><td>'.$dir."/".$object.' deleted successfully </td><td><font color="green">OK</font></td></tr>';
+            //echo '<tr><td>'.$dir."/".$object.' deleted successfully </td><td><font color="green">OK</font></td></tr>';
+            return true;
           } else {
             echo '<tr><td>Could not delete file '.$dir."/".$object.'</td><td><font color="red">ERROR</font></td></tr>';
+            return false;
           }
         }
       } 
     }
     reset($objects);
     if($remove){
-      if(rmdir($dir)){
-        echo '<tr><td>DIR: '.$dir.' deleted successfully </td><td><font color="green">OK</font></td></tr>';
-      } else {
-        echo '<tr><td>Could not delete dir '.$dir.'</td><td><font color="red">ERROR</font></td></tr>';
+      if(!rmdir($dir)){
+        return false;
       }
     }
+    return true;
   } 
 }
 
