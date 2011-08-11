@@ -15,6 +15,7 @@ function ajaxRequest(params, id){
 			  count++;
 			} else {
 			  $("img#"+id).attr('src','media/red-cross.png');
+			  document.getElementById('result').innerHTML = '<font color="red"> An ERROR occurred </font>'+data;
 			}
 		},
 		error: function() { // failed request; give feedback to user
