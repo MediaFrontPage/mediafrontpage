@@ -41,6 +41,9 @@ function callNext(i){
   } else if(i == 4){
     $("#clean-left").html('<img id="cu" src="media/pwait.gif" height="15px" />');
     ajaxRequest('cleanup=true&dir=update','cu');
+  } else if(i == 5){
+    $("#commit").html('<img id="com" src="media/pwait.gif" height="15px" />');
+    ajaxRequest('update=true','com');
   } else {
     alert('Finished');
   }

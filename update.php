@@ -226,6 +226,10 @@ if(!empty($_GET)){
             <td align="left">Cleaning up leftovers</td>
             <td><div id="clean-left"></div></td>
           </tr>
+          <tr>
+            <td align="left">Updating commit number</td>
+            <td><div id="commit"></div></td>
+          </tr>
         </table>
         <div id="result"></div>
       </div>
