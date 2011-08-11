@@ -6,24 +6,24 @@ function unzip($file, $extractDir = 'update'){
     try{
       dl('zip.so');
     } catch(Exception $e){
-      echo 'Could not load extension ZIP';
-      exit;
+      //echo 'Could not load extension ZIP';
+      echo false; return false;
     }
   }
   // Unzip the file 
   $zip = new ZipArchive;
   if (!$zip) {
-    echo "<br />Could not make ZipArchive object.";
-    return false;
+    //echo "<br />Could not make ZipArchive object.";
+    echo false; return false;
   }
   if($zip->open("$file") != "true") {
-    echo "<br />Could not open $file.";
-    return false;
+    //echo "<br />Could not open $file.";
+    echo false;return false;
   }
   $zip->extractTo($extractDir);
   $zip->close();
-  echo "<p>Unzipped file to: <b>".$extractDir.'</b></p>';  
-  return true;
+  //echo "<p>Unzipped file to: <b>".$extractDir.'</b></p>';  
+  echo true;return true;
 }
 
 /*
@@ -99,6 +99,7 @@ function rrmdir($dir, $remove = true) {
 }
 
 function download($file_name = "update.zip"){
+  $url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zipball/master';
   $userAgent = 'Googlebot/2.1 (http://www.googlebot.com/bot.html)';
   $ch = curl_init();
   //Opening $file_zip to save the download
@@ -180,7 +181,7 @@ if(!empty($_GET)){
   </head>
   <body>
     <center>
-      <div style="width:90%; height:100%; overflow: scroll;" class="widget">
+      <div style="width:90%; height:100%; overflow: auto;" class="widget">
         <div class="widget-head">
           <h3>MediaFrontPage Auto-Update</h3>
         </div>
@@ -211,6 +212,7 @@ if(!empty($_GET)){
             <td></td>
           </tr>
         </table>
+        <div id="result"></div>
       </div>
     </center>
   </body>
