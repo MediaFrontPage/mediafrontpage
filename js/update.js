@@ -1,9 +1,6 @@
-var success = '';
+var count = 0;
 $(document).ready(function() {
   ajaxRequest('download=true', 'dl');
-  if(success){
-    alert('yes!');
-  }
 });
 
 function ajaxRequest(params, id){
@@ -14,7 +11,8 @@ function ajaxRequest(params, id){
 		success: function(data) { // successful request; do something with the data
 			if(data == 1){
 			  $("img#"+id).attr('src','media/green-tick.png');
-			  success = true;
+			  callNext(count);
+			  count++;
 			} else {
 			  $("img#"+id).attr('src','media/red-cross.png');
 			  success = false;
@@ -24,7 +22,17 @@ function ajaxRequest(params, id){
 			alert("Ajax error.");
 		},
 	});
-	
-	return $.ajax().responseText;
-	//document.getElementById('result').innerHTML = JSON.stringify(result);;
+	//document.getElementById('result').innerHTML = JSON.stringify(result);
+}
+
+function callNext(i){
+  if(i == 0){
+    $("#zip").html('<img id="unzip" src="media/pwait.gif" height="15px" />');
+    ajaxRequest('unzip=true','unzip');
+  } else if(i == 1){
+    $("#backup").html('<img id="bp" src="media/pwait.gif" height="15px" />');
+    ajaxRequest('move=true&src=.&dst=tmp','bp');  
+  } else {
+    alert('Finished');
+  }
 }

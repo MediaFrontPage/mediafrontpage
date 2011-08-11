@@ -1,6 +1,6 @@
 <?php
 //@author: Gustavo Hoirisch
-function unzip($file, $extractDir = 'update'){
+function unzip($file = 'update.zip', $extractDir = 'update'){
   //check if ZIP extension is loaded
   if (!extension_loaded('zip')) {
     try{
@@ -24,6 +24,20 @@ function unzip($file, $extractDir = 'update'){
   $zip->close();
   //echo "<p>Unzipped file to: <b>".$extractDir.'</b></p>';  
   echo true;return true;
+}
+
+function moveDir($src, $dst){
+  $src = $src.'/';
+  $dst = $dst.'/';
+  $updateContents = scandir($src);
+  foreach($updateContents as $number=>$fileName){
+    if($fileName != 'update' && $fileName != 'config.ini' && $fileName != 'layout.php' && $fileName != '..' && $fileName != '.' && $fileName != '.git' && $fileName != '.gitignore' && $fileName != 'tmp' && $fileName != 'update'){
+      if(!rename($src.$fileName, $dst.$fileName)){
+        echo false;return false;
+      }
+    }
+  }
+  echo true; return true;
 }
 
 /*
@@ -150,7 +164,7 @@ if(!empty($_GET)){
     download();
   }
   if(isset($_GET['unzip']) && $_GET['unzip']){
-    unzip($file_zip, 'update');
+    unzip();
   }
   if(isset($_GET['update']) && $_GET['update']){
     updateVersion();
@@ -158,6 +172,14 @@ if(!empty($_GET)){
   if(isset($_GET['remove']) && $_GET['remove'] != false){
     rrmdir($_GET['remove']);
   }
+  if(isset($_GET['move']) && $_GET['move']){
+    if(isset($_GET['src']) && isset($_GET['dst'])){
+      moveDir($_GET['src'], $_GET['dst']);
+    } else {
+      echo false; return false;
+    }
+  }  
+  
 } else {
   $url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zipball/master';
   ?>
@@ -193,11 +215,11 @@ if(!empty($_GET)){
           </tr>
           <tr>
             <td>Unziping archive</td>
-            <td></td>
+            <td><div id="zip"></div></td>
           </tr>
           <tr>
             <td>Backing up old files</td>
-            <td></td>
+            <td><div id="backup"></div></td>
           </tr>
           <tr>
             <td>Updating</td>
