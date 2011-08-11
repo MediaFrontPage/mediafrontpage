@@ -62,7 +62,8 @@ function moveUpdate(){
 //Deletes directories and it's contents. If $remove is true, it will delete the directory otherwise, only it's contents.
 function rrmdir($dir, $remove = true) { 
   if (is_dir($dir)) { 
-    $objects = scandir($dir); 
+    $objects = scandir($dir);
+    //echo '<pre>';print_r($objects);echo '</pre>';
     foreach ($objects as $object) { 
       if ($object != "." && $object != "..") { 
         if (filetype($dir."/".$object) == "dir"){
@@ -182,6 +183,7 @@ if(!empty($_GET)){
   echo false; return false; exit; 
 } else {
   rrmdir('tmp', false);
+  rrmdir('update',false);
   ?>
 <html>
   <head>
