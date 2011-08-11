@@ -64,7 +64,7 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
   <script type="text/javascript" src="js/fisheye-iutil.min.js"></script>
   <script type="text/javascript" src="js/settings.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/widget.css">
+  <link rel="stylesheet" type="text/css" href="css/widget.php">
   <link rel="stylesheet" type="text/css" href="css/static_widget.css">
   <link rel="stylesheet" type="text/css" href="css/footer.css">
   <script src="js/jquery.scrollTo-1.3.3-min.js" type="text/javascript"></script>
@@ -104,6 +104,7 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
           <li><a href="#MESSAGE">Message Widget</a></li>
           <li><a href="#SECURITY">Security</a></li>
           <li><a href="#MODS">CSS Mods</a></li>
+          <li><a href="#COLUMNS">Column Widths</a></li>
           <li><a href="#RSS">RSS Feeds</a></li>
           <li><a href="#CONTROL">Control Widget</a></li>
         </ul>
@@ -760,6 +761,32 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
               </table>
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('MODS');" />
             </div>
+<div id="COLUMNS" class="panel">
+			<h3>Column Widths</h3>
+              <p align="justify" style="width: 500px;">This is to set the width of each column.  Do not exceed 100%. For 3 columns, leave column 4 as 0%. If you move to 3 columns make sure you move all widgets out of column 4 before you make the changes.</p>
+			
+			<table id='table_columns'>
+								<tr>
+									<td align="right"><p>Column 1</p></td>
+									<td align="left"><input name="WIDTH1" size="20" Title="Insert the desired width" value="<?php echo $config->get('WIDTH1','COLUMNS')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>Column 2</p></td>
+									<td align="left"><input name="WIDTH2" size="20" Title="Insert the desired width" value="<?php echo $config->get('WIDTH2','COLUMNS')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>Column 3</p></td>
+									<td align="left"><input name="WIDTH3" size="20" Title="Insert the desired width" value="<?php echo $config->get('WIDTH3','COLUMNS')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>Column 4</p></td>
+									<td align="left"><input name="WIDTH4" size="20" Title="Insert the desired width" value="<?php echo $config->get('WIDTH4','COLUMNS')?>" /></td>
+								</tr>
+								</table>
+             
+              <br />
+              <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('COLUMNS');" />
+			</div>
             <div id="RSS" class="panel">
               <h3>RSS Feeds</h3>
               <p align="justify" style="width: 500px;">We also added an RSS Feed from the most popular NZB Sites so you can instantly grab an NZB from their Feeds and load it straight to SabNZBd+ with no other user intervention. The default/shown RSS is the first one on this list.</p>
