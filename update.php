@@ -33,7 +33,7 @@ function moveDir($src, $dst, $update = true){
   foreach($updateContents as $number=>$fileName){
     if($fileName != 'update' && $fileName != 'config.ini' && $fileName != 'layout.php' && $fileName != '..' && $fileName != '.' && $fileName != '.git' && $fileName != '.gitignore' && $fileName != 'tmp' && $fileName != 'update'){
       if(!rename($src.$fileName, $dst.$fileName)){
-        echo false;return false;
+        echo false; return false;
       }
     }
   }
@@ -60,10 +60,10 @@ function moveUpdate(){
   }
   if($name != ''){
     if(moveDir('update/'.$name, '.', false)){
-      echo true; return true;
+      return true;
     }
   }
-  echo true; return false;
+  return false;
 }
 
 
