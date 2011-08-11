@@ -1,28 +1,16 @@
 <?php
 //@author: Gustavo Hoirisch
 
-function updateVersion(){
-  require_once 'lib/class.settings.php';require_once 'lib/class.github.php';
-  $github = new GitHub('gugahoi','mediafrontpage');
-  $commit = $github->getCommits();
-  $commitNo = $commit['0']['sha'];
-  $config = new ConfigMagik('config.ini', true, true);
-  echo "<p>Updating commit number from: ".$config->get('version', 'ADVANCED')." -> ".$commitNo;
-  try{
-    $config->set('version', $commitNo, 'ADVANCED');
-    echo "  <font color='green'>OK</font></p>";
-  } catch (Exception $e){
-    echo "  <font color='red'>ERROR</font></p>";
+if(!empty($_GET)){
+  if(isset($_GET['download'] && $_GET['download']){
+    download();
+  }
+  if(isset($_GET['unzip'] && $_GET['unzip']){
+    unzip($file_zip, 'update');
   }
 }
 
-function getNew(){
-  require_once 'lib/class.github.php';
-  $git = new GitHub('gugahoi');
-  echo '<pre>';print_r($git->getDownload());echo '</pre>';
-}
-
-function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zipball/master'){
+function main($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zipball/master'){
   echo '<html><head>';
   echo '<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>';
   echo '<link href="css/front.css" rel="stylesheet" type="text/css">';
@@ -38,8 +26,6 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
 				}
         </script>';
   echo '</head><body><center>';
-  $userAgent = 'Googlebot/2.1 (http://www.googlebot.com/bot.html)';
-  $file_zip = "update.zip";
   echo '<div style="width:90%; height:100%; overflow: scroll;" class="widget">
           <div class="widget-head">
             <h3>MediaFrontPage Auto-Update</h3>
@@ -47,33 +33,6 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
       
   echo "Starting";
 
-  $ch = curl_init();
-  //Opening $file_zip to save the download
-  $fp = fopen("$file_zip", "w"); 
-  curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
-  // set the cURL request to $url
-  curl_setopt($ch, CURLOPT_URL,$url);
-  curl_setopt($ch, CURLOPT_FAILONERROR, true);
-  //No headers
-  curl_setopt($ch, CURLOPT_HEADER,0); 
-  //Follow redirects
-  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-  curl_setopt($ch, CURLOPT_AUTOREFERER, true);
-  curl_setopt($ch, CURLOPT_BINARYTRANSFER,true);
-  //timeout set to 30 seconds. File must finish downloading in this time.
-  curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-  curl_setopt($ch, CURLOPT_FILE, $fp);
-  //execute request
-  $page = curl_exec($ch);
-  
-  //In case the download failed
-  if (!$page) {
-    echo "<br />cURL error number:" .curl_errno($ch);
-    echo "<br />cURL error:" . curl_error($ch);
-    curl_close($ch);
-    exit;
-  }
-  curl_close($ch);
   
   echo "<br>Downloaded file from: $url";
   echo "<br>Saved as file: $file_zip";
@@ -144,38 +103,12 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
   //If the renaming went through smoothly, need to clean up the downloaded and backed up files. Otherwise, 
   //move the files back and tell user to update manually.
   if($successful){
-    echo "<p><font size='20' color='green'>UPDATE SUCCESSFULL</font></p>";
-    $dir = scandir('update/');
+    echo "<br /><br /><p><font size='20' color='green'>UPDATE SUCCESSFULL</font></p><br />";
     echo "<p><button onclick=\"toggle(\'update\');\">Cleaning up UPDATE</button><div id='update' style='display: none;'><table>";
-    foreach($dir as $number=>$fileName){
-      if($fileName != '..' && $fileName != '.'){
-        if(is_dir($fileName)){
-          rrmdir('update/'.$fileName);
-        //} else {
-        //if(unlink('update/'.$fileName)){
-        //    echo '<tr><td>'.$fileName.' deleted successfully </td><td><font color="green">OK</font></td></tr>';
-        //  } else {
-        //    echo '<tr><td>Could not delete file '.$fileName.'</td><td><font color="red">ERROR</font></td></tr>';
-        //  }
-        }
-      }
-    }
+    rrmdir('update', false);
     echo '</table></div></p>';
-    $dir = scandir('tmp/');
     echo "<p><button onclick=\"toggle(\'tmp\');\">Cleaning up TMP</button><div id='tmp' style='display: none;'><table>";
-    foreach($dir as $number=>$fileName){
-      if($fileName != '..' && $fileName != '.'){
-        if(is_dir($fileName)){
-          rrmdir('tmp/'.$fileName);
-        } else {
-        if(unlink('tmp/'.$fileName)){
-          echo '<tr><td>'.$fileName.' deleted successfully </td><td><font color="green">OK</font></td></tr>';
-          } else {
-            echo '<tr><td>Could not delete file '.$fileName.'</td><td><font color="red">ERROR</font></td></tr>';
-          }
-        }
-      }
-    }
+    rrmdir('tmp', false);
     echo '</table>';
     echo '</table></div></p>';
     updateVersion();
@@ -262,8 +195,8 @@ function cleanUp($extra = ''){
   }
 }
 
-//Deletes directories and it's contents. 
-function rrmdir($dir) { 
+//Deletes directories and it's contents. If $remove is true, it will delete the directory otherwise, only it's contents.
+function rrmdir($dir, $remove = true) { 
   if (is_dir($dir)) { 
     $objects = scandir($dir); 
     foreach ($objects as $object) { 
@@ -278,10 +211,64 @@ function rrmdir($dir) {
           }
         }
       } 
-    } 
-    reset($objects); 
-    rmdir($dir); 
+    }
+    reset($objects);
+    if($remove){
+      if(rmdir($dir)){
+        echo '<tr><td>DIR: '.$dir.' deleted successfully </td><td><font color="green">OK</font></td></tr>';
+      } else {
+        echo '<tr><td>Could not delete dir '.$dir.'</td><td><font color="red">ERROR</font></td></tr>';
+      }
+    }
   } 
 }
-download();
+
+function download($file_name = "update.zip"){
+  $userAgent = 'Googlebot/2.1 (http://www.googlebot.com/bot.html)';
+  $ch = curl_init();
+  //Opening $file_zip to save the download
+  $fp = fopen("$file_name", "w"); 
+  curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
+  // set the cURL request to $url
+  curl_setopt($ch, CURLOPT_URL,$url);
+  curl_setopt($ch, CURLOPT_FAILONERROR, true);
+  //No headers
+  curl_setopt($ch, CURLOPT_HEADER,0); 
+  //Follow redirects
+  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+  curl_setopt($ch, CURLOPT_AUTOREFERER, true);
+  curl_setopt($ch, CURLOPT_BINARYTRANSFER,true);
+  //timeout set to 30 seconds. File must finish downloading in this time.
+  curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+  curl_setopt($ch, CURLOPT_FILE, $fp);
+  //execute request
+  $page = curl_exec($ch);
+  
+  //In case the download failed
+  if (!$page) {
+    //echo "<br />cURL error number:" .curl_errno($ch);
+    //echo "<br />cURL error:" . curl_error($ch);
+    curl_close($ch);
+    return false;
+  }
+  curl_close($ch);
+  return true;
+}
+
+function updateVersion(){
+  require_once 'lib/class.settings.php';require_once 'lib/class.github.php';
+  $github = new GitHub('gugahoi','mediafrontpage');
+  $commit = $github->getCommits();
+  $commitNo = $commit['0']['sha'];
+  $config = new ConfigMagik('config.ini', true, true);
+  echo "<p>Updating commit number from: ".$config->get('version', 'ADVANCED')." -> ".$commitNo;
+  try{
+    $config->set('version', $commitNo, 'ADVANCED');
+    echo "  <font color='green'>OK</font></p>";
+  } catch (Exception $e){
+    echo "  <font color='red'>ERROR</font></p>";
+  }
+}
+
+//download();
 ?>
