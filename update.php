@@ -38,11 +38,8 @@ function moveDir($src, $dst, $update = true){
     }
   }
   if($update){
-    if(moveUpdate()){
-      echo true; return true;
-    }
-    else {
-      echo false; return false;
+    if(!moveUpdate()){
+      echo false; return false; exit;
     }
   }
   echo true; return true;
