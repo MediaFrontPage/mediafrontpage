@@ -165,7 +165,7 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                   <td colspan="2">
                   <?php 
                     if($commitNo != $currentVersion){
-                      echo "<input type='button' value='Update Available' Title='Click To Update' onclick=\"location.href='update.html'\" />";
+                      echo "<input type='button' value='Update Available' Title='Click To Update' onclick=\"location.href='update.php'\" />";
 										} 
 								  ?>
 								  </td>
