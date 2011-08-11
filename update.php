@@ -1,141 +1,5 @@
 <?php
 //@author: Gustavo Hoirisch
-
-if(!empty($_GET)){
-  if(isset($_GET['download'] && $_GET['download']){
-    download();
-  }
-  if(isset($_GET['unzip'] && $_GET['unzip']){
-    unzip($file_zip, 'update');
-  }
-  if(isset($_GET['update'] && $_GET['update']){
-    updateVersion();
-  }
-  if(isset($_GET['remove'] && $_GET['remove'] != false){
-    rrmdir($_GET['remove']);
-  }
-}
-
-function main($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zipball/master'){
-  echo '<html><head>';
-  echo '<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>';
-  echo '<link href="css/front.css" rel="stylesheet" type="text/css">';
-  echo '<link rel="stylesheet" type="text/css" href="css/widget.css">';
-  echo '<link rel="stylesheet" type="text/css" href="css/static_widget.css">';
-  echo '<script>
-  			function toggle(id){
-          if (document.getElementById(id).style.display == "none"){
-            document.getElementById(id).style.display = "inline-block";
-          }else {
-            document.getElementById(id).style.display = "none";
-          }
-				}
-        </script>';
-  echo '</head><body><center>';
-  echo '<div style="width:90%; height:100%; overflow: scroll;" class="widget">
-          <div class="widget-head">
-            <h3>MediaFrontPage Auto-Update</h3>
-          </div>';
-      
-  echo "Starting";
-
-  
-  echo "<br>Downloaded file from: $url";
-  echo "<br>Saved as file: $file_zip";
-  echo "<br>Starting unzip ...";
-  
-  if(!unzip($file_zip, 'update')){
-    echo 'Unzip failed';
-    exit;
-  }
-  
-  $name = '';
-  //Getting the name of the file. It should be the only file in the UPDATE directory for now.
-  //In the future I'd like to rename the update according to the PUSHED TIME or DOWNLOADED TIME.
-  if ($handle = opendir('update')) {
-    while (false !== ($file = readdir($handle))) {
-      if(strstr($file,'mediafrontpage')){
-        $name = $file;
-      }
-    }
-    closedir($handle);
-  }
-
-  $successful = true;
-  echo '<p><button type="button" onclick="toggle(\'old\');">Old stuff</button>';
-  echo '<div id="old" style="display: none;"><table>';
-  $updateContents = scandir('./');
-  foreach($updateContents as $number=>$fileName){
-    if($fileName != 'update' && $fileName != 'config.ini' && $fileName != 'layout.php' && $fileName != '..' && $fileName != '.' && $fileName != '.git' && $fileName != '.gitignore' && $fileName != 'tmp'){
-      if(is_dir($fileName)){
-        rename($fileName, 'tmp/'.$fileName);
-      } else {
-        if(rename($fileName, 'tmp/'.$fileName)){
-          echo '<tr><td>'.$fileName.' moved successfully </td><td><font color="green">OK</font></td></tr>';
-        } else {
-          echo '<tr><td>Could not move file '.$fileName.'</td><td><font color="red">ERROR</font></td></tr>';
-          $successful = false;
-        }
-      }
-    }
-  }
-  echo '</table></div></p>';
-
-  if($successful){
-    echo '<p><button type="button" onclick="toggle(\'new\');">New stuff</button>';
-    echo '<div id="new" style="display: none;"><table>';
-    $updateContents = scandir('update/'.$name);
-    foreach($updateContents as $number=>$fileName){
-      if($fileName != 'update' && $fileName != 'config.ini' && $fileName != 'layout.php' && $fileName != '..' && $fileName != '.' && $fileName != '.git' && $fileName != '.gitignore' && $fileName != 'tmp'){
-        if(is_dir($fileName)){
-          if(rename('update/'.$name.'/'.$fileName, './'.$fileName)){
-            echo '<tr><td>DIR: '.$fileName.' moved successfully </td><td><font color="green">OK</font></td></tr>';
-          } else {
-            echo '<tr><td>Could not move dir '.$fileName.'</td><td><font color="red">ERROR</font></td></tr>';
-          }
-        } else {
-          if(rename('update/'.$name.'/'.$fileName, './'.$fileName)){
-            echo '<tr><td>'.$fileName.' moved successfully </td><td><font color="green">OK</font></td></tr>';
-          } else {
-            echo '<tr><td>Could not move file '.$fileName.'</td><td><font color="red">ERROR</font></td></tr>';
-            $successful = false;
-          }
-        }
-      }
-    }
-  }
-  echo '</table></div></p>';
-  
-  //If the renaming went through smoothly, need to clean up the downloaded and backed up files. Otherwise, 
-  //move the files back and tell user to update manually.
-  if($successful){
-    echo "<br /><br /><p><font size='20' color='green'>UPDATE SUCCESSFULL</font></p><br />";
-    echo "<p><button onclick=\"toggle(\'update\');\">Cleaning up UPDATE</button><div id='update' style='display: none;'><table>";
-    rrmdir('update', false);
-    echo '</table></div></p>';
-    echo "<p><button onclick=\"toggle(\'tmp\');\">Cleaning up TMP</button><div id='tmp' style='display: none;'><table>";
-    rrmdir('tmp', false);
-    echo '</table>';
-    echo '</table></div></p>';
-    updateVersion();
-  } else {
-    echo "<p><font size='20' color='red'>UPDATE FAILED</font></p>";
-    $dir = scandir('tmp/');
-    echo "<p>Moving things back</p><table>";
-    foreach($dir as $number=>$fileName){
-      if($fileName != '..' && $fileName != '.'){
-        if(rename('tmp/'.$fileName, './'.$fileName)){
-          echo '<tr><td>'.$fileName.' moved successfully </td><td><font color="green">OK</font></td></tr>';
-        } else {
-          echo '<tr><td>Could not move file '.$fileName.'</td><td><font color="red">ERROR</font></td></tr>';
-        }
-      }
-    }
-    echo '</table>'; 
-  }
-  echo '</div></center></body></html>';
-}
-
 function unzip($file, $extractDir = 'update'){
   //check if ZIP extension is loaded
   if (!extension_loaded('zip')) {
@@ -260,10 +124,10 @@ function download($file_name = "update.zip"){
     //echo "<br />cURL error number:" .curl_errno($ch);
     //echo "<br />cURL error:" . curl_error($ch);
     curl_close($ch);
-    return false;
+    echo false;
   }
   curl_close($ch);
-  return true;
+  echo true;
 }
 
 function updateVersion(){
@@ -272,14 +136,68 @@ function updateVersion(){
   $commit = $github->getCommits();
   $commitNo = $commit['0']['sha'];
   $config = new ConfigMagik('config.ini', true, true);
-  echo "<p>Updating commit number from: ".$config->get('version', 'ADVANCED')." -> ".$commitNo;
   try{
     $config->set('version', $commitNo, 'ADVANCED');
-    echo "  <font color='green'>OK</font></p>";
+    echo true;
   } catch (Exception $e){
-    echo "  <font color='red'>ERROR</font></p>";
+    echo false;
   }
 }
 
-//download();
+if(!empty($_GET)){
+  if(isset($_GET['download']) && $_GET['download']){
+    download();
+  }
+  if(isset($_GET['unzip']) && $_GET['unzip']){
+    unzip($file_zip, 'update');
+  }
+  if(isset($_GET['update']) && $_GET['update']){
+    updateVersion();
+  }
+  if(isset($_GET['remove']) && $_GET['remove'] != false){
+    rrmdir($_GET['remove']);
+  }
+} else {
+  $url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zipball/master';
+  ?>
+<html>
+  <head>
+    <title>UPDATING</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <link href="css/front.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/widget.css">
+    <link rel="stylesheet" type="text/css" href="css/static_widget.css">
+    <script>
+      function toggle(id){
+        if (document.getElementById(id).style.display == "none"){
+          document.getElementById(id).style.display = "inline-block";
+        } else {
+          document.getElementById(id).style.display = "none";
+        }
+	    }
+    </script>
+  </head>
+  <body>
+    <center>
+      <div style="width:90%; height:100%; overflow: scroll;" class="widget">
+        <div class="widget-head">
+          <h3>MediaFrontPage Auto-Update</h3>
+        </div>
+        
+        <table align="left">
+          <tr>
+            <td>Downloading latest version</td>
+            <td><img id="dl" src="media/pwait.gif" height="15px" /></td>
+          </tr>
+          <tr>
+            <td>Unziping archive</td>
+            <td><img id="zip" src="media/pwait.gif" height="15px" /></td>
+          </tr>
+        </table>
+      </div>
+    </center>
+  </body>
+</html>
+<?php
+}
 ?>
