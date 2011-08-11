@@ -42,7 +42,7 @@ function moveDir($src, $dst){
 
 function moveUpdate(){
   $name = '';
-  if ($handle = opendir('update')) {
+  if ($handle = opendir('../update')) {
     while (false !== ($file = readdir($handle))) {
       if(strstr($file,'mediafrontpage')){
         $name = $file;
@@ -51,7 +51,7 @@ function moveUpdate(){
     closedir($handle);
   }
   if($name != ''){
-    if(moveDir('update/'.$name, '.')){
+    if(moveDir('../update/'.$name, '../')){
       return true;
     }
   }
