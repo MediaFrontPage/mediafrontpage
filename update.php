@@ -168,13 +168,16 @@ if(!empty($_GET)){
     }
   }
   elseif(isset($_GET['moveupdate']) && $_GET['moveupdate']){
-    moveUpdate();
+    if(moveUpdate()){
+      echo true; return true;
+    }
   }
   elseif(isset($_GET['cleanup']) && $_GET['cleanup']){
     if(isset($_GET['dir']) && $_GET['dir'] != ''){
       if(rrmdir($_GET['dir'], false)){
         echo true; return true;
       }
+    }
   }
   echo false; return false; exit; 
 } else {
