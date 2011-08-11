@@ -7,23 +7,23 @@ function unzip($file = 'update.zip', $extractDir = 'update'){
       dl('zip.so');
     } catch(Exception $e){
       //echo 'Could not load extension ZIP';
-      echo false; return false;
+      return false;
     }
   }
   // Unzip the file 
   $zip = new ZipArchive;
   if (!$zip) {
     //echo "<br />Could not make ZipArchive object.";
-    echo false; return false;
+    return false;
   }
   if($zip->open("$file") != "true") {
     //echo "<br />Could not open $file.";
-    echo false;return false;
+    return false;
   }
   $zip->extractTo($extractDir);
   $zip->close();
   //echo "<p>Unzipped file to: <b>".$extractDir.'</b></p>';  
-  echo true;return true;
+  return true;
 }
 
 function moveDir($src, $dst){
@@ -33,11 +33,11 @@ function moveDir($src, $dst){
   foreach($updateContents as $number=>$fileName){
     if($fileName != 'update' && $fileName != 'config.ini' && $fileName != 'layout.php' && $fileName != '..' && $fileName != '.' && $fileName != '.git' && $fileName != '.gitignore' && $fileName != 'tmp' && $fileName != 'update'){
       if(!rename($src.$fileName, $dst.$fileName)){
-        echo false; return false;
+        return false;
       }
     }
   }
-  echo true; return true;
+  return true;
 }
 
 function moveUpdate(){
@@ -76,7 +76,7 @@ function rrmdir($dir, $remove = true) {
             //echo '<tr><td>'.$dir."/".$object.' deleted successfully </td><td><font color="green">OK</font></td></tr>';
             return true;
           } else {
-            echo '<tr><td>Could not delete file '.$dir."/".$object.'</td><td><font color="red">ERROR</font></td></tr>';
+            //echo '<tr><td>Could not delete file '.$dir."/".$object.'</td><td><font color="red">ERROR</font></td></tr>';
             return false;
           }
         }
@@ -119,10 +119,10 @@ function download($file_name = "update.zip"){
     //echo "<br />cURL error number:" .curl_errno($ch);
     //echo "<br />cURL error:" . curl_error($ch);
     curl_close($ch);
-    echo false;
+    return false;
   }
   curl_close($ch);
-  echo true;
+  return true;
 }
 
 function updateVersion(){
@@ -133,51 +133,52 @@ function updateVersion(){
   $config = new ConfigMagik('config.ini', true, true);
   try{
     $config->set('version', $commitNo, 'ADVANCED');
-    echo true;
+    return true;
   } catch (Exception $e){
-    echo false;
+    return false;
   }
 }
 
 if(!empty($_GET)){
   if(isset($_GET['download']) && $_GET['download']){
-    download();
-  }
-  if(isset($_GET['unzip']) && $_GET['unzip']){
-    unzip();
-  }
-  if(isset($_GET['update']) && $_GET['update']){
-    updateVersion();
-  }
-  if(isset($_GET['remove']) && $_GET['remove'] != false){
-    rrmdir($_GET['remove']);
-  }
-  if(isset($_GET['move']) && $_GET['move']){
-    if(isset($_GET['src']) && isset($_GET['dst'])){
-      moveDir($_GET['src'], $_GET['dst']);
-    } else {
-      echo false; return false;
+    if(download()){
+      echo true; return true;
     }
   }
-  if(isset($_GET['moveupdate']) && $_GET['moveupdate']){
+  elseif(isset($_GET['unzip']) && $_GET['unzip']){
+    if(unzip()){
+      echo true; return true;
+    }
+  }
+  elseif(isset($_GET['update']) && $_GET['update']){
+    if(updateVersion()){
+      echo true; return true;
+    }
+  }
+  elseif(isset($_GET['remove']) && $_GET['remove'] != false){
+    if(rrmdir($_GET['remove'])){
+      echo true; return true;
+    }
+  }
+  elseif(isset($_GET['move']) && $_GET['move']){
+    if(isset($_GET['src']) && isset($_GET['dst'])){
+      if(moveDir($_GET['src'], $_GET['dst'])){
+        echo true; return true; 
+      }
+    }
+  }
+  elseif(isset($_GET['moveupdate']) && $_GET['moveupdate']){
     moveUpdate();
   }
-  if(isset($_GET['cleanup']) && $_GET['cleanup']){
+  elseif(isset($_GET['cleanup']) && $_GET['cleanup']){
     if(isset($_GET['dir']) && $_GET['dir'] != ''){
       if(rrmdir($_GET['dir'], false)){
         echo true; return true;
-      } else {
-        echo false; return false;
       }
-      
-    } else {
-      echo false; return false;
-    }
   }
-  
-  
+  echo false; return false; exit; 
 } else {
-  $url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zipball/master';
+  rrmdir('tmp', false);
   ?>
 <html>
   <head>
@@ -188,13 +189,6 @@ if(!empty($_GET)){
     <link rel="stylesheet" type="text/css" href="css/widget.css">
     <link rel="stylesheet" type="text/css" href="css/static_widget.css">
     <script>
-      function toggle(id){
-        if (document.getElementById(id).style.display == "none"){
-          document.getElementById(id).style.display = "inline-block";
-        } else {
-          document.getElementById(id).style.display = "none";
-        }
-	    }
     </script>
   </head>
   <body>
@@ -204,29 +198,29 @@ if(!empty($_GET)){
           <h3>MediaFrontPage Auto-Update</h3>
         </div>
         
-        <table align="left">
+        <table align="left" style="padding-top: 30px;" cellspacing="7">
           <tr>
-            <td>Downloading latest version</td>
+            <td align="left">Downloading latest version</td>
             <td><img id="dl" src="media/pwait.gif" height="15px" /></td>
           </tr>
           <tr>
-            <td>Unziping archive</td>
+            <td align="left">Unziping archive</td>
             <td><div id="zip"></div></td>
           </tr>
           <tr>
-            <td>Backing up old files</td>
+            <td align="left">Backing up old files</td>
             <td><div id="backup"></div></td>
           </tr>
           <tr>
-            <td>Updating</td>
+            <td align="left">Updating</td>
             <td><div id="update"></td>
           </tr>
           <tr>
-            <td>Cleaning up backup</td>
+            <td align="left">Cleaning up backup</td>
             <td><div id="clean-back"></div></td>
           </tr>
           <tr>
-            <td>Cleaning up leftovers</td>
+            <td align="left">Cleaning up leftovers</td>
             <td><div id="clean-left"></div></td>
           </tr>
         </table>
