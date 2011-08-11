@@ -63,7 +63,7 @@ function moveUpdate(){
 function rrmdir($dir, $remove = true) { 
   if (is_dir($dir)) { 
     $objects = scandir($dir);
-    echo '<pre>';print_r($objects);echo '</pre>';
+    //echo '<pre>';print_r($objects);echo '</pre>';
     foreach ($objects as $object) { 
       if ($object != "." && $object != "..") { 
         if (filetype($dir."/".$object) == "dir"){
