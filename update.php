@@ -97,7 +97,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
   }
 
   $successful = true;
-  echo '<button type="button" onclick="toggle(\'old\');" value="Old stuff" />';
+  echo '<button type="button" onclick="toggle(\'old\');">Old stuff</button>';
   echo '<div id="old" style="display: none;"><table>';
   $updateContents = scandir('./');
   foreach($updateContents as $number=>$fileName){
@@ -117,7 +117,7 @@ function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zip
   echo '</table></div>';
 
   if($successful){
-    echo '<button type="button" onclick="toggle(\'new\');" value="New stuff" />';
+    echo '<button type="button" onclick="toggle(\'new\');">New stuff</button>';
     echo '<div id="new" style="display: none;"><table>';
     $updateContents = scandir('update/'.$name);
     foreach($updateContents as $number=>$fileName){
@@ -218,7 +218,7 @@ function unzip($file, $extractDir = 'update'){
   }
   $zip->extractTo($extractDir);
   $zip->close();
-  echo "<br />Unzipped file to: <b>".$extractDir.'</b>';  
+  echo "<p>Unzipped file to: <b>".$extractDir.'</b></p>';  
   return true;
 }
 
