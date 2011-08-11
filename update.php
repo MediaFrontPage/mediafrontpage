@@ -26,7 +26,7 @@ function unzip($file = 'update.zip', $extractDir = 'update'){
   echo true;return true;
 }
 
-function moveDir($src, $dst, $update = true){
+function moveDir($src, $dst){
   $src = $src.'/';
   $dst = $dst.'/';
   $updateContents = scandir($src);
@@ -35,11 +35,6 @@ function moveDir($src, $dst, $update = true){
       if(!rename($src.$fileName, $dst.$fileName)){
         echo false; return false;
       }
-    }
-  }
-  if($update){
-    if(!moveUpdate()){
-      echo false; return false; exit;
     }
   }
   echo true; return true;
@@ -56,7 +51,7 @@ function moveUpdate(){
     closedir($handle);
   }
   if($name != ''){
-    if(moveDir('update/'.$name, '.', false)){
+    if(moveDir('update/'.$name, '.')){
       return true;
     }
   }
@@ -163,6 +158,9 @@ if(!empty($_GET)){
     } else {
       echo false; return false;
     }
+  }
+  if(isset($_GET['moveupdate']) && $_GET['moveupdate']){
+    moveUpdate();
   }
   if(isset($_GET['cleanup']) && $_GET['cleanup']){
     if(isset($_GET['dir']) && $_GET['dir'] != ''){

@@ -31,13 +31,14 @@ function callNext(i){
     ajaxRequest('unzip=true','unzip');
   } else if(i == 1){
     $("#backup").html('<img id="bp" src="media/pwait.gif" height="15px" />');
-    $("#update").html('<img id="up" src="media/pwait.gif" height="15px" />');
     ajaxRequest('move=true&src=.&dst=tmp','bp');  
   } else if(i == 2){
-    $("#update").html('<img id="up" src="media/green-tick.png" height="15px" />');
+    $("#update").html('<img id="up" src="media/pwait.gif" height="15px" />');
+    ajaxRequest('moveupdate=true','up');
+  } else if(i == 3){
     $("#clean-back").html('<img id="cb" src="media/pwait.gif" height="15px" />');
     ajaxRequest('cleanup=true&dir=tmp','cb');
-  } else if(i == 3){
+  } else if(i == 4){
     $("#clean-left").html('<img id="cu" src="media/pwait.gif" height="15px" />');
     ajaxRequest('cleanup=true&dir=update','cu');
   } else {
