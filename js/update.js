@@ -32,6 +32,9 @@ function callNext(i){
   } else if(i == 1){
     $("#backup").html('<img id="bp" src="media/pwait.gif" height="15px" />');
     ajaxRequest('move=true&src=.&dst=tmp','bp');  
+  } else if(i == 2){
+    $("#update").html('<img id="up" src="media/pwait.gif" height="15px" />');
+    ajaxRequest('moveupdate=true', 'up');  
   } else {
     alert('Finished');
   }

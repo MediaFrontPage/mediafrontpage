@@ -40,6 +40,24 @@ function moveDir($src, $dst){
   echo true; return true;
 }
 
+function moveUpdate(){
+  $name = '';
+  if ($handle = opendir('update')) {
+    while (false !== ($file = readdir($handle))) {
+      if(strstr($file,'mediafrontpage')){
+        $name = $file;
+      }
+    }
+    closedir($handle);
+  }
+  if($name != ''){
+    if(moveDir($name, '.')){
+      echo true; return true;
+    }
+  }
+  echo false; return false;
+}
+
 /*
 /Function to clean up some leftover files. If files other than 'update' folder and 'update.zip'
 /are to be deleted, than the $extra variable and be used. If multiple files are to be deleted use
@@ -178,7 +196,11 @@ if(!empty($_GET)){
     } else {
       echo false; return false;
     }
-  }  
+  }
+  if(isset($_GET['movenew']) && $_GET['movenew']){
+    moveUpdate();
+  }
+  
   
 } else {
   $url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zipball/master';
@@ -223,7 +245,7 @@ if(!empty($_GET)){
           </tr>
           <tr>
             <td>Updating</td>
-            <td></td>
+            <td><div id="update"></td>
           </tr>
           <tr>
             <td>Cleaning up backup</td>
