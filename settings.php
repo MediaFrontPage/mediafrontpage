@@ -153,21 +153,23 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                   </td>
                 </tr>
                 <tr align="left">
-                  <td>
+                  <td>Version</td>
                     <?php
                       $commit = $github->getCommits();
                       $commitNo = $commit['0']['sha'];
-                      echo "Version </td><td><a href='https://github.com/gugahoi/mediafrontpage/commit/".$currentVersion."' target='_blank' Title='Description: ".$commit['0']['commit']['message']."'>".$currentVersion."</a>";
+                      echo "<td><a href='https://github.com/gugahoi/mediafrontpage/commit/".$currentVersion."' target='_blank' Title='Description: ".$commit['0']['commit']['message']."'>".$currentVersion."</a>";
                     ?>
                   </td>
                 </tr>
-                <tr>  
+                <tr>
+                  <td colspan="2">
                   <?php 
                     if($commitNo != $currentVersion){
                       echo "<input type='button' value='Update Available' Title='Click To Update' onclick=\"location.href='update.html'\" />";
 										} 
 								  ?>
-										</tr>
+								  </td>
+								</tr>
               </table>
             </div>
             <div id="GLOBAL" class="panel"><br><br>
