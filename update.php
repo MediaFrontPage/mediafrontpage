@@ -164,6 +164,7 @@ if(!empty($_GET)){
   <head>
     <title>UPDATING</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="js/update.js"></script>
     <link href="css/front.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/widget.css">
     <link rel="stylesheet" type="text/css" href="css/static_widget.css">
@@ -191,7 +192,23 @@ if(!empty($_GET)){
           </tr>
           <tr>
             <td>Unziping archive</td>
-            <td><img id="zip" src="media/pwait.gif" height="15px" /></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Backing up old files</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Updating</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Cleaning up backup</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Cleaning up leftovers</td>
+            <td></td>
           </tr>
         </table>
       </div>
