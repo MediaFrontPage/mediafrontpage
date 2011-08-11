@@ -25,6 +25,9 @@ function getNew(){
 function download($url = 'https://nodeload.github.com/gugahoi/mediafrontpage/zipball/master'){
   echo '<html><head>';
   echo '<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>';
+  echo '<link href="css/front.css" rel="stylesheet" type="text/css">';
+  echo '<link rel="stylesheet" type="text/css" href="css/widget.css">';
+  echo '<link rel="stylesheet" type="text/css" href="css/static_widget.css">';
   echo '<script>
   			function toggle(id){
           if (document.getElementById(id).style.display == "none"){
