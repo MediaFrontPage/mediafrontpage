@@ -60,7 +60,7 @@ if (empty ($arrLayout)) {
 				border: 0;
 			}
 		</style>		
-		<link href="css/widget.css" rel="stylesheet" type="text/css" />	
+		<link href="css/widget.php" rel="stylesheet" type="text/css" />	
 		<link href="css/front.css" rel="stylesheet" type="text/css" />	
 		<!-- START: Dynamic Header Inserts From Widgets -->
 <?php
