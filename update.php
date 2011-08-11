@@ -63,21 +63,17 @@ function moveUpdate(){
 function rrmdir($dir, $remove = true) { 
   if (is_dir($dir)) { 
     $objects = scandir($dir);
-    //echo '<pre>';print_r($objects);echo '</pre>';
+    echo '<pre>';print_r($objects);echo '</pre>';
     foreach ($objects as $object) { 
       if ($object != "." && $object != "..") { 
         if (filetype($dir."/".$object) == "dir"){
-          if(rrmdir($dir."/".$object)){
-            return true;
-          } else {
+          if(!rrmdir($dir."/".$object, true)){
+            echo 'Could not delete directory '.$dir."/".$object.'<font color="red">ERROR</font><br />';
             return false;
           }
         } else {
-          if(unlink($dir."/".$object)){
-            //echo '<tr><td>'.$dir."/".$object.' deleted successfully </td><td><font color="green">OK</font></td></tr>';
-            return true;
-          } else {
-            //echo '<tr><td>Could not delete file '.$dir."/".$object.'</td><td><font color="red">ERROR</font></td></tr>';
+          if(!unlink($dir."/".$object)){
+            echo 'Could not delete file '.$dir."/".$object.'<font color="red">ERROR</font><br />';
             return false;
           }
         }
@@ -85,12 +81,14 @@ function rrmdir($dir, $remove = true) {
     }
     reset($objects);
     if($remove){
-      if(!rmdir($dir)){
+      if(rmdir($dir)){
+        return true;
+      } else {
         return false;
       }
     }
-    return true;
-  } 
+  }
+  return true;
 }
 
 function download($file_name = "update.zip"){
