@@ -147,8 +147,9 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                   <?php
                     $github = new GitHub('gugahoi','mediafrontpage');
                     $date   = $github->getInfo();
-                    echo $date['pushed_at'];
-                  ?>
+                    $currentVersion = $config->get('version','ADVANCED');
+                    $updateddate = str_replace(array("T","Z"), " ", $date['pushed_at']);
+                    echo "<a href='https://github.com/gugahoi/mediafrontpage/commit/".$currentVersion."' target='_blank'>Time: ".substr($updateddate,11,20)." Date: ".substr($updateddate,0,10)."</a>";                  ?>
                   </td>
                 </tr>
                 <tr align="left">
@@ -156,14 +157,17 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                     <?php
                       $commit = $github->getCommits();
                       $commitNo = $commit['0']['sha'];
-                      $currentVersion = $config->get('version','ADVANCED');
-                      echo "Version </td><td><a href='https://github.com/gugahoi/mediafrontpage/commit/".$currentVersion."' target='_blank'>".$currentVersion.'</a>';
-                      if($commitNo != $currentVersion){
-                        echo "\t<a href='#' onclick='updateVersion();' title='".$commitNo." - Description: ".$commit['0']['commit']['message']."'>***UPDATE Available***</a>";
-                      }
+                      echo "Version </td><td><a href='https://github.com/gugahoi/mediafrontpage/commit/".$currentVersion."' target='_blank' Title='Description: ".$commit['0']['commit']['message']."'>".$currentVersion."</a>";
                     ?>
                   </td>
                 </tr>
+                <tr>  
+                  <?php 
+                    if($commitNo != $currentVersion){
+                      echo "<input type='button' value='Update Available' Title='Click To Update' onclick=\"location.href='update.html'\" />";
+										} 
+								  ?>
+										</tr>
               </table>
             </div>
             <div id="GLOBAL" class="panel"><br><br>
