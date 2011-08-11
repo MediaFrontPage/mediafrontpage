@@ -26,7 +26,7 @@ function unzip($file = 'update.zip', $extractDir = 'update'){
   echo true;return true;
 }
 
-function moveDir($src, $dst){
+function moveDir($src, $dst, $update = true){
   $src = $src.'/';
   $dst = $dst.'/';
   $updateContents = scandir($src);
@@ -37,10 +37,15 @@ function moveDir($src, $dst){
       }
     }
   }
-  if(moveUpdate()){
-    echo true; return true;
+  if($update){
+    if(moveUpdate()){
+      echo true; return true;
+    }
+    else {
+      echo false; return false;
+    }
   }
-  echo false; return false;
+  echo true; return true;
 }
 
 function moveUpdate(){
@@ -54,51 +59,13 @@ function moveUpdate(){
     closedir($handle);
   }
   if($name != ''){
-    if(moveDir($name, '.')){
-      return true;
+    if(moveDir($name, '.', false)){
+      echo true; return true;
     }
   }
-  return false;
+  echo true; return false;
 }
 
-/*
-/Function to clean up some leftover files. If files other than 'update' folder and 'update.zip'
-/are to be deleted, than the $extra variable and be used. If multiple files are to be deleted use
-/$extra as an array.
-/
-/return: false if nothing is deleted, a string with the deleted files otherwise.
-*/
-function cleanUp($extra = ''){
-  $return_value = '';
-  if(file_exists('update')){
-    if(@unlink('update')){
-      $return_value .= '<br /><b>update</b> folder deleted';
-    }
-  }
-  if(file_exists('update.zip')){
-    if(@unlink('update.zip')){
-      $return_value .= '<br /><b>update.zip</b> deleted';
-    }
-  }
-  if($extra !== ''){
-    if(is_array($extra)){
-      foreach($extra as $x){
-        if(@unlink($x)){
-          $return_value = '<br /><b>'.$x.'</b> deleted';
-        }
-      }
-    } else {
-      if(@unlink($extra)){
-        $return_value = '<br /><b>'.$extra.'</b> deleted';
-      }
-    }
-  }
-  if($return_value === ''){
-    return false;
-  } else {
-    return $return_value;
-  }
-}
 
 //Deletes directories and it's contents. If $remove is true, it will delete the directory otherwise, only it's contents.
 function rrmdir($dir, $remove = true) { 

@@ -15,7 +15,6 @@ function ajaxRequest(params, id){
 			  count++;
 			} else {
 			  $("img#"+id).attr('src','media/red-cross.png');
-			  success = false;
 			}
 		},
 		error: function() { // failed request; give feedback to user
