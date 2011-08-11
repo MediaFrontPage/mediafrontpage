@@ -132,6 +132,13 @@ while(!$found){
      $AUTH_USERNAME          = $Config->get('USERNAME','SECURITY');
      $AUTH_PASS              = $Config->get('PASSWORD','SECURITY');
 
+/* Column Widths*/
+
+	$width1 = $Config->get('WIDTH1','COLUMNS');
+	$width2 = $Config->get('WIDTH2','COLUMNS');
+	$width3 = $Config->get('WIDTH3','COLUMNS');
+	$width4 = $Config->get('WIDTH4','COLUMNS');
+
                               /*SEARCH WIDGET*/
 
 //***********************************************************************************//

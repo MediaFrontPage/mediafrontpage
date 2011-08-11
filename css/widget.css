@@ -1,21 +1,28 @@
 /* Widget Placeholders and Style */
 
+<?php
+require_once "../config.php";
+header("Content-type: text/css"); 
+
+
+?>
+
 #main .section {
     float: left;
     min-height: 400px;
     height: auto !important; 
 }
 #main #section1 { 
-    width: 25%;
+    width:<?php echo $width1?>;
 }
 #main #section2 { 
-    width: 25%;
+    width:<?php echo $width2?>;
 }
 #main #section3 { 
-    width: 25%;
+    width:<?php echo $width3?>;
 }
 #main #section4 { 
-    width: 25%;
+    width:<?php echo $width4?>;
 }
 #main .widget-placeholder { 
     border: 2px dashed #999;
