@@ -37,7 +37,10 @@ function moveDir($src, $dst){
       }
     }
   }
-  echo true; return true;
+  if(moveUpdate()){
+    echo true; return true;
+  }
+  echo false; return false;
 }
 
 function moveUpdate(){
@@ -52,10 +55,10 @@ function moveUpdate(){
   }
   if($name != ''){
     if(moveDir($name, '.')){
-      echo true; return true;
+      return true;
     }
   }
-  echo false; return false;
+  return false;
 }
 
 /*
@@ -197,8 +200,12 @@ if(!empty($_GET)){
       echo false; return false;
     }
   }
-  if(isset($_GET['movenew']) && $_GET['movenew']){
-    moveUpdate();
+  if(isset($_GET['cleanup']) && $_GET['cleanup']){
+    if(isset($_GET['dir']) && $_GET['dir'] != ''){
+      rrmdir($_GET['dir']);
+    } else {
+      echo false; return false;
+    }
   }
   
   
@@ -249,11 +256,11 @@ if(!empty($_GET)){
           </tr>
           <tr>
             <td>Cleaning up backup</td>
-            <td></td>
+            <td><div id="clean-back"></div></td>
           </tr>
           <tr>
             <td>Cleaning up leftovers</td>
-            <td></td>
+            <td><div id="clean-left"></div></td>
           </tr>
         </table>
         <div id="result"></div>
