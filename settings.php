@@ -64,7 +64,7 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
   <script type="text/javascript" src="js/fisheye-iutil.min.js"></script>
   <script type="text/javascript" src="js/settings.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/widget.css">
+  <link rel="stylesheet" type="text/css" href="css/widget.php">
   <link rel="stylesheet" type="text/css" href="css/static_widget.css">
   <link rel="stylesheet" type="text/css" href="css/footer.css">
   <script src="js/jquery.scrollTo-1.3.3-min.js" type="text/javascript"></script>
@@ -103,7 +103,9 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
           <li><a href="#HDD">Hard Drives</a></li>
           <li><a href="#MESSAGE">Message Widget</a></li>
           <li><a href="#SECURITY">Security</a></li>
-          <li><a href="#MODS">CSS Mods</a></li>
+          <li><a href="#THEMES">Themes</a></li>
+          <li><a href="#COLUMNS">Columns</a></li>
+		  <li><a href="#WIDGET_MODS">Widgets</a></li>
           <li><a href="#RSS">RSS Feeds</a></li>
           <li><a href="#CONTROL">Control Widget</a></li>
         </ul>
@@ -715,8 +717,8 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
 							</table>
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('SECURITY');" />
             </div>
-            <div id="MODS" class="panel">
-              <h3>CSS Modifications:</h3>
+            <div id="THEMES" class="panel">
+              <h3>Themes:</h3>
               <p align="justify" style="width: 500px;">These are 'user created' CSS modifications submitted by some of our users. These change mainly the look and colours of MediaFrontPage. If you want to contribute your own modification, submit it to us on the <a href="http://forum.xbmc.org/showthread.php?t=83304" target="_blank">MediaFrontPage Support Thread</a>.</p>
               <table style="max-height:300px;">
                 <tr align="center">
@@ -726,40 +728,88 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                 </tr>
                 <tr>
                   <td align="center">
-                    <input type="radio" name="ENABLED" value="lighttheme" <?php echo ($config->get('ENABLED','MODS') == "lighttheme")?'CHECKED':'';?> />
+                    <input type="radio" name="ENABLED" value="lighttheme" <?php echo ($config->get('ENABLED','THEMES') == "lighttheme")?'CHECKED':'';?> />
                     <p>Light Theme</p>
                   </td>
                   <td align="center">
-                    <input type="radio" name="ENABLED" value="hernandito" <?php echo ($config->get('ENABLED','MODS') == "hernandito")?'CHECKED':'';   ?>>
+                    <input type="radio" name="ENABLED" value="hernandito" <?php echo ($config->get('ENABLED','THEMES') == "hernandito")?'CHECKED':'';   ?>>
                     <p>Hernandito's Theme</p>
                   </td>
                   <td align="center">
-                    <input type="radio" name="ENABLED" value="black_modern_glass" <?php echo ($config->get('ENABLED','MODS') == "black_modern_glass")?'CHECKED':'';?> />
+                    <input type="radio" name="ENABLED" value="black_modern_glass" <?php echo ($config->get('ENABLED','THEMES') == "black_modern_glass")?'CHECKED':'';?> />
                     <p>Black Modern Glass Theme</p>
                   </td>
                 </tr>
+                
                 <tr>
-                  <td><img class="widget" src="media/examples/minimal-posters.jpg" height="100px" /></td>
-                  <td><img class="widget" src="media/examples/minimal-banners.jpg" height="100px" /></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td align="center">
-                    <input type="radio" name="ENABLED" value="comingepisodes-minimal-poster" <?php echo ($config->get('ENABLED','MODS') == "comingepisodes-minimal-poster")?'CHECKED':'';?> />
-                    <p>Minimal Posters</p>
-                  </td>
-                  <td align="center">
-                    <input type="radio" name="ENABLED" value="comingepisodes-minimal-banner" <?php echo ($config->get('ENABLED','MODS') == "comingepisodes-minimal-banner")?'CHECKED':'';?> />
-                    <p>Minimal Banners</p>
-                  </td>
+				<td>
+				</td>
                   <td>
-                    <input type="radio" name="ENABLED" value="" <?php echo ($config->get('ENABLED','MODS') == "")?'CHECKED':'';   ?> />
+                    <input type="radio" name="ENABLED" value="" <?php echo ($config->get('ENABLED','THEMES') == "")?'CHECKED':'';   ?> />
                     <p>OFF</p>
                   </td>
+				  <td>
+				</td>
                 </tr>
               </table>
-              <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('MODS');" />
+              <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('THEMES');" />
             </div>
+
+<div id="COLUMNS" class="panel">
+			<h3>Column Widths</h3>
+              <p align="justify" style="width: 500px;">This is to set the width of each column.  Do not exceed 100%. For 3 columns, leave column 4 as 0%. If you move to 3 columns make sure you move all widgets out of column 4 before you make the changes.</p>
+			
+			<table id='table_columns'>
+								<tr>
+									<td align="right"><p>Column 1</p></td>
+									<td align="left"><input name="WIDTH1" size="20" Title="Insert the desired width" value="<?php echo $config->get('WIDTH1','COLUMNS')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>Column 2</p></td>
+									<td align="left"><input name="WIDTH2" size="20" Title="Insert the desired width" value="<?php echo $config->get('WIDTH2','COLUMNS')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>Column 3</p></td>
+									<td align="left"><input name="WIDTH3" size="20" Title="Insert the desired width" value="<?php echo $config->get('WIDTH3','COLUMNS')?>" /></td>
+								</tr>
+								<tr>
+									<td align="right"><p>Column 4</p></td>
+									<td align="left"><input name="WIDTH4" size="20" Title="Insert the desired width" value="<?php echo $config->get('WIDTH4','COLUMNS')?>" /></td>
+								</tr>
+								</table>
+             
+              <br />
+              <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('COLUMNS');" />
+			</div>
+			
+			
+			
+			
+<div id="WIDGET_MODS" class="panel">
+			<h3>Widget Modification</h3>
+              <p align="justify" style="width: 500px;">Use this to set what view you want for the Coming Episode Widget. One must be true and the other false or both false for default view.</p>
+			
+			<table style="max-height:300px;">
+
+                 <tr align="center">
+                  <td><img class="widget" src="media/examples/minimal-posters.jpg" height="100px" /></td>
+                  <td><img class="widget" src="media/examples/minimal-banners.jpg" height="100px" /></td>
+				  
+				  </tr>
+                <tr>
+				<tr>
+									<td align="right"><p>Minimal Posters</p></td>
+									<td align="left"><input name="POSTER" size="20" Title="Turn on/off" value="<?php echo $config->get('POSTER','WIDGET_MODS')?>" /></td>
+							
+									<td align="right"><p>Minimal Banner</p></td>
+									<td align="left"><input name="BANNER" size="20" Title="Turn on/off" value="<?php echo $config->get('BANNER','WIDGET_MODS')?>" /></td>
+								</tr>
+				  </tr>
+				 
+              </table>
+              <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('WIDGET_MODS');" />
+			</div>
+
             <div id="RSS" class="panel">
               <h3>RSS Feeds</h3>
               <p align="justify" style="width: 500px;">We also added an RSS Feed from the most popular NZB Sites so you can instantly grab an NZB from their Feeds and load it straight to SabNZBd+ with no other user intervention. The default/shown RSS is the first one on this list.</p>

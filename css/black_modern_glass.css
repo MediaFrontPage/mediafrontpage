@@ -1,0 +1,70 @@
+body {
+	background: url(http://1-background.com/images/silk/black-silk-repeating-background.jpg) !IMPORTANT;
+	color: #WHITE !IMPORTANT;
+}
+#main .section .widget {
+   border: 1px solid rgba(0,0,0,0.5) !IMPORTANT;
+   border-radius: 10px 10px 2px 2px !IMPORTANT;
+   background: rgba(0,0,0,0.25) !IMPORTANT;
+   box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+   -o-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+   -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+   -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3) !IMPORTANT;
+    border-color: transparent !IMPORTANT;
+}
+.widget .widget-head {
+    background-color: transparent !IMPORTANT;
+}
+.widget .widget-content {
+    background-color: transparent !IMPORTANT;
+}
+.widget .widget-content .alt {
+    background-color: transparent !IMPORTANT;
+}
+a:link {
+	color:#BLUE !IMPORTANT;
+}
+a:hover {
+	color:#BLUE !IMPORTANT;
+}
+a:visited {
+	color:#BLUE !IMPORTANT;
+}
+.ep_summary {
+	color:#WHITE !IMPORTANT;
+}
+div.tvshowdiv > table > tbody > tr > td 
+	color:#WHITE !IMPORTANT;
+}
+.widget-head a.remove  {
+    background-image: url(../media/buttonslight.gif) !important;
+}
+
+.widget-head a.edit  {
+    background-image: url(../media/buttonslight.gif) !important;
+}
+
+.widget-head a.collapse  {
+    background-image: url(../media/buttonslight.gif) !important;
+}
+.dragger {
+	background:#BLUE !IMPORTANT;
+}
+.dragger_pressed {
+	background:#WHITE; !IMPORTANT;
+}
+td {
+	color:#BLUE !IMPORTANT;
+}
+.progresslabel { 
+	color: #WHITE !IMPORTANT; 
+}
+.progressbar { 
+	background:TRANSPARENT !IMPORTANT;
+}
+.progress { 
+	color: #BLUE !IMPORTANT; 
+}
+.progressbar .warning { 
+	background:#RED !IMPORTANT;
+}

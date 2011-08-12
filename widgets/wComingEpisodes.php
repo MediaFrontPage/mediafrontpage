@@ -1,6 +1,6 @@
 <?php
 //Note this example uses the "stylesheet", and "headerfunction" properties.
-$wdgtComingEpisodes = array("name" => "Coming Episodes", "type" => "inline", "function" => "widgetComingEpisodes();", "stylesheet" => "css/comingepisodes.css", "headerfunction" => "widgetComingEpisodesHeader();");
+$wdgtComingEpisodes = array("name" => "Coming Episodes", "type" => "inline", "function" => "widgetComingEpisodes();", "stylesheet" => "css/comingepisodes.php", "headerfunction" => "widgetComingEpisodesHeader();");
 $wIndex["wComingEpisodes"] = $wdgtComingEpisodes;
 
 function widgetComingEpisodes() {
