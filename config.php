@@ -328,8 +328,8 @@ while(!$found){
 		 
 		 //Coming Episode Styles //
 		 
-		$banner = $Config->get('BANNER','WIDGET_MODS');
-		$poster = $Config->get('POSTER','WIDGET_MODS');
+		$ceview = $Config->get('CEVIEW','WIDGET_MODS');
+		
 
                               // Message Section //
 

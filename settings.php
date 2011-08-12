@@ -794,17 +794,22 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                  <tr align="center">
                   <td><img class="widget" src="media/examples/minimal-posters.jpg" height="100px" /></td>
                   <td><img class="widget" src="media/examples/minimal-banners.jpg" height="100px" /></td>
+				  <td height="100px" width="100px"></td>
+				  </tr>
 				  
-				  </tr>
-                <tr>
-				<tr>
-									<td align="right"><p>Minimal Posters</p></td>
-									<td align="left"><input name="POSTER" size="20" Title="Turn on/off" value="<?php echo $config->get('POSTER','WIDGET_MODS')?>" /></td>
-							
-									<td align="right"><p>Minimal Banner</p></td>
-									<td align="left"><input name="BANNER" size="20" Title="Turn on/off" value="<?php echo $config->get('BANNER','WIDGET_MODS')?>" /></td>
-								</tr>
-				  </tr>
+				  <td align="center">
+                    <input type="radio" name="CEVIEW" value="1" <?php echo ($config->get('CEVIEW','WIDGET_MODS') == "1")?'CHECKED':'';?> />
+                    <p>Minimal Banner</p>
+                  </td>
+				  <td align="center">
+                    <input type="radio" name="CEVIEW" value="2" <?php echo ($config->get('CEVIEW','WIDGET_MODS') == "2")?'CHECKED':'';?> />
+                    <p>Minimal Poster</p>
+					</td>
+					<td align="center">
+                    <input type="radio" name="CEVIEW" value="3" <?php echo ($config->get('CEVIEW','WIDGET_MODS') == "3")?'CHECKED':'';?> />
+                    <p>Default</p>
+					</td>
+                
 				 
               </table>
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('WIDGET_MODS');" />

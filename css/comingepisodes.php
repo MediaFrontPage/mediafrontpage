@@ -4,8 +4,11 @@ header("Content-type: text/css");
 
 
 ?><?php
+// Banner 1 
+// Poster 2
+// Default 3
 
-if ( $banner == "true" )
+if ( $ceview == "1" )
 { 
 			 echo ( "
 			 
@@ -214,7 +217,7 @@ div#comingepisodes_widget{
 			 " );
     }
 	
-	elseif ( $poster == "true" )
+	if ( $ceview == "2" )
 { 
 			 echo ( "
 
@@ -425,8 +428,8 @@ div#comingepisodes_widget{
 			 " );
     }
 	
-else
-		{ 
+if ( $ceview == "3" )
+{ 
 			 echo ( "
 
 			 	div#header, #MainMenu, #SubMenu, .h2footer, .footer, .plotInfo, img.ep_summaryTrigger {
