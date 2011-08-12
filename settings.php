@@ -106,6 +106,7 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
           <li><a href="#THEMES">Themes</a></li>
           <li><a href="#COLUMNS">Columns</a></li>
 		  <li><a href="#WIDGET_MODS">Widgets</a></li>
+		  <li><a href="#WIDGETS_ON/OFF">Widgets On/Off</a></li>
           <li><a href="#RSS">RSS Feeds</a></li>
           <li><a href="#CONTROL">Control Widget</a></li>
         </ul>
@@ -810,11 +811,84 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
                     <p>Default</p>
 					</td>
                 
-				 
+							 
               </table>
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('WIDGET_MODS');" />
 			</div>
 
+		<div id="WIDGETS_ON/OFF" class="panel">
+			<h3>Widget On/Off</h3>
+              <p align="justify" style="width: 500px;">Turn widgets on and off from here.</p>	
+<table cellspacing="5">
+	<tr>
+		<td>wComingEpisodes</td>
+		<td><input type="checkbox" name="wComingEpisodes" title="Tick to Enable" <?php echo ($config->get('wComingEpisodes','WIDGETS_ON/OFF') == "true")?'CHECKED':'';?> /></td>
+	</tr>
+	<tr>
+		<td>wXBMCLibrary</td>
+		<td><input type="checkbox" name="wXBMCLibrary" title="Tick to Enable" <?php echo ($config->get('wXBMCLibrary','WIDGETS_ON/OFF') == "true")?'CHECKED':'';?> /></td>
+	</tr>
+	<tr>
+		<td>wControl</td>
+		<td><input type="checkbox" name="wControl" title="Tick to Enable" <?php echo ($config->get('wControl','WIDGETS_ON/OFF') == "true")?'CHECKED':'';?> /></td>
+	</tr>
+	<tr>
+		<td>wRecentTV</td>
+		<td><input type="checkbox" name="wRecentTV" title="Tick to Enable" <?php echo ($config->get('wRecentTV','WIDGETS_ON/OFF') == "true")?'CHECKED':'';?> /></td>
+	</tr>
+	<tr>
+		<td>wRecentMovies</td>
+		<td><input type="checkbox" name="wRecentMovies" title="Tick to Enable" <?php echo ($config->get('wRecentMovies','WIDGETS_ON/OFF') == "true")?'CHECKED':'';?> /></td>
+	</tr>
+	<tr>
+		<td>wSearch</td>
+		<td><input type="checkbox" name="wSearch" title="Tick to Enable" <?php echo ($config->get('wSearch','WIDGETS_ON/OFF') == "true")?'CHECKED':'';?> /></td>
+	</tr>
+	<tr>
+		<td>wRSS</td>
+		<td><input type="checkbox" name="wRSS" title="Tick to Enable" <?php echo ($config->get('wRSS','WIDGETS_ON/OFF') == "true")?'CHECKED':'';?> /></td>
+	</tr>
+	<tr>
+		<td>wHardDrives</td>
+		<td><input type="checkbox" name="wHardDrives" title="Tick to Enable" <?php echo ($config->get('wHardDrives','WIDGETS_ON/OFF') == "true")?'CHECKED':'';?> /></td>
+	</tr>
+	<tr>
+		<td>wNowPlaying</td>
+		<td><input type="checkbox" name="wNowPlaying" title="Tick to Enable" <?php echo ($config->get('wNowPlaying','WIDGETS_ON/OFF') == "true")?'CHECKED':'';?> /></td>
+	</tr>
+	<tr>
+		<td>wTransmission</td>
+		<td><input type="checkbox" name="wTransmission" title="Tick to Enable" <?php echo ($config->get('wTransmission','WIDGETS_ON/OFF') == "true")?'CHECKED':'';?> /></td>
+	</tr>
+	<tr>
+		<td>wSabnzbd</td>
+		<td><input type="checkbox" name="wSabnzbd" title="Tick to Enable" <?php echo ($config->get('wSabnzbd','WIDGETS_ON/OFF') == "true")?'CHECKED':'';?> /></td>
+	</tr>
+	<tr>
+		<td>wMessage</td>
+		<td><input type="checkbox" name="wMessage" title="Tick to Enable" <?php echo ($config->get('wMessage','WIDGETS_ON/OFF') == "true")?'CHECKED':'';?> /></td>
+	</tr>
+	<tr>
+		<td>wTrakt</td>
+		<td><input type="checkbox" name="wTrakt" title="Tick to Enable" <?php echo ($config->get('wTrakt','WIDGETS_ON/OFF') == "true")?'CHECKED':'';?> /></td>
+	</tr>
+	<tr>
+		<td>wSystem</td>
+		<td><input type="checkbox" name="wSystem" title="Tick to Enable" <?php echo ($config->get('wSystem','WIDGETS_ON/OFF') == "true")?'CHECKED':'';?> /></td>
+	</tr>
+	<tr>
+		<td>wUPS</td>
+		<td><input type="checkbox" name="wUPS" title="Tick to Enable" <?php echo ($config->get('wUPS','WIDGETS_ON/OFF') == "true")?'CHECKED':'';?> /></td>
+	</tr>
+		
+</table>
+              <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('WIDGETS_ON/OFF');" />
+			</div>	
+			
+			
+			
+			
+			
             <div id="RSS" class="panel">
               <h3>RSS Feeds</h3>
               <p align="justify" style="width: 500px;">We also added an RSS Feed from the most popular NZB Sites so you can instantly grab an NZB from their Feeds and load it straight to SabNZBd+ with no other user intervention. The default/shown RSS is the first one on this list.</p>

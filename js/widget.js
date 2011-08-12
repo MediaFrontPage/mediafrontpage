@@ -36,23 +36,23 @@ var widgets = {
             
         $(settings.widgetSelector, $(settings.sections)).each(function () {
             var thisWidgetSettings = widgets.getWidgetSettings(this.id);
-            if (thisWidgetSettings.removable) {
-                $('<a href="#" class="remove">CLOSE</a>').mousedown(function (e) {
-                    // STOP event bubbling
-                    e.stopPropagation();    
-                }).click(function () {
-                    if(confirm('This widget will be removed, ok?')) {
-                        $(this).parents(settings.widgetSelector).animate({
-                            opacity: 0    
-                        },function () {
-                            $(this).wrap('<div/>').parent().slideUp(function () {
-                                $(this).remove();
-                            });
-                        });
-                    }
-                    return false;
-                }).appendTo($(settings.handleSelector, this));
-            }
+            //if (thisWidgetSettings.removable) {
+            //    $('<a href="#" class="remove">CLOSE</a>').mousedown(function (e) {
+            //        // STOP event bubbling
+            //        e.stopPropagation();    
+            //    }).click(function () {
+            //        if(confirm('This widget will be removed, ok?')) {
+            //            $(this).parents(settings.widgetSelector).animate({
+            //                opacity: 0    
+            //            },function () {
+            //                $(this).wrap('<div/>').parent().slideUp(function () {
+            //                    $(this).remove();
+            //                });
+            //            });
+            //        }
+            //        return false;
+            //    }).appendTo($(settings.handleSelector, this));
+            //}
             
            if (thisWidgetSettings.editable) {
                 $('<a href="#" class="edit">EDIT</a>').mousedown(function (e) {

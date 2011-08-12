@@ -139,6 +139,25 @@ while(!$found){
 	$width3 = $Config->get('WIDTH3','COLUMNS');
 	$width4 = $Config->get('WIDTH4','COLUMNS');
 
+/* Widgets On/Off */
+
+	$wComingEpisodes = $Config->get('wComingEpisodes','WIDGETS_ON/OFF');
+	$wXBMCLibrary = $Config->get('wXBMCLibrary','WIDGETS_ON/OFF');
+	$wControl = $Config->get('wControl','WIDGETS_ON/OFF');
+	$wRecentTV = $Config->get('wRecentTV','WIDGETS_ON/OFF');
+	$wRecentMovies = $Config->get('wRecentMovies','WIDGETS_ON/OFF');
+	$wSearch = $Config->get('wSearch','WIDGETS_ON/OFF');
+	$wRSS = $Config->get('wRSS','WIDGETS_ON/OFF');
+	$wHardDrives = $Config->get('wHardDrives','WIDGETS_ON/OFF');
+	$wNowPlaying = $Config->get('wNowPlaying','WIDGETS_ON/OFF');
+	$wTransmission = $Config->get('wTransmission','WIDGETS_ON/OFF');
+	$wSabnzbd = $Config->get('wSabnzbd','WIDGETS_ON/OFF');
+	$wMessage = $Config->get('wMessage','WIDGETS_ON/OFF');
+	$wTrakt = $Config->get('wTrakt','WIDGETS_ON/OFF');
+	$wSystem = $Config->get('wSystem','WIDGETS_ON/OFF');
+	$wUPS = $Config->get('wUPS','WIDGETS_ON/OFF');
+
+
                               /*SEARCH WIDGET*/
 
 //***********************************************************************************//

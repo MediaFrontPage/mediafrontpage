@@ -2,20 +2,20 @@
 require_once "config.php";
 require_once "functions.php";
 require_once "widgets.php";
-
+require_once "layoutmiddleman.php";
 //turn off warnings
-$errlevel = error_reporting();
-error_reporting(E_ALL & ~E_WARNING);
-if (!include ("layout.php")){
+//$errlevel = error_reporting();
+//error_reporting(E_ALL & ~E_WARNING);
+//if (!include ("layoutmiddleman.php")){
 	// file was missing so include default theme 
-	require("default-layout.php");
-}
+//	require("default-layout.php");
+//}
 // Turn on warnings
-error_reporting($errlevel); 
+//error_reporting($errlevel); 
 
-if (empty ($arrLayout)) {
-	require_once("default-layout.php");
-}
+//if (empty ($arrLayout)) {
+//	require_once("default-layout.php");
+//}
 ?>
 <html>
 	<head>
