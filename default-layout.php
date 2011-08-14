@@ -11,10 +11,6 @@ $arrLayout = array(
 				"title" => "XBMC Library",
 				"display" => ""
 			),
-			"wControl" => array(
-				"title" => "Control",
-				"display" => ""
-			),
 			"wRecentTV" => array(
 				"title" => "Recent TV",
 				"display" => ""
@@ -22,7 +18,7 @@ $arrLayout = array(
 			"wRecentMovies" => array(
 				"title" => "Recent Movies",
 				"display" => ""
-			)
+			),
 		),
 		"section3" => array(
 			"wSearch" => array(
@@ -36,13 +32,13 @@ $arrLayout = array(
 			"wHardDrives" => array(
 				"title" => "Hard Drives",
 				"display" => ""
+			),
+			"wControl" => array(
+				"title" => "Control",
+				"display" => ""
 			)
 		),
 		"section4" => array(
-			"wNowPlaying" => array(
-				"title" => "Now Playing",
-				"display" => ""
-			),
 			"wTransmission" => array(
 				"title" => "Transmission",
 				"display" => ""
@@ -51,18 +47,26 @@ $arrLayout = array(
 				"title" => "Sabnzbd",
 				"display" => ""
 			),
+			"wjDownloader" => array(
+				"title" => "jDownloader",
+				"display" => ""
+			),
 			"wMessage" => array(
 				"title" => "XBMC Message",
 				"display" => ""
 			),
+			"wNowPlaying" => array(
+				"title" => "Now Playing",
+				"display" => ""
+			),
 			"wTrakt" => array(
 				"title" => "trakt.tv",
-				"display" => ""
+				"display" => "collapsed"
 			),
 			"wSystem" => array(
 				"title" => "System info",
-				"display" => ""
-			)
+				"display" => "collapsed"
+			),
 		)
 	);
 	
