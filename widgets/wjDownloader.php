@@ -164,6 +164,7 @@ function getInfoDownloader($param = ""){
 }
 
 if(!empty($_GET['action'])){
+	require_once "../config.php";
 	if($_GET['action'] == "start"){
 		$x = getInfoDownloader("action/start");
 		echo "$x";
