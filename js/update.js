@@ -45,7 +45,8 @@ function callNext(i){
     $("#commit").html('<img id="com" src="media/pwait.gif" height="15px" />');
     ajaxRequest('update=true','com');
   } else {
-    alert('Finished');
+    $("#result").html('<p>Update successfull</p> You will be redirected in a few seconds.');
+    window.location.href = window.top.location.reload();
   }
 }
 
