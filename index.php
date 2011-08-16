@@ -33,7 +33,7 @@ if(!empty($_SERVER['HTTP_REFERER'])){
 
   <frameset rows="<?php echo ($submenu)?"62px":"35px";?>, *" frameborder="0" border="0" framespacing="0">
     <frame src="nav.php" name="nav" noresize scrolling="no">
-    <frame src="<?php echo ($settings)?'settings/':'mediafrontpage.php'?>" name="main" noresize scrolling="auto">
+    <frame src="<?php echo ($settings)?'settings/settings.php':'mediafrontpage.php'?>" name="main" noresize scrolling="auto">
   </frameset>
   <noframes>
     <p>Your browser does not support frames</p>
