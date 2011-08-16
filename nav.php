@@ -65,7 +65,7 @@ if(!empty($navselect)){
 	echo "</select>";
 }
 echo "<div id='nav-menu2' style='text-decoration: none; font-size:small; position:absolute; top:0; right:0;'>";
-echo "<ul><li><a href='settings/' target='main'><img src='./media/settings.png' height='15px;'/></a></li></ul>";
+echo "<ul><li><a href='settings/settings.php' target='main'><img src='./media/settings.png' height='15px;'/></a></li></ul>";
 //<--START LOGOUT --> 
 require_once('config.php');
 if ($authsecured) {
