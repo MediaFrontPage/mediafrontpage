@@ -3,7 +3,7 @@
 		<div id="ABOUT" class="panel">
               <table cellpadding="5px">
                 <tr>
-                  <img src="media/mfp.png" />
+                  <img src="../media/mfp.png" />
                 </tr>
                 <tr>
                   <td colspan="2">

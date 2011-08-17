@@ -16,7 +16,7 @@
 								</tr>
 								<tr>
 									<td align="right"><p>trakt API:</p></td>
-								  <td align="left"><input name="TRAKT_API" type="password" title="Insert your trakt.tv API"  ize="40" value="<?php echo $config->get('TRAKT_API','TRAKT')?>" /><a href="http://trakt.tv/settings/api" target="_blank"><img src="media/question.png" height="20px"></a></td>
+								  <td align="left"><input name="TRAKT_API" type="password" title="Insert your trakt.tv API"  ize="40" value="<?php echo $config->get('TRAKT_API','TRAKT')?>" /><a href="http://trakt.tv/settings/api" target="_blank"><img src="../media/question.png" height="20px"></a></td>
 								</tr>
 							</table>
               <input type="button" class="ui-button ui-widget ui-state-default ui-corner-all" value="Save" onclick="updateSettings('TRAKT');" />

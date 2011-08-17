@@ -5,9 +5,9 @@
               <p align="justify" style="width: 500px;">These are 'user created' CSS modifications submitted by some of our users. These change mainly the look and colours of MediaFrontPage. If you want to contribute your own modification, submit it to us on the <a href="http://forum.xbmc.org/showthread.php?t=83304" target="_blank">MediaFrontPage Support Thread</a>.</p>
               <table style="max-height:300px;">
                 <tr align="center">
-                  <td><img class="widget" src="media/examples/lightheme.jpg" height="100px" /></td>
-                  <td><img class="widget" src="media/examples/hernadito.jpg" height="100px" /></td>
-                  <td><img class="widget" src="media/examples/black_modern_glass.jpg" height="100px" /></td>
+                  <td><img class="widget" src="../media/examples/lightheme.jpg" height="100px" /></td>
+                  <td><img class="widget" src="../media/examples/hernadito.jpg" height="100px" /></td>
+                  <td><img class="widget" src="../media/examples/black_modern_glass.jpg" height="100px" /></td>
                 </tr>
                 <tr>
                   <td align="center">
@@ -24,8 +24,8 @@
                   </td>
                 </tr>
                 <tr>
-                  <td><img class="widget" src="media/examples/minimal-posters.jpg" height="100px" /></td>
-                  <td><img class="widget" src="media/examples/minimal-banners.jpg" height="100px" /></td>
+                  <td><img class="widget" src="../media/examples/minimal-posters.jpg" height="100px" /></td>
+                  <td><img class="widget" src="../media/examples/minimal-banners.jpg" height="100px" /></td>
                   <td></td>
                 </tr>
                 <tr>
