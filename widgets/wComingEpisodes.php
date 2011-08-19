@@ -151,7 +151,9 @@ ComingEpisodesSCRIPT;
 if(!empty($_GET["display"])) {
   include_once "../config.php";
 
-  $body = getComingSoon($sickbeardcomingepisodes);
+  $html = getComingSoon($sickbeardcomingepisodes);
+  $body = stripBody($html);
+  $body = stripInnerWrapper($body);
 
   $urldata = @parse_url($sickbeardcomingepisodes);
   if(empty($urldata)){echo 'Sickbeard could not be reached. Please check if the URL is correct.';}
@@ -197,7 +199,7 @@ function stripBody($body) {
   return $body;
 }
 function stripInnerWrapper($body) {
-  $pos = strpos($body, "<h1>Coming Episodes</h1>");
+  $pos = strpos($body, "<h1 class=\"day\">");
   if ($pos > 0) {
     $body = substr($body, $pos);
     $pos = strpos($body, "<script");
@@ -262,40 +264,5 @@ function getComingSoon($url = "") {
   return $html;
 }
 
-function displayComingSoon () {
-  global $sickbeardurl;
-
-  if(strrpos($sickbeardurl, "/") < strlen($sickbeardurl)) {
-    $sickbeardurl .= "/";
-  }
-
-  $html = getComingSoon();
-  $body = stripBody($html);
-  $body = stripInnerWrapper($body);
-  //$body = changeLinks($body);
-  
-  if(!empty($_GET["style"]) && (($_GET["style"] == "s") || ($_GET["style"] == "m"))) {
-    $reldir = (($_GET["style"] == "m") ? "../" : "");
-    $body = str_replace("src=\"".$sickbeardurl."showPoster/", "src=\"".$reldir."sickbeardposter.php", $body);
-    $body = str_replace("src=\"/sickbeard/showPoster/", "src=\"".$reldir."sickbeardposter.php", $body);
-    $body = str_replace("src=\"/showPoster/", "src=\"".$reldir."sickbeardposter.php", $body);
-  }
-  $body = str_replace("src=\"/sickbeard/", "src=\"".$sickbeardurl, $body);
-  $body = str_replace("href=\"/sickbeard/", "href=\"".$sickbeardurl, $body);
-  $body = str_replace("src=\"/home/", "src=\"".$sickbeardurl."home/", $body);
-  $body = str_replace("href=\"/home/", "href=\"".$sickbeardurl."home/", $body);
-  $body = str_replace("src=\"home/", "src=\"".$sickbeardurl."home/", $body);
-  $body = str_replace("href=\"home/", "href=\"".$sickbeardurl."home/", $body);
-  $body = str_replace("src=\"/images/", "src=\"".$sickbeardurl."images/", $body);
-  $body = str_replace("href=\"/images/", "href=\"".$sickbeardurl."images/", $body);
-  $body = str_replace("src=\"images/", "src=\"".$sickbeardurl."images/", $body);
-  $body = str_replace("href=\"images/", "href=\"".$sickbeardurl."images/", $body);
-  echo $body;
-}
-
-if(!empty($_GET["style"]) && (($_GET["style"] == "s") || ($_GET["style"] == "w"))) {
-  include_once "../config.php";
-  displayComingSoon();
-}
 
 ?>
