@@ -265,4 +265,3 @@ function getComingSoon($url = "") {
 }
 
 ?>
-\No newline at end of file
