@@ -199,7 +199,7 @@ function stripBody($body) {
   return $body;
 }
 function stripInnerWrapper($body) {
-  $pos = strpos($body, "<h1 class=\"day>");
+  $pos = strpos($body, "<h1 class=\"day\">");
   if ($pos > 0) {
     $body = substr($body, $pos);
     $pos = strpos($body, "<script");
