@@ -151,7 +151,9 @@ ComingEpisodesSCRIPT;
 if(!empty($_GET["display"])) {
   include_once "../config.php";
 
-  $body = getComingSoon($sickbeardcomingepisodes);
+  $html = getComingSoon($sickbeardcomingepisodes);
+  $body = stripBody($html);
+  $body = stripInnerWrapper($body);
 
   $urldata = @parse_url($sickbeardcomingepisodes);
   if(empty($urldata)){echo 'Sickbeard could not be reached. Please check if the URL is correct.';}
