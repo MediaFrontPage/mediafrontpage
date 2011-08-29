@@ -66,10 +66,9 @@ if(!empty($_GET) && strpos($_SERVER['HTTP_REFERER'],'settings')){
   <script type="text/javascript" src="js/settings.js"></script>
   <link rel="stylesheet" type="text/css" href="css/widget.css">
   <link rel="stylesheet" type="text/css" href="css/static_widget.css">
-  <link rel="stylesheet" type="text/css" href="css/footer.css">
-  <script src="js/jquery.scrollTo-1.3.3-min.js" type="text/javascript"></script>
-  <script src="js/jquery.localscroll-1.2.5-min.js" type="text/javascript"></script>
-  <script src="js/jquery.serialScroll-1.2.1-min.js" type="text/javascript"></script>
+  <script src="js/jquery.scrollTo-1.4.2-min.js" type="text/javascript"></script>
+  <script src="js/jquery.localscroll-1.2.7-min.js" type="text/javascript"></script>
+  <script src="js/jquery.serialScroll-1.2.2-min.js" type="text/javascript"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>  
   <link rel="stylesheet" type="text/css" href="css/jquery.pnotify.default.css">
   <link rel="stylesheet" type="text/css" href="css/UI/jquery-ui-1.8.14.custom.css">
