@@ -217,8 +217,8 @@ function executeVideo($style = "w", $action, $breadcrumb, $params = array()) {
 			echo "<div class=\"widget-control\">".$anchor."</div>\n";
 			break;
 		case "ar":  // Artists
-			echo "<ul class=\"widget-list\"><li>Under Construction</li></ul>";
-			$results = jsonmethodcall("AudioLibrary.GetArtists");
+			if($jsonVersion['result']['version'] == '2') { $results = jsonmethodcall("AudioLibrary.GetArtists"); }
+			if($jsonVersion['result']['version'] == '3') { $results = jsonmethodcall("AudioLibraryV3.GetArtists"); }
 			if (!empty($results['result'])) {
 				$artists = $results['result']['artists'];
 				displayMusicListArtist($artists, $style, $action, $breadcrumb, $params);
@@ -230,10 +230,12 @@ function executeVideo($style = "w", $action, $breadcrumb, $params = array()) {
 		case "al": // Albums
 			if (!empty($params['artistid'])) {
 				$artistid = $params['artistid'];
-				$request = jsonstring("AudioLibrary.GetAlbums", '"artistid": '.$artistid.',');
+				if($jsonVersion['result']['version'] == '2') { $request = jsonstring("AudioLibrary.GetAlbums", '"artistid": '.$artistid.','); }
+				if($jsonVersion['result']['version'] == '3') { $request = jsonstring("AudioLibraryV3.GetAlbums", $artistid); }
 			} else {
 				$artistid = "";
-				$request = jsonstring("AudioLibrary.GetAlbums");
+				if($jsonVersion['result']['version'] == '2') { $request = jsonstring("AudioLibrary.GetAlbums"); }
+				if($jsonVersion['result']['version'] == '3') { $request = jsonstring("AudioLibraryV3NoArtist.GetAlbums"); }
 			}
 			$results = jsoncall($request);
 			if (!empty($results['result'])) {
@@ -246,12 +248,14 @@ function executeVideo($style = "w", $action, $breadcrumb, $params = array()) {
 			break;
 		case "so": // Songs
 			if (!empty($params['artistid']) && !empty($params['albumid'])) {
-				$request = jsonstring("AudioLibrary.GetSongs", array("artistid" => '"artistid": '.$params['artistid'].',', "albumid" => '"albumid": '.$params['albumid'].','));
+				if($jsonVersion['result']['version'] == '2') { $request = jsonstring("AudioLibrary.GetSongs", array("artistid" => '"artistid": '.$params['artistid'].',', "albumid" => '"albumid": '.$params['albumid'].',')); }
+				if($jsonVersion['result']['version'] == '3') { $request = jsonstring("AudioLibraryV3.GetSongs", $params['albumid']); }
 			} elseif (!empty($params['albumid'])) {
-				$request = jsonstring("AudioLibrary.GetSongs", array("artistid" => '"artistid": "" ,', "albumid" => '"albumid": '.$params['albumid'].','));
+				if($jsonVersion['result']['version'] == '2') { $request = jsonstring("AudioLibrary.GetSongs", $params['albumid']); }
+				if($jsonVersion['result']['version'] == '3') { $request = jsonstring("AudioLibraryV3.GetSongs", $params['albumid']); }
 			} else {
 				if($jsonVersion['result']['version'] == '2') { $request = jsonstring("AudioLibrary.GetSongs", array("artistid" => '', "albumid" => '')); }
-				if($jsonVersion['result']['version'] == '3') { $request = jsonstring("AudioLibraryV3.GetSongs", array("artistid" => '', "albumid" => '')); }
+				if($jsonVersion['result']['version'] == '3') { $request = jsonstring("AudioLibraryV3NoAlbumID.GetSongs"); }
 				
 			} 
 			$results = jsoncall($request);
@@ -408,14 +412,16 @@ function getTVShowId($showtitle) {
 
 function playVideoFromList($videoList, $idType = "episodeid", $videoId = -1) {
 	foreach ($videoList as $videoInfo) {
-		if(!empty($videoInfo[$idType]) && ($videoInfo[$idType] == $videoId) && !empty($videoInfo['file'])) {
-			jsonmethodcall("XBMC.Play", '"file": "'.$videoInfo['file'].'"');
+		if(!empty($videoInfo[$idType]) && ($videoInfo[$idType] == $videoId) && !empty($videoInfo['file']))
+		{
+			$jsonVersion = jsonmethodcall("JSONRPC.Version"); //pull the JSON version # from XBMC
+			if($jsonVersion['result']['version'] == '2') { echo "test message 4"; jsonmethodcall("XBMC.Play", '"file": "'.$videoInfo['file'].'"'); }
+			if($jsonVersion['result']['version'] == '3') { echo "test message 1";}
 		}
 	}
 }
 
 function playSongFromList($songid) {
-	echo "1";
 	$jsonVersion = jsonmethodcall("JSONRPC.Version"); //pull the JSON version # from XBMC
 	$results = jsonmethodcall("Player.GetActivePlayers");
 	if (!empty($results)) {
@@ -834,4 +840,3 @@ function buildBackAnchor($style, $breadcrumb, $params, $query = "") {
 	}
 }
 ?>
-
